@@ -6,9 +6,10 @@ export default function setHeader(
       }
     | undefined
 ): object {
+  console.log("headerCred", header);
   return {
-    // accept: "*/*",
+    Accept: "*/*",
     "Content-Type": header?.contentType || "application/json",
-    Authorization: `Bearer ${header?.autherization}`,
+    Authorization: "myAuthToken", //`Bearer ${header?.autherization}`,
   };
 }

@@ -1,4 +1,10 @@
-import axios, { AxiosResponse, AxiosError, AxiosPromise, Method, AxiosRequestHeaders } from "axios";
+import axios, {
+  AxiosResponse,
+  AxiosError,
+  AxiosPromise,
+  Method,
+  AxiosRequestHeaders,
+} from "axios";
 
 import setHeader from "../utils/setHeader";
 
@@ -30,7 +36,7 @@ export default async ({
     headers,
     data,
   });
-  console.log("res:", response);
+  console.log("service res:", response);
 
   if (response.data?.data) {
     return response.data.data;
