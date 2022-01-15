@@ -19,7 +19,6 @@ const Drops = () => {
         <Tabs value={value} onChange={handleChange} centered>
           <Tab label="Item One" />
           <Tab label="Item Two" />
-          <Tab label="Item Three" />
         </Tabs>
         <TextField
           placeholder="Enter Project Name"
@@ -37,12 +36,13 @@ const Drops = () => {
               "linear-gradient(180deg, rgb(100 100 100) 0%, rgba(0,0,0,1) 18%)",
           }}
         >
-          <Typography variant="h3" textAlign="center" component="span">
-            Drops{"   "}
-            <Typography variant="h3" component="span" color="grey.500">
-              Upcoming
-              <KeyboardArrowDownIcon sx={{ fontSize: 50 }} />
-            </Typography>
+          <Typography
+            variant="h3"
+            textAlign="center"
+            component="span"
+            color="grey.500"
+          >
+            January 1st
           </Typography>
           <DropTable />
           <ButtonWhite sx={{ textTransform: "capitalize", mx: "auto" }}>

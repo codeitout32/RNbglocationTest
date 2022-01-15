@@ -58,8 +58,8 @@ function* fetchSingleDropsSaga(action) {
 
   try {
     const res = yield commonService(params);
-    const relatedObject = { category_id: res.category_id, row_per_page: 6 };
-    yield put(DropsSlice.fetchRelatedDropsStart(relatedObject));
+    // const relatedObject = { category_id: res.category_id, row_per_page: 6 };
+    // yield put(DropsSlice.fetchRelatedDropsStart(relatedObject));
     yield put(DropsSlice.fetchSingleDropsSuccess(res));
   } catch (error) {
     yield put(DropsSlice.fetchSingleDropsError(error));

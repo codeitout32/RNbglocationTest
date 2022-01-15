@@ -15,11 +15,12 @@ import NFT101 from "src/components/nft101";
 export default function News() {
   const dispatch = useDispatch();
   const messages = useIntl();
+
   const pages = [
-    { title: "BlockChain", url: "#" },
-    { title: "NFTs", url: "/news" },
-    { title: "Opinions", url: "#" },
-    { title: "More", url: "#" },
+    { title: "Marketplace", url: "#" },
+    { title: "News", url: "/news" },
+    { title: "Drops", url: "/drops" },
+    { title: "Feed", url: "#" },
   ];
   useEffect(() => {
     dispatch(fetchDropsStart());
@@ -28,8 +29,6 @@ export default function News() {
     <Fragment>
       <Header pages={pages} />
       <Container maxWidth="xl">
-        <Box sx={{ height: "200px" }} />
-        <NFT101 />
         <Box sx={{ height: "200px" }} />
         <Drops />
         <Box sx={{ height: "200px" }} />

@@ -10,12 +10,13 @@ import { useStore } from "@next/common/store";
 import AppLocale from "localization";
 import EnLang from "localization/entries/en-US";
 import theme from "src/theme";
+import CircularLoader from "src/components/loader";
 
 export default function App({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
 
   return (
-    <PersistGate loading={<div>loading</div>} persistor={store.persistor}>
+    <PersistGate loading={CircularLoader} persistor={store.persistor}>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <IntlProvider
