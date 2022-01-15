@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface NewsList {
-  newsList: Array<Object>;
+export interface DropsList {
+  dropsList: Array<Object>;
   loading: boolean;
-  singleNews: object;
+  singleDrops: object;
   success: string;
   error: object | string;
 }
 
-const initialState: NewsList = {
-  newsList: [{}],
-  singleNews: {
-    relatedNews: [],
+const initialState: DropsList = {
+  dropsList: [{}],
+  singleDrops: {
+    relatedDrops: [],
   },
   loading: false,
   success: "",
@@ -19,67 +19,67 @@ const initialState: NewsList = {
 };
 
 export const newsSlice = createSlice({
-  name: "newsList",
+  name: "dropsList",
   initialState,
   reducers: {
-    fetchNewsStart: (state) => {
+    fetchDropsStart: (state) => {
       return {
         ...state,
         loading: true,
       };
     },
-    fetchNewsSuccess: (state, action) => {
+    fetchDropsSuccess: (state, action) => {
       return {
         ...state,
         loading: false,
-        newsList: action.payload,
+        dropsList: action.payload,
       };
     },
-    fetchNewsError: (state, action: PayloadAction<T>) => {
+    fetchDropsError: (state, action: PayloadAction<T>) => {
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
     },
-    fetchSingleNewsStart: (state) => {
+    fetchSingleDropsStart: (state) => {
       return {
         ...state,
         loading: true,
       };
     },
-    fetchSingleNewsSuccess: (state, action) => {
+    fetchSingleDropsSuccess: (state, action) => {
       return {
         ...state,
         loading: false,
-        singleNews: action.payload,
+        singleDrops: action.payload,
         success: "success",
       };
     },
-    fetchSingleNewsError: (state, action: PayloadAction<T>) => {
+    fetchSingleDropsError: (state, action: PayloadAction<T>) => {
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
     },
-    fetchRelatedNewsStart: (state, action: PayloadAction<object>) => {
+    fetchRelatedDropsStart: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: true,
       };
     },
-    fetchRelatedNewsSuccess: (state, action: PayloadAction<object>) => {
+    fetchRelatedDropsSuccess: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: false,
-        singleNews: {
-          ...state.singleNews,
-          relatedNews: action.payload,
+        singleDrops: {
+          ...state.singleDrops,
+          relatedDrops: action.payload,
         },
       };
     },
-    fetchRelatedNewsError: (state, action: PayloadAction<object>) => {
+    fetchRelatedDropsError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: false,
@@ -91,15 +91,15 @@ export const newsSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  fetchNewsStart,
-  fetchNewsSuccess,
-  fetchNewsError,
-  fetchSingleNewsStart,
-  fetchSingleNewsSuccess,
-  fetchSingleNewsError,
-  fetchRelatedNewsStart,
-  fetchRelatedNewsSuccess,
-  fetchRelatedNewsError,
+  fetchDropsStart,
+  fetchDropsSuccess,
+  fetchDropsError,
+  fetchSingleDropsStart,
+  fetchSingleDropsSuccess,
+  fetchSingleDropsError,
+  fetchRelatedDropsStart,
+  fetchRelatedDropsSuccess,
+  fetchRelatedDropsError,
 } = newsSlice.actions;
 
 export default newsSlice.reducer;

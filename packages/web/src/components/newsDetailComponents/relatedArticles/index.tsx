@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import SliderItem from "./sliderItem";
 import Carousel from "react-material-ui-carousel";
 import {
   CardMedia,
@@ -12,26 +11,25 @@ import {
 } from "@mui/material";
 import ButtonWhite from "src/theme/buttonWhite";
 import { url } from "inspector";
-import ArticleItem from "./articleItem";
-import { newsListSelector } from "@next/common/selectors";
+
+import { newsListSelector, singleNewsSelector } from "@next/common/selectors";
 import { useSelector } from "react-redux";
+import RelatedNewsItem from "./relatedNewsItem";
 
-// taken from latest news
+// taken from recent article index
 
-const RecentArticles = () => {
+const RelatedArticles = () => {
   const divStyle = {
     position: "relative",
     top: "-200px",
 
     height: "270px",
-    background: "linear-gradient(180deg, #000 0%, #3F3F46 100%)",
+    background: "linear-gradient(0deg, #000 0%, #3F3F46 100%)",
     marginBottom: "-200px",
   };
 
-  const newsList = useSelector(newsListSelector);
-  const recentNewsList = newsList.rows
-    ? newsList?.rows.filter((news) => news.is_recent === 1)
-    : [];
+  const singleNews = useSelector(singleNewsSelector);
+  const relatedNews = singleNews.relatedNews ? singleNews.relatedNews.rows : [];
   return (
     <Fragment>
       <Paper
@@ -45,6 +43,7 @@ const RecentArticles = () => {
           background: "linear-gradient(180deg, #3F3F46 0%, #000000 15%);",
         }}
       >
+        {/* <div style={divStyle}></div> */}
         <Container maxWidth="lg" sx={{ zIndex: 1 }}>
           <Typography
             variant="h3"
@@ -52,19 +51,26 @@ const RecentArticles = () => {
             component="div"
             sx={{ my: 7 }}
           >
-            Recent Articles
+            Related News
           </Typography>
 
-          {recentNewsList.map((news, index) => (
-            <ArticleItem key={index} news={news} />
-          ))}
+          <Grid container spacing={2}>
+            {relatedNews?.map((news, index) => (
+              <Grid item md={4}>
+                <RelatedNewsItem key={index} news={news} />
+              </Grid>
+            ))}
+          </Grid>
+          <Grid item xs={12} textAlign="center">
+            <ButtonWhite> Explore</ButtonWhite>
+          </Grid>
+
           {/* <ArticleItem />
           <ArticleItem /> */}
         </Container>
-        <div style={divStyle}></div>
       </Paper>
     </Fragment>
   );
 };
 
-export default RecentArticles;
+export default RelatedArticles;

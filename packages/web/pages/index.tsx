@@ -12,7 +12,7 @@ export default function Home() {
   const pages = [
     { title: "Marketplace", url: "#" },
     { title: "News", url: "/news" },
-    { title: "Drops", url: "#" },
+    { title: "Drops", url: "/drops" },
     { title: "Feed", url: "#" },
   ];
 

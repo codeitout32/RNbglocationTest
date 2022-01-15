@@ -56,7 +56,7 @@ const Header = ({ pages }) => {
           <Toolbar disableGutters>
             <Grid container maxWidth="15%">
               <Grid item xs={4}>
-                <Logo fontSize="large" />
+                <Logo sx={{ fontSize: "3rem" }} />
               </Grid>
               <Grid item xs={8}>
                 <Typography

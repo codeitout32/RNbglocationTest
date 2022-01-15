@@ -10,6 +10,8 @@ export default function setHeader(
   return {
     Accept: "*/*",
     "Content-Type": header?.contentType || "application/json",
-    Authorization: "myAuthToken", //`Bearer ${header?.autherization}`,
+    "Access-Control-Allow-Origin": "http://localhost:3000",
+    "Access-Control-Allow-Credentials": "true",
+    //`Bearer ${header?.autherization}`,
   };
 }

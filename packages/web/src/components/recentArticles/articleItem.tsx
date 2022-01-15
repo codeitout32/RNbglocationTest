@@ -12,12 +12,28 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import mLink from "@mui/material/Link";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import React, { Fragment } from "react";
 import ButtonTransparent from "src/theme/buttonTransparent";
 import ButtonWhite from "src/theme/buttonWhite";
 import Link from "next/link";
-const ArticleItem = () => {
+const ArticleItem = ({ news }) => {
+  const dummy = {
+    description:
+      "Sailing the OpenSea: Grifters, SEEDS, Vortex & More Sailing the OpenSea: Grifters, SEEDS, Vortex & More Sailing the OpenSea: Grifters, SEEDS, Vortex & More",
+    date: "Jan 8 2022",
+  };
+
+  const showDate = (rawDate) => {
+    const date = new Date(rawDate);
+    return date.toLocaleDateString("en-us", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
+
   return (
     <>
       <Grid
@@ -51,15 +67,15 @@ const ArticleItem = () => {
             </Grid>
             <Grid item md={8}>
               <Typography variant="body1" color="grey.700">
-                Dec 23 2021
+                {news?.posted_on ? showDate(news?.posted_on) : dummy.date}
               </Typography>
             </Grid>
           </Grid>
 
           <Typography variant="h6" sx={{ mt: 3 }}>
-            Sailing the OpenSea: Grifters, SEEDS, Vortex & More Sailing the
-            OpenSea: Grifters, SEEDS, Vortex & More Sailing the OpenSea:
-            Grifters, SEEDS, Vortex & More
+            {news?.short_description
+              ? news?.short_description
+              : dummy.description}
           </Typography>
           {/* <ButtonTransparent
               sx={{
@@ -75,9 +91,11 @@ const ArticleItem = () => {
         </Grid>
         <Grid item md={1}>
           <Stack direction="column" alignItems="center" spacing={2}>
-            <Link href="#">
-              <Icon>
-                <ArrowCircleRightIcon sx={{ fontSize: 40 }} />
+            <Link href={`news/${news.id}`}>
+              <Icon sx={{ overflow: "visible" }} component={mLink}>
+                <ArrowCircleRightIcon
+                  sx={{ fontSize: 40, color: "text.primary" }}
+                />
               </Icon>
             </Link>
           </Stack>

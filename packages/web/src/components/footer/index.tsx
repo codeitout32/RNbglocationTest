@@ -3,13 +3,24 @@ import React from "react";
 import Logo from "src/theme/logo";
 
 const Footer = () => {
+  const company = [
+    { title: "About Us", link: "#" },
+    { title: "Privacy Policy", link: "#" },
+    { title: "How To guide", link: "#" },
+    { title: "Terms of service", link: "#" },
+  ];
   return (
-    <Container maxWidth="lg" sx={{ minHeight: "250px" }}>
-      <Grid container alignItems="center" height="inherit">
+    <Container maxWidth="lg">
+      <Grid
+        container
+        alignItems="center"
+        height="inherit"
+        sx={{ minHeight: "250px" }}
+      >
         <Grid item md={3}>
           <Grid container>
             <Grid item xs={4}>
-              <Logo fontSize="large" />
+              <Logo sx={{ fontSize: "3rem" }} />
             </Grid>
             <Grid item xs={8}>
               <Typography
@@ -48,28 +59,55 @@ const Footer = () => {
             Your NFT Hub, the #1 NFT Marketplace.
           </Typography>
         </Grid>
+        <Grid item md={3}></Grid>
         <Grid item md={3}>
           <Typography
-            variant="h6"
+            variant="h5"
             color="text.secondary"
-            sx={{
-              fontSize: "1rem",
-            }}
+            sx={
+              {
+                //   fontSize: "1rem",
+              }
+            }
             gutterBottom
           >
             Company
           </Typography>
-          <Link href="#" underline="none" color="inherit">
-            About US
-          </Link>
-          <Link href="#" underline="none">
-            Privacy Policy
-          </Link>
-          <Link href="#">How To guide</Link>
-          <Link href="#">About US</Link>
+          {company.map((item) => (
+            <Link
+              href="#"
+              underline="none"
+              color="inherit"
+              sx={{ display: "block" }}
+            >
+              {item.title}
+            </Link>
+          ))}
         </Grid>
-        <Grid item md={3}></Grid>
-        <Grid item md={3}></Grid>
+        <Grid item md={3}>
+          <Typography
+            variant="h5"
+            color="text.secondary"
+            sx={
+              {
+                //   fontSize: "1rem",
+              }
+            }
+            gutterBottom
+          >
+            Community
+          </Typography>
+          {company.map((item) => (
+            <Link
+              href="#"
+              underline="none"
+              color="inherit"
+              sx={{ display: "block" }}
+            >
+              {item.title}
+            </Link>
+          ))}
+        </Grid>
       </Grid>
     </Container>
   );

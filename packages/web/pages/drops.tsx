@@ -1,18 +1,18 @@
 import { Box, Container } from "@mui/material";
+import { fetchDropsStart } from "@next/common/slices/drops.slice";
 import { fetchNewsStart } from "@next/common/slices/news.slice";
 import { Fragment, useEffect } from "react";
 import { useIntl } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
-import Drops from "src/components/drops";
+import Drops from "src/components/dropsListing";
 import Footer from "src/components/footer";
 import GuidesnLists from "src/components/guidesnLists";
 import Header from "src/components/header";
 import LargeCorousel from "src/components/largeCorousel";
 import NewsLatest from "src/components/newsLatest";
 import NFT101 from "src/components/nft101";
-import RecentArticles from "src/components/recentArticles";
 
-export default function Home() {
+export default function News() {
   const dispatch = useDispatch();
   const messages = useIntl();
   const pages = [
@@ -22,7 +22,7 @@ export default function Home() {
     { title: "More", url: "#" },
   ];
   useEffect(() => {
-    dispatch(fetchNewsStart());
+    dispatch(fetchDropsStart());
   }, []);
   return (
     <Fragment>
@@ -31,11 +31,8 @@ export default function Home() {
         <Box sx={{ height: "200px" }} />
         <NFT101 />
         <Box sx={{ height: "200px" }} />
-        <NewsLatest />
+        <Drops />
         <Box sx={{ height: "200px" }} />
-        <GuidesnLists />
-        {/* <Box sx={{ height: "200px" }} /> */}
-        <RecentArticles />
         <Footer />
       </Container>
     </Fragment>

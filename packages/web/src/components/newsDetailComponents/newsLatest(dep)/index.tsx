@@ -10,7 +10,6 @@ import {
   Card,
   Box,
   Stack,
-  Skeleton,
 } from "@mui/material";
 import ButtonWhite from "src/theme/buttonWhite";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -19,7 +18,7 @@ import { url } from "inspector";
 import LatestItem from "./latestItem";
 
 import { useSelector } from "react-redux";
-import { newsListSelector } from "@next/common/selectors";
+import { newsListSelector } from "../../../../common/selectors";
 import ButtonTransparent from "src/theme/buttonTransparent";
 
 const NewsLatest = ({ asSidebar }) => {
@@ -41,13 +40,9 @@ const NewsLatest = ({ asSidebar }) => {
         justifyContent: "space-between",
       }}
     >
-      {restNews.length ? (
-        restNews.map((news, index) => {
-          if (index < 4) return <LatestItem key={index} news={news} />;
-        })
-      ) : (
-        <Skeleton variant="rectangular" height={500} />
-      )}
+      {restNews.map((news, index) => {
+        if (index < 4) return <LatestItem key={index} news={news} />;
+      })}
     </Paper>
   );
 
@@ -75,7 +70,7 @@ const NewsLatest = ({ asSidebar }) => {
             >
               The Latest
             </Typography>
-            <Grid container spacing={3} sx={{ minHeight: "500px" }}>
+            <Grid container spacing={3} sx={{ minheight: "500px" }}>
               <Grid item md={6} xs={12}>
                 <Paper
                   sx={{

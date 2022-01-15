@@ -6,6 +6,11 @@ const theme = createTheme({
     body1: {
       fontFamily: '"DM Sans", sans-serif',
     },
+    body2: {
+      fontFamily: '"DM Sans", sans-serif',
+      color: "#616161",
+      fontSize: "1rem",
+    },
     button: {
       fontFamily: '"DM Sans", sans-serif',
       fontWeight: 500,
@@ -30,6 +35,10 @@ const theme = createTheme({
       main: "#555",
       dark: "#444",
       contrastText: "#fff",
+    },
+    action: {
+      disabled: "#3F3F46",
+      disabledBackground: "#18181B",
     },
   },
 });

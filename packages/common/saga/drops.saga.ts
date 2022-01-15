@@ -1,17 +1,17 @@
 import { put, takeEvery, all } from "redux-saga/effects";
 import { routes } from "../config";
-import * as NewsSlice from "../slices/news.slice";
+import * as DropsSlice from "../slices/drops.slice";
 
 import commonService from "../services/common.service";
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-function* fetchMultipleNewsSaga(action) {
+function* fetchMultipleDropsSaga(action) {
   console.log("fetch started");
 
   const params = {
     method: "get",
-    route: `${routes.news}`,
+    route: `${routes.drops}`,
     headerCred: {
       autherization: "myAuthToken",
     },
@@ -19,19 +19,19 @@ function* fetchMultipleNewsSaga(action) {
 
   try {
     const res = yield commonService(params);
-    yield put(NewsSlice.fetchNewsSuccess(res));
+    yield put(DropsSlice.fetchDropsSuccess(res));
   } catch (error) {
-    yield put(NewsSlice.fetchNewsError(error));
+    yield put(DropsSlice.fetchDropsError(error));
     handleError(error);
   }
 }
-function* fetchRelatedNewsSaga(action) {
+function* fetchRelatedDropsSaga(action) {
   console.log("fetch related started");
   const searchparams = new URLSearchParams(action.payload).toString();
   console.log("search params", searchparams);
   const params = {
     method: "get",
-    route: `${routes.news}?${searchparams}`,
+    route: `${routes.drops}?${searchparams}`,
     headerCred: {
       autherization: "myAuthToken",
     },
@@ -39,18 +39,18 @@ function* fetchRelatedNewsSaga(action) {
 
   try {
     const res = yield commonService(params);
-    yield put(NewsSlice.fetchRelatedNewsSuccess(res));
+    yield put(DropsSlice.fetchRelatedDropsSuccess(res));
   } catch (error) {
-    yield put(NewsSlice.fetchRelatedNewsError(error));
+    yield put(DropsSlice.fetchRelatedDropsError(error));
     handleError(error);
   }
 }
-function* fetchSingleNewsSaga(action) {
-  console.log("fetch Single news started", action.payload);
+function* fetchSingleDropsSaga(action) {
+  console.log("fetch Single drops started", action.payload);
 
   const params = {
     method: "get",
-    route: `${routes.news}/${action.payload.id}`,
+    route: `${routes.drops}/${action.payload.id}`,
     headerCred: {
       autherization: "",
     },
@@ -59,18 +59,18 @@ function* fetchSingleNewsSaga(action) {
   try {
     const res = yield commonService(params);
     const relatedObject = { category_id: res.category_id, row_per_page: 6 };
-    yield put(NewsSlice.fetchRelatedNewsStart(relatedObject));
-    yield put(NewsSlice.fetchSingleNewsSuccess(res));
+    yield put(DropsSlice.fetchRelatedDropsStart(relatedObject));
+    yield put(DropsSlice.fetchSingleDropsSuccess(res));
   } catch (error) {
-    yield put(NewsSlice.fetchSingleNewsError(error));
+    yield put(DropsSlice.fetchSingleDropsError(error));
     handleError(error);
   }
 }
 
-export function* newsSaga() {
-  yield takeEvery(NewsSlice.fetchNewsStart, fetchMultipleNewsSaga);
-  yield takeEvery(NewsSlice.fetchSingleNewsStart, fetchSingleNewsSaga);
-  yield takeEvery(NewsSlice.fetchRelatedNewsStart, fetchRelatedNewsSaga);
+export function* dropsSaga() {
+  yield takeEvery(DropsSlice.fetchDropsStart, fetchMultipleDropsSaga);
+  yield takeEvery(DropsSlice.fetchSingleDropsStart, fetchSingleDropsSaga);
+  yield takeEvery(DropsSlice.fetchRelatedDropsStart, fetchRelatedDropsSaga);
 }
 
 //
