@@ -19,10 +19,12 @@ const GuideItem = ({ date, title, image }) => {
       "radial-gradient(farthest-corner at 52% -16%, rgb(161, 161, 170) 20%, rgb(63, 63, 70) 68%)",
     // backgroundColor: "grey",
     height: "250px",
-    position: "relative",
-    top: "-200px",
-    zIndex: 0,
+    position: "absolute",
+    top: "180px",
+    width: "100%",
+    zIndex: -1,
   };
+  console.log("image", image);
   return (
     <Fragment>
       <Card
@@ -33,7 +35,7 @@ const GuideItem = ({ date, title, image }) => {
           borderRadius: 5,
           textAlign: "center",
           bgcolor: "black",
-          pb: 3,
+          py: 3,
           height: "40vh",
           minHeight: "430px",
         }}
@@ -52,6 +54,13 @@ const GuideItem = ({ date, title, image }) => {
               borderColor: "black",
               width: "90%",
               mx: "auto",
+              position: "relative",
+              top: 0,
+              transition: ".5s",
+              ":hover": {
+                top: "-20px",
+                zIndex: "1",
+              },
             }}
           />
           <CardContent sx={{ mt: 4 }}>
@@ -65,8 +74,8 @@ const GuideItem = ({ date, title, image }) => {
             </Typography> */}
             <Typography variant="h5">{title}</Typography>
           </CardContent>
+          <div style={divStyle}> Hello</div>
         </CardActionArea>
-        <div style={divStyle}> Hello</div>
         {/* <CardActions>
           <Button size="small">Share</Button>
           <Button size="small">Learn More</Button>

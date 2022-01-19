@@ -1,18 +1,17 @@
 import { put, takeEvery, all } from "redux-saga/effects";
 import { routes } from "../config";
-import * as DropsSlice from "../slices/drops.slice";
+import * as GuidesSlice from "../slices/guides.slice";
 
 import commonService from "../services/common.service";
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-function* fetchMultipleDropsSaga(action) {
+function* fetchMultipleGuidesSaga(action) {
   console.log("fetch started");
-  const searchparams = new URLSearchParams(action.payload).toString();
-  console.log("search params", searchparams);
+
   const params = {
     method: "get",
-    route: `${routes.drops}?${searchparams}`,
+    route: `${routes.guides}`,
     headerCred: {
       autherization: "myAuthToken",
     },
@@ -20,19 +19,19 @@ function* fetchMultipleDropsSaga(action) {
 
   try {
     const res = yield commonService(params);
-    yield put(DropsSlice.fetchDropsSuccess(res));
+    yield put(GuidesSlice.fetchGuidesSuccess(res));
   } catch (error) {
-    yield put(DropsSlice.fetchDropsError(error));
+    yield put(GuidesSlice.fetchGuidesError(error));
     handleError(error);
   }
 }
-function* fetchRelatedDropsSaga(action) {
+function* fetchRelatedGuidesSaga(action) {
   console.log("fetch related started");
   const searchparams = new URLSearchParams(action.payload).toString();
   console.log("search params", searchparams);
   const params = {
     method: "get",
-    route: `${routes.drops}?${searchparams}`,
+    route: `${routes.guides}?${searchparams}`,
     headerCred: {
       autherization: "myAuthToken",
     },
@@ -40,18 +39,18 @@ function* fetchRelatedDropsSaga(action) {
 
   try {
     const res = yield commonService(params);
-    yield put(DropsSlice.fetchRelatedDropsSuccess(res));
+    yield put(GuidesSlice.fetchRelatedGuidesSuccess(res));
   } catch (error) {
-    yield put(DropsSlice.fetchRelatedDropsError(error));
+    yield put(GuidesSlice.fetchRelatedGuidesError(error));
     handleError(error);
   }
 }
-function* fetchSingleDropsSaga(action) {
-  console.log("fetch Single drops started", action.payload);
+function* fetchSingleGuidesSaga(action) {
+  console.log("fetch Single guides started", action.payload);
 
   const params = {
     method: "get",
-    route: `${routes.drops}/${action.payload.id}`,
+    route: `${routes.guides}/${action.payload.id}`,
     headerCred: {
       autherization: "",
     },
@@ -60,18 +59,18 @@ function* fetchSingleDropsSaga(action) {
   try {
     const res = yield commonService(params);
     // const relatedObject = { category_id: res.category_id, row_per_page: 6 };
-    // yield put(DropsSlice.fetchRelatedDropsStart(relatedObject));
-    yield put(DropsSlice.fetchSingleDropsSuccess(res));
+    // yield put(GuidesSlice.fetchRelatedGuidesStart(relatedObject));
+    yield put(GuidesSlice.fetchSingleGuidesSuccess(res));
   } catch (error) {
-    yield put(DropsSlice.fetchSingleDropsError(error));
+    yield put(GuidesSlice.fetchSingleGuidesError(error));
     handleError(error);
   }
 }
 
-export function* dropsSaga() {
-  yield takeEvery(DropsSlice.fetchDropsStart, fetchMultipleDropsSaga);
-  yield takeEvery(DropsSlice.fetchSingleDropsStart, fetchSingleDropsSaga);
-  yield takeEvery(DropsSlice.fetchRelatedDropsStart, fetchRelatedDropsSaga);
+export function* guidesSaga() {
+  yield takeEvery(GuidesSlice.fetchGuidesStart, fetchMultipleGuidesSaga);
+  yield takeEvery(GuidesSlice.fetchSingleGuidesStart, fetchSingleGuidesSaga);
+  yield takeEvery(GuidesSlice.fetchRelatedGuidesStart, fetchRelatedGuidesSaga);
 }
 
 //

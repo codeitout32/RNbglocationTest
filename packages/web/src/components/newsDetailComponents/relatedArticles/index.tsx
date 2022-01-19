@@ -15,6 +15,7 @@ import { url } from "inspector";
 import { newsListSelector, singleNewsSelector } from "@next/common/selectors";
 import { useSelector } from "react-redux";
 import RelatedNewsItem from "./relatedNewsItem";
+import { StyledPaper } from "./styles/styledRelNewsPape";
 
 // taken from recent article index
 
@@ -29,10 +30,12 @@ const RelatedArticles = () => {
   };
 
   const singleNews = useSelector(singleNewsSelector);
-  const relatedNews = singleNews.relatedNews ? singleNews.relatedNews.rows : [];
+  const relatedNews = singleNews?.relatedNews
+    ? singleNews.relatedNews.rows
+    : [];
   return (
     <Fragment>
-      <Paper
+      <StyledPaper
         sx={{
           borderRadius: 10,
           mt: 5,
@@ -54,7 +57,7 @@ const RelatedArticles = () => {
             Related News
           </Typography>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={3}>
             {relatedNews?.map((news, index) => (
               <Grid item md={4}>
                 <RelatedNewsItem key={index} news={news} />
@@ -68,7 +71,7 @@ const RelatedArticles = () => {
           {/* <ArticleItem />
           <ArticleItem /> */}
         </Container>
-      </Paper>
+      </StyledPaper>
     </Fragment>
   );
 };

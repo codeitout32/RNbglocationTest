@@ -13,6 +13,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React, { Fragment } from "react";
 import ButtonTransparent from "src/theme/buttonTransparent";
 import ButtonWhite from "src/theme/buttonWhite";
+import Link from "next/link";
 const LatestItem = ({ news }) => {
   console.log("newsitem", news);
   return (
@@ -23,29 +24,30 @@ const LatestItem = ({ news }) => {
             sx={{
               overflow: "hidden",
               bgcolor: "inherit",
+              img: {
+                objectFit: "cover",
+              },
             }}
           >
-            <img
-              height="120px"
-              width="120px"
-              src="https://picsum.photos/120/120"
-            />
+            <img height="120px" width="120px" src={news.image} />
           </Paper>
         </Grid>
         <Grid item md={8}>
           <Paper sx={{ bgcolor: "inherit" }}>
             <Typography variant="h6">{news.title}</Typography>
-            <ButtonTransparent
-              sx={{
-                textTransform: "capitalize",
-                mt: 1,
-                fontSize: ".7rem",
-                px: 0,
-              }}
-            >
-              read more {"  "}
-              <ArrowForwardIcon sx={{ ml: 2, fontSize: "1.1rem" }} />
-            </ButtonTransparent>
+            <Link href={"/news/" + news.id}>
+              <ButtonTransparent
+                sx={{
+                  textTransform: "capitalize",
+                  mt: 1,
+                  fontSize: ".7rem",
+                  px: 0,
+                }}
+              >
+                read more {"  "}
+                <ArrowForwardIcon sx={{ ml: 2, fontSize: "1.1rem" }} />
+              </ButtonTransparent>
+            </Link>
           </Paper>
         </Grid>
       </Grid>

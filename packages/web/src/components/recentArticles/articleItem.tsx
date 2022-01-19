@@ -21,7 +21,7 @@ import Link from "next/link";
 const ArticleItem = ({ news }) => {
   const dummy = {
     description:
-      "Sailing the OpenSea: Grifters, SEEDS, Vortex & More Sailing the OpenSea: Grifters, SEEDS, Vortex & More Sailing the OpenSea: Grifters, SEEDS, Vortex & More",
+      "dum Sailing the OpenSea: Grifters, SEEDS, Vortex & More Sailing the OpenSea: Grifters, SEEDS, Vortex & More Sailing the OpenSea: Grifters, SEEDS, Vortex & More",
     date: "Jan 8 2022",
   };
 
@@ -51,18 +51,14 @@ const ArticleItem = ({ news }) => {
               width: "250px",
             }}
           >
-            <img
-              height="180px"
-              width="250px"
-              src="https://picsum.photos/250/200"
-            />
+            <img height="180px" width="250px" src={news.image} />
           </Paper>
         </Grid>
         <Grid item md={7}>
           <Grid container>
             <Grid item md={4}>
               <Typography variant="body1" color="grey.700">
-                By Langston Thomas
+                {news?.author ? news?.author : "By Langston Thomas"}
               </Typography>
             </Grid>
             <Grid item md={8}>

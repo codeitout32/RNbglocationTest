@@ -10,7 +10,7 @@ import GuidesnLists from "src/components/guidesnLists";
 import Header from "src/components/header";
 import LargeCorousel from "src/components/largeCorousel";
 import NewsLatest from "src/components/newsLatest";
-import NFT101 from "src/components/nft101";
+import NFT101 from "src/components/featuredNews";
 
 export default function News() {
   const dispatch = useDispatch();

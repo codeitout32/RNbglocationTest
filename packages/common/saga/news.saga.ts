@@ -19,6 +19,7 @@ function* fetchMultipleNewsSaga(action) {
 
   try {
     const res = yield commonService(params);
+    yield put(NewsSlice.fetchFeaturedNewsStart({ is_featured: 1 }));
     yield put(NewsSlice.fetchNewsSuccess(res));
   } catch (error) {
     yield put(NewsSlice.fetchNewsError(error));
@@ -45,6 +46,26 @@ function* fetchRelatedNewsSaga(action) {
     handleError(error);
   }
 }
+function* fetchFeaturedNewsSaga(action) {
+  console.log("fetch featured started");
+  const searchparams = new URLSearchParams(action.payload).toString();
+  console.log("search params", searchparams);
+  const params = {
+    method: "get",
+    route: `${routes.news}?${searchparams}`,
+    headerCred: {
+      autherization: "myAuthToken",
+    },
+  };
+
+  try {
+    const res = yield commonService(params);
+    yield put(NewsSlice.fetchFeaturedNewsSuccess(res));
+  } catch (error) {
+    yield put(NewsSlice.fetchFeaturedNewsError(error));
+    handleError(error);
+  }
+}
 function* fetchSingleNewsSaga(action) {
   console.log("fetch Single news started", action.payload);
 
@@ -58,7 +79,10 @@ function* fetchSingleNewsSaga(action) {
 
   try {
     const res = yield commonService(params);
-    const relatedObject = { category_id: res.category_id, row_per_page: 6 };
+    const relatedObject = {
+      category_id: res.current.category_id,
+      row_per_page: 6,
+    };
     yield put(NewsSlice.fetchRelatedNewsStart(relatedObject));
     yield put(NewsSlice.fetchSingleNewsSuccess(res));
   } catch (error) {
@@ -71,6 +95,7 @@ export function* newsSaga() {
   yield takeEvery(NewsSlice.fetchNewsStart, fetchMultipleNewsSaga);
   yield takeEvery(NewsSlice.fetchSingleNewsStart, fetchSingleNewsSaga);
   yield takeEvery(NewsSlice.fetchRelatedNewsStart, fetchRelatedNewsSaga);
+  yield takeEvery(NewsSlice.fetchFeaturedNewsStart, fetchFeaturedNewsSaga);
 }
 
 //

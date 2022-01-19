@@ -9,7 +9,7 @@ import GuidesnLists from "src/components/guidesnLists";
 import Header from "src/components/header";
 import LargeCorousel from "src/components/largeCorousel";
 import NewsLatest from "src/components/newsLatest";
-import NFT101 from "src/components/nft101";
+import FeaturedNews from "src/components/featuredNews";
 import RecentArticles from "src/components/recentArticles";
 
 export default function News() {
@@ -29,7 +29,7 @@ export default function News() {
       <Header pages={pages} />
       <Container maxWidth="xl">
         <Box sx={{ height: "200px" }} />
-        <NFT101 />
+        <FeaturedNews />
         <Box sx={{ height: "200px" }} />
         <NewsLatest />
         <Box sx={{ height: "200px" }} />

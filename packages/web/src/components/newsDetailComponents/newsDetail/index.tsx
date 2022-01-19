@@ -4,6 +4,8 @@ import NewsNavButton from "../newsNavButton";
 import getDate from "@next/common/utils/dateFormater";
 import { useSelector } from "react-redux";
 import { singleNewsSelector } from "@next/common/selectors";
+import { htmlParser } from "@next/common/utils/htmlParser";
+import parse from "html-react-parser";
 
 const NewsDetail = () => {
   //Styles
@@ -25,26 +27,31 @@ const NewsDetail = () => {
 
   const singleNews = useSelector(singleNewsSelector);
   console.log("singlenews", singleNews);
+  const { current, next, previous } = singleNews;
+
+  const body = current ? current?.description : "";
   return (
     <>
       <Stack spacing={2} sx={{}}>
-        <Paper sx={{ overflow: "hidden" }}>
-          <img src="https://picsum.photos/800/450" alt="" />
+        <Paper sx={{ overflow: "hidden", img: { objectFit: "cover" } }}>
+          <img src={current?.image} alt="" height={450} />
         </Paper>
-        <Typography variant="h5">{singleNews.title}</Typography>
+        <Typography variant="h5">{current?.title}</Typography>
         <Box sx={{ ...hFlxSpcbetween }}>
           <Typography variant="body1" sx={subtitle1}>
-            {singleNews.author}
+            {current?.author}
           </Typography>
           <Typography variant="body1" sx={subtitle1}>
-            {getDate(singleNews.posted_on)}
+            {getDate(current?.posted_on)}
           </Typography>
         </Box>
         <Typography variant="body2" component="p">
-          {singleNews.description}
+          {parse(body)}
         </Typography>
 
-        <Typography variant="body2" component="p">
+        {!current?.description && <Skeleton height="15vh"></Skeleton>}
+
+        {/* <Typography variant="body2" component="p">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna ligula
           enim interdum blandit ornare praesent sollicitudin id. Nunc placerat
           ultrices fermentum porttitor feugiat pharetra sapien, enim. Eget
@@ -63,7 +70,7 @@ const NewsDetail = () => {
           fermentum nisi, lacus. Quam ac at vel tellus, tempus proin aliquam
           praesent. Urna erat amet amet dolor leo diam.
         </Typography>
-        <Skeleton></Skeleton>
+        
         <Typography variant="body2" component="p">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus
           facilisi nibh justo, ac, sit nulla dictum bibendum nullam. Sed
@@ -108,19 +115,21 @@ const NewsDetail = () => {
           NFTs are much easier to understand than most people think. This guide
           aims to demystify NFTs and give you a basic understanding of what they
           are, what they do, and most importantly, why they matter.
-        </Typography>
+        </Typography> */}
         <Box sx={hFlxSpcbetween}>
           <NewsNavButton
-            href={`/news/${Number(singleNews.id) - 1}`}
+            href={`/news/${previous?.id}`}
             title="Previous"
-            body="hello this is"
+            body={previous?.title}
             sx={{ width: "48%" }}
+            disabled={!previous}
           />
           <NewsNavButton
+            href={`/news/${next?.id}`}
             title="Next"
-            body="hello this is"
+            body={next?.title}
             sx={{ width: "48%" }}
-            disabled
+            disabled={!next}
           />
         </Box>
       </Stack>

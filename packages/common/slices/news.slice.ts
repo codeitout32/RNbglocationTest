@@ -6,6 +6,7 @@ export interface NewsList {
   singleNews: object;
   success: string;
   error: object | string;
+  featuredNews: object | string;
 }
 
 const initialState: NewsList = {
@@ -13,6 +14,7 @@ const initialState: NewsList = {
   singleNews: {
     relatedNews: [],
   },
+  featuredNews: [{}],
   loading: false,
   success: "",
   error: "",
@@ -86,6 +88,26 @@ export const newsSlice = createSlice({
         error: action.payload,
       };
     },
+    fetchFeaturedNewsStart: (state, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        loading: true,
+      };
+    },
+    fetchFeaturedNewsSuccess: (state, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        loading: false,
+        featuredNews: action.payload,
+      };
+    },
+    fetchFeaturedNewsError: (state, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    },
   },
 });
 
@@ -100,6 +122,10 @@ export const {
   fetchRelatedNewsStart,
   fetchRelatedNewsSuccess,
   fetchRelatedNewsError,
+
+  fetchFeaturedNewsStart,
+  fetchFeaturedNewsSuccess,
+  fetchFeaturedNewsError,
 } = newsSlice.actions;
 
 export default newsSlice.reducer;

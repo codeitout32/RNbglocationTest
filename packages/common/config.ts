@@ -4,4 +4,5 @@ export const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 export const routes = {
   news: serverUrl + "/news",
   drops: serverUrl + "/drop",
+  guides: serverUrl + "/guide",
 };

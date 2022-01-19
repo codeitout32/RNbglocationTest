@@ -53,41 +53,7 @@ export default function DropTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{
-                "&:last-child td, &:last-child th": { border: 0 },
-                "& td": { fontSize: "1.5 rem", color: "text.secondary" },
-              }}
-            >
-              <TableCell
-                align="center"
-                component="td"
-                sx={{ display: "flex", alignItems: "center" }}
-              >
-                <Avatar
-                  alt="Remy Sharp"
-                  src={row.img}
-                  sx={{ width: 56, height: 56 }}
-                />
-                <Typography
-                  variant="h5"
-                  textAlign="center"
-                  color="text.primary"
-                  pl={3}
-                >
-                  {row.name}
-                </Typography>
-              </TableCell>
-              <TableCell align="left"></TableCell>
-              <TableCell align="left">{row.size}</TableCell>
-              <TableCell align="left">{row.price}</TableCell>
-              <TableCell align="left">{row.date}</TableCell>
-              <TableCell align="left">999</TableCell>
-            </TableRow>
-          ))} */}
-          {dropsList.map((row) => (
+          {dropsList?.map((row) => (
             <TableRow
               key={row.id}
               sx={{

@@ -14,12 +14,13 @@ import React from "react";
 import { dropsListSelector, singleDropsSelector } from "@next/common/selectors";
 import { useSelector } from "react-redux";
 import getDate from "@next/common/utils/dateFormater";
+import { StyledPaper } from "./styledPaper";
 
 const DropsDetail = () => {
   const singleDrops = useSelector(singleDropsSelector);
   console.log("singleDrops", singleDrops);
   return (
-    <Paper sx={{ bgcolor: "primary.main" }}>
+    <StyledPaper sx={{ bgcolor: "primary.main" }}>
       <Grid
         container
         direction="row"
@@ -102,7 +103,7 @@ const DropsDetail = () => {
       >
         {singleDrops.description}
       </Typography>
-    </Paper>
+    </StyledPaper>
   );
 };
 

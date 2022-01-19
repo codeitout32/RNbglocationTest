@@ -59,31 +59,31 @@ const Overview = () => {
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Team Score</Typography>
-              <Typography variant="h5">98</Typography>
+              <Typography variant="h5">98 dum</Typography>
             </Paper>
           </Grid>
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Popularity Score</Typography>
-              <Typography variant="h5">1026</Typography>
+              <Typography variant="h5">1026 dum</Typography>
             </Paper>
           </Grid>
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Flip Score</Typography>
-              <Typography variant="h5">568</Typography>
+              <Typography variant="h5">568 dum</Typography>
             </Paper>
           </Grid>
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Hodl Score</Typography>
-              <Typography variant="h5">4966</Typography>
+              <Typography variant="h5">4966 dum</Typography>
             </Paper>
           </Grid>
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Community Score</Typography>
-              <Typography variant="h5">200</Typography>
+              <Typography variant="h5">200 dum</Typography>
             </Paper>
           </Grid>
         </Grid>
@@ -102,9 +102,9 @@ const Overview = () => {
           sx={{ my: 7, mx: "auto" }}
           width="55%"
         >
-          Axies are fierce creatures that love to battle, build, and hunt for
-          treasure! Build up a collection and use them across an ever expanding
-          universe of games! Axie players can earn tokens such as DAI,
+          Dum Axies are fierce creatures that love to battle, build, and hunt
+          for treasure! Build up a collection and use them across an ever
+          expanding universe of games! Axie players can earn tokens such as DAI,
           (truncated ...)
         </Typography>
       </Container>

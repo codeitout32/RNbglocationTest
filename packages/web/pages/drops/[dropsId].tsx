@@ -10,7 +10,7 @@ import GuidesnLists from "src/components/guidesnLists";
 import Header from "src/components/header";
 import NewsDetail from "src/components/newsDetailComponents/newsDetail";
 import NewsLatest from "src/components/newsLatest";
-import NFT101 from "src/components/nft101";
+import NFT101 from "src/components/featuredNews";
 import RecentArticles from "src/components/recentArticles";
 
 import { useRouter } from "next/router";
