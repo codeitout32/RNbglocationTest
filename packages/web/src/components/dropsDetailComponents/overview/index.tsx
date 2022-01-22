@@ -2,12 +2,13 @@ import { Grid, Paper, Typography, Container } from "@mui/material";
 import { singleDropsSelector } from "@next/common/selectors";
 import React from "react";
 import { useSelector } from "react-redux";
+import StyledGradPaper from "./gradPaper";
 
 const Overview = () => {
   const singleDrops = useSelector(singleDropsSelector);
 
   return (
-    <Paper sx={{ bgcolor: "black" }}>
+    <StyledGradPaper sx={{ bgcolor: "transparent" }}>
       <Container maxWidth="lg">
         <Typography
           variant="h3"
@@ -32,14 +33,14 @@ const Overview = () => {
           <Grid item md={6} xs={12}>
             <Paper>
               <Typography variant="body2">YNH Overall Score</Typography>
-              <Typography variant="h5">{singleDrops.user_score}</Typography>
+              <Typography variant="h5">{singleDrops.overall_score}</Typography>
             </Paper>
           </Grid>
           <Grid item md={3} xs={12}></Grid>
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Roadmap Score</Typography>
-              <Typography variant="h5">{singleDrops.user_score}</Typography>
+              <Typography variant="h5">{singleDrops.roadmap_score}</Typography>
             </Paper>
           </Grid>
           <Grid item md={3} xs={12}>
@@ -59,31 +60,35 @@ const Overview = () => {
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Team Score</Typography>
-              <Typography variant="h5">98 dum</Typography>
+              <Typography variant="h5">{singleDrops.team_score}</Typography>
             </Paper>
           </Grid>
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Popularity Score</Typography>
-              <Typography variant="h5">1026 dum</Typography>
+              <Typography variant="h5">
+                {singleDrops.popularity_score}
+              </Typography>
             </Paper>
           </Grid>
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Flip Score</Typography>
-              <Typography variant="h5">568 dum</Typography>
+              <Typography variant="h5">{singleDrops.flip_score}</Typography>
             </Paper>
           </Grid>
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Hodl Score</Typography>
-              <Typography variant="h5">4966 dum</Typography>
+              <Typography variant="h5">{singleDrops.hodl_score}</Typography>
             </Paper>
           </Grid>
           <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2">Community Score</Typography>
-              <Typography variant="h5">200 dum</Typography>
+              <Typography variant="h5">
+                {singleDrops.community_score}
+              </Typography>
             </Paper>
           </Grid>
         </Grid>
@@ -98,17 +103,15 @@ const Overview = () => {
         <Typography
           variant="body1"
           textAlign="center"
+          paragraph
           component="p"
           sx={{ my: 7, mx: "auto" }}
-          width="55%"
+          width={{ md: "55%", xs: "95%" }}
         >
-          Dum Axies are fierce creatures that love to battle, build, and hunt
-          for treasure! Build up a collection and use them across an ever
-          expanding universe of games! Axie players can earn tokens such as DAI,
-          (truncated ...)
+          {singleDrops.our_take_description}
         </Typography>
       </Container>
-    </Paper>
+    </StyledGradPaper>
   );
 };
 

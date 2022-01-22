@@ -26,7 +26,7 @@ const DropsDetail = () => {
         direction="row"
         justifyContent="center"
         alignItems="flex-end"
-        spacing={4}
+        columnSpacing={4}
       >
         <Grid item>
           <ThumbUpOutlinedIcon fontSize="large" />
@@ -78,18 +78,18 @@ const DropsDetail = () => {
           </Grid>
           <Grid item md={3}>
             <Typography variant="h5">
-              {singleDrops.owners}/{singleDrops.supply}
+              {singleDrops.listed_item}/{singleDrops.supply_content}
             </Typography>
             <Typography variant="body2">
               Listed item/ Supply as content
             </Typography>
           </Grid>
           <Grid item md={3}>
-            <Typography variant="h5">{singleDrops.price} SOL</Typography>
+            <Typography variant="h5">{singleDrops.mint_price} SOL</Typography>
             <Typography variant="body2">Mint Price</Typography>
           </Grid>
           <Grid item md={3}>
-            <Typography variant="h5">{singleDrops.floor_price} M</Typography>
+            <Typography variant="h5">{singleDrops.floor_mc} M</Typography>
             <Typography variant="body2">Floor MC(USD)</Typography>
           </Grid>
         </Grid>
@@ -99,7 +99,7 @@ const DropsDetail = () => {
         textAlign="center"
         component="p"
         sx={{ my: 7, mx: "auto" }}
-        width="55%"
+        width={{ md: "55%", xs: "95%" }}
       >
         {singleDrops.description}
       </Typography>

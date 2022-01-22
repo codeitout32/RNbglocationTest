@@ -33,14 +33,23 @@ const Drops = () => {
 
   const handleChange = (e) => {
     setSearch(e.target.value);
+    dispatch(
+      fetchDropsStart({
+        group_by: "date",
+        type: isUpcoming === "1" ? "upcoming" : "launched",
+        title: e.target.value,
+      })
+    );
   };
 
   useEffect(() => {
     dispatch(
       fetchDropsStart({
+        group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
       })
     );
+    setSearch("");
   }, [isUpcoming]);
   return (
     <Fragment>
@@ -64,7 +73,7 @@ const Drops = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon color="secondary" />
+                <SearchIcon sx={{ color: "text.secondary" }} />
               </InputAdornment>
             ),
           }}
@@ -74,7 +83,7 @@ const Drops = () => {
           sx={{
             borderRadius: 10,
             mt: 5,
-            pt: 5,
+            pt: 1,
             display: "flex",
             flexDirection: "column",
             width: "100%",
@@ -82,13 +91,13 @@ const Drops = () => {
               "linear-gradient(180deg, rgb(100 100 100) 0%, rgba(0,0,0,1) 18%)",
           }}
         >
-          <Typography variant="h5" textAlign="center" color="grey.500">
+          {/* <Typography variant="h5" textAlign="center" color="grey.500">
             January 1st dum
-          </Typography>
+          </Typography> */}
           <DropTable />
-          <ButtonWhite sx={{ textTransform: "capitalize", mx: "auto" }}>
+          {/* <ButtonWhite sx={{ textTransform: "capitalize", mx: "auto" }}>
             Explore
-          </ButtonWhite>
+          </ButtonWhite> */}
         </Paper>
         <ApplyCard sx={{ width: "100%" }} />
       </Stack>

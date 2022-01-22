@@ -22,9 +22,9 @@ export default function News() {
     { title: "Drops", url: "/drops" },
     { title: "Feed", url: "#" },
   ];
-  useEffect(() => {
-    dispatch(fetchDropsStart());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchDropsStart());
+  // }, []);
   return (
     <Fragment>
       <Header pages={pages} />

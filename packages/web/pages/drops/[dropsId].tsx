@@ -25,10 +25,10 @@ export default function News() {
   const router = useRouter();
   const { dropsId } = router.query;
   const pages = [
-    { title: "BlockChain", url: "#" },
-    { title: "NFTs", url: "/news" },
-    { title: "Opinions", url: "#" },
-    { title: "More", url: "#" },
+    { title: "Marketplace", url: "#" },
+    { title: "News", url: "/news" },
+    { title: "Drops", url: "/drops" },
+    { title: "Feed", url: "#" },
   ];
 
   console.log("dropsId1", dropsId);

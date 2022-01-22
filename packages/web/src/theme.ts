@@ -1,6 +1,16 @@
 import { createTheme } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 const theme = createTheme({
+  components: {
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          color: "black",
+        },
+      },
+    },
+  },
   typography: {
     fontFamily: '"Noto Serif", serif',
     body1: {
@@ -19,7 +29,7 @@ const theme = createTheme({
   palette: {
     text: {
       primary: "#fff",
-      secondary: "#616161",
+      secondary: grey[500],
     },
 
     background: {
@@ -32,8 +42,8 @@ const theme = createTheme({
       contrastText: "#fff",
     },
     secondary: {
-      main: "#555",
-      dark: "#444",
+      main: grey[900],
+      dark: grey[1000],
       contrastText: "#fff",
     },
     action: {

@@ -10,28 +10,27 @@ import {
   Typography,
 } from "@mui/material";
 import React, { Fragment } from "react";
+import { StyledCard } from "./styled/styledCard";
 
 const SliderItem = ({ date, title, image }) => {
   return (
     <Fragment>
-      <Card
+      <StyledCard
         sx={{
-          maxWidth: "20%",
-          borderColor: "white",
-          border: 1,
+          // border: "4px solid white",
           borderRadius: 2,
-          textAlign: "center",
-          pb: 3,
-          bgcolor: "secondary.main",
+
+          pb: 7,
+          bgcolor: "#27272A",
         }}
       >
         <CardActionArea>
           <CardMedia
             component="img"
-            height="200"
+            height="300"
             image={image}
             alt="green iguana"
-            sx={{ p: 0.5 }}
+            sx={{ p: 1 }}
           />
           <CardContent>
             <Typography
@@ -42,7 +41,7 @@ const SliderItem = ({ date, title, image }) => {
             >
               {date}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="h5" fontSize={24} color="text.primary">
               {title}
             </Typography>
           </CardContent>
@@ -51,7 +50,7 @@ const SliderItem = ({ date, title, image }) => {
           <Button size="small">Share</Button>
           <Button size="small">Learn More</Button>
         </CardActions> */}
-      </Card>
+      </StyledCard>
     </Fragment>
   );
 };

@@ -3,7 +3,6 @@ import { fetchNewsStart } from "@next/common/slices/news.slice";
 import { Fragment, useEffect } from "react";
 import { useIntl } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
-import Drops from "src/components/drops";
 import Footer from "src/components/footer";
 import GuidesnLists from "src/components/guidesnLists";
 import Header from "src/components/header";
@@ -11,6 +10,7 @@ import LargeCorousel from "src/components/largeCorousel";
 import NewsLatest from "src/components/newsLatest";
 import FeaturedNews from "src/components/featuredNews";
 import RecentArticles from "src/components/recentArticles";
+import Advert from "src/components/advert";
 
 export default function News() {
   const dispatch = useDispatch();
@@ -33,6 +33,9 @@ export default function News() {
         <Box sx={{ height: "200px" }} />
         <NewsLatest />
         <Box sx={{ height: "200px" }} />
+        <Advert />
+        <Box sx={{ height: "200px" }} />
+
         <GuidesnLists />
         {/* <Box sx={{ height: "200px" }} /> */}
         <RecentArticles />

@@ -70,9 +70,11 @@ const NewsLatest = ({ asSidebar }: { asSidebar: Boolean | undefined }) => {
       <Container maxWidth="lg">
         <Typography
           variant={asSidebar ? "h5" : "h3"}
-          textAlign="center"
+          textAlign={asSidebar ? "left" : "center"}
           component="div"
-          sx={{ my: 7 }}
+          sx={{
+            my: asSidebar ? 1 : 7,
+          }}
         >
           The Latest
         </Typography>

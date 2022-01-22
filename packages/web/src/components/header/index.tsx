@@ -19,9 +19,6 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ButtonWhite from "src/theme/buttonWhite";
 import Link from "next/link";
 import { Grid } from "@mui/material";
-// import logo from "logo.png";
-import logo from "./logo.png";
-
 const Header = ({ pages }) => {
   // const pages = ["Marketplace", "News", "Drops", "Feed"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -54,37 +51,39 @@ const Header = ({ pages }) => {
       >
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <Grid container maxWidth="15%">
-              <Grid item xs={4}>
-                <Logo sx={{ fontSize: "3rem" }} />
+            <Link href="/">
+              <Grid container maxWidth="15%">
+                <Grid item xs={4}>
+                  <Logo sx={{ fontSize: "3rem" }} />
+                </Grid>
+                <Grid item xs={8}>
+                  <Typography
+                    variant="body1"
+                    noWrap
+                    component="div"
+                    sx={{
+                      mr: 2,
+                      display: { xs: "none", md: "flex" },
+                      fontSize: ".8rem",
+                    }}
+                  >
+                    Your
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    noWrap
+                    component="div"
+                    sx={{
+                      mr: 2,
+                      display: { xs: "none", md: "flex" },
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    NFT Hub
+                  </Typography>
+                </Grid>
               </Grid>
-              <Grid item xs={8}>
-                <Typography
-                  variant="body1"
-                  noWrap
-                  component="div"
-                  sx={{
-                    mr: 2,
-                    display: { xs: "none", md: "flex" },
-                    fontSize: ".8rem",
-                  }}
-                >
-                  Your
-                </Typography>
-                <Typography
-                  variant="h6"
-                  noWrap
-                  component="div"
-                  sx={{
-                    mr: 2,
-                    display: { xs: "none", md: "flex" },
-                    fontSize: "1.2rem",
-                  }}
-                >
-                  NFT Hub
-                </Typography>
-              </Grid>
-            </Grid>
+            </Link>
 
             {/* <Logo sx={{ fontSize: 10 }} /> */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

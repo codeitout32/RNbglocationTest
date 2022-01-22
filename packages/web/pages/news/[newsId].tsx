@@ -15,6 +15,7 @@ import RecentArticles from "src/components/recentArticles";
 
 import { useRouter } from "next/router";
 import RelatedArticles from "src/components/newsDetailComponents/relatedArticles";
+import Advert from "src/components/advert";
 
 export default function News() {
   const dispatch = useDispatch();
@@ -54,7 +55,8 @@ export default function News() {
         <RelatedArticles />
         {/* <Box sx={{ height: "200px" }} /> */}
         <Box sx={{ height: "200px" }} />
-        <Skeleton variant="rectangular" width="100%" height={500} />
+        {/* <Skeleton variant="rectangular" width="100%" height={500} /> */}
+        <Advert />
         <Footer />
       </Container>
     </Fragment>

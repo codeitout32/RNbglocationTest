@@ -1,11 +1,12 @@
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import { Fragment } from "react";
 import { useIntl } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
-import Drops from "src/components/drops";
+import HomeDropsList from "src/components/homeDropsList";
 import Header from "src/components/header";
 import LargeCorousel from "src/components/largeCorousel";
-import News from "src/components/news";
+import NewsCorousel from "src/components/newsCorousel";
+import Footer from "src/components/footer";
 
 export default function Home() {
   const messages = useIntl();
@@ -21,9 +22,14 @@ export default function Home() {
       <Header pages={pages} />
       <Container maxWidth="xl">
         <LargeCorousel />
-        <News />
-        <Drops />
+        <Box sx={{ height: "10vh" }} />
+
+        <NewsCorousel />
+        <Box sx={{ height: "10vh" }} />
+        <HomeDropsList />
+        <Box sx={{ height: "10vh" }} />
       </Container>
+      <Footer />
     </Fragment>
   );
 }
