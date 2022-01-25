@@ -1,17 +1,4 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Container,
-  Grid,
-  Icon,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Grid, Icon, Paper, Stack, Typography } from "@mui/material";
 import mLink from "@mui/material/Link";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import React, { Fragment } from "react";
@@ -41,6 +28,7 @@ const ArticleItem = ({ news }) => {
         md={12}
         alignItems="center"
         sx={{ borderBottom: "1px solid ", p: 5, borderColor: "grey.700" }}
+        spacing={1}
       >
         <Grid item md={4}>
           <Paper
@@ -55,7 +43,7 @@ const ArticleItem = ({ news }) => {
           </Paper>
         </Grid>
         <Grid item md={7}>
-          <Grid container>
+          <Grid container spacing={1}>
             <Grid item md={4}>
               <Typography variant="body1" color="grey.700">
                 {news?.author ? "By " + news?.author : "By Langston Thomas"}

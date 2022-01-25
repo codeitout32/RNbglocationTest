@@ -45,6 +45,8 @@ export default function News() {
         {/* <Box sx={{ height: "200px" }} /> */}
         <Box sx={{ height: "200px" }} />
         <Advert />
+        <Box sx={{ height: "10vh" }} />
+
         <Footer />
       </Container>
     </Fragment>

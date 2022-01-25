@@ -19,6 +19,9 @@ import DiscordIcon from "public/images/discord.svg";
 import LinkIcon from "public/images/link.svg";
 import TwitterIcon from "public/images/twitter.svg";
 import StyleTable from "./styles/styledTable";
+import moment from "moment";
+
+import TextLogo from "src/theme/textLogo";
 
 function createData(name, size, price, date, img) {
   return { name, size, price, date, img };
@@ -49,7 +52,7 @@ export default function DropTable() {
         <TableBody>
           {Object.keys(dropsList)
             .slice(0, -1) // slice used to remove last element ie count
-            .map((x) => (
+            .map((x, index) => (
               <>
                 <TableRow>
                   <TableCell
@@ -68,36 +71,41 @@ export default function DropTable() {
                   </TableCell>
                 </TableRow>
 
-                <TableRow
-                  sx={{
-                    "& th": { color: "text.secondary", fontSize: "10" },
-                    "& td": { fontSize: "1.5 rem", color: "text.secondary" },
-                  }}
-                >
-                  <TableCell variant="head">Project</TableCell>
-                  <TableCell align="left" variant="head">
-                    Links
-                  </TableCell>
-                  <TableCell align="left" variant="head">
-                    Time
-                  </TableCell>
-                  <TableCell align="left" variant="head">
-                    Count
-                  </TableCell>
-                  <TableCell align="left" variant="head">
-                    Price
-                  </TableCell>
-                  <TableCell align="left" variant="head">
-                    YNH Score
-                  </TableCell>
-                </TableRow>
+                {index == 0 && (
+                  <TableRow
+                    sx={{
+                      "& th": { color: "text.secondary", fontSize: "10" },
+                      "& td": { fontSize: "1.5 rem", color: "text.secondary" },
+                    }}
+                  >
+                    <TableCell variant="head">Project</TableCell>
+                    <TableCell align="left" variant="head">
+                      Links
+                    </TableCell>
+                    <TableCell align="left" variant="head">
+                      Time
+                    </TableCell>
+                    <TableCell align="left" variant="head">
+                      Count
+                    </TableCell>
+                    <TableCell align="left" variant="head">
+                      Price
+                    </TableCell>
+                    <TableCell align="left" variant="head">
+                      YNH Score
+                    </TableCell>
+                  </TableRow>
+                )}
 
                 {dropsList[x].map?.((row) => (
                   <TableRow
                     key={row.id}
                     sx={{
-                      "&:last-child td, &:last-child th": { border: 0 },
-                      "& td": { fontSize: "1.5 rem", color: "text.secondary" },
+                      // "&:last-child td, &:last-child th": { border: 0 },
+                      "& td": {
+                        color: "text.secondary",
+                        fontSize: (theme) => theme.typography.h6.fontSize,
+                      },
                     }}
                   >
                     <TableCell
@@ -126,21 +134,45 @@ export default function DropTable() {
                       </Box>
                     </TableCell>
                     <TableCell align="left">
-                      <IconButton aria-label="discord" href={row.social_link_1}>
-                        <Image src={TwitterIcon} alt="" width={24} />
-                      </IconButton>
-                      <IconButton aria-label="discord" href={row.social_link_2}>
-                        <Image src={DiscordIcon} alt="" width={24} />
-                      </IconButton>
-                      <IconButton aria-label="discord" href={row.social_link_3}>
-                        <Image src={LinkIcon} alt="" width={26} />
-                      </IconButton>
+                      {/* Conditional social links  */}
+                      {row.social_link_1 && (
+                        <IconButton
+                          aria-label="discord"
+                          href={row.social_link_1}
+                        >
+                          <Image src={TwitterIcon} alt="" width={24} />
+                        </IconButton>
+                      )}
+                      {row.social_link_2 && (
+                        <IconButton
+                          aria-label="discord"
+                          href={row.social_link_2}
+                        >
+                          <Image src={DiscordIcon} alt="" width={24} />
+                        </IconButton>
+                      )}
+                      {row.social_link_3 && (
+                        <IconButton
+                          aria-label="discord"
+                          href={row.social_link_3}
+                        >
+                          <Image src={LinkIcon} alt="" width={26} />
+                        </IconButton>
+                      )}
+                      {/* Conditional social links ends */}
                     </TableCell>
-                    <TableCell align="left">{row.size}</TableCell>
+                    <TableCell align="left">
+                      {moment(row.created_at).format("HH:mm")}
+                    </TableCell>
                     <TableCell align="left">{row.supply_content}</TableCell>
                     <TableCell align="left">{row.mint_price}</TableCell>
                     <TableCell align="left" className="trend">
-                      {row.likes}
+                      <TextLogo
+                        fontSize="small"
+                        sx={{ verticalAlign: "sub", mr: 1 }}
+                        mr={1}
+                      />
+                      {row.overall_score}
                     </TableCell>
                   </TableRow>
                 ))}

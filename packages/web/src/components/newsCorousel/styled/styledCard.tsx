@@ -9,6 +9,7 @@ export const StyledCard = styled(Card)`
   & .MuiTypography-root {
     text-align: left;
     overflow: hidden;
+    text-transform: capitalize;
   }
   & .MuiCardContent-root {
     height: 12vh;

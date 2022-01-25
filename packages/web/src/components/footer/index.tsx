@@ -9,15 +9,15 @@ const Footer = () => {
     { title: "How To guide", link: "#" },
     { title: "Terms of service", link: "#" },
   ];
+  const commuinty = [
+    { title: "Twitter", link: "#" },
+    { title: "Discord", link: "#" },
+    { title: "FAQs", link: "#" },
+  ];
   return (
     <Container maxWidth="lg">
-      <Grid
-        container
-        alignItems="center"
-        height="inherit"
-        sx={{ minHeight: "250px" }}
-      >
-        <Grid item md={3}>
+      <Grid container height="inherit" sx={{ minHeight: "150px" }}>
+        <Grid item md={3} xs={12}>
           <Grid container>
             <Grid item xs={3}>
               <Logo sx={{ fontSize: "3rem" }} />
@@ -29,13 +29,12 @@ const Footer = () => {
                 sx={{
                   mr: 2,
                   display: { xs: "none", md: "flex" },
-                  fontSize: ".8rem",
                 }}
               >
                 Your
               </Typography>
               <Typography
-                variant="h6"
+                variant="h5"
                 component="div"
                 sx={{
                   mr: 2,
@@ -52,15 +51,13 @@ const Footer = () => {
             component="div"
             sx={{
               mr: 2,
-
-              fontSize: "1rem",
             }}
           >
             Your NFT Hub, the #1 NFT Marketplace.
           </Typography>
         </Grid>
         <Grid item md={3}></Grid>
-        <Grid item md={3}>
+        <Grid item md={3} xs={6}>
           <Typography
             variant="h5"
             color="text.secondary"
@@ -84,7 +81,7 @@ const Footer = () => {
             </Link>
           ))}
         </Grid>
-        <Grid item md={3}>
+        <Grid item md={3} xs={6}>
           <Typography
             variant="h5"
             color="text.secondary"
@@ -97,7 +94,7 @@ const Footer = () => {
           >
             Community
           </Typography>
-          {company.map((item) => (
+          {commuinty.map((item) => (
             <Link
               href="#"
               underline="none"
@@ -109,6 +106,16 @@ const Footer = () => {
           ))}
         </Grid>
       </Grid>
+      <Typography
+        variant="body2"
+        component="p"
+        sx={{
+          mr: 2,
+          // fontSize: "1rem",
+        }}
+      >
+        &copy;2021 NFTHUB All rights reserved
+      </Typography>
     </Container>
   );
 };

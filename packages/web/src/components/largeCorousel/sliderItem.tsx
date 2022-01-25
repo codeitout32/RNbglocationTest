@@ -18,6 +18,7 @@ const SliderItem = () => {
           maxWidth: "xl",
           backgroundImage: `url("https://picsum.photos/1500/800")`,
           height: 500,
+          backgroundSize: "cover",
         }}
       >
         <div
@@ -36,7 +37,7 @@ const SliderItem = () => {
                   </Typography>
                 </Grid>
                 <Grid item md={4}>
-                  <Typography variant="h6" mt={2}>
+                  <Typography variant="h6" mt={1}>
                     Powered by Nova Nerds
                   </Typography>
                 </Grid>

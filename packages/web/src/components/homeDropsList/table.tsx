@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 
 import Linkm from "@mui/material/Link";
 import Link from "next/link";
+import moment from "moment";
 
 function createData(name, size, price, date, img) {
   return { name, size, price, date, img };
@@ -27,7 +28,7 @@ const rows = [
 ];
 
 export default function DropTable() {
-  const dropsList = useSelector(dropsListSelector).rows;
+  const dropsList = useSelector(dropsListSelector)?.rows;
   return (
     <TableContainer component={"div"} sx={{ pb: 5 }}>
       <Table
@@ -37,8 +38,10 @@ export default function DropTable() {
         <TableHead>
           <TableRow
             sx={{
+              border: 0,
               "& th": { color: "text.secondary", fontSize: "10" },
               "& td": { fontSize: "1.5 rem", color: "text.secondary" },
+              "& td, & th": { border: 0 },
             }}
           >
             <TableCell>Project</TableCell>
@@ -55,8 +58,14 @@ export default function DropTable() {
               <TableRow
                 key={row.name}
                 sx={{
-                  "&:last-child td, &:last-child th": { border: 0 },
-                  "& td": { fontSize: "1.1rem", color: "text.secondary" },
+                  borderBottom: 1,
+                  "& td, & th": { border: 0 },
+                  "& td": {
+                    fontSize: "1.1rem",
+                    color: "text.secondary",
+                    border: 0,
+                  },
+                  "&:last-child": { border: 0 },
                 }}
               >
                 <TableCell
@@ -84,7 +93,9 @@ export default function DropTable() {
                 </TableCell>
                 <TableCell align="left">{row.supply_content}</TableCell>
                 <TableCell align="left">{row.mint_price} SOL</TableCell>
-                <TableCell align="left">{row.launch_date}</TableCell>
+                <TableCell align="left">
+                  {moment(row.created_at).format("DD/MM/YYYY")}
+                </TableCell>
                 <TableCell align="left">{row.overall_score}</TableCell>
               </TableRow>
             );

@@ -22,7 +22,10 @@ const HomeDropsList = () => {
   };
   React.useEffect(() => {
     dispatch(
-      fetchDropsStart({ type: dropType == 1 ? "upcoming" : "launched" })
+      fetchDropsStart({
+        type: dropType == 1 ? "upcoming" : "launched",
+        sort_type: "DESC",
+      })
     );
   }, [dropType]);
   return (

@@ -71,7 +71,11 @@ const Drops = () => {
           name="search"
           onChange={handleChange}
           value={search}
-          sx={{ bgcolor: "grey.900", width: "40%", color: "grey" }}
+          sx={{
+            bgcolor: "grey.900",
+            width: { md: "40%", xs: "90%" },
+            color: "grey",
+          }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -93,7 +97,7 @@ const Drops = () => {
             flexDirection: "column",
             width: "100%",
             background:
-              "linear-gradient(180deg, rgb(100 100 100) 0%, rgba(0,0,0,1) 18%)",
+              "linear-gradient(180deg, rgb(100 100 100) 0%, rgba(0,0,0,1) 8%)",
           }}
         >
           {/* <Typography variant="h5" textAlign="center" color="grey.500">

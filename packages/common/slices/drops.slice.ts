@@ -22,7 +22,7 @@ export const newsSlice = createSlice({
   name: "dropsList",
   initialState,
   reducers: {
-    fetchDropsStart: (state) => {
+    fetchDropsStart: (state, action) => {
       return {
         ...state,
         loading: true,

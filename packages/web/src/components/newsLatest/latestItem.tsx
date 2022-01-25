@@ -14,25 +14,30 @@ import React, { Fragment } from "react";
 import ButtonTransparent from "src/theme/buttonTransparent";
 import ButtonWhite from "src/theme/buttonWhite";
 import Link from "next/link";
-const LatestItem = ({ news }) => {
+const LatestItem = ({ news, asSidebar }) => {
   console.log("newsitem", news);
   return (
     <>
       <Grid container spacing={1} justifyContent="center" sx={{ my: 0.5 }}>
-        <Grid item md={4}>
+        <Grid item md={3}>
           <Paper
             sx={{
               overflow: "hidden",
+              borderRadius: "8px",
               bgcolor: "inherit",
               img: {
                 objectFit: "cover",
               },
             }}
           >
-            <img height="120px" width="120px" src={news.image} />
+            <img
+              width={asSidebar ? "60px" : "120px"}
+              height={asSidebar ? "60px" : "120px"}
+              src={news.image}
+            />
           </Paper>
         </Grid>
-        <Grid item md={8}>
+        <Grid item md={9}>
           <Paper sx={{ bgcolor: "inherit" }}>
             <Typography variant="h6">{news.title}</Typography>
             <Link href={"/news/" + news.id}>

@@ -37,8 +37,8 @@ export default function News() {
         <Box sx={{ height: "200px" }} />
 
         <GuidesnLists />
-        {/* <Box sx={{ height: "200px" }} /> */}
         <RecentArticles />
+        <Box sx={{ height: "5vh" }} />
         <Footer />
       </Container>
     </Fragment>

@@ -19,6 +19,7 @@ import ButtonWhite from "src/theme/buttonWhite";
 import Link from "next/link";
 import { Grid, Link as Linkm } from "@mui/material";
 import Logo from "./logo";
+import LogoIcon from "src/theme/logo";
 const Header = ({ pages }) => {
   // const pages = ["Marketplace", "News", "Drops", "Feed"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -52,7 +53,7 @@ const Header = ({ pages }) => {
         <Container maxWidth="lg">
           <Toolbar disableGutters>
             <Link href="/">
-              <Logo />
+              <Logo sx={{ mr: 2, display: { xs: "none", md: "flex" } }} />
             </Link>
 
             {/* <Logo sx={{ fontSize: 10 }} /> */}
@@ -94,14 +95,16 @@ const Header = ({ pages }) => {
                 ))}
               </Menu>
             </Box>
+
             <Typography
               variant="h6"
               noWrap
               component="div"
-              sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+              sx={{ flexGrow: 2, display: { xs: "flex", md: "none" } }}
             >
-              LOGO
+              <LogoIcon fontSize="large" />
             </Typography>
+
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages?.map((page) => (
                 <Link href={`${page.url}`}>
@@ -122,7 +125,10 @@ const Header = ({ pages }) => {
               ))}
             </Box>
 
-            <Box sx={{ flexGrow: 0 }} color="white">
+            <Box
+              sx={{ flexGrow: 0, display: { xs: "none", md: "block" } }}
+              color="white"
+            >
               <Tooltip title="Search">
                 <IconButton
                   onClick={handleOpenUserMenu}

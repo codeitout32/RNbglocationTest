@@ -70,13 +70,13 @@ const DropsDetail = () => {
             },
           }}
         >
-          <Grid item md={3}>
+          <Grid item md={3} xs={6}>
             <Typography variant="h5">
               {getDate(singleDrops.created_at)}
             </Typography>
             <Typography variant="body2">Launch Date</Typography>
           </Grid>
-          <Grid item md={3}>
+          <Grid item md={3} xs={6}>
             <Typography variant="h5">
               {singleDrops.listed_item}/{singleDrops.supply_content}
             </Typography>
@@ -84,11 +84,11 @@ const DropsDetail = () => {
               Listed item/ Supply as content
             </Typography>
           </Grid>
-          <Grid item md={3}>
+          <Grid item md={3} xs={6}>
             <Typography variant="h5">{singleDrops.mint_price} SOL</Typography>
             <Typography variant="body2">Mint Price</Typography>
           </Grid>
-          <Grid item md={3}>
+          <Grid item md={3} xs={6}>
             <Typography variant="h5">{singleDrops.floor_mc} M</Typography>
             <Typography variant="body2">Floor MC(USD)</Typography>
           </Grid>

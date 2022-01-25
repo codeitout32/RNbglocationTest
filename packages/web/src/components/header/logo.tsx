@@ -2,10 +2,10 @@ import React from "react";
 import { Grid, Link as Linkm, Typography } from "@mui/material";
 import LogoIcon from "src/theme/logo";
 
-const Logo = React.forwardRef(({ href }, ref) => {
+const Logo = React.forwardRef(({ href, sx }, ref) => {
   return (
     <>
-      <Grid container maxWidth="15%">
+      <Grid container maxWidth="15%" sx={sx}>
         <Grid item xs={4}>
           <a href={href} ref={ref}>
             <LogoIcon sx={{ fontSize: "3rem" }} />

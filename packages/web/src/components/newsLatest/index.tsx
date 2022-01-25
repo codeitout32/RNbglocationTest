@@ -48,7 +48,8 @@ const NewsLatest = ({ asSidebar }: { asSidebar: Boolean | undefined }) => {
     >
       {restNews.length ? (
         restNews.map((news, index) => {
-          if (index < 4) return <LatestItem key={index} news={news} />;
+          if (index < 4)
+            return <LatestItem key={index} news={news} asSidebar={asSidebar} />;
         })
       ) : (
         <Skeleton variant="rectangular" height={500} />
@@ -64,7 +65,7 @@ const NewsLatest = ({ asSidebar }: { asSidebar: Boolean | undefined }) => {
         display: "flex",
         flexDirection: "column",
         background: "linear-gradient(180deg, #3F3F46 0%, #000000 25%)",
-        "& img": { borderRadius: "20px" },
+        "& img": { borderRadius: "8px" },
       }}
     >
       <Container maxWidth="lg">

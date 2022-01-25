@@ -63,7 +63,7 @@ const GuideItem = ({ date, title, image }) => {
               },
             }}
           />
-          <CardContent sx={{ mt: 4 }}>
+          <CardContent sx={{ mt: 4, textTransform: "capitalize" }}>
             {/* <Typography
               gutterBottom
               variant="subtitle2"

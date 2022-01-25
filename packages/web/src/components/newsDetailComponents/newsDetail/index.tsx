@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { singleNewsSelector } from "@next/common/selectors";
 import { htmlParser } from "@next/common/utils/htmlParser";
 import parse from "html-react-parser";
+import moment from "moment";
 
 const NewsDetail = () => {
   //Styles
@@ -42,10 +43,10 @@ const NewsDetail = () => {
             By {current?.author}
           </Typography>
           <Typography variant="body1" sx={subtitle1}>
-            {getDate(current?.posted_on)}
+            {moment(current?.posted_on).format("MMMM DD, YYYY")}
           </Typography>
         </Box>
-        <Typography variant="body2" component="p">
+        <Typography variant="body1" component="p" color="text.secondary">
           {parse(body)}
         </Typography>
 

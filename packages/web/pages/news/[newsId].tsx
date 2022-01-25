@@ -42,21 +42,22 @@ export default function News() {
       <Container maxWidth="xl">
         <Box sx={{ height: "100px" }} />
         <Grid container maxWidth="lg" spacing={2} mx="auto">
-          <Grid item xs={8}>
+          <Grid item md={8} xs={11}>
             <NewsDetail />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={11}>
             <Box sx={{ height: "450px" }}></Box>
             <NewsLatest asSidebar />
           </Grid>
         </Grid>
 
-        <Box sx={{ height: "200px" }} />
+        <Box sx={{ height: "10vh" }} />
         <RelatedArticles />
         {/* <Box sx={{ height: "200px" }} /> */}
-        <Box sx={{ height: "200px" }} />
+        <Box sx={{ height: "10vh" }} />
         {/* <Skeleton variant="rectangular" width="100%" height={500} /> */}
         <Advert />
+        <Box sx={{ height: "10vh" }} />
         <Footer />
       </Container>
     </Fragment>

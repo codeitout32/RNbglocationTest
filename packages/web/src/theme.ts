@@ -3,7 +3,6 @@ import { grey } from "@mui/material/colors";
 import { Theme } from "@mui/material/styles";
 
 const theme = createTheme({
-  root: { textTransform: "capitalize" },
   components: {
     MuiMenuItem: {
       styleOverrides: {
@@ -18,6 +17,7 @@ const theme = createTheme({
 
     body1: {
       fontFamily: '"DM Sans", sans-serif',
+      fontSize: "0.99rem",
       // textTransform: "capitalize",
     },
     body2: {
@@ -33,7 +33,7 @@ const theme = createTheme({
       fontFamily: '"DM Sans", sans-serif',
     },
     h5: {
-      // textTransform: "capitalize",
+      textTransform: "capitalize",
     },
   },
   palette: {
