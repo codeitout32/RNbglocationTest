@@ -12,13 +12,13 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import Logo from "src/theme/logo";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ButtonWhite from "src/theme/buttonWhite";
 import Link from "next/link";
-import { Grid } from "@mui/material";
+import { Grid, Link as Linkm } from "@mui/material";
+import Logo from "./logo";
 const Header = ({ pages }) => {
   // const pages = ["Marketplace", "News", "Drops", "Feed"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -52,37 +52,7 @@ const Header = ({ pages }) => {
         <Container maxWidth="lg">
           <Toolbar disableGutters>
             <Link href="/">
-              <Grid container maxWidth="15%">
-                <Grid item xs={4}>
-                  <Logo sx={{ fontSize: "3rem" }} />
-                </Grid>
-                <Grid item xs={8}>
-                  <Typography
-                    variant="body1"
-                    noWrap
-                    component="div"
-                    sx={{
-                      mr: 2,
-                      display: { xs: "none", md: "flex" },
-                      fontSize: ".8rem",
-                    }}
-                  >
-                    Your
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    noWrap
-                    component="div"
-                    sx={{
-                      mr: 2,
-                      display: { xs: "none", md: "flex" },
-                      fontSize: "1.2rem",
-                    }}
-                  >
-                    NFT Hub
-                  </Typography>
-                </Grid>
-              </Grid>
+              <Logo />
             </Link>
 
             {/* <Logo sx={{ fontSize: 10 }} /> */}

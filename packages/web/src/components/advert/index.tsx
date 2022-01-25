@@ -26,7 +26,12 @@ const Advert = () => {
               right NFT community audience.
             </Typography>
             <Box sx={{}}>
-              <TextField variant="outlined" placeholder="Email" size="small" />
+              <TextField
+                variant="outlined"
+                placeholder="Email"
+                size="small"
+                sx={{ width: "60%" }}
+              />
               <Button variant="contained"> Subscribe</Button>
             </Box>
           </Grid>
@@ -48,6 +53,7 @@ const StyledDiv = styled("div")`
       rgba(63, 63, 70, 0) 81%
     ),
     url(${advertBackground.src});
+  background-size: cover;
 
   height: 45vh;
   & .MuiContainer-root {

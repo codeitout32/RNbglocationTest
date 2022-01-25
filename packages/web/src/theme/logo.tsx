@@ -1,7 +1,7 @@
 import { SvgIcon } from "@mui/material";
 import React from "react";
 
-const Logo = (props) => {
+const LogoIcon = (props) => {
   return (
     <SvgIcon {...props}>
       <svg viewBox="0 0 51 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,4 +30,4 @@ const Logo = (props) => {
   );
 };
 
-export default Logo;
+export default LogoIcon;

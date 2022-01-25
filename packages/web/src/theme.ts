@@ -1,7 +1,9 @@
-import { createTheme } from "@mui/material";
+import { createTheme, responsiveFontSizes } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import { Theme } from "@mui/material/styles";
 
 const theme = createTheme({
+  root: { textTransform: "capitalize" },
   components: {
     MuiMenuItem: {
       styleOverrides: {
@@ -13,17 +15,25 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: '"Noto Serif", serif',
+
     body1: {
       fontFamily: '"DM Sans", sans-serif',
+      // textTransform: "capitalize",
     },
     body2: {
       fontFamily: '"DM Sans", sans-serif',
       color: "#616161",
-      fontSize: "1rem",
     },
     button: {
       fontFamily: '"DM Sans", sans-serif',
       fontWeight: 500,
+      textTransform: "capitalize",
+    },
+    subtitle2: {
+      fontFamily: '"DM Sans", sans-serif',
+    },
+    h5: {
+      // textTransform: "capitalize",
     },
   },
   palette: {
@@ -53,4 +63,6 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+const restheme = responsiveFontSizes(theme, { factor: 2 });
+// const restheme = theme;
+export default restheme;

@@ -32,7 +32,7 @@ const GuideItem = ({ date, title, image }) => {
           maxWidth: "350px",
           borderColor: "black",
 
-          borderRadius: 5,
+          borderRadius: "5px",
           textAlign: "center",
           bgcolor: "black",
           py: 3,
@@ -50,7 +50,7 @@ const GuideItem = ({ date, title, image }) => {
             sx={{
               p: 0,
               border: 1,
-              borderRadius: 4,
+              borderRadius: 2,
               borderColor: "black",
               width: "90%",
               mx: "auto",

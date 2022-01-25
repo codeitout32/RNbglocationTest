@@ -32,6 +32,14 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, "https://picsum.photos/50/50"),
 ];
 
+const dateFunctn = (rawdate) => {
+  const date = new Date(rawdate);
+
+  const options = { day: "numeric", month: "long" };
+
+  return date.toLocaleString("en-us", options);
+};
+
 export default function DropTable() {
   const dropsList = useSelector(dropsListSelector);
   console.log("dropslist", dropsList);
@@ -55,7 +63,7 @@ export default function DropTable() {
                       textAlign="center"
                       color="grey.500"
                     >
-                      {x}
+                      {dateFunctn(x)}
                     </Typography>
                   </TableCell>
                 </TableRow>

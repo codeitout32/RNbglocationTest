@@ -8,16 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "src/components/footer";
 import GuidesnLists from "src/components/guidesnLists";
 import Header from "src/components/header";
-import NewsDetail from "src/components/newsDetailComponents/newsDetail";
-import NewsLatest from "src/components/newsLatest";
-import NFT101 from "src/components/featuredNews";
-import RecentArticles from "src/components/recentArticles";
 
 import { useRouter } from "next/router";
-import RelatedArticles from "src/components/newsDetailComponents/relatedArticles";
 import { fetchSingleDropsStart } from "@next/common/slices/drops.slice";
 import Overview from "src/components/dropsDetailComponents/overview";
 import DropsDetail from "src/components/dropsDetailComponents/dropsDetail";
+import Advert from "src/components/advert";
 
 export default function News() {
   const dispatch = useDispatch();
@@ -48,7 +44,7 @@ export default function News() {
         <Overview />
         {/* <Box sx={{ height: "200px" }} /> */}
         <Box sx={{ height: "200px" }} />
-        <Skeleton variant="rectangular" width="100%" height={500} />
+        <Advert />
         <Footer />
       </Container>
     </Fragment>

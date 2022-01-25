@@ -39,7 +39,7 @@ const NewsDetail = () => {
         <Typography variant="h5">{current?.title}</Typography>
         <Box sx={{ ...hFlxSpcbetween }}>
           <Typography variant="body1" sx={subtitle1}>
-            {current?.author}
+            By {current?.author}
           </Typography>
           <Typography variant="body1" sx={subtitle1}>
             {getDate(current?.posted_on)}

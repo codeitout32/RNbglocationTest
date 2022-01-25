@@ -38,6 +38,7 @@ const Drops = () => {
         group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
         title: e.target.value,
+        row_per_page: "50",
       })
     );
   };
@@ -45,6 +46,7 @@ const Drops = () => {
   useEffect(() => {
     dispatch(
       fetchDropsStart({
+        row_per_page: "50",
         group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
       })
@@ -78,7 +80,10 @@ const Drops = () => {
             ),
           }}
         />
-        <Typography color="secondary"> Total Projects: {dropCount}</Typography>
+        <Typography color="text.secondary">
+          {" "}
+          Total Projects: {dropCount}
+        </Typography>
         <Paper
           sx={{
             borderRadius: 10,

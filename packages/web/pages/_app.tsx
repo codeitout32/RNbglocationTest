@@ -9,8 +9,9 @@ import { useStore } from "@next/common/store";
 
 import AppLocale from "localization";
 import EnLang from "localization/entries/en-US";
-import theme from "src/theme";
+import restheme from "src/theme";
 import CircularLoader from "src/components/loader";
+import GlobalStyles from "@mui/material/GlobalStyles";
 
 export default function App({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
@@ -18,13 +19,14 @@ export default function App({ Component, pageProps }) {
   return (
     <PersistGate loading={CircularLoader} persistor={store.persistor}>
       <Provider store={store}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={restheme}>
           <IntlProvider
             locale="en"
             defaultLocale="en"
             messages={AppLocale.en.messages}
           >
             <CssBaseline />
+            <GlobalStyles styles={{ root: { textTransform: "capitalize" } }} />
             <Component {...pageProps} />
           </IntlProvider>
         </ThemeProvider>

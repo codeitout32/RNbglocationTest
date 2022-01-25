@@ -56,7 +56,7 @@ export default function DropTable() {
                 key={row.name}
                 sx={{
                   "&:last-child td, &:last-child th": { border: 0 },
-                  "& td": { fontSize: "1.5 rem", color: "text.secondary" },
+                  "& td": { fontSize: "1.1rem", color: "text.secondary" },
                 }}
               >
                 <TableCell
@@ -82,8 +82,8 @@ export default function DropTable() {
                     </Linkm>
                   </Link>
                 </TableCell>
-                <TableCell align="left">{row.size}</TableCell>
-                <TableCell align="left">{row.mint_price}</TableCell>
+                <TableCell align="left">{row.supply_content}</TableCell>
+                <TableCell align="left">{row.mint_price} SOL</TableCell>
                 <TableCell align="left">{row.launch_date}</TableCell>
                 <TableCell align="left">{row.overall_score}</TableCell>
               </TableRow>

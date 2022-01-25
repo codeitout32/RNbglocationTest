@@ -8,9 +8,6 @@ import Drops from "src/components/dropsListing";
 import Footer from "src/components/footer";
 import GuidesnLists from "src/components/guidesnLists";
 import Header from "src/components/header";
-import LargeCorousel from "src/components/largeCorousel";
-import NewsLatest from "src/components/newsLatest";
-import NFT101 from "src/components/featuredNews";
 
 export default function News() {
   const dispatch = useDispatch();

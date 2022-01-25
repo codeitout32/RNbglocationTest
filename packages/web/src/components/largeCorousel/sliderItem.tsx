@@ -31,12 +31,14 @@ const SliderItem = () => {
             <Container maxWidth="lg">
               <Grid container>
                 <Grid item md={8}>
-                  <Typography gutterBottom variant="h3">
+                  <Typography variant="h3">
                     Your NFT Hub: Your OneStop for anything nft related
                   </Typography>
                 </Grid>
                 <Grid item md={4}>
-                  <Typography variant="h6">Powered by Nova Nerds</Typography>
+                  <Typography variant="h6" mt={2}>
+                    Powered by Nova Nerds
+                  </Typography>
                 </Grid>
               </Grid>
             </Container>

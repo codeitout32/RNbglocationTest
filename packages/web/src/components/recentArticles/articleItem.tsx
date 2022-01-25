@@ -51,14 +51,14 @@ const ArticleItem = ({ news }) => {
               width: "250px",
             }}
           >
-            <img height="180px" width="250px" src={news.image} />
+            <img height="180px" width="255px" src={news.image} />
           </Paper>
         </Grid>
         <Grid item md={7}>
           <Grid container>
             <Grid item md={4}>
               <Typography variant="body1" color="grey.700">
-                {news?.author ? news?.author : "By Langston Thomas"}
+                {news?.author ? "By " + news?.author : "By Langston Thomas"}
               </Typography>
             </Grid>
             <Grid item md={8}>
@@ -68,7 +68,7 @@ const ArticleItem = ({ news }) => {
             </Grid>
           </Grid>
 
-          <Typography variant="h6" sx={{ mt: 3 }}>
+          <Typography variant="h6" sx={{ mt: 1 }}>
             {news?.short_description
               ? news?.short_description
               : dummy.description}

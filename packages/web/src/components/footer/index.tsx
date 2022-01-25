@@ -19,10 +19,10 @@ const Footer = () => {
       >
         <Grid item md={3}>
           <Grid container>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Logo sx={{ fontSize: "3rem" }} />
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={9}>
               <Typography
                 variant="body1"
                 component="div"

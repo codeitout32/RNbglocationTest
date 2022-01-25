@@ -18,7 +18,7 @@ const LatestItem = ({ news }) => {
   console.log("newsitem", news);
   return (
     <>
-      <Grid container spacing={1.5} justifyContent="center" sx={{ my: 0.5 }}>
+      <Grid container spacing={1} justifyContent="center" sx={{ my: 0.5 }}>
         <Grid item md={4}>
           <Paper
             sx={{

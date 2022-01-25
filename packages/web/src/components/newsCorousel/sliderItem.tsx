@@ -12,6 +12,8 @@ import {
 import React, { Fragment } from "react";
 import { StyledCard } from "./styled/styledCard";
 
+import moment from "moment";
+
 const SliderItem = ({ date, title, image }) => {
   return (
     <Fragment>
@@ -39,7 +41,7 @@ const SliderItem = ({ date, title, image }) => {
               component="div"
               color="text.secondary"
             >
-              {date}
+              {moment(date).format("DD MMM, YYYY")}
             </Typography>
             <Typography variant="h5" fontSize={24} color="text.primary">
               {title}
