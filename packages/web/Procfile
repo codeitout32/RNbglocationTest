@@ -1,1 +1,1 @@
-web: cd appdir && node path/to/app-start.js
+web: cd packages/web && node path/to/app-start.js
