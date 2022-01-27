@@ -1,1 +1,3 @@
-web: cd packages/web && node path/to/app-start.js
+web: cd packages/web 
+web: yarn build
+web: yarn start
