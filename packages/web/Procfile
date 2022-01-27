@@ -1,0 +1,1 @@
+web: cd appdir && node path/to/app-start.js
