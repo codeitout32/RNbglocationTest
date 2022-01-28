@@ -10,7 +10,7 @@ const BigWrapper = ({ headNews, children }) => {
         <Grid item md={6} xs={12}>
           <Paper
             sx={{
-              backgroundImage: `url(${headNews.image})`,
+              backgroundImage: `url(${headNews.image}), url('https://picsum.photos/800/600')`,
               backgroundSize: "cover",
               borderRadius: "20px",
               height: "100%",
