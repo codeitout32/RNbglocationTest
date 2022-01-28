@@ -63,6 +63,6 @@ const theme = createTheme({
   },
 });
 
-const restheme = responsiveFontSizes(theme, { factor: 2 });
+const restheme = responsiveFontSizes(theme, { factor: 3 });
 // const restheme = theme;
 export default restheme;
