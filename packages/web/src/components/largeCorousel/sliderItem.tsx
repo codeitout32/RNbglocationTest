@@ -32,10 +32,10 @@ const SliderItem = () => {
         >
           <CardContent>
             <Container maxWidth="lg">
-              <Grid container>
+              <Grid container spacing={2}>
                 <Grid item md={8}>
                   <Typography variant="h3">
-                    Your NFT Hub: Your OneStop for anything nft related
+                    Your NFT Hub: Your One Stop for anything nft related
                   </Typography>
                 </Grid>
                 <Grid item md={4}>
