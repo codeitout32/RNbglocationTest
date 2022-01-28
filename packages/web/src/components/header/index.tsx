@@ -31,6 +31,7 @@ const Header = ({ pages }) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
+    return;
     setAnchorElUser(event.currentTarget);
   };
 
@@ -68,6 +69,7 @@ const Header = ({ pages }) => {
               >
                 <MenuIcon />
               </IconButton>
+
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -102,7 +104,11 @@ const Header = ({ pages }) => {
               component="div"
               sx={{ flexGrow: 2, display: { xs: "flex", md: "none" } }}
             >
-              <LogoIcon fontSize="large" />
+              <Link href="/">
+                <IconButton>
+                  <LogoIcon fontSize="large" />
+                </IconButton>
+              </Link>
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>

@@ -6,12 +6,13 @@
   "license": "MIT",
   "private": true,
   "workspaces":[
-    "packages/*"
+    "packages/*",
+	"packages/web"
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "yarn workspaces foreach run next build",
-    "start": "yarn workspaces packages/web start next start -p $PORT",
+    "build": "yarn workspaces foreach run build",
+    "start": "yarn workspaces packages/web start",
     "heroku-postbuild": "yarn start",
   "test": "echo \"Error: no test specified\" && exit 1"
   }

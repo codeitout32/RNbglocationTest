@@ -109,6 +109,7 @@ const NewsCorousel = () => {
                   image={news.image}
                   date={news.created_at}
                   title={news.title}
+                  id={news.id}
                 />
               </SwiperSlide>
             ))}

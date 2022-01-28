@@ -15,12 +15,20 @@ import Advert from "src/components/advert";
 export default function News() {
   const dispatch = useDispatch();
   const messages = useIntl();
-  const pages = [
+  const pages2 = [
     { title: "BlockChain", url: "#" },
     { title: "NFTs", url: "/news" },
     { title: "Opinions", url: "#" },
     { title: "More", url: "#" },
   ];
+
+  const pages = [
+    { title: "Marketplace", url: "#" },
+    { title: "News", url: "/news" },
+    { title: "Drops", url: "/drops" },
+    { title: "Feed", url: "#" },
+  ];
+
   useEffect(() => {
     dispatch(fetchNewsStart());
   }, []);

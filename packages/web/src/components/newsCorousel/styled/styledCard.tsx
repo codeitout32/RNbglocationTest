@@ -8,11 +8,14 @@ export const StyledCard = styled(Card)`
 
   & .MuiTypography-root {
     text-align: left;
+    text-overflow: ellipsis
     overflow: hidden;
     text-transform: capitalize;
   }
   & .MuiCardContent-root {
     height: 12vh;
+    text-overflow: ellipsis;
     overflow: hidden;
+    
   }
 `;

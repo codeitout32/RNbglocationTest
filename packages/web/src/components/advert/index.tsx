@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { styled } from "@mui/system";
-import advertBackground from "public/images/advert-background.png";
+import advertBackground from "public/images/space-astro-background.png";
 
 const Advert = () => {
   console.log("image", advertBackground.src);

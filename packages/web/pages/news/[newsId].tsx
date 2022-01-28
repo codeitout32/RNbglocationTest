@@ -22,13 +22,19 @@ export default function News() {
 
   const router = useRouter();
   const { newsId } = router.query;
-  const pages = [
+  const pages2 = [
     { title: "BlockChain", url: "#" },
     { title: "NFTs", url: "/news" },
     { title: "Opinions", url: "#" },
     { title: "More", url: "#" },
   ];
 
+  const pages = [
+    { title: "Marketplace", url: "#" },
+    { title: "News", url: "/news" },
+    { title: "Drops", url: "/drops" },
+    { title: "Feed", url: "#" },
+  ];
   console.log("newsId1", newsId);
 
   useEffect(() => {
