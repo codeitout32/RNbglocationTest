@@ -11,6 +11,9 @@ const ButtonWhite = (props) => {
         ...props.sx,
         backgroundColor: "white",
         color: "black",
+        "&:hover": {
+          backgroundColor: "#d3d3d3",
+        },
       }}
     >
       {props.children}
