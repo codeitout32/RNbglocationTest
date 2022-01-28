@@ -7,5 +7,12 @@
   "private": true,
   "workspaces":[
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "yarn workspaces foreach run next build",
+    "start": "yarn workspaces packages/web start next start -p $PORT",
+    "heroku-postbuild": "yarn start",
+  "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
