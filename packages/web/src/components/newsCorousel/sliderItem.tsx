@@ -14,6 +14,7 @@ import { StyledCard } from "./styled/styledCard";
 
 import moment from "moment";
 import Link from "next/link";
+import { handleImageError } from "@next/common/utils/handleImageError";
 
 const SliderItem = ({ date, title, image, id }) => {
   return (
@@ -35,6 +36,7 @@ const SliderItem = ({ date, title, image, id }) => {
               image={image}
               alt="green iguana"
               sx={{ p: 1 }}
+              onError={handleImageError}
             />
             <CardContent>
               <Typography

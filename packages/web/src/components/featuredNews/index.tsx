@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { featuredNewsSelector } from "@next/common/selectors";
 import LinkNext from "next/link";
 
+import { handleImageError } from "@next/common/utils/handleImageError";
 const FeaturedNews = () => {
   const featuredNews = useSelector(featuredNewsSelector);
   const [featured, ...rest] = featuredNews ? featuredNews.rows : [];
@@ -47,7 +48,12 @@ const FeaturedNews = () => {
                 bgcolor: "primary.main",
               }}
             >
-              <img src={featured.image} alt="" height="300" />
+              <img
+                src={featured.image}
+                alt=""
+                height="300"
+                onError={handleImageError}
+              />
             </Paper>
           </Grid>
         </Grid>

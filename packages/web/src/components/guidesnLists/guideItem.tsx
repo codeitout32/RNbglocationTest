@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { Fragment } from "react";
+import { handleImageError } from "@next/common/utils/handleImageError";
 
 const GuideItem = ({ date, title, image }) => {
   const divStyle = {
@@ -46,6 +47,7 @@ const GuideItem = ({ date, title, image }) => {
             height="280"
             width="95%"
             image={image}
+            onError={handleImageError}
             alt="green iguana"
             sx={{
               p: 0,

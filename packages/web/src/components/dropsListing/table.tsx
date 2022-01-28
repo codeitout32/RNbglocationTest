@@ -22,6 +22,7 @@ import StyleTable from "./styles/styledTable";
 import moment from "moment";
 
 import TextLogo from "src/theme/textLogo";
+import { handleImageError } from "@next/common/utils/handleImageError";
 
 function createData(name, size, price, date, img) {
   return { name, size, price, date, img };
@@ -118,7 +119,13 @@ export default function DropTable() {
                           alt="Remy Sharp"
                           src={row.image}
                           sx={{ width: 56, height: 56 }}
-                        />
+                          imgProps={{ onError: handleImageError }}
+                        >
+                          <img
+                            src="https://picsum.photos/200"
+                            alt="fallback image"
+                          />
+                        </Avatar>
                         <Link href={`drops/${row.id}`}>
                           <Linkm href="#">
                             <Typography

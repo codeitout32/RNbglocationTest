@@ -14,6 +14,9 @@ import React, { Fragment } from "react";
 import ButtonTransparent from "src/theme/buttonTransparent";
 import ButtonWhite from "src/theme/buttonWhite";
 import Link from "next/link";
+
+import { handleImageError } from "@next/common/utils/handleImageError";
+
 const LatestItem = ({ news, asSidebar }) => {
   console.log("newsitem", news);
   return (
@@ -34,6 +37,7 @@ const LatestItem = ({ news, asSidebar }) => {
               width={asSidebar ? "60px" : "120px"}
               height={asSidebar ? "60px" : "120px"}
               src={news.image}
+              onError={handleImageError}
             />
           </Paper>
         </Grid>

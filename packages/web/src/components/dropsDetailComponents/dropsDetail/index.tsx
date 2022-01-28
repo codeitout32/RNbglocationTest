@@ -15,6 +15,7 @@ import { dropsListSelector, singleDropsSelector } from "@next/common/selectors";
 import { useSelector } from "react-redux";
 import getDate from "@next/common/utils/dateFormater";
 import { StyledPaper } from "./styledPaper";
+import { handleImageError } from "@next/common/utils/handleImageError";
 
 const DropsDetail = () => {
   const singleDrops = useSelector(singleDropsSelector);
@@ -39,7 +40,10 @@ const DropsDetail = () => {
             alt="Remy Sharp"
             src={singleDrops.image}
             sx={{ width: 150, height: 150 }}
-          />
+            onError={handleImageError}
+          >
+            <img src="https://picsum.photos/200" alt="fallback image" />
+          </Avatar>
         </Grid>
         <Grid item>
           <ThumbDownOutlinedIcon fontSize="large" />

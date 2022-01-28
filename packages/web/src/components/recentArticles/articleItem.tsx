@@ -5,6 +5,8 @@ import React, { Fragment } from "react";
 import ButtonTransparent from "src/theme/buttonTransparent";
 import ButtonWhite from "src/theme/buttonWhite";
 import Link from "next/link";
+// utils
+import { handleImageError } from "@next/common/utils/handleImageError";
 const ArticleItem = ({ news }) => {
   const dummy = {
     description:
@@ -38,7 +40,12 @@ const ArticleItem = ({ news }) => {
               width: "250px",
             }}
           >
-            <img height="180px" width="auto" src={news.image} />
+            <img
+              height="180px"
+              width="auto"
+              src={news.image}
+              onError={handleImageError}
+            />
           </Paper>
         </Grid>
         <Grid item md={7} xs={12}>
