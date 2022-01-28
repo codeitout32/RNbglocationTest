@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "yarn workspaces foreach run build",
-    "start": "yarn workspaces packages/web start",
+    "build": "yarn workspace tailcrew_web run build",
+    "start": "yarn workspace tailcrew_web start",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
