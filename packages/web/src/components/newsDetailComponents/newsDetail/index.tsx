@@ -7,6 +7,7 @@ import { singleNewsSelector } from "@next/common/selectors";
 import { htmlParser } from "@next/common/utils/htmlParser";
 import parse from "html-react-parser";
 import moment from "moment";
+import { handleImageError } from "@next/common/utils/handleImageError";
 
 const NewsDetail = () => {
   //Styles
@@ -35,7 +36,12 @@ const NewsDetail = () => {
     <>
       <Stack spacing={2} sx={{}}>
         <Paper sx={{ overflow: "hidden", img: { objectFit: "cover" } }}>
-          <img src={current?.image} alt="" height={450} />
+          <img
+            src={current?.image}
+            alt=""
+            height={450}
+            onError={handleImageError}
+          />
         </Paper>
         <Typography variant="h5">{current?.title}</Typography>
         <Box sx={{ ...hFlxSpcbetween }}>

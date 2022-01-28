@@ -27,7 +27,7 @@ const DropsDetail = () => {
         direction="row"
         justifyContent="center"
         alignItems="flex-end"
-        columnSpacing={4}
+        columnSpacing={3}
       >
         <Grid item>
           <ThumbUpOutlinedIcon fontSize="large" />
@@ -39,7 +39,7 @@ const DropsDetail = () => {
           <Avatar
             alt="Remy Sharp"
             src={singleDrops.image}
-            sx={{ width: 150, height: 150 }}
+            sx={{ width: "100%", maxWidth: 150, height: "auto" }}
             onError={handleImageError}
           >
             <img src="https://picsum.photos/200" alt="fallback image" />
