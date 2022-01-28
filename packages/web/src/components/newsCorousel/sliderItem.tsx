@@ -23,7 +23,7 @@ const SliderItem = ({ date, title, image, id }) => {
           // border: "4px solid white",
           borderRadius: 2,
 
-          pb: "6vh",
+          pb: 7,
           bgcolor: "#27272A",
         }}
       >

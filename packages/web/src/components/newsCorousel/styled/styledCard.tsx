@@ -13,7 +13,7 @@ export const StyledCard = styled(Card)`
     text-transform: capitalize;
   }
   & .MuiCardContent-root {
-    height: 12vh;
+    height: 110px;
     text-overflow: ellipsis;
     overflow: hidden;
     
