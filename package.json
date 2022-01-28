@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "yarn workspace tailcrew_web run build",
-    "start": "yarn workspace tailcrew_web start",
+    "start": "yarn workspace tailcrew_web run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
