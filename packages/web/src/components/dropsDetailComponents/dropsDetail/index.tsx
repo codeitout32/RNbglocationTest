@@ -37,7 +37,7 @@ const DropsDetail = () => {
         <Grid item>
           <Avatar
             alt="Remy Sharp"
-            src="https://picsum.photos/100"
+            src={singleDrops.image}
             sx={{ width: 150, height: 150 }}
           />
         </Grid>
