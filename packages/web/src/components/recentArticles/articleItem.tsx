@@ -25,12 +25,11 @@ const ArticleItem = ({ news }) => {
     <>
       <Grid
         container
-        md={12}
         alignItems="center"
         sx={{ borderBottom: "1px solid ", p: 5, borderColor: "grey.700" }}
         spacing={1}
       >
-        <Grid item md={4}>
+        <Grid item md={4} xs={12}>
           <Paper
             sx={{
               borderRadius: "10px",
@@ -39,10 +38,10 @@ const ArticleItem = ({ news }) => {
               width: "250px",
             }}
           >
-            <img height="180px" width="255px" src={news.image} />
+            <img height="180px" width="auto" src={news.image} />
           </Paper>
         </Grid>
-        <Grid item md={7}>
+        <Grid item md={7} xs={12}>
           <Grid container spacing={1}>
             <Grid item md={4}>
               <Typography variant="body1" color="grey.700">

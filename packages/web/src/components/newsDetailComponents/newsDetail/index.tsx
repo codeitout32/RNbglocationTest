@@ -43,7 +43,7 @@ const NewsDetail = () => {
             By {current?.author}
           </Typography>
           <Typography variant="body1" sx={subtitle1}>
-            {moment(current?.posted_on).format("MMMM DD, YYYY")}
+            {moment(current?.created_at).format("MMMM DD, YYYY")}
           </Typography>
         </Box>
         <Typography variant="body1" component="p" color="text.secondary">
