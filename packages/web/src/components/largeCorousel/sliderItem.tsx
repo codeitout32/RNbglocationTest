@@ -1,4 +1,5 @@
 import {
+  bottomNavigationActionClasses,
   Button,
   Card,
   CardActions,
@@ -16,16 +17,17 @@ const SliderItem = () => {
       <Card
         sx={{
           maxWidth: "xl",
-          backgroundImage: `url("https://picsum.photos/1500/800")`,
-          height: 500,
-          backgroundSize: "cover",
+          backgroundImage: `url("images/diamond-roaring-dinosaur.png")`,
+          height: 550,
+          backgroundSize: "contain",
+          backgroundPositionY: "bottom",
         }}
       >
         <div
           style={{
             height: "inherit",
             background:
-              "linear-gradient(rgb(0, 0, 0) 25%, rgba(100, 100, 100, 0) 95%)",
+              "linear-gradient(rgb(0, 0, 0) 20%, rgba(100, 100, 100, 0) 40%)",
           }}
         >
           <CardContent>
