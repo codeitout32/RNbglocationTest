@@ -43,7 +43,9 @@ const LatestItem = ({ news, asSidebar }) => {
         </Grid>
         <Grid item md={9}>
           <Paper sx={{ bgcolor: "inherit" }}>
-            <Typography variant="h6">{news.title}</Typography>
+            <Typography variant={asSidebar ? "body1" : "h6"}>
+              {news.title}
+            </Typography>
             <Link href={"/news/" + news.id}>
               <ButtonTransparent
                 sx={{
