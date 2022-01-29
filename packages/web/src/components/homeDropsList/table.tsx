@@ -77,7 +77,9 @@ export default function DropTable() {
                     alt="Remy Sharp"
                     src={row.image}
                     sx={{ width: 56, height: 56 }}
-                  />
+                  >
+                    <img src="https://picsum.photos/200" alt="fallback image" />
+                  </Avatar>
                   <Link href={`drops/${row.id}`}>
                     <Linkm href="#">
                       <Typography
@@ -100,6 +102,16 @@ export default function DropTable() {
               </TableRow>
             );
           })}
+          {!dropsList.length && (
+            <Typography
+              variant="body1"
+              textAlign="center"
+              color="text.primary"
+              pl={3}
+            >
+              No records found
+            </Typography>
+          )}
         </TableBody>
       </Table>
     </TableContainer>
