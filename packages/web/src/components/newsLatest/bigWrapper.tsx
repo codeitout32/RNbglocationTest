@@ -2,6 +2,7 @@ import { Paper, Container, Typography, Stack, Grid } from "@mui/material";
 import React, { Fragment } from "react";
 import ButtonTransparent from "src/theme/buttonTransparent";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Link from "next/link";
 
 const BigWrapper = ({ headNews, children }) => {
   return (
@@ -43,19 +44,21 @@ const BigWrapper = ({ headNews, children }) => {
                         basic understanding of what they are, what they do, and
                         most importantly, why they matter.
                       </Typography> */}
-                <ButtonTransparent
-                  sx={{
-                    textTransform: "capitalize",
-                    mt: 1.5,
-                    fontSize: "1rem",
-                    px: 4,
-                    py: 2,
-                    border: "1px solid white",
-                  }}
-                >
-                  read more
-                  <ArrowForwardIcon sx={{ ml: 0.5, fontSize: "1.1rem" }} />
-                </ButtonTransparent>
+                <Link href={"/news/" + headNews.id}>
+                  <ButtonTransparent
+                    sx={{
+                      textTransform: "capitalize",
+                      mt: 1.5,
+                      fontSize: "1rem",
+                      px: 4,
+                      py: 2,
+                      border: "1px solid white",
+                    }}
+                  >
+                    read more
+                    <ArrowForwardIcon sx={{ ml: 0.5, fontSize: "1.1rem" }} />
+                  </ButtonTransparent>
+                </Link>
               </Stack>
             </div>
           </Paper>

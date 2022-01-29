@@ -146,6 +146,7 @@ export default function DropTable() {
                         <IconButton
                           aria-label="discord"
                           href={row.social_link_1}
+                          target="_blank"
                         >
                           <Image src={TwitterIcon} alt="" width={24} />
                         </IconButton>
@@ -154,6 +155,7 @@ export default function DropTable() {
                         <IconButton
                           aria-label="discord"
                           href={row.social_link_2}
+                          target="_blank"
                         >
                           <Image src={DiscordIcon} alt="" width={24} />
                         </IconButton>
@@ -162,6 +164,7 @@ export default function DropTable() {
                         <IconButton
                           aria-label="discord"
                           href={row.social_link_3}
+                          target="_blank"
                         >
                           <Image src={LinkIcon} alt="" width={26} />
                         </IconButton>

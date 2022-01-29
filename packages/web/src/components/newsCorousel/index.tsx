@@ -102,6 +102,7 @@ const NewsCorousel = () => {
             navigation={navigationCustom}
             autoplay={autoplayCustom}
             breakpoints={breakpoints}
+            loop={true}
           >
             {newsList?.map?.((news) => (
               <SwiperSlide>

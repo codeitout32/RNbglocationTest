@@ -51,8 +51,9 @@ const FeaturedNews = () => {
               <img
                 src={featured.image}
                 alt=""
-                height="300"
+                // height="300"
                 onError={handleImageError}
+                style={{ objectFit: "cover" }}
               />
             </Paper>
           </Grid>

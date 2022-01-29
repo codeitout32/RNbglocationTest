@@ -50,7 +50,10 @@ const LatestItem = ({ news, asSidebar }) => {
                   textTransform: "capitalize",
                   mt: 1,
                   fontSize: ".7rem",
-                  px: 0,
+                  px: 1,
+                  "&:hover": {
+                    backgroundColor: "#1e1e1e",
+                  },
                 }}
               >
                 read more {"  "}

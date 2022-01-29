@@ -17,10 +17,18 @@ const SliderItem = () => {
       <Card
         sx={{
           maxWidth: "xl",
+          backgroundColor: "#000",
           backgroundImage: `url("images/diamond-roaring-dinosaur.png")`,
-          height: 550,
+          height: {
+            xl: "60vh",
+            lg: "70vh",
+            md: "60vh",
+            sm: "35vh",
+            xs: "20vh",
+          },
           backgroundSize: "contain",
           backgroundPositionY: "bottom",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div
