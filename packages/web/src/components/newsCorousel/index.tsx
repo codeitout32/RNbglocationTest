@@ -104,8 +104,8 @@ const NewsCorousel = () => {
             breakpoints={breakpoints}
             loop={true}
           >
-            {newsList?.map?.((news) => (
-              <SwiperSlide>
+            {newsList?.map?.((news, index) => (
+              <SwiperSlide key={news.id}>
                 <SliderItem
                   image={news.image}
                   date={news.created_at}

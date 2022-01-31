@@ -79,7 +79,7 @@ const HomeDropsList = () => {
         </Typography>
         <DropTable />
         <Link href="/drops">
-          <ButtonWhite sx={{ textTransform: "capitalize", mx: "auto" }}>
+          <ButtonWhite sx={{ textTransform: "capitalize", mx: "auto", mt: 1 }}>
             Explore
           </ButtonWhite>
         </Link>

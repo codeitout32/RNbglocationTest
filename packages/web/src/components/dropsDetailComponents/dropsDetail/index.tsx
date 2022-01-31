@@ -27,7 +27,7 @@ const DropsDetail = () => {
         direction="row"
         justifyContent="center"
         alignItems="flex-end"
-        columnSpacing={3}
+        columnSpacing={2}
       >
         <Grid item>
           <ThumbUpOutlinedIcon fontSize="large" />

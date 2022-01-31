@@ -56,7 +56,7 @@ export default function DropTable() {
             if (index > 10) return;
             return (
               <TableRow
-                key={row.name}
+                key={row.id}
                 sx={{
                   borderBottom: 1,
                   "& td, & th": { border: 0 },

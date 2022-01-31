@@ -17,6 +17,9 @@ import Link from "next/link";
 
 import { handleImageError } from "@next/common/utils/handleImageError";
 
+//Clamp
+import Clamp from "react-multiline-clamp";
+
 const LatestItem = ({ news, asSidebar }) => {
   console.log("newsitem", news);
   return (
@@ -44,7 +47,9 @@ const LatestItem = ({ news, asSidebar }) => {
         <Grid item md={9}>
           <Paper sx={{ bgcolor: "inherit" }}>
             <Typography variant={asSidebar ? "body1" : "h6"}>
-              {news.title}
+              <Clamp withTooltip lines={2}>
+                {news.title}
+              </Clamp>
             </Typography>
             <Link href={"/news/" + news.id}>
               <ButtonTransparent

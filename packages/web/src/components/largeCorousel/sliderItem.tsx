@@ -24,7 +24,7 @@ const SliderItem = () => {
             lg: "70vh",
             md: "60vh",
             sm: "35vh",
-            xs: "20vh",
+            xs: "25vh",
           },
           backgroundSize: "contain",
           backgroundPositionY: "bottom",

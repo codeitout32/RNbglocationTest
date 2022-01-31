@@ -70,12 +70,13 @@ const Footer = () => {
           >
             Company
           </Typography>
-          {company.map((item) => (
+          {company.map((item, index) => (
             <Link
               href="#"
               underline="none"
               color="inherit"
               sx={{ display: "block" }}
+              key={item.title}
             >
               {item.title}
             </Link>
@@ -100,6 +101,7 @@ const Footer = () => {
               underline="none"
               color="inherit"
               sx={{ display: "block" }}
+              key={item.title}
             >
               {item.title}
             </Link>

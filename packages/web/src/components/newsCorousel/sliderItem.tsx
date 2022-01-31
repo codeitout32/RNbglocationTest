@@ -16,6 +16,9 @@ import moment from "moment";
 import Link from "next/link";
 import { handleImageError } from "@next/common/utils/handleImageError";
 
+//Clamp
+import Clamp from "react-multiline-clamp";
+
 const SliderItem = ({ date, title, image, id }) => {
   return (
     <Fragment>
@@ -48,7 +51,9 @@ const SliderItem = ({ date, title, image, id }) => {
                 {moment(date).format("DD MMM, YYYY")}
               </Typography>
               <Typography variant="h5" fontSize={24} color="text.primary">
-                {title}
+                <Clamp withTooltip lines={2}>
+                  {title}
+                </Clamp>
               </Typography>
             </CardContent>
           </CardActionArea>
