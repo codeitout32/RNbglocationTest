@@ -14,10 +14,10 @@ import advertBackground from "public/images/space-astro-background.png";
 const Advert = () => {
   console.log("image", advertBackground.src);
   return (
-    <StyledDiv>
+    <StyledDiv sx={{ height: { xs: "30vh", md: "45vh" } }}>
       <Container maxWidth="lg">
-        <Grid container>
-          <Grid item md={6} xs={12} spacing={3}>
+        <Grid container px={2}>
+          <Grid item md={6} xs={12}>
             <Typography variant="h3" gutterBottom>
               Advertise With Us
             </Typography>

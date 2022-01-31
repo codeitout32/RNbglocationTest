@@ -76,7 +76,7 @@ const RelatedNewsItem = ({ news }) => {
               {date}
             </Typography> */}
               <Typography variant="h5" sx={{}}>
-                {title.length > 20
+                {title?.length > 20
                   ? title.substring(0, 25).concat("...")
                   : title}
               </Typography>

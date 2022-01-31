@@ -102,7 +102,7 @@ export default function DropTable() {
               </TableRow>
             );
           })}
-          {!dropsList.length && (
+          {!dropsList?.length && (
             <Typography
               variant="body1"
               textAlign="center"

@@ -40,6 +40,7 @@ const NewsDetail = () => {
             src={current?.image}
             alt=""
             height={450}
+            width="100%"
             onError={handleImageError}
           />
         </Paper>

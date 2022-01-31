@@ -77,6 +77,7 @@ const Drops = () => {
             color: "grey",
           }}
           InputProps={{
+            type: "search",
             startAdornment: (
               <InputAdornment position="start">
                 <SearchIcon sx={{ color: "text.secondary" }} />

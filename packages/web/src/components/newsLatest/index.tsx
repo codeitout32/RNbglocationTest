@@ -46,7 +46,7 @@ const NewsLatest = ({ asSidebar }: { asSidebar: Boolean | undefined }) => {
         justifyContent: "space-between",
       }}
     >
-      {restNews.length ? (
+      {restNews?.length ? (
         restNews.map((news, index) => {
           if (index < 4)
             return <LatestItem key={index} news={news} asSidebar={asSidebar} />;
