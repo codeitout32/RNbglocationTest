@@ -48,7 +48,7 @@ const SliderItem = ({ date, title, image, id }) => {
                 component="div"
                 color="text.secondary"
               >
-                {moment(date).format("DD MMM, YYYY")}
+                {moment(date).format("MMMM DD, YYYY")}
               </Typography>
               <Typography variant="h5" fontSize={24} color="text.primary">
                 <Clamp withTooltip lines={2}>

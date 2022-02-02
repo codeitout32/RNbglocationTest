@@ -17,15 +17,26 @@ import SearchIcon from "@mui/icons-material/Search";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ButtonWhite from "src/theme/buttonWhite";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Grid, Link as Linkm } from "@mui/material";
 import Logo from "./logo";
+import TextLogo from "src/theme/textLogo";
 import LogoIcon from "src/theme/logo";
+import MenuDrawer from "./drawer";
 const Header = ({ pages }) => {
   // const pages = ["Marketplace", "News", "Drops", "Feed"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
+  const linkRouter = useRouter();
+  console.log("router", linkRouter.asPath, linkRouter);
+  const isActive = (url) => {
+    console.log("active check", linkRouter.pathname.includes(url));
+    return linkRouter.pathname.includes(url);
+  };
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [toggleDrawer, setDrawer] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -54,7 +65,7 @@ const Header = ({ pages }) => {
         <Container maxWidth="lg">
           <Toolbar disableGutters>
             <Link href="/">
-              <Logo sx={{ mr: 2, display: { xs: "none", md: "flex" } }} />
+              <Logo sx={{ mr: 0, display: { xs: "none", md: "flex" } }} />
             </Link>
 
             {/* <Logo sx={{ fontSize: 10 }} /> */}
@@ -65,6 +76,7 @@ const Header = ({ pages }) => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
+                // onClick={() => setDrawer(true)}
                 color="inherit"
               >
                 <MenuIcon />
@@ -113,18 +125,49 @@ const Header = ({ pages }) => {
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages?.map((page, index) => (
-                <Link href={`${page.url}`} key={index}>
+                <Link href={`${page.url}`} key={page.title}>
                   <Button
+                    key={page.title}
                     size="small"
-                    key={page}
                     onClick={handleCloseNavMenu}
                     sx={{
+                      mx: 2,
                       my: 2,
-                      color: "white",
-                      display: "block",
+                      fontSize: "1.125rem",
+                      color: "text.secondary",
+                      // display: "block",
                       textTransform: "capitalize",
+                      "& > .navIcon": {
+                        visibility: "hidden",
+                      },
+                      "&.active > .navIcon": {
+                        visibility: "visible",
+                      },
+                      "&:hover > .navIcon": {
+                        visibility: "visible",
+                      },
+                      "&:hover": {
+                        color: "white",
+                      },
+                      "&.active": {
+                        color: "white",
+                      },
                     }}
+                    className={isActive(page.url) ? "active" : ""}
+                    // startIcon={
+                    //   <TextLogo
+                    //     // fontSize="small"
+                    //     sx={{ verticalAlign: "sub", visibility: "hidden" }}
+                    //   />
+                    // }
                   >
+                    <TextLogo
+                      fontSize="small"
+                      sx={{
+                        verticalAlign: "sub",
+                      }}
+                      className="navIcon"
+                    />
                     {`${page.title}`}
                   </Button>
                 </Link>
@@ -189,6 +232,7 @@ const Header = ({ pages }) => {
               </Menu>
             </Box>
           </Toolbar>
+          <MenuDrawer toggle={toggleDrawer} />
         </Container>
       </AppBar>
     </Fragment>

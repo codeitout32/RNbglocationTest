@@ -26,9 +26,9 @@ export default function News() {
     <Fragment>
       <Header pages={pages} />
       <Container maxWidth="xl">
-        <Box sx={{ height: "200px" }} />
+        <Box sx={{ height: "10vh" }} />
         <Drops />
-        <Box sx={{ height: "200px" }} />
+        <Box sx={{ height: "10vh" }} />
         <Footer />
       </Container>
     </Fragment>

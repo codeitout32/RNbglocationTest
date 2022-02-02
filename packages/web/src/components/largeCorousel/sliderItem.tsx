@@ -16,40 +16,49 @@ const SliderItem = () => {
     <Fragment>
       <Card
         sx={{
-          maxWidth: "xl",
+          // maxWidth: "xl",
           backgroundColor: "#000",
-          backgroundImage: `url("images/diamond-roaring-dinosaur.png")`,
-          height: {
-            xl: "60vh",
-            lg: "70vh",
-            md: "60vh",
-            sm: "35vh",
-            xs: "25vh",
-          },
-          backgroundSize: "contain",
+          backgroundImage: `url("images/transparent_bg_1.png")`,
+          backgroundSize: "cover",
           backgroundPositionY: "bottom",
           backgroundRepeat: "no-repeat",
         }}
       >
         <div
           style={{
-            height: "inherit",
             background:
               "linear-gradient(rgb(0, 0, 0) 20%, rgba(100, 100, 100, 0) 40%)",
           }}
         >
-          <CardContent>
+          <CardContent sx={{ height: "100%" }}>
             <Container maxWidth="lg">
-              <Grid container spacing={2}>
-                <Grid item md={8}>
+              <Grid
+                container
+                spacing={5}
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                sx={{
+                  height: {
+                    xl: "60vh",
+                    lg: "70vh",
+                    md: "60vh",
+                    sm: "35vh",
+                    xs: "25vh",
+                  },
+                }}
+              >
+                <Grid item md={5}>
                   <Typography variant="h3">
-                    Your NFT Hub: Your One Stop for anything nft related
+                    Your NFT Hub: Your One stop for everything NFT related.
                   </Typography>
-                </Grid>
-                <Grid item md={4}>
-                  <Typography variant="h6" mt={1}>
+                  <Typography variant="body2" mt={4} fontSize={"1.2rem"}>
                     Powered by Nova Nerds
                   </Typography>
+                </Grid>
+                <Grid item></Grid>
+                <Grid item md={6}>
+                  <img src="images/banner_avatar1.svg" alt="" />
                 </Grid>
               </Grid>
             </Container>

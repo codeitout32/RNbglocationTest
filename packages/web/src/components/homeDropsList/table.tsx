@@ -10,6 +10,7 @@ import { Avatar, Typography } from "@mui/material";
 
 import { dropsListSelector } from "@next/common/selectors";
 import { useSelector } from "react-redux";
+import TextLogo from "src/theme/textLogo";
 
 import Linkm from "@mui/material/Link";
 import Link from "next/link";
@@ -33,7 +34,13 @@ export default function DropTable() {
     <TableContainer component={"div"} sx={{ pb: 5 }}>
       <Table
         aria-label="simple table"
-        sx={{ maxWidth: "md", mx: "auto", minWidth: "70%" }}
+        sx={{
+          maxWidth: "md",
+          mx: "auto",
+          minWidth: "70%",
+          borderCollapse: "separate",
+          borderSpacing: "0 1em",
+        }}
       >
         <TableHead>
           <TableRow
@@ -51,7 +58,11 @@ export default function DropTable() {
             <TableCell align="left">YNH Score</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody
+          sx={{
+            " .MuiTableCell-root": { borderBottom: "2px solid #27272a" },
+          }}
+        >
           {dropsList?.map((row, index) => {
             if (index > 10) return;
             return (
@@ -59,13 +70,17 @@ export default function DropTable() {
                 key={row.id}
                 sx={{
                   borderBottom: 1,
-                  "& td, & th": { border: 0 },
+                  // "& td, & th": { border: 0 },
                   "& td": {
                     fontSize: "1.1rem",
                     color: "text.secondary",
-                    border: 0,
                   },
                   "&:last-child": { border: 0 },
+                  boxShadow: "inset 0px -3px 0px #71717a",
+                  borderRadius: "8px",
+                  "&:hover": {
+                    boxShadow: "0px 0px 64px -30px #FFFFFF",
+                  },
                 }}
               >
                 <TableCell
@@ -96,9 +111,16 @@ export default function DropTable() {
                 <TableCell align="left">{row.supply_content}</TableCell>
                 <TableCell align="left">{row.mint_price} SOL</TableCell>
                 <TableCell align="left">
-                  {moment(row.created_at).format("DD/MM/YYYY")}
+                  {moment(row.created_at).format("MMMM DD, YYYY")}
                 </TableCell>
-                <TableCell align="left">{row.overall_score}</TableCell>
+                <TableCell align="left">
+                  <TextLogo
+                    fontSize="small"
+                    sx={{ verticalAlign: "sub", mr: 1 }}
+                    mr={1}
+                  />
+                  {row.overall_score}
+                </TableCell>
               </TableRow>
             );
           })}

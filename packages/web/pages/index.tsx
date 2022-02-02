@@ -7,6 +7,10 @@ import Header from "src/components/header";
 import LargeCorousel from "src/components/largeCorousel";
 import NewsCorousel from "src/components/newsCorousel";
 import Footer from "src/components/footer";
+import Marketplace from "src/components/homepage/marketplace";
+import Feed from "src/components/homepage/feed";
+import HoldNEarn from "src/components/homepage/holdnEarn";
+import NavsInfo from "src/components/homepage/navsInfo";
 
 export default function Home() {
   const messages = useIntl();
@@ -15,20 +19,29 @@ export default function Home() {
     { title: "News", url: "/news" },
     { title: "Drops", url: "/drops" },
     { title: "Feed", url: "#" },
+    { title: "Services", url: "#" },
   ];
 
   return (
     <Fragment>
       <Header pages={pages} />
-      <Container maxWidth="xl">
-        <LargeCorousel />
-        <Box sx={{ height: "10vh" }} />
+      {/* Preiviously xl container was here */}
+      <LargeCorousel />
+      <Box sx={{ height: "10vh" }} />
+      <NavsInfo />
+      <Box sx={{ height: "10vh" }} />
+      <Marketplace />
+      <Box sx={{ height: "10vh" }} />
 
-        <NewsCorousel />
-        <Box sx={{ height: "10vh" }} />
-        <HomeDropsList />
-        <Box sx={{ height: "10vh" }} />
-      </Container>
+      <NewsCorousel />
+      <Box sx={{ height: "10vh" }} />
+
+      <HomeDropsList />
+      <Box sx={{ height: "10vh" }} />
+      <Feed />
+      <Box sx={{ height: "10vh" }} />
+      <HoldNEarn />
+      <Box sx={{ height: "10vh" }} />
       <Footer />
     </Fragment>
   );

@@ -20,7 +20,7 @@ const Footer = () => {
         <Grid item md={3} xs={12}>
           <Grid container>
             <Grid item xs={3}>
-              <Logo sx={{ fontSize: "3rem" }} />
+              <Logo sx={{ fontSize: "3.8rem" }} />
             </Grid>
             <Grid item xs={9}>
               <Typography
@@ -47,10 +47,11 @@ const Footer = () => {
             </Grid>
           </Grid>
           <Typography
-            variant="h6"
+            variant="h5"
             component="div"
             sx={{
               mr: 2,
+              mt: 2,
             }}
           >
             Your NFT Hub, the #1 NFT Marketplace.
@@ -75,7 +76,7 @@ const Footer = () => {
               href="#"
               underline="none"
               color="inherit"
-              sx={{ display: "block" }}
+              sx={{ display: "block", typography: "h6", fontFamily: "DM Sans" }}
               key={item.title}
             >
               {item.title}
@@ -100,7 +101,7 @@ const Footer = () => {
               href="#"
               underline="none"
               color="inherit"
-              sx={{ display: "block" }}
+              sx={{ display: "block", typography: "h6", fontFamily: "DM Sans" }}
               key={item.title}
             >
               {item.title}
@@ -109,10 +110,11 @@ const Footer = () => {
         </Grid>
       </Grid>
       <Typography
-        variant="body2"
+        variant="body1"
+        color={"text.secondary"}
         component="p"
         sx={{
-          mr: 2,
+          my: 2,
           // fontSize: "1rem",
         }}
       >

@@ -36,13 +36,13 @@ export default function News() {
     <Fragment>
       <Header pages={pages} />
       <Container maxWidth="xl">
-        <Box sx={{ height: "200px" }} />
+        <Box sx={{ height: "10vh" }} />
         <FeaturedNews />
-        <Box sx={{ height: "200px" }} />
+        <Box sx={{ height: "10vh" }} />
         <NewsLatest />
-        <Box sx={{ height: "200px" }} />
+        <Box sx={{ height: "10vh" }} />
         <Advert />
-        <Box sx={{ height: "200px" }} />
+        <Box sx={{ height: "10vh" }} />
 
         <GuidesnLists />
         <RecentArticles />
