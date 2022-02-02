@@ -35,7 +35,7 @@ const RelatedNewsItem = ({ news }) => {
           maxWidth: "350px",
           borderColor: "black",
 
-          borderRadius: 5,
+          borderRadius: 2,
           textAlign: "center",
           bgcolor: "black",
           py: 3,
@@ -53,7 +53,7 @@ const RelatedNewsItem = ({ news }) => {
               sx={{
                 p: 0,
                 border: 1,
-                borderRadius: 4,
+                borderRadius: 2,
                 borderColor: "black",
                 width: "90%",
                 mx: "auto",

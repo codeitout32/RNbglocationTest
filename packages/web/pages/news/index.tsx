@@ -39,16 +39,18 @@ export default function News() {
         <Box sx={{ height: "10vh" }} />
         <FeaturedNews />
         <Box sx={{ height: "10vh" }} />
-        <NewsLatest />
-        <Box sx={{ height: "10vh" }} />
-        <Advert />
+      </Container>
+      <NewsLatest />
+      <Box sx={{ height: "10vh" }} />
+      <Advert />
+      <Container maxWidth="xl">
         <Box sx={{ height: "10vh" }} />
 
         <GuidesnLists />
-        <RecentArticles />
-        <Box sx={{ height: "5vh" }} />
-        <Footer />
       </Container>
+      <RecentArticles />
+      <Box sx={{ height: "5vh" }} />
+      <Footer />
     </Fragment>
   );
 }

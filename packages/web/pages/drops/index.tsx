@@ -27,10 +27,10 @@ export default function News() {
       <Header pages={pages} />
       <Container maxWidth="xl">
         <Box sx={{ height: "10vh" }} />
-        <Drops />
-        <Box sx={{ height: "10vh" }} />
-        <Footer />
       </Container>
+      <Drops />
+      <Box sx={{ height: "10vh" }} />
+      <Footer />
     </Fragment>
   );
 }

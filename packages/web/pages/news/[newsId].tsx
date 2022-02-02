@@ -62,10 +62,10 @@ export default function News() {
         {/* <Box sx={{ height: "200px" }} /> */}
         <Box sx={{ height: "10vh" }} />
         {/* <Skeleton variant="rectangular" width="100%" height={500} /> */}
-        <Advert />
-        <Box sx={{ height: "10vh" }} />
-        <Footer />
       </Container>
+      <Advert />
+      <Box sx={{ height: "10vh" }} />
+      <Footer />
     </Fragment>
   );
 }
