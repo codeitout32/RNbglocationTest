@@ -37,18 +37,21 @@ export default function News() {
   return (
     <Fragment>
       <Header pages={pages} />
+      <Box
+        sx={{ height: "150px", borderRadius: "0px 0px 60px 60px" }}
+        bgcolor="grey.900"
+      />
       <Container maxWidth="xl">
-        <Box sx={{ height: "150px" }} bgcolor="grey.900" />
         <DropsDetail />
         <Box sx={{ height: "50px" }} />
         <Overview />
         {/* <Box sx={{ height: "200px" }} /> */}
         <Box sx={{ height: "10vh" }} />
-        <Advert />
-        <Box sx={{ height: "10vh" }} />
-
-        <Footer />
       </Container>
+      <Advert />
+      <Box sx={{ height: "10vh" }} />
+
+      <Footer />
     </Fragment>
   );
 }

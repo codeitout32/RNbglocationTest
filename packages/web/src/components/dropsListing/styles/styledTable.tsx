@@ -4,8 +4,12 @@ import { styled } from "@mui/system";
 
 const StyleTable = styled(Table)`
   & .MuiTableRow-root {
-    borderbottom: "solid 1px #5c5c5c";
+    border-bottom: "solid 1px #5c5c5c";
     border: 2px solid #27272a;
+    transition: all 0.3s ease;
+    &:hover {
+      box-shadow: 0px 0px 64px -30px #ffffff;
+    }
   }
 
   .MuiTableCell-root {

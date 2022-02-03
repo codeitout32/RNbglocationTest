@@ -15,14 +15,14 @@ import Advert from "src/components/advert";
 export default function News() {
   const dispatch = useDispatch();
   const messages = useIntl();
-  const pages2 = [
+  const pages = [
     { title: "BlockChain", url: "#" },
     { title: "NFTs", url: "/news" },
     { title: "Opinions", url: "#" },
     { title: "More", url: "#" },
   ];
 
-  const pages = [
+  const pages2 = [
     { title: "Marketplace", url: "#" },
     { title: "News", url: "/news" },
     { title: "Drops", url: "/drops" },

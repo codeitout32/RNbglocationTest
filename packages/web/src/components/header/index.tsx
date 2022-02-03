@@ -23,6 +23,7 @@ import Logo from "./logo";
 import TextLogo from "src/theme/textLogo";
 import LogoIcon from "src/theme/logo";
 import MenuDrawer from "./drawer";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const Header = ({ pages }) => {
   // const pages = ["Marketplace", "News", "Drops", "Feed"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -131,26 +132,26 @@ const Header = ({ pages }) => {
                     size="small"
                     onClick={handleCloseNavMenu}
                     sx={{
-                      mx: 2,
+                      mx: 1,
                       my: 2,
                       fontSize: "1.125rem",
                       color: "text.secondary",
                       // display: "block",
                       textTransform: "capitalize",
-                      "& > .navIcon": {
-                        visibility: "hidden",
-                      },
-                      "&.active > .navIcon": {
-                        visibility: "visible",
-                      },
-                      "&:hover > .navIcon": {
-                        visibility: "visible",
-                      },
+                      position: "relative",
                       "&:hover": {
                         color: "white",
                       },
                       "&.active": {
                         color: "white",
+                      },
+                      "&.active > .navIcon": {
+                        // display: "inline-block",
+                        opacity: "1",
+                      },
+                      "&:hover > .navIcon": {
+                        // display: "inline-block",
+                        opacity: "1",
                       },
                     }}
                     className={isActive(page.url) ? "active" : ""}
@@ -165,9 +166,17 @@ const Header = ({ pages }) => {
                       fontSize="small"
                       sx={{
                         verticalAlign: "sub",
+                        position: "absolute",
+                        // display: "none",
+                        opacity: "0",
+                        outline: " 1px solid transparent",
+                        left: "5px",
+                        mb: "2px",
+                        transition: "all .25s ease",
                       }}
                       className="navIcon"
                     />
+                    &nbsp; &nbsp; &nbsp;
                     {`${page.title}`}
                   </Button>
                 </Link>
@@ -187,27 +196,45 @@ const Header = ({ pages }) => {
                   <SearchIcon />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Open settings">
-                <IconButton
-                  onClick={handleOpenUserMenu}
-                  sx={{ px: 2 }}
-                  color="inherit"
-                >
-                  <AccountCircleOutlinedIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Open settings">
-                <IconButton
-                  onClick={handleOpenUserMenu}
-                  sx={{ p: 2 }}
-                  color="inherit"
-                >
-                  <MoreHorizIcon />
-                </IconButton>
-              </Tooltip>
-              <ButtonWhite sx={{ textTransform: "capitalize" }}>
-                Select Wallet
-              </ButtonWhite>
+              {!isActive("/news") && (
+                <>
+                  <Tooltip title="Open settings">
+                    <IconButton
+                      onClick={handleOpenUserMenu}
+                      sx={{ px: 2 }}
+                      color="inherit"
+                    >
+                      <AccountCircleOutlinedIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Open settings">
+                    <IconButton
+                      onClick={handleOpenUserMenu}
+                      sx={{ p: 2 }}
+                      color="inherit"
+                    >
+                      <MoreHorizIcon />
+                    </IconButton>
+                  </Tooltip>{" "}
+                </>
+              )}
+
+              {/* Button back and select wallet */}
+              {isActive("/news") ? (
+                <Link href="/">
+                  <Button
+                    variant="contained"
+                    sx={{ border: "1px white solid" }}
+                  >
+                    <ArrowBackIcon fontSize="small" /> &nbsp; Back to home
+                  </Button>
+                </Link>
+              ) : (
+                <ButtonWhite sx={{ textTransform: "capitalize" }}>
+                  Select Wallet
+                </ButtonWhite>
+              )}
+
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"

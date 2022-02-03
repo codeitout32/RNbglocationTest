@@ -1,11 +1,13 @@
 import {
   Avatar,
+  Badge,
   Box,
   Button,
   Container,
   Grid,
   Paper,
   Stack,
+  SvgIcon,
   Typography,
 } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
@@ -31,23 +33,48 @@ const DropsDetail = () => {
       >
         <Grid item>
           <ThumbUpOutlinedIcon fontSize="large" />
-          <Typography variant="caption" component="p">
+          <Typography
+            variant="caption"
+            component="p"
+            fontFamily="Sen, sans-serif"
+          >
             {singleDrops.likes} Likes
           </Typography>
         </Grid>
         <Grid item>
-          <Avatar
-            alt="Remy Sharp"
-            src={singleDrops.image}
-            sx={{ width: "100%", maxWidth: 150, height: "auto" }}
-            onError={handleImageError}
-          >
-            <img src="https://picsum.photos/200" alt="fallback image" />
-          </Avatar>
+          <Box sx={{ position: "relative" }}>
+            <img
+              src="/images/drops_check_tick.svg"
+              alt=""
+              style={{
+                position: "absolute",
+                right: "4%",
+                top: "4%",
+                zIndex: 1,
+              }}
+              width="45px"
+            />
+            <Avatar
+              alt="Remy Sharp"
+              src={singleDrops.image}
+              sx={{
+                width: "100%",
+                maxWidth: 160,
+                height: "auto",
+              }}
+              onError={handleImageError}
+            >
+              <img src="https://picsum.photos/200" alt="fallback image" />
+            </Avatar>
+          </Box>
         </Grid>
         <Grid item>
           <ThumbDownOutlinedIcon fontSize="large" />
-          <Typography variant="caption" component="p">
+          <Typography
+            variant="caption"
+            component="p"
+            fontFamily="Sen, sans-serif"
+          >
             {singleDrops.dislikes} Dislikes
           </Typography>
         </Grid>
@@ -82,10 +109,12 @@ const DropsDetail = () => {
           </Grid>
           <Grid item md={3} xs={6}>
             <Typography variant="h5">
-              {singleDrops.listed_item}/{singleDrops.supply_content}
+              {`${singleDrops.listed_item}/${singleDrops.supply_content}`}
             </Typography>
             <Typography variant="body2">
-              Listed item/ Supply as content
+              {singleDrops.type == "launched"
+                ? "Listed item/ Supply as content"
+                : "Total Supply"}
             </Typography>
           </Grid>
           <Grid item md={3} xs={6}>
