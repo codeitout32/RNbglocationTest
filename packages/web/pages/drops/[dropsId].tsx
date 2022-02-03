@@ -21,9 +21,10 @@ export default function News() {
   const router = useRouter();
   const { dropsId } = router.query;
   const pages = [
-    { title: "Marketplace", url: "#" },
     { title: "News", url: "/news" },
     { title: "Drops", url: "/drops" },
+    { title: "Services", url: "#" },
+    { title: "Marketplace", url: "#" },
     { title: "Feed", url: "#" },
   ];
 

@@ -15,11 +15,11 @@ import NavsInfo from "src/components/homepage/navsInfo";
 export default function Home() {
   const messages = useIntl();
   const pages = [
-    { title: "Marketplace", url: "#" },
     { title: "News", url: "/news" },
     { title: "Drops", url: "/drops" },
-    { title: "Feed", url: "#" },
     { title: "Services", url: "#" },
+    { title: "Marketplace", url: "#" },
+    { title: "Feed", url: "#" },
   ];
 
   return (

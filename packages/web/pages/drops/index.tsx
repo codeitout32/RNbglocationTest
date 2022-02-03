@@ -14,9 +14,10 @@ export default function News() {
   const messages = useIntl();
 
   const pages = [
-    { title: "Marketplace", url: "#" },
     { title: "News", url: "/news" },
     { title: "Drops", url: "/drops" },
+    { title: "Services", url: "#" },
+    { title: "Marketplace", url: "#" },
     { title: "Feed", url: "#" },
   ];
   // useEffect(() => {

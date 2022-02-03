@@ -128,7 +128,8 @@ const DropsDetail = () => {
         </Grid>
       </Stack>
       <Typography
-        variant="body1"
+        variant="body2"
+        fontSize={"1.25rem"}
         textAlign="center"
         component="p"
         sx={{ my: 7, mx: "auto" }}

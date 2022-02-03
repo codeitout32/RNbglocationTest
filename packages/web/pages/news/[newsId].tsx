@@ -22,14 +22,14 @@ export default function News() {
 
   const router = useRouter();
   const { newsId } = router.query;
-  const pages2 = [
+  const pages = [
     { title: "BlockChain", url: "#" },
     { title: "NFTs", url: "/news" },
     { title: "Opinions", url: "#" },
     { title: "More", url: "#" },
   ];
 
-  const pages = [
+  const pages2 = [
     { title: "Marketplace", url: "#" },
     { title: "News", url: "/news" },
     { title: "Drops", url: "/drops" },

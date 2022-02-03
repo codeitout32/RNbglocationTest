@@ -198,7 +198,7 @@ const Header = ({ pages }) => {
               </Tooltip>
               {!isActive("/news") && (
                 <>
-                  <Tooltip title="Open settings">
+                  {/* <Tooltip title="Open settings">
                     <IconButton
                       onClick={handleOpenUserMenu}
                       sx={{ px: 2 }}
@@ -206,8 +206,8 @@ const Header = ({ pages }) => {
                     >
                       <AccountCircleOutlinedIcon />
                     </IconButton>
-                  </Tooltip>
-                  <Tooltip title="Open settings">
+                  </Tooltip> */}
+                  <Tooltip title="More">
                     <IconButton
                       onClick={handleOpenUserMenu}
                       sx={{ p: 2 }}
@@ -215,7 +215,7 @@ const Header = ({ pages }) => {
                     >
                       <MoreHorizIcon />
                     </IconButton>
-                  </Tooltip>{" "}
+                  </Tooltip>
                 </>
               )}
 
@@ -230,9 +230,10 @@ const Header = ({ pages }) => {
                   </Button>
                 </Link>
               ) : (
-                <ButtonWhite sx={{ textTransform: "capitalize" }}>
-                  Select Wallet
-                </ButtonWhite>
+                ""
+                // <ButtonWhite sx={{ textTransform: "capitalize" }}>
+                //   Select Wallet
+                // </ButtonWhite>
               )}
 
               <Menu

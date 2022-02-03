@@ -28,10 +28,13 @@ const StyledGradPaper = styled(GradPaper)(
   }
 
   // custom styles for this page
-
+  
   & .MuiTypography-h3 {
       color: ${theme.palette.text.secondary};
       
+  }
+  & .ovScore {
+    color: white;
   }
 `
 );

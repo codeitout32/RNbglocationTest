@@ -12,6 +12,9 @@ import {
 import Link from "next/link";
 import React, { Fragment } from "react";
 
+//Clamp
+import Clamp from "react-multiline-clamp";
+
 // taken from guidenlist item
 const RelatedNewsItem = ({ news }) => {
   const { date, title } = news;
@@ -39,8 +42,8 @@ const RelatedNewsItem = ({ news }) => {
           textAlign: "center",
           bgcolor: "black",
           py: 3,
-          height: "40vh",
-          minHeight: "430px",
+          // height: "45vh",
+          // minHeight: "430px",
         }}
       >
         <Link href={`/news/${news.id}`}>
@@ -66,7 +69,7 @@ const RelatedNewsItem = ({ news }) => {
                 },
               }}
             />
-            <CardContent sx={{ mt: 4 }}>
+            <CardContent sx={{ mt: 3 }}>
               {/* <Typography
               gutterBottom
               variant="subtitle2"
@@ -75,10 +78,13 @@ const RelatedNewsItem = ({ news }) => {
             >
               {date}
             </Typography> */}
-              <Typography variant="h5" sx={{}}>
-                {title?.length > 20
+              <Typography variant="h5" fontSize={{ xs: "1.8rem" }} sx={{}}>
+                {/* {title?.length > 20
                   ? title.substring(0, 25).concat("...")
-                  : title}
+                  : title} */}
+                <Clamp withTooltip lines={2}>
+                  {title}
+                </Clamp>
               </Typography>
             </CardContent>
             <div style={divStyle}> Hello</div>

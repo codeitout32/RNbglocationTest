@@ -47,6 +47,7 @@ export default function News() {
         <Box sx={{ height: "10vh" }} />
 
         <GuidesnLists />
+        <Box sx={{ height: "10vh" }} />
       </Container>
       <RecentArticles />
       <Box sx={{ height: "5vh" }} />

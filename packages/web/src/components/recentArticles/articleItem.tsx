@@ -5,6 +5,8 @@ import React, { Fragment } from "react";
 import ButtonTransparent from "src/theme/buttonTransparent";
 import ButtonWhite from "src/theme/buttonWhite";
 import Link from "next/link";
+import moment from "moment";
+
 // utils
 import { handleImageError } from "@next/common/utils/handleImageError";
 const ArticleItem = ({ news }) => {
@@ -65,12 +67,14 @@ const ArticleItem = ({ news }) => {
                 </Grid>
                 <Grid item md={8}>
                   <Typography variant="body1" color="grey.700">
-                    {news?.posted_on ? showDate(news?.posted_on) : dummy.date}
+                    {news?.created_at
+                      ? moment(news?.created_at).format("MMMM DD, YYYY")
+                      : dummy.date}
                   </Typography>
                 </Grid>
               </Grid>
 
-              <Typography variant="h6" sx={{ mt: 1 }}>
+              <Typography variant="h5" sx={{ mt: 1 }}>
                 {news?.short_description
                   ? news?.short_description
                   : dummy.description}

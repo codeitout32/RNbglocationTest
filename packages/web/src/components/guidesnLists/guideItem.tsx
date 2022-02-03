@@ -37,8 +37,8 @@ const GuideItem = ({ date, title, image }) => {
           textAlign: "center",
           bgcolor: "black",
           py: 3,
-          height: "40vh",
-          minHeight: "430px",
+          // height: "40vh",
+          // minHeight: "430px",
         }}
       >
         <CardActionArea sx={{ zIndex: "1" }}>
@@ -65,7 +65,7 @@ const GuideItem = ({ date, title, image }) => {
               },
             }}
           />
-          <CardContent sx={{ mt: 4, textTransform: "capitalize" }}>
+          <CardContent sx={{ mt: 3, textTransform: "capitalize" }}>
             {/* <Typography
               gutterBottom
               variant="subtitle2"
@@ -74,7 +74,9 @@ const GuideItem = ({ date, title, image }) => {
             >
               {date}
             </Typography> */}
-            <Typography variant="h5">{title}</Typography>
+            <Typography variant="h5" fontSize={{ xs: "1.87rem" }}>
+              {title}
+            </Typography>
           </CardContent>
           <div style={divStyle}> Hello</div>
         </CardActionArea>
