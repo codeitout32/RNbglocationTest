@@ -18,10 +18,33 @@ export const StyledPaper = styled("div")(
   .MuiGrid-item {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     .MuiSvgIcon-root {
       margin: auto;
       color: grey;
     }
+  }
+  & .icon-box .MuiIconButton-root {
+    color: white;
+    border: solid;
+    border-width: .5px 1px;
+    border-bottom: 0;
+    border-radius: 0;
+    padding: 10px;
+    transition: all .3s ease;
+    &:hover {
+      color: #71717A;
+    }
+    &:first-child {
+      border-radius: 4px;
+    }
+    &:last-child {
+      border-bottom: 1px solid;
+      border-radius: 4px;
+    }
+  }
+  & .icon-box .MuiSvgIcon-root {
+    color: inherit;
   }
 `
 );

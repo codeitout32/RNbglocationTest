@@ -17,6 +17,7 @@ const StyledGradPaper = styled(GradPaper)(
   padding-top: 1px;
   border-radius: 60px;
   overflow: hidden;
+  background-color: transparent;
   & .gradient-div {
     background: linear-gradient(180deg, #3f3f46 0%, #000000 100%);
     position: absolute;
@@ -27,17 +28,17 @@ const StyledGradPaper = styled(GradPaper)(
     
   }
 
-  // custom styles for this page
-   .MuiTooltip-popper {
-    background-color: black;
-  }
-  & .MuiTypography-h3 {
-      color: ${theme.palette.text.secondary};
+  // // custom styles for this page
+  //  .MuiTooltip-popper {
+  //   background-color: black;
+  // }
+  // & .MuiTypography-h3 {
+  //     color: ${theme.palette.text.secondary};
       
-  }
-  & .ovScore {
-    color: white;
-  }
+  // }
+  // & .ovScore {
+  //   color: white;
+  // }
 `
 );
 export default StyledGradPaper;

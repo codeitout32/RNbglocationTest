@@ -9,7 +9,7 @@ import Footer from "src/components/footer";
 import GuidesnLists from "src/components/guidesnLists";
 import Header from "src/components/header";
 import NewsDetail from "src/components/newsDetailComponents/newsDetail";
-import NewsLatest from "src/components/newsLatest";
+import NewsLatest from "src/components/newsDetailComponents/newsLatest";
 import NFT101 from "src/components/featuredNews";
 import RecentArticles from "src/components/recentArticles";
 
@@ -53,7 +53,7 @@ export default function News() {
           </Grid>
           <Grid item md={4} xs={11}>
             <Box sx={{ height: "450px" }}></Box>
-            <NewsLatest asSidebar />
+            <NewsLatest />
           </Grid>
         </Grid>
 

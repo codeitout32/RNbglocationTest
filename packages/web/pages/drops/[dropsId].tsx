@@ -42,13 +42,13 @@ export default function News() {
         sx={{ height: "150px", borderRadius: "0px 0px 60px 60px" }}
         bgcolor="grey.900"
       />
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <DropsDetail />
         <Box sx={{ height: "50px" }} />
-        <Overview />
-        {/* <Box sx={{ height: "200px" }} /> */}
-        <Box sx={{ height: "10vh" }} />
       </Container>
+      <Overview />
+      {/* <Box sx={{ height: "200px" }} /> */}
+      <Box sx={{ height: "10vh" }} />
       <Advert />
       <Box sx={{ height: "10vh" }} />
 

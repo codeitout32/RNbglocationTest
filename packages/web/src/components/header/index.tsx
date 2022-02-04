@@ -61,6 +61,7 @@ const Header = ({ pages }) => {
         sx={{
           background:
             "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.41220238095238093) 18%)",
+          pt: 1,
         }}
       >
         <Container maxWidth="lg">

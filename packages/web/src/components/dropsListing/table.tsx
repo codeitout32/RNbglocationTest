@@ -172,7 +172,7 @@ export default function DropTable() {
                       {/* Conditional social links ends */}
                     </TableCell>
                     <TableCell align="left">
-                      {moment(row.created_at).format("HH:mm")}
+                      {moment(row.created_at).format("hh:mm A")} UTC
                     </TableCell>
                     <TableCell align="left">{row.supply_content}</TableCell>
                     <TableCell align="left">{row.mint_price}</TableCell>

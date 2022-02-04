@@ -1,8 +1,16 @@
-import { Grid, Paper, Typography, Container, Tooltip } from "@mui/material";
+import {
+  Grid,
+  Paper,
+  Typography,
+  Container,
+  Tooltip,
+  Box,
+} from "@mui/material";
 import { singleDropsSelector } from "@next/common/selectors";
 import React from "react";
 import { useSelector } from "react-redux";
 import StyledGradPaper from "./gradPaper";
+import { grey } from "@mui/material/colors";
 
 const Overview = () => {
   const singleDrops = useSelector(singleDropsSelector);
@@ -44,16 +52,31 @@ const Overview = () => {
             </Typography>
             <Tooltip
               title={
-                <Typography
-                  variant="body2"
-                  fontSize={".8rem"}
-                  align="center"
-                  sx={{ bgColor: "black", color: "white" }}
-                >
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                  aliquam"
-                </Typography>
+                <Box sx={{}}>
+                  <Typography
+                    variant="body2"
+                    fontSize={".8rem"}
+                    color="text.secondary"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+                    aliquam
+                  </Typography>
+                </Box>
               }
+              componentsProps={{
+                tooltip: {
+                  sx: {
+                    backgroundColor: grey[800],
+                    maxWidth: "200px",
+                    p: 2,
+                  },
+                },
+                arrow: {
+                  sx: {
+                    color: grey[800],
+                  },
+                },
+              }}
               placement="right"
               arrow
             >
