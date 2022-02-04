@@ -53,9 +53,9 @@ const NewsLatest = ({ asSidebar }) => {
       <Fragment>
         <StyledGradPaper
           sx={{
-            borderRadius: 10,
+            borderRadius: 5,
             mt: 5,
-            pt: 5,
+            pt: 3,
             display: "flex",
             flexDirection: "column",
             "& img": { borderRadius: "8px" },

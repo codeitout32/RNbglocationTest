@@ -27,7 +27,7 @@ const LatestItem = ({ news, asSidebar }) => {
     <>
       <CardActionArea>
         <Link href={"/news/" + news.id}>
-          <Grid container spacing={1} justifyContent="center" sx={{ my: 0.5 }}>
+          <Grid container spacing={1} justifyContent="center" sx={{ my: 0 }}>
             <Grid item md={3}>
               <Paper //Should had used box instead of paper
                 sx={{

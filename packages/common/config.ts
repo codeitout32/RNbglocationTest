@@ -5,4 +5,5 @@ export const routes = {
   news: serverUrl + "/news",
   drops: serverUrl + "/drop",
   guides: serverUrl + "/guide",
+  advert: serverUrl + "/advertise",
 };

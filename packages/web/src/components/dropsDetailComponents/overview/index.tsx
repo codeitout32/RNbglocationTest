@@ -11,9 +11,45 @@ import React from "react";
 import { useSelector } from "react-redux";
 import StyledGradPaper from "./gradPaper";
 import { grey } from "@mui/material/colors";
+import CustomToolTip from "./customToolTip";
 
 const Overview = () => {
   const singleDrops = useSelector(singleDropsSelector);
+
+  const fieldList = [
+    {
+      title: "Roadmap Score",
+      value: singleDrops.roadmap_score,
+    },
+    {
+      title: "Discord member",
+      value: singleDrops.discord_member,
+    },
+    {
+      title: " Twitter Followers",
+      value: singleDrops.twitter_followers,
+    },
+    {
+      title: "Team Score",
+      value: singleDrops.team_score,
+    },
+    {
+      title: "Popularity Score",
+      value: singleDrops.popularity_score,
+    },
+    {
+      title: "Flip Score",
+      value: singleDrops.flip_score,
+    },
+    {
+      title: "Hodl Score",
+      value: singleDrops.hodl_score,
+    },
+    {
+      title: "Community Score",
+      value: singleDrops.community_score,
+    },
+  ];
 
   return (
     <StyledGradPaper sx={{ bgcolor: "transparent" }}>
@@ -90,7 +126,58 @@ const Overview = () => {
             </Paper> */}
           </Grid>
           <Grid item md={3} xs={12}></Grid>
-          <Grid item md={3} xs={12}>
+          {fieldList.map((field) => (
+            <Grid item md={3} xs={12}>
+              <Paper>
+                {/* <CustomToolTip
+                  title={
+                    <Typography
+                      variant="body2"
+                      fontSize={".8rem"}
+                      color="text.secondary"
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+                      aliquam
+                    </Typography>
+                  }
+                > */}
+                <Typography variant="body2" fontSize={"1.25rem"}>
+                  {field.title}
+                </Typography>
+                <Typography variant="h4">{field.value}</Typography>
+                {/* </CustomToolTip> */}
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+        <Typography
+          variant="h3"
+          textAlign="center"
+          component="div"
+          sx={{ my: 7 }}
+        >
+          Our Take
+        </Typography>
+        <Typography
+          variant="body1"
+          textAlign="center"
+          paragraph
+          component="p"
+          sx={{ my: 7, mx: "auto" }}
+          width={{ md: "55%", xs: "95%" }}
+        >
+          {singleDrops.our_take_description}
+        </Typography>
+      </Container>
+    </StyledGradPaper>
+  );
+};
+
+export default Overview;
+
+//old grid code
+{
+  /* <Grid item md={3} xs={12}>
             <Paper>
               <Typography variant="body2" fontSize={"1.25rem"}>
                 Roadmap Score
@@ -159,29 +246,5 @@ const Overview = () => {
                 {singleDrops.community_score}
               </Typography>
             </Paper>
-          </Grid>
-        </Grid>
-        <Typography
-          variant="h3"
-          textAlign="center"
-          component="div"
-          sx={{ my: 7 }}
-        >
-          Our Take
-        </Typography>
-        <Typography
-          variant="body1"
-          textAlign="center"
-          paragraph
-          component="p"
-          sx={{ my: 7, mx: "auto" }}
-          width={{ md: "55%", xs: "95%" }}
-        >
-          {singleDrops.our_take_description}
-        </Typography>
-      </Container>
-    </StyledGradPaper>
-  );
-};
-
-export default Overview;
+          </Grid> */
+}

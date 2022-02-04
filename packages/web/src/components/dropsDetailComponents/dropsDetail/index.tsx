@@ -179,7 +179,7 @@ const DropsDetail = () => {
             width={{ md: "60%", xs: "95%" }}
           >
             <Clamp withTooltip lines={3}>
-              {singleDrops.description}
+              {singleDrops?.description} &nbsp;
             </Clamp>
           </Typography>
         </Grid>

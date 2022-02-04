@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Skeleton } from "@mui/material";
+import { Box, Container, Grid, Link, Skeleton } from "@mui/material";
 import {
   fetchNewsStart,
   fetchSingleNewsStart,
@@ -16,6 +16,9 @@ import RecentArticles from "src/components/recentArticles";
 import { useRouter } from "next/router";
 import RelatedArticles from "src/components/newsDetailComponents/relatedArticles";
 import Advert from "src/components/advert";
+import { fetchAdvertStart } from "@next/common/slices/advert.slice";
+import { advertSelector } from "@next/common/selectors/";
+import { handleImageError } from "@next/common/utils/handleImageError";
 
 export default function News() {
   const dispatch = useDispatch();
@@ -38,6 +41,13 @@ export default function News() {
   console.log("newsId1", newsId);
 
   useEffect(() => {
+    dispatch(fetchAdvertStart());
+  }, []);
+
+  const advert = useSelector(advertSelector);
+  console.log("selector advert", advert);
+
+  useEffect(() => {
     if (!router.isReady) return;
     dispatch(fetchSingleNewsStart({ id: newsId }));
     console.log("newsId", newsId);
@@ -52,7 +62,17 @@ export default function News() {
             <NewsDetail />
           </Grid>
           <Grid item md={4} xs={11}>
-            <Box sx={{ height: "450px" }}></Box>
+            <Box sx={{ height: "450px" }}>
+              <Link href={advert[0].ad_link} target="_blank">
+                <img
+                  src={advert[0].image}
+                  alt=""
+                  onError={handleImageError}
+                  height="100%"
+                  objectFit="cover"
+                />
+              </Link>
+            </Box>
             <NewsLatest />
           </Grid>
         </Grid>
