@@ -1,9 +1,21 @@
-import { Box, Button, Paper, Skeleton, Stack, Typography } from "@mui/material";
+import {
+  Backdrop,
+  Box,
+  Button,
+  CircularProgress,
+  Paper,
+  Skeleton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import NewsNavButton from "../newsNavButton";
 import getDate from "@next/common/utils/dateFormater";
 import { useSelector } from "react-redux";
-import { singleNewsSelector } from "@next/common/selectors";
+import {
+  newsLoadingSelector,
+  singleNewsSelector,
+} from "@next/common/selectors";
 import { htmlParser } from "@next/common/utils/htmlParser";
 import parse from "html-react-parser";
 import moment from "moment";
@@ -28,6 +40,7 @@ const NewsDetail = () => {
   //main start
 
   const singleNews = useSelector(singleNewsSelector);
+  const loading = useSelector(newsLoadingSelector);
   console.log("singlenews", singleNews);
   const { current, next, previous } = singleNews;
 
@@ -141,6 +154,15 @@ const NewsDetail = () => {
           />
         </Box>
       </Stack>
+      {loading && (
+        <Backdrop
+          sx={{ color: "Grey", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={true}
+        >
+          <CircularProgress color="inherit" />
+          &nbsp; Loading...
+        </Backdrop>
+      )}
     </>
   );
 };

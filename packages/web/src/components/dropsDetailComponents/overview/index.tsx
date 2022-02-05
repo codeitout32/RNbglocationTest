@@ -128,25 +128,25 @@ const Overview = () => {
           <Grid item md={3} xs={12}></Grid>
           {fieldList.map((field) => (
             <Grid item md={3} xs={12}>
-              <Paper>
-                {/* <CustomToolTip
-                  title={
-                    <Typography
-                      variant="body2"
-                      fontSize={".8rem"}
-                      color="text.secondary"
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                      aliquam
-                    </Typography>
-                  }
-                > */}
-                <Typography variant="body2" fontSize={"1.25rem"}>
-                  {field.title}
-                </Typography>
-                <Typography variant="h4">{field.value}</Typography>
-                {/* </CustomToolTip> */}
-              </Paper>
+              <CustomToolTip
+                title={
+                  <Typography
+                    variant="body2"
+                    fontSize={".8rem"}
+                    color="text.secondary"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+                    aliquam
+                  </Typography>
+                }
+              >
+                <Paper>
+                  <Typography variant="body2" fontSize={"1.25rem"}>
+                    {field.title}
+                  </Typography>
+                  <Typography variant="h4">{field.value}</Typography>
+                </Paper>
+              </CustomToolTip>
             </Grid>
           ))}
         </Grid>

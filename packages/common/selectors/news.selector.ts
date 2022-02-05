@@ -10,6 +10,10 @@ export const singleNewsSelector = createSelector(
   newsReducer,
   (news) => news.singleNews
 );
+export const newsLoadingSelector = createSelector(
+  newsReducer,
+  (news) => news.loading
+);
 export const featuredNewsSelector = createSelector(
   newsReducer,
   (news) => news.featuredNews

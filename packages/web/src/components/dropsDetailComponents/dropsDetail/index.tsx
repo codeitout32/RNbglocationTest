@@ -69,17 +69,19 @@ const DropsDetail = () => {
             </Grid>
             <Grid item>
               <Box sx={{ position: "relative" }}>
-                <img
-                  src="/images/drops_check_tick.svg"
-                  alt=""
-                  style={{
-                    position: "absolute",
-                    right: "4%",
-                    top: "4%",
-                    zIndex: 1,
-                  }}
-                  width="45px"
-                />
+                {singleDrops.is_verified && (
+                  <img
+                    src="/images/drops_check_tick.svg"
+                    alt=""
+                    style={{
+                      position: "absolute",
+                      right: "4%",
+                      top: "4%",
+                      zIndex: 1,
+                    }}
+                    width="45px"
+                  />
+                )}
                 <Avatar
                   alt="Remy Sharp"
                   src={singleDrops.image}
@@ -196,7 +198,7 @@ const DropsDetail = () => {
             <IconButton
               aria-label="link"
               sx={{ color: grey[600] }}
-              href={singleDrops.social_link_3}
+              href={singleDrops.website_link}
               target="_blank"
             >
               <FontAwesomeIcon icon={faLink} />
@@ -204,21 +206,21 @@ const DropsDetail = () => {
             <IconButton
               aria-label="delete"
               sx={{ fontSize: { md: "1.2rem" } }}
-              href={singleDrops.social_link_2}
+              href={singleDrops.discord_link}
               target="_blank"
             >
               <FontAwesomeIcon icon={faDiscord} />
             </IconButton>
             <IconButton
               aria-label="delete"
-              href={singleDrops.social_link_1}
+              href={singleDrops.twitter_link}
               target="_blank"
             >
               <TwitterIcon />
             </IconButton>
             <IconButton
               aria-label="delete"
-              href={singleDrops.social_link_3}
+              href={singleDrops.website_link}
               target="_blank"
             >
               <FontAwesomeIcon icon={faShare} />

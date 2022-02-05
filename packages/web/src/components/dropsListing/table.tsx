@@ -24,8 +24,8 @@ import moment from "moment";
 import TextLogo from "src/theme/textLogo";
 import { handleImageError } from "@next/common/utils/handleImageError";
 
-function createData(name, size, price, date, img) {
-  return { name, size, price, date, img };
+function createData(name, size, price, date, image) {
+  return { name, size, price, date, image };
 }
 
 const rows = [
@@ -76,7 +76,10 @@ export default function DropTable() {
                   <TableRow
                     sx={{
                       "& th": { color: "text.secondary", fontSize: "10" },
-                      "& td": { fontSize: "1.5 rem", color: "text.secondary" },
+                      "& td": {
+                        fontSize: (theme) => theme.typography.h5.fontSize,
+                        color: "text.secondary",
+                      },
                     }}
                   >
                     <TableCell variant="head">Project</TableCell>
@@ -105,7 +108,7 @@ export default function DropTable() {
                       // "&:last-child td, &:last-child th": { border: 0 },
                       "& td": {
                         color: "text.secondary",
-                        fontSize: (theme) => theme.typography.h6.fontSize,
+                        fontSize: (theme) => theme.typography.h5.fontSize,
                       },
                     }}
                   >
@@ -115,17 +118,32 @@ export default function DropTable() {
                       className="trstart"
                     >
                       <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Avatar
-                          alt="Remy Sharp"
-                          src={row.image}
-                          sx={{ width: 56, height: 56 }}
-                          imgProps={{ onError: handleImageError }}
-                        >
-                          <img
-                            src="https://picsum.photos/200"
-                            alt="fallback image"
-                          />
-                        </Avatar>
+                        <Box sx={{ position: "relative" }}>
+                          {row.is_verified && (
+                            <img
+                              src="/images/drops_check_tick.svg"
+                              alt=""
+                              style={{
+                                position: "absolute",
+                                right: "2%",
+                                top: "2%",
+                                zIndex: 1,
+                              }}
+                              width="18px"
+                            />
+                          )}
+                          <Avatar
+                            alt="Remy Sharp"
+                            src={row.image}
+                            sx={{ width: 80, height: 80, border: 2 }}
+                            imgProps={{ onError: handleImageError }}
+                          >
+                            <img
+                              src="https://picsum.photos/200"
+                              alt="fallback image"
+                            />
+                          </Avatar>
+                        </Box>
                         <Link href={`drops/${row.id}`}>
                           <Linkm href="#">
                             <Typography
@@ -142,28 +160,28 @@ export default function DropTable() {
                     </TableCell>
                     <TableCell align="left">
                       {/* Conditional social links  */}
-                      {row.social_link_1 && (
+                      {row.twitter_link && (
                         <IconButton
                           aria-label="discord"
-                          href={row.social_link_1}
+                          href={row.twitter_link}
                           target="_blank"
                         >
                           <Image src={TwitterIcon} alt="" width={24} />
                         </IconButton>
                       )}
-                      {row.social_link_2 && (
+                      {row.discord_link && (
                         <IconButton
                           aria-label="discord"
-                          href={row.social_link_2}
+                          href={row.discord_link}
                           target="_blank"
                         >
                           <Image src={DiscordIcon} alt="" width={24} />
                         </IconButton>
                       )}
-                      {row.social_link_3 && (
+                      {row.website_link && (
                         <IconButton
                           aria-label="discord"
-                          href={row.social_link_3}
+                          href={row.website_link}
                           target="_blank"
                         >
                           <Image src={LinkIcon} alt="" width={26} />
@@ -177,11 +195,7 @@ export default function DropTable() {
                     <TableCell align="left">{row.supply_content}</TableCell>
                     <TableCell align="left">{row.mint_price}</TableCell>
                     <TableCell align="left" className="trend">
-                      <TextLogo
-                        fontSize="small"
-                        sx={{ verticalAlign: "sub", mr: 1 }}
-                        mr={1}
-                      />
+                      <TextLogo fontSize="small" sx={{ mr: 1 }} mr={1} />
                       {row.overall_score}
                     </TableCell>
                   </TableRow>

@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 
 import { dropsListSelector } from "@next/common/selectors";
 import { useSelector } from "react-redux";
@@ -39,7 +39,7 @@ export default function DropTable() {
           mx: "auto",
           minWidth: "70%",
           borderCollapse: "separate",
-          borderSpacing: "0 1em",
+          borderSpacing: "0 2rem",
         }}
       >
         <TableHead>
@@ -47,7 +47,7 @@ export default function DropTable() {
             sx={{
               border: 0,
               "& th": { color: "text.secondary", fontSize: "10" },
-              "& td": { fontSize: "1.5 rem", color: "text.secondary" },
+              "& td": { fontSize: "1.2 rem", color: "text.secondary" },
               "& td, & th": { border: 0 },
             }}
           >
@@ -71,9 +71,10 @@ export default function DropTable() {
                 sx={{
                   borderBottom: 1,
                   // "& td, & th": { border: 0 },
-                  "& td": {
-                    fontSize: "1.1rem",
+                  "& td, th": {
+                    fontSize: "1.2rem",
                     color: "text.secondary",
+                    p: "20px",
                   },
                   "&:last-child": { border: 0 },
                   boxShadow: "inset 0px -3px 0px #71717a",
@@ -88,13 +89,29 @@ export default function DropTable() {
                   scope="row"
                   sx={{ display: "flex", alignItems: "center" }}
                 >
-                  <Avatar
-                    alt="Remy Sharp"
-                    src={row.image}
-                    sx={{ width: 56, height: 56 }}
-                  >
-                    <img src="https://picsum.photos/200" alt="fallback image" />
-                  </Avatar>
+                  <Box sx={{ position: "relative" }}>
+                    {/* <img
+                      src="/images/drops_check_tick.svg"
+                      alt=""
+                      style={{
+                        position: "absolute",
+                        right: "4%",
+                        top: "4%",
+                        zIndex: 1,
+                      }}
+                      width="45px"
+                    /> */}
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={row.image}
+                      sx={{ width: 80, height: 80, border: 2 }}
+                    >
+                      <img
+                        src="https://picsum.photos/200"
+                        alt="fallback image"
+                      />
+                    </Avatar>
+                  </Box>
                   <Link href={`drops/${row.id}`}>
                     <Linkm href="#">
                       <Typography
