@@ -23,6 +23,7 @@ import moment from "moment";
 
 import TextLogo from "src/theme/textLogo";
 import { handleImageError } from "@next/common/utils/handleImageError";
+import getCryptoSvg from "@next/common/utils/getCryptoSvg";
 
 function createData(name, size, price, date, image) {
   return { name, size, price, date, image };
@@ -152,7 +153,15 @@ export default function DropTable() {
                               color="text.primary"
                               pl={3}
                             >
-                              {row.title}
+                              {row.title} &nbsp;
+                              <img
+                                src={getCryptoSvg(row.crypto_type)}
+                                alt=""
+                                style={{
+                                  display: "inline-block",
+                                  verticalAlign: "sub",
+                                }}
+                              />
                             </Typography>
                           </Linkm>
                         </Link>

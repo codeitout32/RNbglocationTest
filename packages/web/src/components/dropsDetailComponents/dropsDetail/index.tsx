@@ -30,6 +30,7 @@ import { grey } from "@mui/material/colors";
 
 //Clamp
 import Clamp from "react-multiline-clamp";
+import getCryptoSvg from "@next/common/utils/getCryptoSvg";
 
 const DropsDetail = () => {
   const singleDrops = useSelector(singleDropsSelector);
@@ -108,9 +109,17 @@ const DropsDetail = () => {
             </Grid>
           </Grid>
 
-          <Stack maxWidth="md" mx="15%" alignItems="center" spacing={3}>
+          <Stack maxWidth="md" mx="15%" alignItems="center" spacing={3} mt={2}>
             <Typography variant="h3" component="div">
-              {singleDrops.title}
+              {singleDrops.title}&nbsp;
+              <img
+                src={getCryptoSvg(singleDrops.crypto_type, true)}
+                alt=""
+                style={{
+                  display: "inline-block",
+                  verticalAlign: "sub",
+                }}
+              />
             </Typography>
             <Box>
               <Button variant="contained">Metaverse</Button>
