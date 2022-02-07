@@ -18,8 +18,8 @@ export default function Home() {
     { title: "News", url: "/news" },
     { title: "Drops", url: "/drops" },
     { title: "Services", url: "#" },
-    { title: "Marketplace", url: "#" },
-    { title: "Feed", url: "#" },
+    { title: "Marketplace", url: "/marketplace" },
+    { title: "Feed", url: "/feed" },
   ];
 
   return (
