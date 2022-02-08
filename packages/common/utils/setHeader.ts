@@ -6,7 +6,6 @@ export default function setHeader(
       }
     | undefined
 ): object {
-  console.log("headerCred", header);
   return {
     Accept: "*/*",
     "Content-Type": header?.contentType || "application/json",

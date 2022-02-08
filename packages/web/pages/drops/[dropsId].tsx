@@ -28,12 +28,9 @@ export default function News() {
     { title: "Feed", url: "/feed" },
   ];
 
-  console.log("dropsId1", dropsId);
-
   useEffect(() => {
     if (!router.isReady) return;
     dispatch(fetchSingleDropsStart({ id: dropsId }));
-    console.log("dropsId", dropsId);
   }, [dropsId]);
   return (
     <Fragment>

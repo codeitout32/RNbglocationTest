@@ -16,8 +16,6 @@ export default function MenuDrawer({ toggle }) {
   });
 
   const toggleDrawer = (anchor, open) => {
-    console.log("drawer", anchor, open);
-
     setState({ ["left"]: open });
   };
 
@@ -54,7 +52,6 @@ export default function MenuDrawer({ toggle }) {
 
   if (toggle) {
     if (!state.left) {
-      console.log("toggle", toggle);
       toggleDrawer("left", true);
     }
   }

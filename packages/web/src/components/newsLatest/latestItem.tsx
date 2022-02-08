@@ -21,7 +21,6 @@ import { handleImageError } from "@next/common/utils/handleImageError";
 import Clamp from "react-multiline-clamp";
 
 const LatestItem = ({ news, asSidebar }) => {
-  console.log("newsitem", news);
   return (
     <>
       <Grid container spacing={1} justifyContent="center" sx={{ my: 0.5 }}>

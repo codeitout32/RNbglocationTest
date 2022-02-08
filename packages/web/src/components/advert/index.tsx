@@ -14,7 +14,6 @@ import advertBackground from "public/images/megaphone-with-speech-banner.png";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
 const Advert = () => {
-  console.log("image", advertBackground.src);
   return (
     <StyledDiv sx={{ height: { xs: "30vh", md: "50vh" } }}>
       <Container maxWidth="lg">

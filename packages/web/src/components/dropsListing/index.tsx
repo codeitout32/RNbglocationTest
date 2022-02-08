@@ -32,7 +32,6 @@ const Drops = () => {
 
   const handleTabChange = (event, newValue) => {
     setUpcoming(newValue);
-    console.log("tabchange", newValue, isUpcoming);
   };
 
   const handleChange = (e) => {
@@ -42,14 +41,13 @@ const Drops = () => {
         group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
         title: e.target.value,
-        row_per_page: "10",
+        row_per_page: "50",
         page_num: 1,
       })
     );
   };
 
   const handleLoadmore = (e) => {
-    console.log("paginatin", pagination.page_num);
     dispatch(
       fetchDropsStart({
         ...pagination,
@@ -61,7 +59,7 @@ const Drops = () => {
   useEffect(() => {
     dispatch(
       fetchDropsStart({
-        row_per_page: "10",
+        row_per_page: "50",
         group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
         page_num: 1,
@@ -121,12 +119,12 @@ const Drops = () => {
             January 1st dum
           </Typography> */}
           <DropTable />
-          <ButtonWhite
+          {/* <ButtonWhite
             sx={{ textTransform: "capitalize", mx: "auto" }}
             onClick={handleLoadmore}
           >
             Load more
-          </ButtonWhite>
+          </ButtonWhite> */}
         </Paper>
         <ApplyCard sx={{ width: "100%" }} />
       </Stack>

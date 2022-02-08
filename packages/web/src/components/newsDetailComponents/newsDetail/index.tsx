@@ -41,7 +41,7 @@ const NewsDetail = () => {
 
   const singleNews = useSelector(singleNewsSelector);
   const loading = useSelector(newsLoadingSelector);
-  console.log("singlenews", singleNews);
+
   const { current, next, previous } = singleNews;
 
   const body = current ? current?.description : "";

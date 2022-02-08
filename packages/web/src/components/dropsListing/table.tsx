@@ -52,7 +52,7 @@ export default function DropTable() {
   //   dropsListraw.filter((item) => dropsList.indexOf(item) < 0)
   // );
   dropsList = { ...dropsList, ...dropsListraw };
-  console.log("dropslist", dropsList);
+
   return (
     <TableContainer component={"div"} sx={{ pb: 5 }}>
       <StyleTable aria-label="Drops List" sx={{ maxWidth: "xl", mx: "auto" }}>

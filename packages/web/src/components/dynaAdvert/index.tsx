@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 // Currently not being used directly using in newsid
 const DynaAdvert = () => {
   const advert = useSelector(advertSelector);
-  console.log("selector advert", advert);
+
   return (
     <>
       <Box>

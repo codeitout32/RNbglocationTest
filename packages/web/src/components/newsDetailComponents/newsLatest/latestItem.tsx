@@ -22,7 +22,6 @@ import { handleImageError } from "@next/common/utils/handleImageError";
 import Clamp from "react-multiline-clamp";
 
 const LatestItem = ({ news, asSidebar }) => {
-  console.log("newsitem", news);
   return (
     <>
       <CardActionArea>

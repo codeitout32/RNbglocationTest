@@ -38,19 +38,16 @@ export default function News() {
     { title: "Drops", url: "/drops" },
     { title: "Feed", url: "/feed" },
   ];
-  console.log("newsId1", newsId);
 
   useEffect(() => {
     dispatch(fetchAdvertStart());
   }, []);
 
   const advert = useSelector(advertSelector);
-  console.log("selector advert", advert);
 
   useEffect(() => {
     if (!router.isReady) return;
     dispatch(fetchSingleNewsStart({ id: newsId }));
-    console.log("newsId", newsId);
   }, [newsId]);
   return (
     <Fragment>

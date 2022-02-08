@@ -3,7 +3,6 @@ import Tooltip from "@mui/material/Tooltip";
 import React from "react";
 
 const CustomToolTip = ({ children, title }) => {
-  console.log("tooltip", children, title);
   return (
     <>
       <Tooltip

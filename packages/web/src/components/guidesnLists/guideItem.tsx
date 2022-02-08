@@ -25,7 +25,7 @@ const GuideItem = ({ date, title, image }) => {
     width: "100%",
     zIndex: -1,
   };
-  console.log("image", image);
+
   return (
     <Fragment>
       <Card

@@ -7,8 +7,6 @@ import commonService from "../services/common.service";
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function* fetchMultipleGuidesSaga(action) {
-  console.log("fetch started");
-
   const params = {
     method: "get",
     route: `${routes.guides}`,
@@ -26,9 +24,8 @@ function* fetchMultipleGuidesSaga(action) {
   }
 }
 function* fetchRelatedGuidesSaga(action) {
-  console.log("fetch related started");
   const searchparams = new URLSearchParams(action.payload).toString();
-  console.log("search params", searchparams);
+
   const params = {
     method: "get",
     route: `${routes.guides}?${searchparams}`,
@@ -46,8 +43,6 @@ function* fetchRelatedGuidesSaga(action) {
   }
 }
 function* fetchSingleGuidesSaga(action) {
-  console.log("fetch Single guides started", action.payload);
-
   const params = {
     method: "get",
     route: `${routes.guides}/${action.payload.id}`,
@@ -80,17 +75,11 @@ function handleError(error) {
   if (error.response) {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx
-    console.log("error data", error.response.data);
-    console.log("error status", error.response.status);
-    console.log("error header", error.response.headers);
   } else if (error.request) {
     // The request was made but no response was received
     // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
     // http.ClientRequest in node.js
-    console.log("error request", error.request);
   } else {
     // Something happened in setting up the request that triggered an Error
-    console.log("Error message", error.message);
   }
-  console.log("error config", error.config);
 }

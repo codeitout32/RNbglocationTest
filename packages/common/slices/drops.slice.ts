@@ -36,7 +36,6 @@ export const newsSlice = createSlice({
       };
     },
     fetchDropsSuccess: (state, action) => {
-      console.log("page num", state.pagination.page_num == 1);
       return {
         ...state,
         loading: false,

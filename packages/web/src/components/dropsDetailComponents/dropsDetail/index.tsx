@@ -34,7 +34,6 @@ import getCryptoSvg from "@next/common/utils/getCryptoSvg";
 
 const DropsDetail = () => {
   const singleDrops = useSelector(singleDropsSelector);
-  console.log("singleDrops", singleDrops);
 
   const isLaunched = () => {
     return singleDrops.type == "launched";

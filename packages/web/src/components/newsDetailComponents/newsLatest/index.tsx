@@ -29,7 +29,6 @@ const NewsLatest = ({ asSidebar }) => {
     ? newsList?.rows.filter((news) => news.is_latest === 1)
     : [];
   const [headNews, ...restNews] = latestNewsList;
-  console.log("newslist", restNews);
 
   const sideBar = (
     <Paper

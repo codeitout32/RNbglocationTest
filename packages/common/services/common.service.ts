@@ -28,15 +28,12 @@ export default async ({
 }: ServiceParams): Promise<AxiosPromise<AxiosResponse | AxiosError>> => {
   const headers = setHeader(headerCred) as AxiosRequestHeaders;
 
-  console.log("from service function: ", headers, route, data);
-
   const response: AxiosResponse = await axios({
     method,
     url: route,
     headers,
     data,
   });
-  console.log("service res:", response);
 
   if (response.data?.data) {
     return response.data.data;

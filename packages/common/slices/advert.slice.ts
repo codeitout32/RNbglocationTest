@@ -31,7 +31,6 @@ export const advertSlice = createSlice({
       };
     },
     fetchAdvertSuccess: (state, action) => {
-      console.log("advert action", state, action);
       return {
         ...state,
         loading: false,

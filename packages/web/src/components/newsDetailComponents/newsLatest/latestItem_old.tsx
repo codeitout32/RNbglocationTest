@@ -14,7 +14,6 @@ import React, { Fragment } from "react";
 import ButtonTransparent from "src/theme/buttonTransparent";
 import ButtonWhite from "src/theme/buttonWhite";
 const LatestItem = ({ news }) => {
-  console.log("newsitem", news);
   return (
     <>
       <Grid container spacing={1.5} justifyContent="center" sx={{ my: 0.5 }}>

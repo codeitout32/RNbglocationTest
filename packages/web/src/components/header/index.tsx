@@ -29,9 +29,8 @@ const Header = ({ pages }) => {
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
   const linkRouter = useRouter();
-  console.log("router", linkRouter.asPath, linkRouter);
+
   const isActive = (url) => {
-    console.log("active check", linkRouter.pathname.includes(url));
     return linkRouter.pathname.includes(url);
   };
 
