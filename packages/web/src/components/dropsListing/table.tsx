@@ -46,7 +46,12 @@ const dateFunctn = (rawdate) => {
 };
 
 export default function DropTable() {
-  const dropsList = useSelector(dropsListSelector);
+  let dropsList = {};
+  const dropsListraw = useSelector(dropsListSelector);
+  // dropsList = dropsList.concat(
+  //   dropsListraw.filter((item) => dropsList.indexOf(item) < 0)
+  // );
+  dropsList = { ...dropsList, ...dropsListraw };
   console.log("dropslist", dropsList);
   return (
     <TableContainer component={"div"} sx={{ pb: 5 }}>
@@ -155,7 +160,7 @@ export default function DropTable() {
                             >
                               {row.title} &nbsp;
                               <img
-                                src={getCryptoSvg(row.crypto_type)}
+                                src={getCryptoSvg(row.crypto_type, false)}
                                 alt=""
                                 style={{
                                   display: "inline-block",
@@ -202,9 +207,15 @@ export default function DropTable() {
                       {moment(row.created_at).format("hh:mm A")} UTC
                     </TableCell>
                     <TableCell align="left">{row.supply_content}</TableCell>
-                    <TableCell align="left">{row.mint_price}</TableCell>
+                    <TableCell align="left">
+                      {row.mint_price + " " + row.crypto_type}
+                    </TableCell>
                     <TableCell align="left" className="trend">
-                      <TextLogo fontSize="small" sx={{ mr: 1 }} mr={1} />
+                      <TextLogo
+                        fontSize="small"
+                        sx={{ mr: 1, verticalAlign: "text-top" }}
+                        mr={1}
+                      />
                       {row.overall_score}
                     </TableCell>
                   </TableRow>

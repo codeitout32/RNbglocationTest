@@ -6,6 +6,7 @@ export interface DropsList {
   singleDrops: object;
   success: string;
   error: object | string;
+  pagination: object | string;
 }
 
 const initialState: DropsList = {
@@ -16,6 +17,9 @@ const initialState: DropsList = {
   loading: false,
   success: "",
   error: "",
+  pagination: {
+    page_num: 0,
+  },
 };
 
 export const newsSlice = createSlice({
@@ -26,13 +30,20 @@ export const newsSlice = createSlice({
       return {
         ...state,
         loading: true,
+        pagination: {
+          ...action.payload,
+        },
       };
     },
     fetchDropsSuccess: (state, action) => {
+      console.log("page num", state.pagination.page_num == 1);
       return {
         ...state,
         loading: false,
-        dropsList: action.payload,
+        dropsList:
+          state.pagination.page_num === 1
+            ? action.payload
+            : Object.assign({}, state.dropsList, action.payload),
       };
     },
     fetchDropsError: (state, action: PayloadAction<T>) => {

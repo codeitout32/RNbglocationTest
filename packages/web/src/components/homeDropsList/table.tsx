@@ -126,14 +126,16 @@ export default function DropTable() {
                   </Link>
                 </TableCell>
                 <TableCell align="left">{row.supply_content}</TableCell>
-                <TableCell align="left">{row.mint_price} SOL</TableCell>
+                <TableCell align="left">
+                  {row.mint_price + " " + row.crypto_type}{" "}
+                </TableCell>
                 <TableCell align="left">
                   {moment(row.created_at).format("MMMM DD, YYYY")}
                 </TableCell>
                 <TableCell align="left">
                   <TextLogo
                     fontSize="small"
-                    sx={{ verticalAlign: "sub", mr: 1 }}
+                    sx={{ verticalAlign: "text-top", mr: 1 }}
                     mr={1}
                   />
                   {row.overall_score}

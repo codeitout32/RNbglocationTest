@@ -36,7 +36,7 @@ export default function News() {
     { title: "Marketplace", url: "#" },
     { title: "News", url: "/news" },
     { title: "Drops", url: "/drops" },
-    { title: "Feed", url: "#" },
+    { title: "Feed", url: "/feed" },
   ];
   console.log("newsId1", newsId);
 

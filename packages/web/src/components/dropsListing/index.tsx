@@ -13,7 +13,10 @@ import DropTable from "./table";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ApplyCard from "./applyCard";
 import { useDispatch, useSelector } from "react-redux";
-import { dropsListSelector } from "@next/common/selectors";
+import {
+  dropsListSelector,
+  dropsPaginationSelector,
+} from "@next/common/selectors";
 import StyledTabs from "./styles/styledTabs";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -24,7 +27,8 @@ const Drops = () => {
   const [isUpcoming, setUpcoming] = React.useState("1");
   const [search, setSearch] = React.useState("");
   const dispatch = useDispatch();
-  const dropCount = useSelector(dropsListSelector).count;
+  const dropCount = useSelector(dropsListSelector)?.count;
+  const pagination = useSelector(dropsPaginationSelector);
 
   const handleTabChange = (event, newValue) => {
     setUpcoming(newValue);
@@ -38,7 +42,18 @@ const Drops = () => {
         group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
         title: e.target.value,
-        row_per_page: "50",
+        row_per_page: "10",
+        page_num: 1,
+      })
+    );
+  };
+
+  const handleLoadmore = (e) => {
+    console.log("paginatin", pagination.page_num);
+    dispatch(
+      fetchDropsStart({
+        ...pagination,
+        page_num: pagination.page_num + 1,
       })
     );
   };
@@ -46,9 +61,10 @@ const Drops = () => {
   useEffect(() => {
     dispatch(
       fetchDropsStart({
-        row_per_page: "50",
+        row_per_page: "10",
         group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
+        page_num: 1,
       })
     );
     setSearch("");
@@ -105,9 +121,12 @@ const Drops = () => {
             January 1st dum
           </Typography> */}
           <DropTable />
-          {/* <ButtonWhite sx={{ textTransform: "capitalize", mx: "auto" }}>
-            Explore
-          </ButtonWhite> */}
+          <ButtonWhite
+            sx={{ textTransform: "capitalize", mx: "auto" }}
+            onClick={handleLoadmore}
+          >
+            Load more
+          </ButtonWhite>
         </Paper>
         <ApplyCard sx={{ width: "100%" }} />
       </Stack>

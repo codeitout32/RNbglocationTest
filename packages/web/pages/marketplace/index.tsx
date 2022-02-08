@@ -11,7 +11,7 @@ export default function Home() {
     { title: "Drops", url: "/drops" },
     { title: "Services", url: "#" },
     { title: "Marketplace", url: "/marketplace" },
-    { title: "Feed", url: "#" },
+    { title: "Feed", url: "/feed" },
   ];
 
   return (

@@ -10,3 +10,7 @@ export const singleDropsSelector = createSelector(
   dropsReducer,
   (drops) => drops.singleDrops
 );
+export const dropsPaginationSelector = createSelector(
+  dropsReducer,
+  (drops) => drops.pagination
+);

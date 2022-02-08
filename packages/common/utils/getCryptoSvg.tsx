@@ -12,7 +12,7 @@ const cryptoList = [
 ];
 const getCryptoSvg = (x, big) => {
   const arr = cryptoList.filter((obj) => obj.abr === x);
-  if (big) return arr[0].bigUrl;
+  if (big) return arr[0]?.bigUrl;
   return arr[0].iconUrl;
 };
 
