@@ -7,8 +7,6 @@ import commonService from "../services/common.service";
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function* fetchMultipleAdvertSaga(action) {
-  console.log("fetch started");
-
   const params = {
     method: "get",
     route: `${routes.advert}`,
@@ -29,7 +27,6 @@ function* fetchMultipleAdvertSaga(action) {
 function* fetchRelatedAdvertSaga(action) {
   console.log("fetch related started");
   const searchparams = new URLSearchParams(action.payload).toString();
-  console.log("search params", searchparams);
   const params = {
     method: "get",
     route: `${routes.advert}?${searchparams}`,
@@ -47,9 +44,7 @@ function* fetchRelatedAdvertSaga(action) {
   }
 }
 function* fetchAdvertiseSaga(action) {
-  console.log("fetch advert started");
   const searchparams = new URLSearchParams(action.payload).toString();
-  console.log("search params", searchparams);
   const params = {
     method: "get",
     route: routes.advert,
