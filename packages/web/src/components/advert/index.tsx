@@ -39,6 +39,7 @@ const Advert = () => {
                 disableElevation
                 startIcon={<TwitterIcon />}
                 href={process.env.NEXT_PUBLIC_SEND_DM}
+                target="_blank"
               >
                 Send DM
               </Button>
