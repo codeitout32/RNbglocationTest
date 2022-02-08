@@ -38,6 +38,7 @@ const Advert = () => {
                 variant="contained"
                 disableElevation
                 startIcon={<TwitterIcon />}
+                href={process.env.NEXT_PUBLIC_SEND_DM}
               >
                 Send DM
               </Button>

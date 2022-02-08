@@ -24,14 +24,14 @@ const HoldNEarn = () => {
           <Box>
             <ButtonWhite
               sx={{ p: 2, px: 4, mx: 1 }}
-              href="https://magiceden.io/marketplace?collection_symbol=nova_nerds"
+              href={process.env.NEXT_PUBLIC_NOVA_URL}
               target="_blank"
             >
               Buy Nova Nerds
             </ButtonWhite>
             <ButtonWhite
               sx={{ p: 2, px: 4, mx: 1 }}
-              href="https://magiceden.io/marketplace/waifu_nerds"
+              href={process.env.NEXT_PUBLIC_WAIFU_URL}
               target="_blank"
             >
               Buy Waifu Nerds

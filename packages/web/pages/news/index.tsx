@@ -26,7 +26,7 @@ export default function News() {
     { title: "Marketplace", url: "#" },
     { title: "News", url: "/news" },
     { title: "Drops", url: "/drops" },
-    { title: "Feed", url: "#" },
+    { title: "Feed", url: "/feed" },
   ];
 
   useEffect(() => {
