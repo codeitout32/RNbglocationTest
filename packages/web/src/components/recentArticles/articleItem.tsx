@@ -47,11 +47,14 @@ const ArticleItem = ({ news }) => {
                 overflow: "hidden",
                 bgcolor: "inherit",
                 width: "250px",
+                img: {
+                  objectFit: "cover",
+                },
               }}
             >
               <img
                 height="180px"
-                width="auto"
+                width="100%"
                 src={news.image}
                 onError={handleImageError}
               />

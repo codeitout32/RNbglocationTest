@@ -58,15 +58,18 @@ const RelatedArticles = () => {
           </Typography>
 
           <Grid container spacing={3}>
-            {relatedNews?.map((news, index) => (
-              <Grid item md={4}>
-                <RelatedNewsItem key={index} news={news} />
-              </Grid>
-            ))}
+            {relatedNews?.map((news, index) => {
+              if (index > 5) return;
+              return (
+                <Grid item md={4}>
+                  <RelatedNewsItem key={index} news={news} />
+                </Grid>
+              );
+            })}
           </Grid>
-          <Grid item xs={12} textAlign="center">
+          {/* <Grid item xs={12} textAlign="center">
             <ButtonWhite> Explore</ButtonWhite>
-          </Grid>
+          </Grid> */}
 
           {/* <ArticleItem />
           <ArticleItem /> */}
