@@ -1,13 +1,13 @@
 import { Box, Container } from "@mui/material";
-import { fetchDropsStart } from "@next/common/slices/drops.slice";
-import { fetchNewsStart } from "@next/common/slices/news.slice";
 import { Fragment, useEffect } from "react";
 import { useIntl } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
-import Drops from "src/components/dropsListing";
 import Footer from "src/components/footer";
-import GuidesnLists from "src/components/guidesnLists";
 import Header from "src/components/header";
+
+import Advert from "src/components/advert";
+import StartBanner from "src/components/services/startBanner";
+import Testimonials from "src/components/services/testimonials";
 
 export default function News() {
   const dispatch = useDispatch();
@@ -20,17 +20,22 @@ export default function News() {
     { title: "Marketplace", url: "/marketplace" },
     { title: "Feed", url: "/feed" },
   ];
-  // useEffect(() => {
-  //   dispatch(fetchDropsStart());
-  // }, []);
+
+  useEffect(() => {
+    // dispatch(fetchNewsStart());
+  }, []);
   return (
     <Fragment>
       <Header pages={pages} />
-      <Container maxWidth="xl">
-        <Box sx={{ height: "10vh" }} />
-      </Container>
-      <Drops />
+
       <Box sx={{ height: "10vh" }} />
+      <StartBanner />
+      <Box sx={{ height: "10vh" }} />
+      <Testimonials />
+      <Box sx={{ height: "10vh" }} />
+      {/* <Advert /> */}
+
+      <Box sx={{ height: "5vh" }} />
       <Footer />
     </Fragment>
   );

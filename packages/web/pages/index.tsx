@@ -17,7 +17,7 @@ export default function Home() {
   const pages = [
     { title: "News", url: "/news" },
     { title: "Drops", url: "/drops" },
-    { title: "Services", url: "#" },
+    { title: "Services", url: "/services" },
     { title: "Marketplace", url: "/marketplace" },
     { title: "Feed", url: "/feed" },
   ];

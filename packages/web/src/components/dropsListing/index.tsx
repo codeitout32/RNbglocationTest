@@ -48,10 +48,6 @@ const Drops = () => {
   };
 
   const handleLoadmore = (e) => {
-<<<<<<< HEAD
-=======
-    console.log("pagination", pagination.page_num);
->>>>>>> dev
     dispatch(
       fetchDropsStart({
         ...pagination,
@@ -123,10 +119,7 @@ const Drops = () => {
             January 1st dum
           </Typography> */}
           <DropTable />
-<<<<<<< HEAD
-=======
           {/* Pending Button */}
->>>>>>> dev
           {/* <ButtonWhite
             sx={{ textTransform: "capitalize", mx: "auto" }}
             onClick={handleLoadmore}
