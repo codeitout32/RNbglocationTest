@@ -12,7 +12,7 @@ const NewsNavButton = ({ title, body, sx, href, ...rest }) => {
           flexDirection: "column",
           textTransform: "capitalize",
           boxShadow: "0px 0px 64px -30px #fff",
-          p: 2,
+          p: 2.5,
           borderRadius: 3,
           transition: "ease all 0.7s",
           " :disabled": {
@@ -23,10 +23,12 @@ const NewsNavButton = ({ title, body, sx, href, ...rest }) => {
         }}
         {...rest}
       >
-        <Typography variant="h6" component="div" color="text.primary">
+        <Typography variant="h4" component="div" color="text.primary">
           {title}
         </Typography>
-        <Typography variant="body2">{body}</Typography>
+        <Typography variant="body2" fontSize="1.1rem" my={2}>
+          {body}
+        </Typography>
       </Button>
     </Link>
   );

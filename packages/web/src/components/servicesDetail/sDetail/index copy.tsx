@@ -13,21 +13,15 @@ import {
   SvgIcon,
   Typography,
 } from "@mui/material";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { StyledPaper } from "./styledPaper";
 import { handleImageError } from "@next/common/utils/handleImageError";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fetchServicesStart } from "@next/common/slices/services.slice";
-import { servicesListSelector } from "@next/common/selectors";
-import Link from "next/link";
 
 const StartBanner = () => {
-  const dispatch = useDispatch();
-
-  const servicesList = useSelector(servicesListSelector);
-  const servicesList1 = [
+  const servicesList = [
     {
       title: "Dao Verification",
       image: "images/services/dao.svg",
@@ -59,11 +53,6 @@ const StartBanner = () => {
       content: "",
     },
   ];
-
-  React.useEffect(() => {
-    dispatch(fetchServicesStart());
-  }, []);
-
   return (
     <>
       <StyledPaper sx={{ bgcolor: "transparent" }}>
@@ -110,33 +99,33 @@ const StartBanner = () => {
           <Grid container spacing={4}>
             {servicesList.map((service) => (
               <Grid item md={4}>
-                <Link href={"services/" + service.id}>
-                  <Card>
-                    <CardActionArea sx={{ p: 4 }}>
-                      <Stack alignItems="center" spacing={1}>
-                        <img src={service.icon} alt="" height="64" />
+                <Card>
+                  <CardActionArea sx={{ p: 4 }}>
+                    <Stack alignItems="center" spacing={1}>
+                      <img src={service.image} alt="" width="64" />
 
-                        <Typography
-                          variant="h5"
-                          component="div"
-                          align="center"
-                          width="70%"
-                          minHeight="65px"
-                        >
-                          {service.title}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          component="p"
-                          fontSize={"1.1rem"}
-                          align="center"
-                        >
-                          {service.short_description}
-                        </Typography>
-                      </Stack>
-                    </CardActionArea>
-                  </Card>
-                </Link>
+                      <Typography
+                        variant="h5"
+                        component="div"
+                        align="center"
+                        width="70%"
+                        minHeight="65px"
+                      >
+                        {service.title}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        component="p"
+                        fontSize={"1.1rem"}
+                        align="center"
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        ut aliquam, purus sit amet luctus venenatis, lectus
+                        magna fringilla urna, porttitor
+                      </Typography>
+                    </Stack>
+                  </CardActionArea>
+                </Card>
               </Grid>
             ))}
           </Grid>

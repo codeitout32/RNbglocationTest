@@ -26,7 +26,7 @@ const NavsInfo = () => {
       title: "Marketplace",
       icon: <StorefrontIcon />,
       desc: "",
-      url: "#",
+      url: "/marketplace",
     },
     {
       title: "Drops",
@@ -38,7 +38,7 @@ const NavsInfo = () => {
       title: "Services",
       icon: <MiscellaneousServicesIcon />,
       desc: "",
-      url: "#",
+      url: "/services",
     },
     {
       title: "News",

@@ -11,6 +11,7 @@ import NewsLatest from "src/components/newsLatest";
 import FeaturedNews from "src/components/featuredNews";
 import RecentArticles from "src/components/recentArticles";
 import Advert from "src/components/advert";
+import { useRouter } from "next/router";
 
 export default function News() {
   const dispatch = useDispatch();
@@ -29,9 +30,17 @@ export default function News() {
     { title: "Feed", url: "/feed" },
   ];
 
+  const router = useRouter();
+  const { pid } = router.query;
+
   useEffect(() => {
     dispatch(fetchNewsStart());
   }, []);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    console.log("router", router.query);
+  }, [router]);
   return (
     <Fragment>
       <Header pages={pages} />

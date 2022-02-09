@@ -34,42 +34,42 @@ const Testimonials = () => {
   const brandList = [
     {
       title: "bitcoin",
-      image: "images/testimonials/bitcoin.svg",
+      image: "/images/testimonials/bitcoin.svg",
       link: "#",
     },
     {
       title: "ethreum",
-      image: "images/testimonials/ethreum.svg",
+      image: "/images/testimonials/ethreum.svg",
       link: "#",
     },
     {
       title: "litecoin",
-      image: "images/testimonials/litecoin.svg",
+      image: "/images/testimonials/litecoin.svg",
       link: "#",
     },
     {
       title: "polkadot",
-      image: "images/testimonials/polkadot.svg",
+      image: "/images/testimonials/polkadot.svg",
       link: "#",
     },
     {
       title: "solana",
-      image: "images/testimonials/solana.svg",
+      image: "/images/testimonials/solana.svg",
       link: "#",
     },
     {
       title: "stellar",
-      image: "images/testimonials/stellar.svg",
+      image: "/images/testimonials/stellar.svg",
       link: "#",
     },
     {
       title: "tron",
-      image: "images/testimonials/tron.svg",
+      image: "/images/testimonials/tron.svg",
       link: "#",
     },
     {
       title: "xrp",
-      image: "images/testimonials/xrp.svg",
+      image: "/images/testimonials/xrp.svg",
       link: "#",
     },
   ];

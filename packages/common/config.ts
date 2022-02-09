@@ -6,4 +6,5 @@ export const routes = {
   drops: serverUrl + "/drop",
   guides: serverUrl + "/guide",
   advert: serverUrl + "/advertise",
+  services: serverUrl + "/our-service",
 };

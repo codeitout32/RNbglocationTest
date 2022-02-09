@@ -65,7 +65,7 @@ const Header = ({ pages }) => {
       >
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <Link href="/">
+            <Link href="/" passHref>
               <Logo sx={{ mr: 0, display: { xs: "none", md: "flex" } }} />
             </Link>
 
@@ -117,7 +117,7 @@ const Header = ({ pages }) => {
               component="div"
               sx={{ flexGrow: 2, display: { xs: "flex", md: "none" } }}
             >
-              <Link href="/">
+              <Link href="/" passHref>
                 <IconButton>
                   <LogoIcon fontSize="large" />
                 </IconButton>
@@ -126,7 +126,7 @@ const Header = ({ pages }) => {
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages?.map((page, index) => (
-                <Link href={`${page.url}`} key={page.title}>
+                <Link href={`${page.url}`} key={page.title} passHref>
                   <Button
                     key={page.title}
                     size="small"
@@ -221,7 +221,7 @@ const Header = ({ pages }) => {
 
               {/* Button back and select wallet */}
               {isActive("/news") ? (
-                <Link href="/">
+                <Link href="/" passHref>
                   <Button
                     variant="contained"
                     sx={{ border: "1px white solid" }}
