@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Backdrop, Box, CircularProgress, Container } from "@mui/material";
 import { fetchNewsStart } from "@next/common/slices/news.slice";
 import { Fragment, useEffect } from "react";
 import { useIntl } from "react-intl";
@@ -12,15 +12,18 @@ import FeaturedNews from "src/components/featuredNews";
 import RecentArticles from "src/components/recentArticles";
 import Advert from "src/components/advert";
 import { useRouter } from "next/router";
+import { newsLoadingSelector } from "@next/common/selectors";
 
 export default function News() {
   const dispatch = useDispatch();
   const messages = useIntl();
+  const loading = useSelector(newsLoadingSelector);
   const pages = [
-    { title: "BlockChain", url: "#" },
-    { title: "NFTs", url: "/news" },
-    { title: "Opinions", url: "#" },
-    { title: "More", url: "#" },
+    { title: "BlockChain", url: "?cat=1" },
+    { title: "NFTs", url: "?cat=2" },
+    { title: "Opinions", url: "?cat=3" },
+    { title: "Cat 4", url: "?cat=4" },
+    { title: "Cat 5", url: "?cat=5" },
   ];
 
   const pages2 = [
@@ -31,7 +34,7 @@ export default function News() {
   ];
 
   const router = useRouter();
-  const { pid } = router.query;
+  const { cat } = router.query;
 
   useEffect(() => {
     dispatch(fetchNewsStart());
@@ -39,11 +42,13 @@ export default function News() {
 
   useEffect(() => {
     if (!router.isReady) return;
-    console.log("router", router.query);
+    if (!cat) return;
+    console.log("router", cat);
+    dispatch(fetchNewsStart({ category_id: cat }));
   }, [router]);
   return (
     <Fragment>
-      <Header pages={pages} />
+      <Header pages={pages} collapseMenuAfter={3} />
       <Container maxWidth="xl">
         <Box sx={{ height: "10vh" }} />
         <FeaturedNews />
@@ -60,6 +65,15 @@ export default function News() {
       </Container>
       <RecentArticles />
       <Box sx={{ height: "5vh" }} />
+      {loading && (
+        <Backdrop
+          sx={{ color: "Grey", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={true}
+        >
+          <CircularProgress color="inherit" />
+          &nbsp; Loading...
+        </Backdrop>
+      )}
       <Footer />
     </Fragment>
   );

@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import StyledGradPaper from "./gradPaper";
 import { grey } from "@mui/material/colors";
 import CustomToolTip from "./customToolTip";
+import parse from "html-react-parser";
 
 const Overview = () => {
   const singleDrops = useSelector(singleDropsSelector);
@@ -162,11 +163,12 @@ const Overview = () => {
           variant="body1"
           textAlign="center"
           paragraph
-          component="p"
+          // component="p"
+          color="text.secondary"
           sx={{ my: 7, mx: "auto" }}
           width={{ md: "55%", xs: "95%" }}
         >
-          {singleDrops.our_take_description}
+          {parse(singleDrops.our_take_description)}
         </Typography>
       </Container>
     </StyledGradPaper>

@@ -7,9 +7,10 @@ import commonService from "../services/common.service";
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function* fetchMultipleNewsSaga(action) {
+  const searchparams = new URLSearchParams(action.payload).toString();
   const params = {
     method: "get",
-    route: `${routes.news}`,
+    route: `${routes.news}?${searchparams}`,
     headerCred: {
       autherization: "myAuthToken",
     },

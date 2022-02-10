@@ -2,17 +2,19 @@ import React from "react";
 import StyledGradPaper from "@next/common/shared/components/gradPaper";
 import { Box, Stack, Typography } from "@mui/material";
 
-const Feed = () => {
+const Feed = ({ stickyHead = true }) => {
   return (
     <>
-      <Box sx={{ marginBottom: "-150px", position: "relative", zIndex: -2 }}>
-        <img
-          src="images/feed_top.png"
-          alt=""
-          width={"100%"}
-          style={{ objectFit: "contain" }}
-        />
-      </Box>
+      {stickyHead && (
+        <Box sx={{ marginBottom: "-150px", position: "relative", zIndex: -2 }}>
+          <img
+            src="images/feed_top.png"
+            alt=""
+            width={"100%"}
+            style={{ objectFit: "contain" }}
+          />
+        </Box>
+      )}
       <StyledGradPaper>
         <Stack sx={{ justifyContent: "center" }}>
           <Typography variant="h3" textAlign="center" my={8} gutterBottom>

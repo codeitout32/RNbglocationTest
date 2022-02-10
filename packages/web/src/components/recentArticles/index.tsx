@@ -58,6 +58,19 @@ const RecentArticles = () => {
           {recentNewsList.map((news, index) => (
             <ArticleItem key={index} news={news} />
           ))}
+
+          {!recentNewsList.length && (
+            <Typography
+              variant="h5"
+              textAlign="center"
+              component="div"
+              sx={{
+                my: 7,
+              }}
+            >
+              No News Found...
+            </Typography>
+          )}
           {/* <ArticleItem />
           <ArticleItem /> */}
         </Container>

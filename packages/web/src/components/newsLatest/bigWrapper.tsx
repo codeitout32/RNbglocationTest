@@ -5,13 +5,14 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
 
 const BigWrapper = ({ headNews, children }) => {
+  if (!headNews) return <></>; //fallback code
   return (
     <Fragment>
       <Grid container spacing={3} sx={{ minHeight: "500px" }}>
         <Grid item md={6} xs={12}>
           <Paper
             sx={{
-              backgroundImage: `url(${headNews.image}), url('https://picsum.photos/800/600')`,
+              backgroundImage: `url(${headNews?.image}), url('https://picsum.photos/800/600')`,
               backgroundSize: "cover",
               borderRadius: "20px",
               height: "100%",
@@ -44,7 +45,7 @@ const BigWrapper = ({ headNews, children }) => {
                         basic understanding of what they are, what they do, and
                         most importantly, why they matter.
                       </Typography> */}
-                <Link href={"/news/" + headNews.id}>
+                <Link href={"/news/" + headNews?.id}>
                   <ButtonTransparent
                     sx={{
                       textTransform: "capitalize",

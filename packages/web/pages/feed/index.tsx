@@ -20,7 +20,7 @@ export default function Home() {
       {/* Preiviously xl container was here */}
 
       <Box sx={{ height: "10vh" }} />
-      <Feed />
+      <Feed stickyHead={false} />
       <Box sx={{ height: "10vh" }} />
 
       <Footer />

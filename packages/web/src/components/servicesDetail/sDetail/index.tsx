@@ -56,7 +56,7 @@ const ServiceDetail = () => {
               //   width={{ md: "90%", xs: "95%" }}
             >
               {current ? (
-                current.short_description
+                current?.short_description
               ) : (
                 <>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -69,7 +69,7 @@ const ServiceDetail = () => {
               )}
             </Typography>
             <Typography variant="h5" component="div">
-              {current.title}
+              {current?.title}
             </Typography>
             <Typography
               variant="body2"
@@ -80,7 +80,7 @@ const ServiceDetail = () => {
               //   width={{ md: "90%", xs: "95%" }}
             >
               {current ? (
-                current.description
+                current?.description
               ) : (
                 <>
                   ➤ Quis lacus dolor ut donec. Auctor sem tristique id diam
@@ -99,14 +99,14 @@ const ServiceDetail = () => {
               )}
             </Typography>
             <Typography variant="h5" component="div" my={2}>
-              {current.title}
+              {current?.title}
             </Typography>
-            <img src={current.image} alt="" width="100%" />
+            <img src={current?.image} alt="" width="100%" />
             <Typography variant="h5" component="div" my={2.5}>
               Who is using it?
             </Typography>
             <Grid container>
-              {usingList.map((item) => (
+              {usingList?.map((item) => (
                 <Grid item md={3}>
                   <UsingBox item={item} />
                 </Grid>

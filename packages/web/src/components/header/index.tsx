@@ -15,28 +15,35 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ButtonWhite from "src/theme/buttonWhite";
+import { Grid, Link as Linkm } from "@mui/material";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Grid, Link as Linkm } from "@mui/material";
 import Logo from "./logo";
 import TextLogo from "src/theme/textLogo";
 import LogoIcon from "src/theme/logo";
 import MenuDrawer from "./drawer";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-const Header = ({ pages }) => {
+
+import MyMenu from "./myMenu";
+const Header = ({ pages, collapseMenuAfter = 5 }) => {
   // const pages = ["Marketplace", "News", "Drops", "Feed"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
   const linkRouter = useRouter();
 
   const isActive = (url) => {
-    return linkRouter.pathname.includes(url);
+    // console.log("linkrouter", linkRouter.asPath);
+    //used pathname before news category page.
+    return linkRouter.asPath.includes(url);
   };
+  const [toggleDrawer, setDrawer] = React.useState(false);
 
+  //Menu's state and functions
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [toggleDrawer, setDrawer] = React.useState(false);
+  const [anchorElMore, setAnchorElMore] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -53,6 +60,14 @@ const Header = ({ pages }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  //Menu's state and functions end
+
+  const mainPages = [...pages];
+
+  const restPages = mainPages.splice(collapseMenuAfter);
+
+  console.log("headerpages", mainPages, restPages, pages);
+
   return (
     <Fragment>
       <AppBar
@@ -101,7 +116,7 @@ const Header = ({ pages }) => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages?.map((page) => (
+                {mainPages?.map((page) => (
                   <MenuItem key={page.title} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
                       <Link href={page.url}>{page.title}</Link>
@@ -125,7 +140,7 @@ const Header = ({ pages }) => {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages?.map((page, index) => (
+              {mainPages?.map((page, index) => (
                 <Link href={`${page.url}`} key={page.title} passHref>
                   <Button
                     key={page.title}
@@ -136,7 +151,6 @@ const Header = ({ pages }) => {
                       my: 2,
                       fontSize: "1.125rem",
                       color: "text.secondary",
-                      // display: "block",
                       textTransform: "capitalize",
                       position: "relative",
                       "&:hover": {
@@ -146,11 +160,9 @@ const Header = ({ pages }) => {
                         color: "white",
                       },
                       "&.active > .navIcon": {
-                        // display: "inline-block",
                         opacity: "1",
                       },
                       "&:hover > .navIcon": {
-                        // display: "inline-block",
                         opacity: "1",
                       },
                     }}
@@ -181,6 +193,27 @@ const Header = ({ pages }) => {
                   </Button>
                 </Link>
               ))}
+
+              {/* Menu for more navs button */}
+              {restPages.length && (
+                <MyMenu
+                  title="more"
+                  buttonSx={{
+                    mx: 1,
+                    my: 2,
+                    fontSize: "1.125rem",
+                    color: "text.secondary",
+                    textTransform: "capitalize",
+
+                    "&:hover": {
+                      color: "white",
+                    },
+                  }}
+                  buttonProps={{ size: "small" }} // This prop may be not working
+                  menuList={restPages}
+                  activeFunc={isActive}
+                />
+              )}
             </Box>
 
             <Box

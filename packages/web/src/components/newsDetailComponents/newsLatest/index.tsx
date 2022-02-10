@@ -69,6 +69,18 @@ const NewsLatest = ({ asSidebar }) => {
             >
               The Latest
             </Typography>
+            {!latestNewsList.length && (
+              <Typography
+                variant="h6"
+                textAlign="center"
+                component="div"
+                sx={{
+                  my: 3,
+                }}
+              >
+                No News Found...
+              </Typography>
+            )}
             {sideBar}
           </Container>
         </StyledGradPaper>

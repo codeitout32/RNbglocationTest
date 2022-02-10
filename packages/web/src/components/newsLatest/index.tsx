@@ -83,6 +83,18 @@ const NewsLatest = ({ asSidebar }: { asSidebar: Boolean | undefined }) => {
         ) : (
           <BigWrapper headNews={headNews}>{sideBar}</BigWrapper>
         )}
+        {!latestNewsList.length && (
+          <Typography
+            variant="h5"
+            textAlign="center"
+            component="div"
+            sx={{
+              my: 7,
+            }}
+          >
+            No News Found...
+          </Typography>
+        )}
       </Container>
     </Paper>
   );

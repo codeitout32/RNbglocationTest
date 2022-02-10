@@ -29,7 +29,7 @@ const StyledGradPaper = styled(GradPaper)(
   }
 
   .dialog-box {
-    background: url(images/serv_dialog.svg);
+    background: url(/images/serv_dialog.svg);
     background-size: contain;
     background-repeat: no-repeat;
   }

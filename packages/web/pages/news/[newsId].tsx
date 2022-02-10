@@ -26,10 +26,11 @@ export default function News() {
   const router = useRouter();
   const { newsId } = router.query;
   const pages = [
-    { title: "BlockChain", url: "#" },
-    { title: "NFTs", url: "/news" },
-    { title: "Opinions", url: "#" },
-    { title: "More", url: "#" },
+    { title: "BlockChain", url: "/news/?cat=1" },
+    { title: "NFTs", url: "/news/?cat=2" },
+    { title: "Opinions", url: "/news/?cat=3" },
+    { title: "Cat 4", url: "/news/?cat=4" },
+    { title: "Cat 5", url: "/news/?cat=5" },
   ];
 
   const pages2 = [
@@ -51,7 +52,7 @@ export default function News() {
   }, [newsId]);
   return (
     <Fragment>
-      <Header pages={pages} />
+      <Header pages={pages} collapseMenuAfter={3} />
       <Container maxWidth="xl">
         <Box sx={{ height: "100px" }} />
         <Grid container maxWidth="lg" spacing={2} mx="auto">
