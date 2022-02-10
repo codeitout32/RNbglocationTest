@@ -54,7 +54,7 @@ const Footer = () => {
               mt: 2,
             }}
           >
-            Your NFT Hub, the #1 NFT Marketplace.
+            Your One Stop For Everything NFT Related.
           </Typography>
         </Grid>
         <Grid item md={3}></Grid>
@@ -118,7 +118,7 @@ const Footer = () => {
           // fontSize: "1rem",
         }}
       >
-        &copy;2021 NFTHUB All rights reserved
+        Copyright &copy; 2022 Your NFT Hub. All Rights Reserved.
       </Typography>
     </Container>
   );

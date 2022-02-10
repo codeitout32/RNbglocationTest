@@ -95,6 +95,7 @@ const Testimonials = () => {
               maxWidth={"540px"}
               width="40%"
               mx="auto"
+              pl={3}
             >
               <Avatar
                 alt="Remy Sharp"
@@ -137,11 +138,12 @@ const Testimonials = () => {
               maxWidth={"540px"}
               width="40%"
               mx="auto"
+              pl={3}
             >
               <Avatar
                 alt="Remy Sharp"
                 src={test.image}
-                sx={{ width: 65, height: 65, mt: 1 }}
+                sx={{ width: 65, height: 65, mt: 1, ml: 0 }}
               />
               <Box className="dialog-box" p={3} pl={4}>
                 <Typography

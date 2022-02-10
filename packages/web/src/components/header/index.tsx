@@ -195,7 +195,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
               ))}
 
               {/* Menu for more navs button */}
-              {restPages.length && (
+              {Boolean(restPages.length) && (
                 <MyMenu
                   title="more"
                   buttonSx={{
