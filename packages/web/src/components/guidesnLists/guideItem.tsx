@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import React, { Fragment } from "react";
 import { handleImageError } from "@next/common/utils/handleImageError";
+import Clamp from "react-multiline-clamp";
 
 const GuideItem = ({ date, title, image }) => {
   const divStyle = {
@@ -75,7 +76,9 @@ const GuideItem = ({ date, title, image }) => {
               {date}
             </Typography> */}
             <Typography variant="h5" fontSize={{ xs: "1.87rem" }}>
-              {title}
+              <Clamp withTooltip lines={2}>
+                {title} <br /> &nbsp;
+              </Clamp>
             </Typography>
           </CardContent>
           <div style={divStyle}> Hello</div>

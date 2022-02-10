@@ -100,7 +100,6 @@ const Drops = () => {
           }}
         />
         <Typography color="text.secondary">
-          {" "}
           Total Projects: {dropCount}
         </Typography>
         <Paper

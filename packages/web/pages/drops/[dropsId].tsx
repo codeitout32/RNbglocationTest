@@ -41,7 +41,7 @@ export default function News() {
       />
       <Container maxWidth="lg">
         <DropsDetail />
-        <Box sx={{ height: "50px" }} />
+        {/* <Box sx={{ height: "50px" }} /> */}
       </Container>
       <Overview />
       {/* <Box sx={{ height: "200px" }} /> */}

@@ -1,4 +1,5 @@
-import { Box, Container } from "@mui/material";
+import { Backdrop, Box, CircularProgress, Container } from "@mui/material";
+import { dropsLoadingSelector } from "@next/common/selectors";
 import { fetchDropsStart } from "@next/common/slices/drops.slice";
 import { fetchNewsStart } from "@next/common/slices/news.slice";
 import { Fragment, useEffect } from "react";
@@ -12,6 +13,7 @@ import Header from "src/components/header";
 export default function News() {
   const dispatch = useDispatch();
   const messages = useIntl();
+  const loading = useSelector(dropsLoadingSelector);
 
   const pages = [
     { title: "News", url: "/news" },
@@ -32,6 +34,15 @@ export default function News() {
       <Drops />
       <Box sx={{ height: "10vh" }} />
       <Footer />
+      {loading && (
+        <Backdrop
+          sx={{ color: "Grey", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={true}
+        >
+          <CircularProgress color="inherit" />
+          &nbsp; Loading...
+        </Backdrop>
+      )}
     </Fragment>
   );
 }

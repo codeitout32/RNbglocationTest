@@ -120,10 +120,10 @@ const DropsDetail = () => {
                 }}
               />
             </Typography>
-            <Box>
+            {/* <Box>
               <Button variant="contained">Metaverse</Button>
               <Button variant="contained">Game</Button>
-            </Box>
+            </Box> */}
 
             <Grid
               container
@@ -152,7 +152,7 @@ const DropsDetail = () => {
                 <Typography variant="h5">
                   {isLaunched()
                     ? `${singleDrops.listed_item}/${singleDrops.supply_content}`
-                    : moment(singleDrops.created_at).format("HH:mm A")}
+                    : moment(singleDrops.created_at).format("HH:mm A" + " UTC")}
                 </Typography>
                 <Typography variant="body2">
                   {isLaunched() ? "Listed item/ Total Supply " : "Time"}
@@ -185,7 +185,7 @@ const DropsDetail = () => {
             fontSize={"1.25rem"}
             textAlign="center"
             component="p"
-            sx={{ my: 7, mx: "auto" }}
+            sx={{ my: 3, mx: "auto" }}
             width={{ md: "60%", xs: "95%" }}
           >
             <Clamp withTooltip lines={3}>

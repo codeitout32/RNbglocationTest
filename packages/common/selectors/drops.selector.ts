@@ -14,3 +14,7 @@ export const dropsPaginationSelector = createSelector(
   dropsReducer,
   (drops) => drops.pagination
 );
+export const dropsLoadingSelector = createSelector(
+  dropsReducer,
+  (drops) => drops.loading
+);

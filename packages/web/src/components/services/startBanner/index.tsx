@@ -70,7 +70,7 @@ const StartBanner = () => {
         <Container maxWidth="lg">
           <Stack maxWidth="md" mx="15%" alignItems="center" spacing={3} mt={2}>
             <Typography variant="h3" component="div">
-              Our Excellent Service
+              Your NFT Hub Services
             </Typography>
             <Typography
               variant="body2"
@@ -80,16 +80,12 @@ const StartBanner = () => {
               sx={{ my: 7, mx: "auto" }}
               width={{ md: "90%", xs: "95%" }}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
+              Your NFT Hub Services is a place where you can avail all the
+              services required to build and maintain the NFT Project on Solana
+              blockchain With a strong & reliable team of developers, awesome
+              customer support and a quick turnaround time. You don’t have to
+              worry about anything related to your NFT Project, we will take
+              care of it.
             </Typography>
             <Box
               sx={{
@@ -101,9 +97,23 @@ const StartBanner = () => {
                 py: 3,
               }}
             >
-              <Button variant="text">Email Us</Button>
-              <Button variant="text">Contact Us</Button>
-              <Button variant="text">FAQs</Button>
+              <Button
+                variant="text"
+                href={process.env.NEXT_PUBLIC_EMAIL_US}
+                target="_blank"
+              >
+                Email Us
+              </Button>
+              <Button
+                variant="text"
+                href={process.env.NEXT_PUBLIC_SEND_DM}
+                target="_blank"
+              >
+                Contact Us
+              </Button>
+              <Button variant="text" href={""} target="_blank">
+                FAQs
+              </Button>
             </Box>
           </Stack>
           <Box height="20vh"></Box>

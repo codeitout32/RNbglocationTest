@@ -85,7 +85,7 @@ const Overview = () => {
               align="center"
               className="ovScore"
             >
-              {singleDrops.overall_score}
+              {singleDrops.overall_score}/100
             </Typography>
             <Tooltip
               title={
@@ -155,7 +155,7 @@ const Overview = () => {
           variant="h3"
           textAlign="center"
           component="div"
-          sx={{ my: 7 }}
+          sx={{ my: 3, mt: 12 }}
         >
           Our Take
         </Typography>
@@ -165,7 +165,7 @@ const Overview = () => {
           paragraph
           // component="p"
           color="text.secondary"
-          sx={{ my: 7, mx: "auto" }}
+          sx={{ mx: "auto" }}
           width={{ md: "55%", xs: "95%" }}
         >
           {parse(singleDrops.our_take_description)}

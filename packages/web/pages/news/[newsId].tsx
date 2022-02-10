@@ -29,8 +29,9 @@ export default function News() {
     { title: "BlockChain", url: "/news/?cat=1" },
     { title: "NFTs", url: "/news/?cat=2" },
     { title: "Opinions", url: "/news/?cat=3" },
-    { title: "Cat 4", url: "/news/?cat=4" },
+    { title: "Technology", url: "/news/?cat=4" },
     { title: "Cat 5", url: "/news/?cat=5" },
+    { title: "All News", url: "/news/" },
   ];
 
   const pages2 = [

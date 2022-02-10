@@ -22,8 +22,9 @@ export default function News() {
     { title: "BlockChain", url: "?cat=1" },
     { title: "NFTs", url: "?cat=2" },
     { title: "Opinions", url: "?cat=3" },
-    { title: "Cat 4", url: "?cat=4" },
+    { title: "Technology", url: "?cat=4" },
     { title: "Cat 5", url: "?cat=5" },
+    { title: "All News", url: "/news" },
   ];
 
   const pages2 = [
@@ -37,12 +38,13 @@ export default function News() {
   const { cat } = router.query;
 
   useEffect(() => {
-    dispatch(fetchNewsStart());
+    //deprecated useEffect
+    if (!cat) console.log("router1", cat);
   }, []);
 
   useEffect(() => {
     if (!router.isReady) return;
-    if (!cat) return;
+    if (!cat) return dispatch(fetchNewsStart());
     console.log("router", cat);
     dispatch(fetchNewsStart({ category_id: cat }));
   }, [router]);

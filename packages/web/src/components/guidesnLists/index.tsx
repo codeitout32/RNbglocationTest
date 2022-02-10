@@ -61,7 +61,7 @@ const GuidesnLists = () => {
               {newslist?.map((item, index) => {
                 if (index > 2) return;
                 return (
-                  <Grid item>
+                  <Grid item md={4}>
                     <GuideItem
                       image={item.image}
                       date={item.created_at}

@@ -23,28 +23,28 @@ const NavsInfo = () => {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque lectus dictumst luctus quam posuere et urna, egestas quam.";
   const navs = [
     {
-      title: "Marketplace",
-      icon: <StorefrontIcon />,
-      desc: "",
-      url: "/marketplace",
+      title: "News",
+      icon: <NewspaperIcon />,
+      desc: "YNH wants you to be updated with the latest trends and news pertaining to Solana and NFT space. ",
+      url: "/news",
     },
     {
       title: "Drops",
       icon: <InstallDesktopIcon />,
-      desc: "",
+      desc: "YNH allows you to keep you updated for upcoming NFT drops with a well researched and easy to understand scoring mechanism.",
       url: "/drops",
     },
     {
       title: "Services",
       icon: <MiscellaneousServicesIcon />,
-      desc: "",
+      desc: "YNH simplifies the complexity of various required checklists for a successful launch of the NFT project by providing the required services.",
       url: "/services",
     },
     {
-      title: "News",
-      icon: <NewspaperIcon />,
-      desc: "",
-      url: "/news",
+      title: "Marketplace",
+      icon: <StorefrontIcon />,
+      desc: "YNH introduces you to the leading marketplace on Solana where buying, selling and trading NFTs becomes easy.",
+      url: "/marketplace",
     },
   ];
   return (
@@ -65,7 +65,7 @@ const NavsInfo = () => {
                   />
                   <CardContent>
                     <Typography variant="body1" gutterBottom>
-                      {dumDesc}
+                      {nav.desc}
                     </Typography>
                   </CardContent>
                 </CardActionArea>

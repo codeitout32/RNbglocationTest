@@ -83,7 +83,8 @@ const RelatedNewsItem = ({ news }) => {
                   ? title.substring(0, 25).concat("...")
                   : title} */}
                 <Clamp withTooltip lines={2}>
-                  {title}
+                  {title} <br /> &nbsp;
+                  {/* <-- used to make it always two lines */}
                 </Clamp>
               </Typography>
             </CardContent>
