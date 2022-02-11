@@ -1,4 +1,10 @@
-import { Backdrop, Box, CircularProgress, Container } from "@mui/material";
+import {
+  Backdrop,
+  Box,
+  CircularProgress,
+  Collapse,
+  Container,
+} from "@mui/material";
 import { fetchNewsStart } from "@next/common/slices/news.slice";
 import { Fragment, useEffect } from "react";
 import { useIntl } from "react-intl";
@@ -13,8 +19,10 @@ import RecentArticles from "src/components/recentArticles";
 import Advert from "src/components/advert";
 import { useRouter } from "next/router";
 import { newsLoadingSelector } from "@next/common/selectors";
+import React from "react";
 
 export default function News() {
+  // const [checked, setChecked] = React.useState(false);  state to show hide featured transition.
   const dispatch = useDispatch();
   const messages = useIntl();
   const loading = useSelector(newsLoadingSelector);
@@ -38,24 +46,37 @@ export default function News() {
   const { cat } = router.query;
 
   useEffect(() => {
-    //deprecated useEffect
+    //deprecated useEffect, this can be removed
     if (!cat) console.log("router1", cat);
   }, []);
 
   useEffect(() => {
     if (!router.isReady) return;
-    if (!cat) return dispatch(fetchNewsStart());
+    if (!cat) {
+      dispatch(fetchNewsStart());
+      return;
+    }
     console.log("router", cat);
     dispatch(fetchNewsStart({ category_id: cat }));
   }, [router]);
   return (
     <Fragment>
       <Header pages={pages} collapseMenuAfter={3} />
-      <Container maxWidth="xl">
-        <Box sx={{ height: "10vh" }} />
-        <FeaturedNews />
-        <Box sx={{ height: "10vh" }} />
-      </Container>
+      {/* {!cat && (
+        <Container maxWidth="xl">
+          <Box sx={{ height: "10vh" }} />
+          <FeaturedNews />
+          <Box sx={{ height: "10vh" }} />
+        </Container>
+      )} */}
+      <Collapse in={!cat}>
+        <Container maxWidth="xl">
+          <Box sx={{ height: "10vh" }} />
+          <FeaturedNews />
+          <Box sx={{ height: "10vh" }} />
+        </Container>
+      </Collapse>
+
       <NewsLatest />
       <Box sx={{ height: "10vh" }} />
       <Advert />

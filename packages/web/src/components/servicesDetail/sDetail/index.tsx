@@ -37,7 +37,7 @@ const ServiceDetail = () => {
     { image: "/images/services/bull.png", title: "Crypto Bull Society" },
   ];
 
-  const { current, next, previous } = singleService;
+  const { current, next, previous, users } = singleService;
 
   return (
     <>
@@ -103,12 +103,16 @@ const ServiceDetail = () => {
             </Typography>
             <img src={current?.image} alt="" width="100%" />
             <Typography variant="h5" component="div" my={2.5}>
-              Who is using it?
+              {users.length ? "Who is using it?" : ""}
             </Typography>
             <Grid container>
-              {usingList?.map((item) => (
+              {users?.map((item, index) => (
                 <Grid item md={3}>
-                  <UsingBox item={item} />
+                  <UsingBox
+                    item={item}
+                    dummy={usingList[index]}
+                    key={item.id}
+                  />
                 </Grid>
               ))}
             </Grid>

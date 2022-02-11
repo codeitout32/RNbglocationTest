@@ -1,38 +1,33 @@
 import React from "react";
-import {
-  Avatar,
-  Badge,
-  Box,
-  Button,
-  Card,
-  CardActionArea,
-  Container,
-  Grid,
-  IconButton,
-  Paper,
-  Stack,
-  SvgIcon,
-  Typography,
-} from "@mui/material";
+import { Box, CardActionArea, Link, Typography } from "@mui/material";
 
-const UsingBox = ({ item }) => {
+const UsingBox = ({ item, dummy }) => {
+  const handleImageError1 = (e) => {
+    e.target.src = dummy.image;
+  };
   return (
     <>
       <Box>
-        <img src={item.image} alt="" />
-        <Typography
-          variant="body2"
-          fontSize={"1.25rem"}
-          textAlign="center"
-          component="p"
-          sx={{
-            my: 1,
-            //  mx: "auto"
-          }}
-          width={{ md: "90%", xs: "95%" }}
+        <CardActionArea
+          href={item.link}
+          target="_blank"
+          sx={{ "&:hover": { textDecoration: "none" } }}
         >
-          {item.title}
-        </Typography>
+          <img src={item.icon} alt="" onError={handleImageError1} />
+          <Typography
+            variant="body2"
+            fontSize={"1.25rem"}
+            textAlign="center"
+            component="p"
+            sx={{
+              my: 1,
+              //  mx: "auto"
+            }}
+            width={{ md: "90%", xs: "95%" }}
+          >
+            {item.name}
+          </Typography>
+        </CardActionArea>
       </Box>
     </>
   );
