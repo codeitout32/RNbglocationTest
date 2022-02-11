@@ -6,6 +6,10 @@ export const guidesListSelector = createSelector(
   guidesReducer,
   (guides) => guides.guidesList
 );
+export const guidesLoadingSelector = createSelector(
+  guidesReducer,
+  (guides) => guides.loading
+);
 export const singleGuidesSelector = createSelector(
   guidesReducer,
   (guides) => guides.singleGuides

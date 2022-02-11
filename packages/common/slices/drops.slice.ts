@@ -1,5 +1,23 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
 
+// reducer function for adding list to end of droplist
+const getReducer = (obj) => {
+  console.log("object passed", obj);
+  const obj2 = { ...obj };
+  const reducer = (x, y) => {
+    console.log("obj2", obj2, "x", x);
+    if (x.hasOwnProperty(y)) {
+      console.log("reducer", x, y);
+      x[y] = [...x[y], ...obj2[y]];
+      return x;
+    } else {
+      /*  {...x, [y]: obj2[y]} */
+      x[y] = obj2[y];
+      return x;
+    }
+  };
+  return reducer;
+};
 export interface DropsList {
   dropsList: Array<Object>;
   loading: boolean;
@@ -36,13 +54,19 @@ export const newsSlice = createSlice({
       };
     },
     fetchDropsSuccess: (state, action) => {
+      // const newlist = current(action.payload);
+      // const oldlist = current(state.dropsList);
+      // const finalist = Object.keys(newlist.drops).reduce(
+      //   getReducer(newlist.drops),
+      //   oldlist["drops"]
+      // );
+      // console.log("finalist", finalist);
       return {
         ...state,
         loading: false,
-        dropsList:
-          state.pagination.page_num === 1
-            ? action.payload
-            : Object.assign({}, state.dropsList, action.payload),
+        dropsList: action.payload,
+        // dropsList: state.pagination.page_num === 1 ? action.payload : {},
+        // : Object.assign({}, state.dropsList, action.payload),
       };
     },
     fetchDropsError: (state, action: PayloadAction<T>) => {

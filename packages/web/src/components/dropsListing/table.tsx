@@ -45,13 +45,12 @@ const dateFunctn = (rawdate) => {
   return date.toLocaleString("en-us", options);
 };
 
-export default function DropTable() {
-  let dropsList = {};
+export default function DropTable({ dropsList }) {
   const dropsListraw = useSelector(dropsListSelector);
   // dropsList = dropsList.concat(
   //   dropsListraw.filter((item) => dropsList.indexOf(item) < 0)
   // );
-  dropsList = { ...dropsList, ...dropsListraw };
+  // dropsList = { ...dropsList, ...dropsListraw };
 
   return (
     <TableContainer component={"div"} sx={{ pb: 5 }}>

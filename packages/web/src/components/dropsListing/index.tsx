@@ -26,14 +26,19 @@ import { fetchDropsStart } from "@next/common/slices/drops.slice";
 const Drops = () => {
   const [isUpcoming, setUpcoming] = React.useState("1");
   const [search, setSearch] = React.useState("");
+  const [dropsList, setdropsList] = React.useState({});
   const dispatch = useDispatch();
   const dropCount = useSelector(dropsListSelector)?.count;
   const pagination = useSelector(dropsPaginationSelector);
 
   const handleTabChange = (event, newValue) => {
+    // setdropsList({});
     setUpcoming(newValue);
   };
 
+  // let dropsList = {};
+  const dropsListraw = useSelector(dropsListSelector);
+  console.log("dropslist", dropsList);
   const handleChange = (e) => {
     setSearch(e.target.value);
     dispatch(
@@ -41,11 +46,41 @@ const Drops = () => {
         group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
         title: e.target.value,
-        row_per_page: "50",
+        row_per_page: "5",
         page_num: 1,
       })
     );
   };
+
+  // reducer function for adding list to end of droplist
+  const getReducer = (obj) => {
+    console.log("object passed", obj);
+    const obj2 = { ...obj };
+    const reducer = (x, y) => {
+      console.log("obj2", obj2, "x", x);
+      if (x.hasOwnProperty(y)) {
+        console.log("reducer", x, y);
+        if (y == "count") return x;
+        x[y] = [...x[y], ...obj2[y]];
+        return x;
+      } else {
+        /*  {...x, [y]: obj2[y]} */
+        x[y] = obj2[y];
+        return x;
+      }
+    };
+    return reducer;
+  };
+
+  useEffect(() => {
+    const temp = Object.keys(dropsListraw).reduce(
+      getReducer(dropsListraw),
+      dropsList
+    );
+    setdropsList(temp);
+  }, [dropsListraw]);
+
+  console.log("dropslist2", dropsList);
 
   const handleLoadmore = (e) => {
     dispatch(
@@ -57,9 +92,11 @@ const Drops = () => {
   };
 
   useEffect(() => {
+    console.log("fetch started drops");
+
     dispatch(
       fetchDropsStart({
-        row_per_page: "50",
+        row_per_page: "5",
         group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
         page_num: 1,
@@ -117,14 +154,14 @@ const Drops = () => {
           {/* <Typography variant="h5" textAlign="center" color="grey.500">
             January 1st dum
           </Typography> */}
-          <DropTable />
+          <DropTable dropsList={dropsList} />
           {/* Pending Button */}
-          {/* <ButtonWhite
+          <ButtonWhite
             sx={{ textTransform: "capitalize", mx: "auto" }}
             onClick={handleLoadmore}
           >
             Load more
-          </ButtonWhite> */}
+          </ButtonWhite>
         </Paper>
         <ApplyCard sx={{ width: "100%" }} />
       </Stack>

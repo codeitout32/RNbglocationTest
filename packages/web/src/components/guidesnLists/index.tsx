@@ -6,6 +6,7 @@ import GuideItem from "./guideItem";
 import { fetchGuidesStart } from "@next/common/slices/guides.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { guidesListSelector } from "@next/common/selectors";
+import Link from "next/link";
 
 const GuidesnLists = () => {
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ const GuidesnLists = () => {
                       image={item.image}
                       date={item.created_at}
                       title={item.title}
+                      id={item.id}
                     />
                   </Grid>
                 );
