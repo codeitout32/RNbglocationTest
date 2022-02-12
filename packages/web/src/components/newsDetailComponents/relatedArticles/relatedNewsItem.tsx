@@ -17,8 +17,8 @@ import Clamp from "react-multiline-clamp";
 
 // taken from guidenlist item
 const RelatedNewsItem = ({ news }) => {
-  const { date, title } = news;
-  const image = "https://picsum.photos/1200/300";
+  const { date, title, image } = news;
+  const imageOld = "https://picsum.photos/1200/300";
   const divStyle = {
     border: 1,
     borderRadius: 5,

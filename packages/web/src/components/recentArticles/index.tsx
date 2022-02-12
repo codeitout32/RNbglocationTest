@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 // taken from latest news
 
 const RecentArticles = () => {
+  const [resultList, setResultList] = React.useState([]);
   const divStyle = {
     position: "relative",
     top: "-200px",
@@ -32,6 +33,18 @@ const RecentArticles = () => {
   const recentNewsList = newsList.rows
     ? newsList?.rows.filter((news) => news.is_recent === 1)
     : [];
+
+  const finalNews = recentNewsList.filter(
+    (v, i, a) => a.findIndex((t) => t.id === v.id) === i
+  );
+
+  React.useEffect(() => {
+    const tempNews = [...resultList, ...recentNewsList];
+    setResultList(() =>
+      tempNews.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)
+    );
+  }, [newsList]);
+
   return (
     <Fragment>
       <Paper
@@ -55,11 +68,11 @@ const RecentArticles = () => {
             Recent Articles
           </Typography>
 
-          {recentNewsList.map((news, index) => (
+          {resultList.map((news, index) => (
             <ArticleItem key={index} news={news} />
           ))}
 
-          {!recentNewsList.length && (
+          {!resultList.length && (
             <Typography
               variant="h5"
               textAlign="center"

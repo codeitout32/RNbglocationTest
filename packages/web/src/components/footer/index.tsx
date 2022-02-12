@@ -4,14 +4,14 @@ import Logo from "src/theme/logo";
 
 const Footer = () => {
   const company = [
-    { title: "About Us", link: "#" },
-    { title: "Privacy Policy", link: "#" },
-    { title: "How To guide", link: "#" },
-    { title: "Terms of service", link: "#" },
+    // { title: "About Us", link: "#" },
+    { title: "Privacy Policy", link: "/privacy" },
+    // { title: "How To guide", link: "#" },
+    { title: "Terms of service", link: "/terms" },
   ];
   const commuinty = [
-    { title: "Twitter", link: "#" },
-    { title: "Discord", link: "#" },
+    { title: "Twitter", link: "https://twitter.com/YourNFTHub" },
+    { title: "Discord", link: "https://discord.gg/e9VDZyXmtH" },
     { title: "FAQs", link: "#" },
   ];
   return (
@@ -73,7 +73,7 @@ const Footer = () => {
           </Typography>
           {company.map((item, index) => (
             <Link
-              href="#"
+              href={item.link}
               underline="none"
               color="inherit"
               sx={{ display: "block", typography: "h6", fontFamily: "DM Sans" }}
@@ -98,11 +98,12 @@ const Footer = () => {
           </Typography>
           {commuinty.map((item) => (
             <Link
-              href="#"
+              href={item.link}
               underline="none"
               color="inherit"
               sx={{ display: "block", typography: "h6", fontFamily: "DM Sans" }}
               key={item.title}
+              target="_blank"
             >
               {item.title}
             </Link>

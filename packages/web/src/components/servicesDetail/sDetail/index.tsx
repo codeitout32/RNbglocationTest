@@ -27,6 +27,8 @@ import {
   singleServicesSelector,
 } from "@next/common/selectors";
 
+import parse from "html-react-parser";
+
 const ServiceDetail = () => {
   const singleService = useSelector(singleServicesSelector);
   const loading = useSelector(servicesLoadingSelector);
@@ -56,7 +58,7 @@ const ServiceDetail = () => {
               //   width={{ md: "90%", xs: "95%" }}
             >
               {current ? (
-                current?.short_description
+                parse(current?.short_description)
               ) : (
                 <>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -80,7 +82,7 @@ const ServiceDetail = () => {
               //   width={{ md: "90%", xs: "95%" }}
             >
               {current ? (
-                current?.description
+                parse(current?.description)
               ) : (
                 <>
                   ➤ Quis lacus dolor ut donec. Auctor sem tristique id diam
@@ -98,10 +100,10 @@ const ServiceDetail = () => {
                 </>
               )}
             </Typography>
-            <Typography variant="h5" component="div" my={2}>
+            {/* <Typography variant="h5" component="div" my={2}>
               {current?.title}
             </Typography>
-            <img src={current?.image} alt="" width="100%" />
+            <img src={current?.image} alt="" width="100%" /> */}
             <Typography variant="h5" component="div" my={2.5}>
               {users.length ? "Who is using it?" : ""}
             </Typography>

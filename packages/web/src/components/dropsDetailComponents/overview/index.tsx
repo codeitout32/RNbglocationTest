@@ -23,11 +23,11 @@ const Overview = () => {
       value: singleDrops.roadmap_score,
     },
     {
-      title: "Discord member",
+      title: "Discord Score",
       value: singleDrops.discord_member,
     },
     {
-      title: " Twitter Followers",
+      title: " Twitter Score",
       value: singleDrops.twitter_followers,
     },
     {

@@ -42,6 +42,15 @@ export default function News() {
     { title: "Feed", url: "/feed" },
   ];
 
+  const handleLoadmore = (e) => {
+    dispatch(
+      fetchDropsStart({
+        ...pagination,
+        page_num: pagination.page_num + 1,
+      })
+    );
+  };
+
   const router = useRouter();
   const { cat } = router.query;
 
@@ -53,7 +62,7 @@ export default function News() {
   useEffect(() => {
     if (!router.isReady) return;
     if (!cat) {
-      dispatch(fetchNewsStart());
+      dispatch(fetchNewsStart({ row_per_page: "50" }));
       return;
     }
     console.log("router", cat);

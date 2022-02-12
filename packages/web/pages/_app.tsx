@@ -18,6 +18,7 @@ import NProgress from "nprogress";
 import "../public/css/nprogress.css";
 import React from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function App({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
@@ -54,6 +55,13 @@ export default function App({ Component, pageProps }) {
             defaultLocale="en"
             messages={AppLocale.en.messages}
           >
+            <Head>
+              <title>Your NFT Hub</title>
+              <meta
+                name="viewport"
+                content="initial-scale=1.0, width=device-width"
+              />
+            </Head>
             <CssBaseline />
             <GlobalStyles styles={{ root: { textTransform: "capitalize" } }} />
             <Component {...pageProps} />

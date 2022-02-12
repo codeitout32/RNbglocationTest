@@ -25,6 +25,7 @@ function* fetchMultipleNewsSaga(action) {
     handleError(error);
   }
 }
+
 function* fetchRelatedNewsSaga(action) {
   const searchparams = new URLSearchParams(action.payload).toString();
 

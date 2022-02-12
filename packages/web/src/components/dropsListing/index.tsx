@@ -4,6 +4,7 @@ import {
   Stack,
   Tab,
   Tabs,
+  Box,
   TextField,
   Typography,
 } from "@mui/material";
@@ -31,56 +32,42 @@ const Drops = () => {
   const dropCount = useSelector(dropsListSelector)?.count;
   const pagination = useSelector(dropsPaginationSelector);
 
+  //Rowperpage
+  const rpp = "5";
+
   const handleTabChange = (event, newValue) => {
     // setdropsList({});
     setUpcoming(newValue);
   };
 
-  // let dropsList = {};
   const dropsListraw = useSelector(dropsListSelector);
   console.log("dropslist", dropsList);
+
+  // function to handle search.
   const handleChange = (e) => {
     setSearch(e.target.value);
     dispatch(
       fetchDropsStart({
-        group_by: "date",
-        type: isUpcoming === "1" ? "upcoming" : "launched",
+        ...pagination,
+        // group_by: "date",
+        // type: isUpcoming === "1" ? "upcoming" : "launched",
         title: e.target.value,
-        row_per_page: "5",
+        // row_per_page: rpp,
         page_num: 1,
       })
     );
   };
 
-  // reducer function for adding list to end of droplist
-  const getReducer = (obj) => {
-    console.log("object passed", obj);
-    const obj2 = { ...obj };
-    const reducer = (x, y) => {
-      console.log("obj2", obj2, "x", x);
-      if (x.hasOwnProperty(y)) {
-        console.log("reducer", x, y);
-        if (y == "count") return x;
-        x[y] = [...x[y], ...obj2[y]];
-        return x;
-      } else {
-        /*  {...x, [y]: obj2[y]} */
-        x[y] = obj2[y];
-        return x;
-      }
-    };
-    return reducer;
-  };
+  // Function to concat old and new list
+  // useEffect(() => {
+  //   const temp = Object.keys(dropsListraw).reduce(
+  //     getReducer(dropsListraw),
+  //     dropsList
+  //   );
+  //   setdropsList(temp);
+  // }, [dropsListraw, dropsList]);
 
-  useEffect(() => {
-    const temp = Object.keys(dropsListraw).reduce(
-      getReducer(dropsListraw),
-      dropsList
-    );
-    setdropsList(temp);
-  }, [dropsListraw]);
-
-  console.log("dropslist2", dropsList);
+  // console.log("dropslist2", dropsList);
 
   const handleLoadmore = (e) => {
     dispatch(
@@ -91,12 +78,14 @@ const Drops = () => {
     );
   };
 
+  //Effect to load list on start and on tab change
+
   useEffect(() => {
     console.log("fetch started drops");
-
+    console.log("droplist now", dropsList);
     dispatch(
       fetchDropsStart({
-        row_per_page: "5",
+        row_per_page: rpp,
         group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
         page_num: 1,
@@ -111,7 +100,7 @@ const Drops = () => {
           value={isUpcoming}
           onChange={handleTabChange}
           centered
-          textColor="white"
+          textColor="text.primary"
           sx={{ width: "100%" }}
         >
           <Tab label="Upcoming" value="1" />
@@ -154,15 +143,21 @@ const Drops = () => {
           {/* <Typography variant="h5" textAlign="center" color="grey.500">
             January 1st dum
           </Typography> */}
-          <DropTable dropsList={dropsList} />
-          {/* Pending Button */}
-          <ButtonWhite
-            sx={{ textTransform: "capitalize", mx: "auto" }}
-            onClick={handleLoadmore}
-          >
-            Load more
-          </ButtonWhite>
+          <DropTable />
+          {dropCount ? (
+            <ButtonWhite
+              sx={{ textTransform: "capitalize", mx: "auto" }}
+              onClick={handleLoadmore}
+            >
+              Load more
+            </ButtonWhite>
+          ) : (
+            <Typography color="text.secondary" align="center">
+              End of List
+            </Typography>
+          )}
         </Paper>
+        <Box sx={{ height: "5vh" }} />
         <ApplyCard sx={{ width: "100%" }} />
       </Stack>
     </Fragment>
