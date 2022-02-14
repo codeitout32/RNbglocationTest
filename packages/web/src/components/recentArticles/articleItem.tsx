@@ -46,19 +46,16 @@ const ArticleItem = ({ news }) => {
                 borderRadius: "10px",
                 overflow: "hidden",
                 bgcolor: "inherit",
-                width: "250px",
-                mx: "auto",
+                width: { md: "250px" },
                 img: {
                   objectFit: "cover",
+                  height: { md: "180px" },
+                  width: { xs: "95%", md: "100%" },
+                  mx: "auto",
                 },
               }}
             >
-              <img
-                height="180px"
-                width="100%"
-                src={news.image}
-                onError={handleImageError}
-              />
+              <img src={news.image} onError={handleImageError} />
             </Paper>
           </Grid>
           <Grid item md={8} xs={12}>
