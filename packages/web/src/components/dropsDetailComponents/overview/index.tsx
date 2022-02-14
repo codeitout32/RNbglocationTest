@@ -163,7 +163,7 @@ const Overview = () => {
           variant="body1"
           textAlign="center"
           paragraph
-          // component="p"
+          component="div"
           color="text.secondary"
           sx={{ mx: "auto" }}
           width={{ md: "55%", xs: "95%" }}

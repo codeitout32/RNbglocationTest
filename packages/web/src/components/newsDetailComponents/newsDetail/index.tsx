@@ -66,7 +66,7 @@ const NewsDetail = () => {
             {moment(current?.created_at).format("MMMM DD, YYYY")}
           </Typography>
         </Box>
-        <Typography variant="body1" component="p" color="text.secondary">
+        <Typography variant="body1" component="div" color="text.secondary">
           {parse(body)}
         </Typography>
 

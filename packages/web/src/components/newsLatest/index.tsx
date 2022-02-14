@@ -27,7 +27,7 @@ type NewsLatest = {
   asSidebar: boolean;
 };
 
-const NewsLatest = ({ asSidebar }: { asSidebar: Boolean | undefined }) => {
+const NewsLatest = ({ asSidebar }: { asSidebar: Boolean | null }) => {
   const newsList = useSelector(newsListSelector);
 
   const latestNewsList = newsList.rows

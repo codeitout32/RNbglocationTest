@@ -12,14 +12,24 @@ import {
 import ButtonWhite from "src/theme/buttonWhite";
 import { url } from "inspector";
 
-import { newsListSelector, singleNewsSelector } from "@next/common/selectors";
-import { useSelector } from "react-redux";
+import {
+  newsListSelector,
+  singleNewsSelector,
+  relatedNewsSelector,
+} from "@next/common/selectors";
+import { useDispatch, useSelector } from "react-redux";
 import RelatedNewsItem from "./relatedNewsItem";
 import { StyledPaper } from "./styles/styledRelNewsPape";
+import { fetchRelatedNewsStart } from "@next/common/slices/news.slice";
+import { duplicateRemover } from "./utils";
 
 // taken from recent article index
 
 const RelatedArticles = () => {
+  const [resultList, setResultList] = React.useState([]);
+  const [pageNo, setPageNo] = React.useState(1);
+  const dispatch = useDispatch();
+  const category = useSelector(singleNewsSelector).current.category_id;
   const divStyle = {
     position: "relative",
     top: "-200px",
@@ -30,9 +40,33 @@ const RelatedArticles = () => {
   };
 
   const singleNews = useSelector(singleNewsSelector);
-  const relatedNews = singleNews?.relatedNews
-    ? singleNews.relatedNews.rows
-    : [];
+  const relatedNewsraw = useSelector(relatedNewsSelector);
+  const relatedNews = relatedNewsraw ? relatedNewsraw.rows : [];
+
+  //first api hit is declared in singlenewsSaga
+  // only 2nd and else api hits are declared here.
+  const handleLoadmore = (e) => {
+    dispatch(
+      fetchRelatedNewsStart({
+        category_id: category ? category : "",
+        page_num: pageNo + 1,
+        row_per_page: 6,
+      })
+    );
+    setPageNo((state) => state + 1);
+  };
+
+  React.useEffect(() => {
+    console.log("category", category);
+    setResultList([]);
+    console.log("resultList", resultList);
+    setPageNo(1);
+  }, [singleNews]);
+
+  React.useEffect(() => {
+    const tempNews = [...resultList, ...relatedNews];
+    setResultList(() => duplicateRemover(tempNews));
+  }, [relatedNews]);
   return (
     <Fragment>
       <StyledPaper
@@ -58,14 +92,11 @@ const RelatedArticles = () => {
           </Typography>
 
           <Grid container spacing={3}>
-            {relatedNews?.map((news, index) => {
-              if (index > 5) return;
-              return (
-                <Grid item md={4}>
-                  <RelatedNewsItem key={index} news={news} />
-                </Grid>
-              );
-            })}
+            {resultList?.map((news, index) => (
+              <Grid item md={4}>
+                <RelatedNewsItem key={index} news={news} />
+              </Grid>
+            ))}
           </Grid>
           {/* <Grid item xs={12} textAlign="center">
             <ButtonWhite> Explore</ButtonWhite>
@@ -73,6 +104,24 @@ const RelatedArticles = () => {
 
           {/* <ArticleItem />
           <ArticleItem /> */}
+
+          {relatedNews.length ? (
+            <ButtonWhite
+              sx={{
+                textTransform: "capitalize",
+                mx: "auto",
+                display: "block",
+                mt: 3,
+              }}
+              onClick={handleLoadmore}
+            >
+              Load more
+            </ButtonWhite>
+          ) : (
+            <Typography color="text.secondary" align="center">
+              End of List
+            </Typography>
+          )}
         </Container>
       </StyledPaper>
     </Fragment>

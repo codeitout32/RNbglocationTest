@@ -5,7 +5,10 @@ import {
   Collapse,
   Container,
 } from "@mui/material";
-import { fetchNewsStart } from "@next/common/slices/news.slice";
+import {
+  fetchNewsStart,
+  fetchRecentNewsStart,
+} from "@next/common/slices/news.slice";
 import { Fragment, useEffect } from "react";
 import { useIntl } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
@@ -41,15 +44,6 @@ export default function News() {
     { title: "Drops", url: "/drops" },
     { title: "Feed", url: "/feed" },
   ];
-
-  const handleLoadmore = (e) => {
-    dispatch(
-      fetchDropsStart({
-        ...pagination,
-        page_num: pagination.page_num + 1,
-      })
-    );
-  };
 
   const router = useRouter();
   const { cat } = router.query;
@@ -95,7 +89,7 @@ export default function News() {
         <GuidesnLists />
         <Box sx={{ height: "10vh" }} />
       </Container>
-      <RecentArticles />
+      <RecentArticles category={cat} />
       <Box sx={{ height: "5vh" }} />
       {loading && (
         <Backdrop

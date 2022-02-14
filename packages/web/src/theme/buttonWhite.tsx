@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const ButtonWhite = (props) => {
+const ButtonWhite = React.forwardRef((props, ref) => {
   return (
     <Button
       {...props}
@@ -14,10 +14,11 @@ const ButtonWhite = (props) => {
           backgroundColor: "#d3d3d3",
         },
       }}
+      // ref={ref}
     >
       {props.children}
     </Button>
   );
-};
+});
 
 export default ButtonWhite;

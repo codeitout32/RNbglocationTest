@@ -190,7 +190,7 @@ const Testimonials = () => {
                     width="100%"
                     image={brand.image}
                     alt=""
-                    sx={{ maxWidth: "180px" }}
+                    sx={{ maxWidth: "180px", justifyContent: "center" }}
                   />
                 </CardActionArea>
               </Grid>

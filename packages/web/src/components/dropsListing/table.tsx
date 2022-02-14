@@ -253,7 +253,11 @@ export default function DropTable() {
                       <TableCell align="left">
                         {row.mint_price + " " + row.crypto_type}
                       </TableCell>
-                      <TableCell align="left" className="trend">
+                      <TableCell
+                        align="left"
+                        className="trend"
+                        sx={{ whiteSpace: "nowrap" }}
+                      >
                         <TextLogo
                           fontSize="small"
                           sx={{ mr: 1, verticalAlign: "text-top" }}

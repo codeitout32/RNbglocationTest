@@ -1,4 +1,4 @@
-import { put, takeEvery, all } from "redux-saga/effects";
+import { put, takeEvery, takeLatest, all } from "redux-saga/effects";
 import { routes } from "../config";
 import * as NewsSlice from "../slices/news.slice";
 
@@ -42,6 +42,29 @@ function* fetchRelatedNewsSaga(action) {
     yield put(NewsSlice.fetchRelatedNewsSuccess(res));
   } catch (error) {
     yield put(NewsSlice.fetchRelatedNewsError(error));
+    handleError(error);
+  }
+}
+function* fetchRecentNewsSaga(action) {
+  const rawParams = {
+    ...action.payload,
+    is_recent: 1,
+  };
+  const searchparams = new URLSearchParams(rawParams).toString();
+
+  const params = {
+    method: "get",
+    route: `${routes.news}?${searchparams}`,
+    headerCred: {
+      autherization: "myAuthToken",
+    },
+  };
+
+  try {
+    const res = yield commonService(params);
+    yield put(NewsSlice.fetchRecentNewsSuccess(res));
+  } catch (error) {
+    yield put(NewsSlice.fetchRecentNewsError(error));
     handleError(error);
   }
 }
@@ -91,6 +114,7 @@ export function* newsSaga() {
   yield takeEvery(NewsSlice.fetchNewsStart, fetchMultipleNewsSaga);
   yield takeEvery(NewsSlice.fetchSingleNewsStart, fetchSingleNewsSaga);
   yield takeEvery(NewsSlice.fetchRelatedNewsStart, fetchRelatedNewsSaga);
+  yield takeLatest(NewsSlice.fetchRecentNewsStart, fetchRecentNewsSaga);
   yield takeEvery(NewsSlice.fetchFeaturedNewsStart, fetchFeaturedNewsSaga);
 }
 

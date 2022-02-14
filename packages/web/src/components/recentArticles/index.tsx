@@ -13,13 +13,20 @@ import {
 import ButtonWhite from "src/theme/buttonWhite";
 import { url } from "inspector";
 import ArticleItem from "./articleItem";
-import { newsListSelector } from "@next/common/selectors";
-import { useSelector } from "react-redux";
+import {
+  recentNewsSelector,
+  recentNewsPaginationSelector,
+} from "@next/common/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRecentNewsStart } from "@next/common/slices/news.slice";
+import { duplicateRemover } from "./utils";
 
 // taken from latest news
 
-const RecentArticles = () => {
+const RecentArticles = ({ category }) => {
   const [resultList, setResultList] = React.useState([]);
+  const dispatch = useDispatch();
+
   const divStyle = {
     position: "relative",
     top: "-200px",
@@ -29,22 +36,34 @@ const RecentArticles = () => {
     marginBottom: "-200px",
   };
 
-  const newsList = useSelector(newsListSelector);
-  const recentNewsList = newsList.rows
-    ? newsList?.rows.filter((news) => news.is_recent === 1)
-    : [];
+  const recentNews = useSelector(recentNewsSelector);
+  const recentNewsList = recentNews.recentNewsList;
 
-  const finalNews = recentNewsList.filter(
-    (v, i, a) => a.findIndex((t) => t.id === v.id) === i
-  );
+  console.log("recentNewsList", recentNewsList);
+
+  const handleLoadmore = (e) => {
+    dispatch(
+      fetchRecentNewsStart({
+        ...recentNews.pagination,
+        page_num: recentNews.pagination.page_num + 1,
+      })
+    );
+  };
 
   React.useEffect(() => {
-    const tempNews = [...resultList, ...recentNewsList];
-    setResultList(() =>
-      tempNews.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)
-    );
-  }, [newsList]);
+    const tempNews = [...resultList, ...recentNewsList.rows];
+    setResultList(() => duplicateRemover(tempNews));
+  }, [recentNewsList]);
 
+  React.useEffect(() => {
+    dispatch(
+      fetchRecentNewsStart({
+        row_per_page: 10,
+        page_num: 1,
+        category_id: category ? category : "",
+      })
+    );
+  }, [category]);
   return (
     <Fragment>
       <Paper
@@ -86,6 +105,24 @@ const RecentArticles = () => {
           )}
           {/* <ArticleItem />
           <ArticleItem /> */}
+
+          {recentNewsList.rows.length ? (
+            <ButtonWhite
+              sx={{
+                textTransform: "capitalize",
+                mx: "auto",
+                display: "block",
+                mt: 3,
+              }}
+              onClick={handleLoadmore}
+            >
+              Load more
+            </ButtonWhite>
+          ) : (
+            <Typography color="text.secondary" align="center">
+              End of List
+            </Typography>
+          )}
         </Container>
         <div style={divStyle}></div>
       </Paper>

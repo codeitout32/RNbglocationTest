@@ -1,26 +1,13 @@
 import {
-  Avatar,
   Backdrop,
-  Badge,
   Box,
-  Button,
-  Card,
-  CardActionArea,
   CircularProgress,
   Container,
-  Grid,
-  IconButton,
-  Paper,
-  Stack,
-  SvgIcon,
   Typography,
 } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { StyledPaper } from "./styledPaper";
-import { handleImageError } from "@next/common/utils/handleImageError";
-import moment from "moment";
-import NewsNavButton from "src/components/newsDetailComponents/newsNavButton";
 import {
   guidesLoadingSelector,
   singleGuidesSelector,
@@ -30,8 +17,9 @@ import parse from "html-react-parser";
 const GuideDetail = () => {
   const singleGuide = useSelector(singleGuidesSelector);
   const loading = useSelector(guidesLoadingSelector);
+  console.log("singleGuide", singleGuide);
 
-  const { next, previous } = singleGuide;
+  // const { next, previous } = singleGuide;
   const current = singleGuide;
 
   return (
@@ -46,7 +34,7 @@ const GuideDetail = () => {
               variant="body2"
               fontSize={"1.25rem"}
               // textAlign="center"
-              component="p"
+              component="div"
               sx={{ my: 3, mx: "auto" }}
               //   width={{ md: "90%", xs: "95%" }}
             >
@@ -70,7 +58,7 @@ const GuideDetail = () => {
               variant="body2"
               fontSize={"1.25rem"}
               // textAlign="center"
-              component="p"
+              component="div"
               sx={{ my: 3, mx: "auto" }}
               //   width={{ md: "90%", xs: "95%" }}
             >

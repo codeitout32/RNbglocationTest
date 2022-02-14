@@ -24,7 +24,7 @@ export const servicesSlice = createSlice({
   name: "servicesList",
   initialState,
   reducers: {
-    fetchServicesStart: (state) => {
+    fetchServicesStart: (state, action) => {
       return {
         ...state,
         loading: true,

@@ -19,7 +19,6 @@ export const StyledPaper = styled("div")(
   .MuiCard-root {
       background-color: ${theme.palette.primary.main};
       border-radius: 20px;
-    //   padding: ${8 * 4}px;
       border: 2px solid #71717A;
   }
 

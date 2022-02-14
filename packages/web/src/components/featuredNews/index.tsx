@@ -25,7 +25,7 @@ const FeaturedNews = () => {
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
                 {featured?.short_description}
               </Typography>
-              <LinkNext href={"/news/" + featured?.id}>
+              <LinkNext href={"/news/" + featured?.id} passHref>
                 <ButtonWhite
                   sx={{
                     textTransform: "capitalize",
@@ -34,6 +34,7 @@ const FeaturedNews = () => {
                     px: 4,
                     py: 2,
                   }}
+                  // href
                 >
                   read more
                 </ButtonWhite>

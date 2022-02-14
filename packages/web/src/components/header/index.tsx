@@ -43,7 +43,6 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
   //Menu's state and functions
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [anchorElMore, setAnchorElMore] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -69,7 +68,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
   console.log("headerpages", mainPages, restPages, pages);
 
   return (
-    <Fragment>
+    <>
       <AppBar
         position="sticky"
         sx={{
@@ -118,9 +117,9 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
               >
                 {mainPages?.map((page) => (
                   <MenuItem key={page.title} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                      <Link href={page.url}>{page.title}</Link>
-                    </Typography>
+                    <Link href={page.url}>
+                      <Typography textAlign="center">{page.title}</Typography>
+                    </Link>
                   </MenuItem>
                 ))}
               </Menu>
@@ -216,8 +215,9 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
               )}
             </Box>
 
+            {/* right Side menu, make md on display to block, to enable it */}
             <Box
-              sx={{ flexGrow: 0, display: { xs: "none", md: "block" } }}
+              sx={{ flexGrow: 0, display: { xs: "none", md: "none" } }}
               color="white"
             >
               <Tooltip title="Search">
@@ -296,7 +296,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
           <MenuDrawer toggle={toggleDrawer} />
         </Container>
       </AppBar>
-    </Fragment>
+    </>
   );
 };
 

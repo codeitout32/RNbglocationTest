@@ -33,10 +33,10 @@ const ArticleItem = ({ news }) => {
           alignItems="center"
           sx={{
             borderBottom: "1px solid ",
-            "&:last-child": { border: 0 },
             p: 3,
             borderColor: "grey.700",
             "&:hover": { cursor: "pointer" },
+            "&:last-child": { border: "0px", height: 500 },
           }}
           spacing={1}
         >
@@ -47,6 +47,7 @@ const ArticleItem = ({ news }) => {
                 overflow: "hidden",
                 bgcolor: "inherit",
                 width: "250px",
+                mx: "auto",
                 img: {
                   objectFit: "cover",
                 },
@@ -96,7 +97,7 @@ const ArticleItem = ({ news }) => {
             </ButtonTransparent> */}
           </Grid>
           <Grid item md={1}>
-            <Stack direction="column" alignItems="center" spacing={2}>
+            <Stack direction="column" alignItems="center" spacing={2} ml={2}>
               <Link href={`news/${news.id}`}>
                 <Icon sx={{ overflow: "visible" }} component={mLink}>
                   <ArrowCircleRightIcon

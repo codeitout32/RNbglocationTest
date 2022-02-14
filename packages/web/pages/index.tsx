@@ -23,7 +23,7 @@ export default function Home() {
   ];
 
   return (
-    <Fragment>
+    <>
       <Header pages={pages} />
       {/* Preiviously xl container was here */}
       <LargeCorousel />
@@ -43,6 +43,6 @@ export default function Home() {
       <HoldNEarn />
       <Box sx={{ height: "10vh" }} />
       <Footer />
-    </Fragment>
+    </>
   );
 }

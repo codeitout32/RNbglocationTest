@@ -24,7 +24,7 @@ export const guidesSlice = createSlice({
   name: "guidesList",
   initialState,
   reducers: {
-    fetchGuidesStart: (state) => {
+    fetchGuidesStart: (state, action) => {
       return {
         ...state,
         loading: true,

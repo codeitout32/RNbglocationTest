@@ -9,7 +9,8 @@ import Advert from "src/components/advert";
 import StartBanner from "src/components/services/startBanner";
 import Testimonials from "src/components/services/testimonials";
 
-export default function News() {
+export default function Guides() {
+  console.log("hello from guides");
   const dispatch = useDispatch();
   const messages = useIntl();
 

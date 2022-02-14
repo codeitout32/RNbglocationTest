@@ -68,7 +68,17 @@ const StartBanner = () => {
     <>
       <StyledPaper sx={{ bgcolor: "transparent" }}>
         <Container maxWidth="lg">
-          <Stack maxWidth="md" mx="15%" alignItems="center" spacing={3} mt={2}>
+          <Stack
+            maxWidth="md"
+            alignItems="center"
+            spacing={3}
+            mt={2}
+            sx={{
+              mx: {
+                sm: "15%",
+              },
+            }}
+          >
             <Typography variant="h3" component="div">
               Your NFT Hub Services
             </Typography>
@@ -93,6 +103,7 @@ const StartBanner = () => {
                 border: "2px solid #3F3F46",
                 width: "70%",
                 display: "flex",
+                flexDirection: { xs: "column" },
                 justifyContent: "space-evenly",
                 py: 3,
               }}

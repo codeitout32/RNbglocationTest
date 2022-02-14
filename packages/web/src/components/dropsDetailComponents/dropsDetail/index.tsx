@@ -171,11 +171,11 @@ const DropsDetail = () => {
               <Grid item md={3} xs={6}>
                 <Typography variant="h5">
                   {isLaunched()
-                    ? singleDrops.mint_price + " USD"
-                    : singleDrops.floor_mc + " SOL"}
+                    ? singleDrops.floor_mc + " SOL"
+                    : singleDrops.mint_price + " USD"}
                 </Typography>
                 <Typography variant="body2">
-                  {isLaunched() ? "Floor MC(USD)" : "Mint Price"}{" "}
+                  {isLaunched() ? "Floor MC(USD)" : "Mint Price"}
                 </Typography>
               </Grid>
             </Grid>
@@ -193,7 +193,17 @@ const DropsDetail = () => {
             </Clamp>
           </Typography>
         </Grid>
-        <Grid item md={1} xs={12} mt={"-10%"}>
+        <Grid
+          item
+          md={1}
+          xs={12}
+          mt={"-10%"}
+          sx={{
+            mt: {
+              xs: 3,
+            },
+          }}
+        >
           <Box
             sx={{
               display: "flex",

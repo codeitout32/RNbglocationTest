@@ -132,7 +132,7 @@ export default function DropTable() {
                 <TableCell align="left">
                   {moment(row.created_at).format("MMMM DD, YYYY")}
                 </TableCell>
-                <TableCell align="left">
+                <TableCell align="left" sx={{ whiteSpace: "nowrap" }}>
                   <TextLogo
                     fontSize="small"
                     sx={{ verticalAlign: "text-top", mr: 1 }}

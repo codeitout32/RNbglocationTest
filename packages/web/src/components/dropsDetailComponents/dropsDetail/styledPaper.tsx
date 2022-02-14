@@ -42,6 +42,10 @@ export const StyledPaper = styled("div")(
       border-bottom: 1px solid;
       border-radius: 4px;
     }
+
+    ${theme.breakpoints.down("md")} {
+      border-bottom: 1px solid;
+    }
   }
   & .icon-box .MuiSvgIcon-root {
     color: inherit;

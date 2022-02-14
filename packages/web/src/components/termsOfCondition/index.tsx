@@ -21,11 +21,6 @@ import { StyledPaper } from "./styledPaper";
 import { handleImageError } from "@next/common/utils/handleImageError";
 import moment from "moment";
 import NewsNavButton from "src/components/newsDetailComponents/newsNavButton";
-import {
-  guidesLoadingSelector,
-  singleGuidesSelector,
-} from "@next/common/selectors";
-import parse from "html-react-parser";
 
 import { termsContent } from "./content";
 
@@ -48,12 +43,13 @@ const TermsAndCondition = () => {
               variant="body2"
               fontSize={"1.25rem"}
               // textAlign="center"
-              component="p"
+              component="div"
               sx={{
                 my: 3,
                 mx: "auto",
                 h2: {
                   color: "text.primary",
+                  typography: "h5",
                 },
               }}
               //   width={{ md: "90%", xs: "95%" }}

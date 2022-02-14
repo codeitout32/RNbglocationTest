@@ -4,15 +4,21 @@ export interface NewsList {
   newsList: Array<Object>;
   loading: boolean;
   singleNews: object;
+
+  recentNews: object;
   success: string;
   error: object | string;
   featuredNews: object | string;
+  relatedNews: object;
 }
 
 const initialState: NewsList = {
   newsList: [{}],
-  singleNews: {
-    relatedNews: [],
+  singleNews: {},
+  relatedNews: { relatedNewsList: [], pagination: {} },
+  recentNews: {
+    recentNewsList: [{}],
+    pagination: {},
   },
   featuredNews: [{}],
   loading: false,
@@ -24,7 +30,7 @@ export const newsSlice = createSlice({
   name: "newsList",
   initialState,
   reducers: {
-    fetchNewsStart: (state) => {
+    fetchNewsStart: (state, action) => {
       return {
         ...state,
         loading: true,
@@ -37,7 +43,7 @@ export const newsSlice = createSlice({
         newsList: action.payload,
       };
     },
-    fetchNewsError: (state, action: PayloadAction<T>) => {
+    fetchNewsError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: false,
@@ -58,7 +64,7 @@ export const newsSlice = createSlice({
         success: "success",
       };
     },
-    fetchSingleNewsError: (state, action: PayloadAction<T>) => {
+    fetchSingleNewsError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: false,
@@ -75,13 +81,39 @@ export const newsSlice = createSlice({
       return {
         ...state,
         loading: false,
-        singleNews: {
-          ...state.singleNews,
-          relatedNews: action.payload,
-        },
+        relatedNews: action.payload,
       };
     },
     fetchRelatedNewsError: (state, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    },
+    fetchRecentNewsStart: (state, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        loading: true,
+        recentNews: {
+          ...state.recentNews,
+          pagination: {
+            ...action.payload,
+          },
+        },
+      };
+    },
+    fetchRecentNewsSuccess: (state, action: PayloadAction<Array<object>>) => {
+      return {
+        ...state,
+        loading: false,
+        recentNews: {
+          ...state.recentNews,
+          recentNewsList: action.payload,
+        },
+      };
+    },
+    fetchRecentNewsError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: false,
@@ -122,7 +154,9 @@ export const {
   fetchRelatedNewsStart,
   fetchRelatedNewsSuccess,
   fetchRelatedNewsError,
-
+  fetchRecentNewsStart,
+  fetchRecentNewsSuccess,
+  fetchRecentNewsError,
   fetchFeaturedNewsStart,
   fetchFeaturedNewsSuccess,
   fetchFeaturedNewsError,

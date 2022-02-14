@@ -1,6 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
+import { AppState } from "../store";
 
-const newsReducer = (state: State) => state.news;
+const newsReducer = (state: AppState) => state.news;
 
 export const newsListSelector = createSelector(
   newsReducer,
@@ -17,4 +18,16 @@ export const newsLoadingSelector = createSelector(
 export const featuredNewsSelector = createSelector(
   newsReducer,
   (news) => news.featuredNews
+);
+export const recentNewsSelector = createSelector(
+  newsReducer,
+  (news) => news.recentNews
+);
+export const relatedNewsSelector = createSelector(
+  newsReducer,
+  (news) => news.relatedNews
+);
+export const recentNewsPaginationSelector = createSelector(
+  newsReducer,
+  (news) => news.recentNews.pagination
 );

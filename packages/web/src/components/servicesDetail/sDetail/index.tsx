@@ -47,13 +47,13 @@ const ServiceDetail = () => {
         <Container maxWidth="md">
           <Box maxWidth={"720px"} mx="auto">
             <Typography variant="h3" component="div">
-              {current.title}
+              {current?.title}
             </Typography>
             <Typography
               variant="body2"
               fontSize={"1.25rem"}
               // textAlign="center"
-              component="p"
+              component="div"
               sx={{ my: 3, mx: "auto" }}
               //   width={{ md: "90%", xs: "95%" }}
             >
@@ -77,7 +77,7 @@ const ServiceDetail = () => {
               variant="body2"
               fontSize={"1.25rem"}
               // textAlign="center"
-              component="p"
+              component="div"
               sx={{ my: 3, mx: "auto" }}
               //   width={{ md: "90%", xs: "95%" }}
             >

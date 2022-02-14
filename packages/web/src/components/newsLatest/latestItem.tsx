@@ -31,13 +31,16 @@ const LatestItem = ({ news, asSidebar }) => {
               borderRadius: "8px",
               bgcolor: "inherit",
               img: {
+                width: { md: "120px", sm: "70%" },
+                height: { md: "120px" },
                 objectFit: "cover",
+                mx: "auto",
               },
             }}
           >
             <img
-              width={asSidebar ? "60px" : "120px"}
-              height={asSidebar ? "60px" : "120px"}
+              // width={asSidebar ? "60px" : "120px"}
+              // height={asSidebar ? "60px" : "120px"}
               src={news.image}
               onError={handleImageError}
             />
