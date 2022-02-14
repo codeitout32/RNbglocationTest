@@ -104,7 +104,7 @@ export default function DropTable() {
               if (!dropsList[x].length) return; //just to remove count key.
               return (
                 <>
-                  <TableRow>
+                  <TableRow key={x}>
                     <TableCell
                       align="center"
                       component="td"

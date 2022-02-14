@@ -105,7 +105,7 @@ const ServiceDetail = () => {
             </Typography>
             <img src={current?.image} alt="" width="100%" /> */}
             <Typography variant="h5" component="div" my={2.5}>
-              {users.length ? "Who is using it?" : ""}
+              {users?.length ? "Who is using it?" : ""}
             </Typography>
             <Grid container>
               {users?.map((item, index) => (

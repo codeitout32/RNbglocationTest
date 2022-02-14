@@ -37,7 +37,9 @@ const RecentArticles = ({ category }) => {
   };
 
   const recentNews = useSelector(recentNewsSelector);
-  const recentNewsList = recentNews?.recentNewsList;
+  const recentNewsList = recentNews?.recentNewsList?.rows
+    ? recentNews?.recentNewsList.rows
+    : [];
 
   console.log("recentNewsList", recentNewsList);
 
@@ -51,11 +53,14 @@ const RecentArticles = ({ category }) => {
   };
 
   React.useEffect(() => {
-    const tempNews = [...resultList, ...recentNewsList?.rows];
+    console.log("useEffect1", resultList);
+    const tempNews = [...resultList, ...recentNewsList];
     setResultList(() => duplicateRemover(tempNews));
-  }, [recentNewsList]);
+  }, [recentNews]);
 
   React.useEffect(() => {
+    console.log("useEffect2", category, resultList);
+    setResultList([]);
     dispatch(
       fetchRecentNewsStart({
         row_per_page: 10,
@@ -106,7 +111,7 @@ const RecentArticles = ({ category }) => {
           {/* <ArticleItem />
           <ArticleItem /> */}
 
-          {recentNewsList?.rows.length ? (
+          {recentNewsList?.length ? (
             <ButtonWhite
               sx={{
                 textTransform: "capitalize",

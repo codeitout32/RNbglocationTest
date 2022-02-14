@@ -168,7 +168,7 @@ const Overview = () => {
           sx={{ mx: "auto" }}
           width={{ md: "55%", xs: "95%" }}
         >
-          {parse(singleDrops.our_take_description)}
+          {parse(singleDrops?.our_take_description || "")}
         </Typography>
       </Container>
     </StyledGradPaper>

@@ -41,7 +41,7 @@ const RelatedArticles = () => {
 
   const singleNews = useSelector(singleNewsSelector);
   const relatedNewsraw = useSelector(relatedNewsSelector);
-  const relatedNews = relatedNewsraw ? relatedNewsraw.rows : [];
+  const relatedNews = relatedNewsraw.rows || [];
 
   //first api hit is declared in singlenewsSaga
   // only 2nd and else api hits are declared here.
@@ -66,7 +66,7 @@ const RelatedArticles = () => {
   React.useEffect(() => {
     const tempNews = [...resultList, ...relatedNews];
     setResultList(() => duplicateRemover(tempNews));
-  }, [relatedNews]);
+  }, [relatedNewsraw]);
   return (
     <Fragment>
       <StyledPaper
@@ -93,7 +93,7 @@ const RelatedArticles = () => {
 
           <Grid container spacing={3}>
             {resultList?.map((news, index) => (
-              <Grid item md={4} key={index.title}>
+              <Grid item md={4} key={news.title}>
                 <RelatedNewsItem key={index} news={news} />
               </Grid>
             ))}

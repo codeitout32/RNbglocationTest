@@ -10,7 +10,8 @@ import LinkNext from "next/link";
 import { handleImageError } from "@next/common/utils/handleImageError";
 const FeaturedNews = () => {
   const featuredNews = useSelector(featuredNewsSelector);
-  const [featured, ...rest] = featuredNews ? featuredNews.rows : [];
+  console.log("featuredNews", featuredNews);
+  const [featured, ...rest] = featuredNews.rows ? featuredNews.rows : [];
   return (
     <Fragment>
       <Container sx={{ bgcolor: "primary.main" }} maxWidth="lg">
@@ -50,7 +51,7 @@ const FeaturedNews = () => {
               }}
             >
               <img
-                src={featured.image}
+                src={featured?.image}
                 alt=""
                 // height="300"
                 onError={handleImageError}

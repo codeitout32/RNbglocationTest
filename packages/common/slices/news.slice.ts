@@ -23,7 +23,9 @@ const initialState: NewsList = {
     recentNewsList: [],
     pagination: {},
   },
-  featuredNews: [{}],
+  featuredNews: {
+    rows: [],
+  },
   loading: false,
   success: "",
   error: "",

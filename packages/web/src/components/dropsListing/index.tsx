@@ -125,7 +125,7 @@ const Drops = () => {
             ),
           }}
         />
-        <Typography color="text.secondary">
+        <Typography color="text.secondary" component="div">
           Total Projects: {dropCount}
         </Typography>
         <Paper
