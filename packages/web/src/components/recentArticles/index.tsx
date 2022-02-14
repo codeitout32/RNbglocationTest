@@ -37,21 +37,21 @@ const RecentArticles = ({ category }) => {
   };
 
   const recentNews = useSelector(recentNewsSelector);
-  const recentNewsList = recentNews.recentNewsList;
+  const recentNewsList = recentNews?.recentNewsList;
 
   console.log("recentNewsList", recentNewsList);
 
   const handleLoadmore = (e) => {
     dispatch(
       fetchRecentNewsStart({
-        ...recentNews.pagination,
-        page_num: recentNews.pagination.page_num + 1,
+        ...recentNews?.pagination,
+        page_num: recentNews?.pagination?.page_num + 1,
       })
     );
   };
 
   React.useEffect(() => {
-    const tempNews = [...resultList, ...recentNewsList.rows];
+    const tempNews = [...resultList, ...recentNewsList?.rows];
     setResultList(() => duplicateRemover(tempNews));
   }, [recentNewsList]);
 
@@ -87,11 +87,11 @@ const RecentArticles = ({ category }) => {
             Recent Articles
           </Typography>
 
-          {resultList.map((news, index) => (
+          {resultList?.map((news, index) => (
             <ArticleItem key={index} news={news} />
           ))}
 
-          {!resultList.length && (
+          {!resultList?.length && (
             <Typography
               variant="h5"
               textAlign="center"
@@ -106,7 +106,7 @@ const RecentArticles = ({ category }) => {
           {/* <ArticleItem />
           <ArticleItem /> */}
 
-          {recentNewsList.rows.length ? (
+          {recentNewsList?.rows.length ? (
             <ButtonWhite
               sx={{
                 textTransform: "capitalize",

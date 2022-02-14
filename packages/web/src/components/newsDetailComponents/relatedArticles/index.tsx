@@ -29,7 +29,7 @@ const RelatedArticles = () => {
   const [resultList, setResultList] = React.useState([]);
   const [pageNo, setPageNo] = React.useState(1);
   const dispatch = useDispatch();
-  const category = useSelector(singleNewsSelector).current.category_id;
+  const category = useSelector(singleNewsSelector)?.current?.category_id;
   const divStyle = {
     position: "relative",
     top: "-200px",
@@ -93,7 +93,7 @@ const RelatedArticles = () => {
 
           <Grid container spacing={3}>
             {resultList?.map((news, index) => (
-              <Grid item md={4}>
+              <Grid item md={4} key={index.title}>
                 <RelatedNewsItem key={index} news={news} />
               </Grid>
             ))}
@@ -105,7 +105,7 @@ const RelatedArticles = () => {
           {/* <ArticleItem />
           <ArticleItem /> */}
 
-          {relatedNews.length ? (
+          {relatedNews?.length ? (
             <ButtonWhite
               sx={{
                 textTransform: "capitalize",

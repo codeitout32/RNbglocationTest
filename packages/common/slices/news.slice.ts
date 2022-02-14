@@ -5,7 +5,10 @@ export interface NewsList {
   loading: boolean;
   singleNews: object;
 
-  recentNews: object;
+  recentNews: {
+    recentNewsList: Array<Object>;
+    pagination: Object;
+  };
   success: string;
   error: object | string;
   featuredNews: object | string;
@@ -17,7 +20,7 @@ const initialState: NewsList = {
   singleNews: {},
   relatedNews: { relatedNewsList: [], pagination: {} },
   recentNews: {
-    recentNewsList: [{}],
+    recentNewsList: [],
     pagination: {},
   },
   featuredNews: [{}],

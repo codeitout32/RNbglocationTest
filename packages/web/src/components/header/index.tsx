@@ -63,6 +63,8 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
 
   const mainPages = [...pages];
 
+  const mobilePages = [...pages];
+
   const restPages = mainPages.splice(collapseMenuAfter);
 
   console.log("headerpages", mainPages, restPages, pages);
@@ -115,12 +117,12 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {mainPages?.map((page) => (
-                  <MenuItem key={page.title} onClick={handleCloseNavMenu}>
-                    <Link href={page.url}>
+                {mobilePages?.map((page) => (
+                  <Link href={page.url} key={page.title}>
+                    <MenuItem key={page.title} onClick={handleCloseNavMenu}>
                       <Typography textAlign="center">{page.title}</Typography>
-                    </Link>
-                  </MenuItem>
+                    </MenuItem>
+                  </Link>
                 ))}
               </Menu>
             </Box>

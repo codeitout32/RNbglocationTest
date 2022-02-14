@@ -180,9 +180,9 @@ const Testimonials = () => {
           Who's Using It?
         </Typography>
         <Container maxWidth="lg">
-          <Grid container spacing={8}>
+          <Grid container spacing={8} justifyContent="center">
             {brandList.map((brand) => (
-              <Grid item md={3}>
+              <Grid item md={3} key={brand.title}>
                 <CardActionArea href={brand.link}>
                   <CardMedia
                     component="img"

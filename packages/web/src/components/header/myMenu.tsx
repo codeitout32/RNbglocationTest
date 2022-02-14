@@ -43,7 +43,7 @@ export default function MyMenu({
         }}
       >
         {menuList.map((item) => (
-          <Link href={item.url} passHref>
+          <Link href={item.url} passHref key={item.title}>
             <MenuItem
               onClick={handleClose}
               component="a"

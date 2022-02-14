@@ -30,7 +30,7 @@ export default function News() {
     { title: "NFTs", url: "/news/?cat=2" },
     { title: "Opinions", url: "/news/?cat=3" },
     { title: "Technology", url: "/news/?cat=4" },
-    { title: "Cat 5", url: "/news/?cat=5" },
+    // { title: "Cat 5", url: "/news/?cat=5" },
     { title: "All News", url: "/news/" },
   ];
 
