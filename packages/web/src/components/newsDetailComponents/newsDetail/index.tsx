@@ -44,17 +44,18 @@ const NewsDetail = () => {
 
   const { current, next, previous } = singleNews;
 
-  const body = current ? current?.description : "";
+  const body = current?.description || "";
   return (
     <>
       <Stack spacing={2} sx={{}}>
-        <Paper sx={{ overflow: "hidden", img: { objectFit: "cover" } }}>
+        <Paper sx={{ overflow: "hidden" }}>
           <img
             src={current?.image}
             alt=""
             height={450}
             width="100%"
             onError={handleImageError}
+            style={{ objectFit: "cover" }}
           />
         </Paper>
         <Typography variant="h5">{current?.title}</Typography>

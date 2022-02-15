@@ -39,7 +39,7 @@ const GuideDetail = () => {
               //   width={{ md: "90%", xs: "95%" }}
             >
               {current ? (
-                parse(current?.short_description)
+                parse(current?.short_description || "")
               ) : (
                 <>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -63,7 +63,7 @@ const GuideDetail = () => {
               //   width={{ md: "90%", xs: "95%" }}
             >
               {current ? (
-                parse(current?.description)
+                parse(current?.description || "")
               ) : (
                 <>
                   ➤ Quis lacus dolor ut donec. Auctor sem tristique id diam

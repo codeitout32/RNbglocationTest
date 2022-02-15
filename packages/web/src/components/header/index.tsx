@@ -219,10 +219,10 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
 
             {/* right Side menu, make md on display to block, to enable it */}
             <Box
-              sx={{ flexGrow: 0, display: { xs: "none", md: "none" } }}
+              sx={{ flexGrow: 0, display: { xs: "block", md: "none" } }}
               color="white"
             >
-              <Tooltip title="Search">
+              {/* <Tooltip title="Search">
                 <IconButton
                   onClick={handleOpenUserMenu}
                   sx={{ p: 2 }}
@@ -230,7 +230,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
                 >
                   <SearchIcon />
                 </IconButton>
-              </Tooltip>
+              </Tooltip> */}
               {!isActive("/news") && (
                 <>
                   {/* <Tooltip title="Open settings">
@@ -242,7 +242,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
                       <AccountCircleOutlinedIcon />
                     </IconButton>
                   </Tooltip> */}
-                  <Tooltip title="More">
+                  {/* <Tooltip title="More">
                     <IconButton
                       onClick={handleOpenUserMenu}
                       sx={{ p: 2 }}
@@ -250,7 +250,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
                     >
                       <MoreHorizIcon />
                     </IconButton>
-                  </Tooltip>
+                  </Tooltip> */}
                 </>
               )}
 

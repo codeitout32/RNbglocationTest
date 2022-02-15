@@ -68,7 +68,8 @@ export default function News() {
                   alt=""
                   onError={handleImageError}
                   height="100%"
-                  objectFit="cover"
+                  width="100%"
+                  style={{ objectFit: "contain" }}
                 />
               </Link>
             </Box>

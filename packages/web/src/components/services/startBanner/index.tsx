@@ -103,7 +103,7 @@ const StartBanner = () => {
                 border: "2px solid #3F3F46",
                 width: "70%",
                 display: "flex",
-                flexDirection: { xs: "column" },
+                flexDirection: { xs: "column", md: "row" },
                 justifyContent: "space-evenly",
                 py: 3,
               }}

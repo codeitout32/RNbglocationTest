@@ -17,18 +17,23 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { url } from "inspector";
 import LatestItem from "./latestItem";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { newsListSelector } from "@next/common/selectors";
 import ButtonTransparent from "src/theme/buttonTransparent";
 import StyledGradPaper from "./gradPaper";
+import { fetchNewsStart } from "@next/common/slices/news.slice";
 
 const NewsLatest = ({ asSidebar }) => {
+  const dispatch = useDispatch();
   const newsList = useSelector(newsListSelector);
 
-  const latestNewsList = newsList.rows
-    ? newsList?.rows.filter((news) => news.is_latest === 1)
-    : [];
+  const latestNewsList =
+    newsList?.rows?.filter?.((news) => news.is_latest === 1) || [];
   const [headNews, ...restNews] = latestNewsList;
+
+  React.useEffect(() => {
+    if (latestNewsList.length < 1) dispatch(fetchNewsStart({ page_num: 1 }));
+  }, []);
 
   const sideBar = (
     <Paper
