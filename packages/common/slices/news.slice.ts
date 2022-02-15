@@ -12,7 +12,12 @@ export interface NewsList {
   success: string;
   error: object | string;
   featuredNews: object | string;
-  relatedNews: object;
+  relatedNews: {
+    relatedNewsList: {
+      rows: Array<object>;
+    };
+    pagination: object;
+  };
 }
 
 const initialState: NewsList = {

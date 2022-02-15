@@ -73,7 +73,7 @@ export default function News() {
                 />
               </Link>
             </Box>
-            <NewsLatest />
+            <NewsLatest asSidebar={false} />
           </Grid>
         </Grid>
 

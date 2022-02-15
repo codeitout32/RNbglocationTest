@@ -23,7 +23,7 @@ import ButtonTransparent from "src/theme/buttonTransparent";
 import StyledGradPaper from "./gradPaper";
 import { fetchNewsStart } from "@next/common/slices/news.slice";
 
-const NewsLatest = ({ asSidebar }) => {
+const NewsLatest = ({ asSidebar }: { asSidebar: boolean | undefined }) => {
   const dispatch = useDispatch();
   const newsList = useSelector(newsListSelector);
 
@@ -50,7 +50,7 @@ const NewsLatest = ({ asSidebar }) => {
     </Paper>
   );
 
-  if (asSidebar) return sideBar;
+  if (asSidebar == true) return sideBar;
   else
     return (
       <Fragment>
@@ -113,7 +113,7 @@ export default NewsLatest;
     <Typography variant="h3" textAlign="center" component="div" sx={{ my: 7 }}>
       The Latest
     </Typography>
-    <Grid container spacing={3} sx={{ minheight: "500px" }}>
+    <Grid container spacing={3} sx={{ minHeight: "500px" }}>
       <Grid item md={6} xs={12}>
         <Paper
           sx={{
