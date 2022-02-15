@@ -40,8 +40,10 @@ const RelatedArticles = () => {
   };
 
   const singleNews = useSelector(singleNewsSelector);
-  const relatedNewsraw = useSelector(relatedNewsSelector);
-  const relatedNews = relatedNewsraw.rows || [];
+  const relatedNewsraw = useSelector(relatedNewsSelector).relatedNewsList;
+  const relatedNews = relatedNewsraw?.rows || [];
+
+  console.log("related news debug", relatedNews);
 
   //first api hit is declared in singlenewsSaga
   // only 2nd and else api hits are declared here.
@@ -92,7 +94,7 @@ const RelatedArticles = () => {
           </Typography>
 
           <Grid container spacing={3}>
-            {resultList?.map((news, index) => (
+            {resultList?.map?.((news, index) => (
               <Grid item md={4} key={news.title}>
                 <RelatedNewsItem key={index} news={news} />
               </Grid>

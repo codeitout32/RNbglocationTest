@@ -18,7 +18,12 @@ export interface NewsList {
 const initialState: NewsList = {
   newsList: [{}],
   singleNews: {},
-  relatedNews: { relatedNewsList: [], pagination: {} },
+  relatedNews: {
+    relatedNewsList: {
+      rows: [],
+    },
+    pagination: {},
+  },
   recentNews: {
     recentNewsList: [],
     pagination: {},
@@ -86,7 +91,10 @@ export const newsSlice = createSlice({
       return {
         ...state,
         loading: false,
-        relatedNews: action.payload,
+        relatedNews: {
+          ...state.relatedNews,
+          relatedNewsList: action.payload,
+        },
       };
     },
     fetchRelatedNewsError: (state, action: PayloadAction<object>) => {

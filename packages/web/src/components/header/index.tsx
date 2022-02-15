@@ -219,7 +219,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
 
             {/* right Side menu, make md on display to block, to enable it */}
             <Box
-              sx={{ flexGrow: 0, display: { xs: "block", md: "none" } }}
+              sx={{ flexGrow: 0, display: { xs: "none", md: "block" } }}
               color="white"
             >
               {/* <Tooltip title="Search">

@@ -29,7 +29,6 @@ const NewsLatest = ({ asSidebar }) => {
 
   const latestNewsList =
     newsList?.rows?.filter?.((news) => news.is_latest === 1) || [];
-  const [headNews, ...restNews] = latestNewsList;
 
   React.useEffect(() => {
     if (latestNewsList.length < 1) dispatch(fetchNewsStart({ page_num: 1 }));
