@@ -22,7 +22,9 @@ const FeaturedNews = () => {
         >
           <Grid item md={6}>
             <Box>
-              <Typography variant="h3">{featured?.title}</Typography>
+              <Typography variant="h3" sx={{ typography: { xs: "h4" } }}>
+                {featured?.title}
+              </Typography>
               <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
                 {featured?.short_description}
               </Typography>
@@ -31,8 +33,8 @@ const FeaturedNews = () => {
                   sx={{
                     textTransform: "capitalize",
                     mt: 3,
-                    fontSize: ".7rem",
-                    px: 4,
+                    fontSize: "1rem",
+                    px: { md: 4, sm: 3 },
                     py: 2,
                   }}
                   // href

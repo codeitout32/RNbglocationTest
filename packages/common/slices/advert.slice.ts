@@ -10,7 +10,9 @@ export interface Advert {
 }
 
 const initialState: Advert = {
-  advert: [{}],
+  advert: {
+    advert: [],
+  },
   singleAdvert: {
     relatedAdvert: [],
   },

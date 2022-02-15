@@ -85,8 +85,9 @@ const Testimonials = () => {
           Testimonials
         </Typography>
         <Marquee direction="right" gradient={false}>
-          {tList.map((test) => (
+          {tList?.map((test, index) => (
             <Box
+              key={index}
               sx={{
                 display: "flex",
                 justifyContent: "space-evenly",
@@ -128,8 +129,9 @@ const Testimonials = () => {
         </Marquee>
         <Box height={"5vh"} />
         <Marquee direction="left" gradient={false}>
-          {tList.map((test) => (
+          {tList.map((test, index) => (
             <Box
+              key={index}
               sx={{
                 display: "flex",
                 justifyContent: "space-evenly",
@@ -181,7 +183,7 @@ const Testimonials = () => {
         </Typography>
         <Container maxWidth="lg">
           <Grid container spacing={8} justifyContent="center">
-            {brandList.map((brand) => (
+            {brandList?.map((brand) => (
               <Grid item md={3} key={brand.title}>
                 <CardActionArea href={brand.link}>
                   <CardMedia

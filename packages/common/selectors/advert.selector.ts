@@ -4,7 +4,7 @@ const advertReducer = (state: State) => state.advert;
 
 export const advertSelector = createSelector(
   advertReducer,
-  (advert) => advert.advert
+  (advert) => advert?.advert
 );
 export const singleAdvertSelector = createSelector(
   advertReducer,

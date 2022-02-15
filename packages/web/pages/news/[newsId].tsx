@@ -10,8 +10,6 @@ import GuidesnLists from "src/components/guidesnLists";
 import Header from "src/components/header";
 import NewsDetail from "src/components/newsDetailComponents/newsDetail";
 import NewsLatest from "src/components/newsDetailComponents/newsLatest";
-import NFT101 from "src/components/featuredNews";
-import RecentArticles from "src/components/recentArticles";
 
 import { useRouter } from "next/router";
 import RelatedArticles from "src/components/newsDetailComponents/relatedArticles";
@@ -55,16 +53,16 @@ export default function News() {
     <Fragment>
       <Header pages={pages} collapseMenuAfter={3} />
       <Container maxWidth="xl">
-        <Box sx={{ height: "100px" }} />
+        <Box sx={{ height: { md: "10vh", xs: "4vh" } }} />
         <Grid container maxWidth="lg" spacing={2} mx="auto">
           <Grid item md={8} xs={11}>
             <NewsDetail />
           </Grid>
           <Grid item md={4} xs={11}>
             <Box sx={{ height: "450px" }}>
-              <Link href={advert[0].ad_link} target="_blank">
+              <Link href={advert?.[0]?.ad_link} target="_blank">
                 <img
-                  src={advert[0].image}
+                  src={advert?.[0]?.image}
                   alt=""
                   onError={handleImageError}
                   height="100%"

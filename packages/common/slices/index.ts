@@ -12,4 +12,21 @@ const reducers = combineReducers({
   advert: advertReducer,
   services: serviceReducer,
 });
+
 export default reducers;
+
+// reducer to reset root reducer, not working currently
+// const reducers = (state, action) => {
+//   if (action.type === "counter/logout") {
+//     // check for action type
+//     state = undefined;
+//   }
+
+//   return combineReducers({
+//     news: newsReducer,
+//     drops: dropsReducer,
+//     guides: guidesReducer,
+//     advert: advertReducer,
+//     services: serviceReducer,
+//   });
+// };

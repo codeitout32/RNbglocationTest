@@ -109,7 +109,7 @@ const ServiceDetail = () => {
             </Typography>
             <Grid container>
               {users?.map((item, index) => (
-                <Grid item md={3}>
+                <Grid item md={3} key={item.id}>
                   <UsingBox
                     item={item}
                     dummy={usingList[index]}

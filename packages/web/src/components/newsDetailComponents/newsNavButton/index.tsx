@@ -9,6 +9,7 @@ const NewsNavButton = ({ title, body, sx, href, ...rest }) => {
         variant="contained"
         sx={{
           ...sx,
+          justifyContent: "flex-start",
           flexDirection: "column",
           textTransform: "capitalize",
           boxShadow: "0px 0px 64px -30px #fff",

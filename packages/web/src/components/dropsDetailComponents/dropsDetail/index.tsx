@@ -27,10 +27,12 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import { faLink, faShare } from "@fortawesome/free-solid-svg-icons";
 import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { grey } from "@mui/material/colors";
+import { RWebShare } from "react-web-share";
 
 //Clamp
 import Clamp from "react-multiline-clamp";
 import getCryptoSvg from "@next/common/utils/getCryptoSvg";
+import { useRouter } from "next/router";
 
 const DropsDetail = () => {
   const singleDrops = useSelector(singleDropsSelector);
@@ -39,6 +41,8 @@ const DropsDetail = () => {
     return singleDrops.type == "launched";
   };
 
+  const router = useRouter();
+  console.log(router.asPath, router.basePath, router.pathname);
   return (
     <StyledPaper sx={{ bgcolor: "primary.main" }}>
       <Grid
@@ -57,17 +61,18 @@ const DropsDetail = () => {
             alignItems="flex-end"
             columnSpacing={2}
           >
-            <Grid item>
+            <Grid item xs={2} md={1}>
               <ThumbUpOutlinedIcon fontSize="large" />
               <Typography
                 variant="caption"
                 component="p"
                 fontFamily="Sen, sans-serif"
+                align="center"
               >
                 {singleDrops.likes} Likes
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid item xs={6} sm={3} md={2}>
               <Box sx={{ position: "relative" }}>
                 {singleDrops.is_verified && (
                   <img
@@ -96,19 +101,26 @@ const DropsDetail = () => {
                 </Avatar>
               </Box>
             </Grid>
-            <Grid item>
+            <Grid item xs={2} md={1}>
               <ThumbDownOutlinedIcon fontSize="large" />
               <Typography
                 variant="caption"
                 component="p"
                 fontFamily="Sen, sans-serif"
+                align="center"
               >
                 {singleDrops.dislikes} Dislikes
               </Typography>
             </Grid>
           </Grid>
 
-          <Stack maxWidth="md" mx="15%" alignItems="center" spacing={3} mt={2}>
+          <Stack
+            maxWidth="md"
+            alignItems="center"
+            spacing={3}
+            mt={2}
+            sx={{ mx: { sm: "15%", xs: "5%" } }}
+          >
             <Typography variant="h3" component="div">
               {singleDrops.title}&nbsp;
               <img
@@ -132,13 +144,19 @@ const DropsDetail = () => {
                   bgcolor: "grey.900",
                   p: 2,
                   border: "2px solid black",
+                  "&:first-of-type": {
+                    borderRadius: { md: "1rem 0 0 1rem" },
+                  },
+                  "&:last-child": {
+                    borderRadius: { md: "0 1rem 1rem 0" },
+                  },
                   "& .MuiTypography-root": {
                     textAlign: "center",
                   },
                 },
               }}
             >
-              <Grid item md={3} xs={6}>
+              <Grid item md={3} sm={6} xs={12}>
                 <Typography variant="h5">
                   {moment(singleDrops.created_at).format(
                     "MMMM DD, YYYY" + (isLaunched() ? " HH:mm A" : "")
@@ -148,7 +166,7 @@ const DropsDetail = () => {
                   {isLaunched() ? " Date Time" : "Date"}
                 </Typography>
               </Grid>
-              <Grid item md={3} xs={6}>
+              <Grid item md={3} sm={6} xs={12}>
                 <Typography variant="h5">
                   {isLaunched()
                     ? `${singleDrops.listed_item}/${singleDrops.supply_content}`
@@ -158,7 +176,7 @@ const DropsDetail = () => {
                   {isLaunched() ? "Listed item/ Total Supply " : "Time"}
                 </Typography>
               </Grid>
-              <Grid item md={3} xs={6}>
+              <Grid item md={3} sm={6} xs={12}>
                 <Typography variant="h5">
                   {isLaunched()
                     ? singleDrops.mint_price + " USD"
@@ -168,11 +186,11 @@ const DropsDetail = () => {
                   {isLaunched() ? "Floor Price " : "Total Supply"}
                 </Typography>
               </Grid>
-              <Grid item md={3} xs={6}>
+              <Grid item md={3} sm={6} xs={12}>
                 <Typography variant="h5">
                   {isLaunched()
-                    ? singleDrops.floor_mc + " SOL"
-                    : singleDrops.mint_price + " USD"}
+                    ? singleDrops.floor_mc + " USD"
+                    : singleDrops.mint_price + " " + singleDrops.crypto_type}
                 </Typography>
                 <Typography variant="body2">
                   {isLaunched() ? "Floor MC(USD)" : "Mint Price"}
@@ -236,13 +254,17 @@ const DropsDetail = () => {
             >
               <TwitterIcon />
             </IconButton>
-            <IconButton
-              aria-label="delete"
-              href={singleDrops.website_link}
-              target="_blank"
+            <RWebShare
+              data={{
+                text: "Checkout this Drop at Your NFT Hub",
+                url: singleDrops.website_link,
+                title: singleDrops.title,
+              }}
             >
-              <FontAwesomeIcon icon={faShare} />
-            </IconButton>
+              <IconButton aria-label="Share Drop">
+                <FontAwesomeIcon icon={faShare} />
+              </IconButton>
+            </RWebShare>
           </Box>
         </Grid>
       </Grid>

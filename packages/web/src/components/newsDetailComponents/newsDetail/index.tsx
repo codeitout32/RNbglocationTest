@@ -52,7 +52,7 @@ const NewsDetail = () => {
           <img
             src={current?.image}
             alt=""
-            height={450}
+            maxHeight={450}
             width="100%"
             onError={handleImageError}
             style={{ objectFit: "cover" }}

@@ -36,7 +36,10 @@ export default function News() {
     <Fragment>
       <Header pages={pages} />
       <Box
-        sx={{ height: "150px", borderRadius: "0px 0px 60px 60px" }}
+        sx={{
+          height: { md: "150px", xs: "80px" },
+          borderRadius: "0px 0px 60px 60px",
+        }}
         bgcolor="grey.900"
       />
       <Container maxWidth="lg">

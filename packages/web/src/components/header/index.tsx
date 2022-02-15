@@ -131,10 +131,10 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
               variant="h6"
               noWrap
               component="div"
-              sx={{ flexGrow: 2, display: { xs: "flex", md: "none" } }}
+              sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
             >
               <Link href="/" passHref>
-                <IconButton>
+                <IconButton sx={{ ml: "-10px" }}>
                   <LogoIcon fontSize="large" />
                 </IconButton>
               </Link>

@@ -129,8 +129,8 @@ const StartBanner = () => {
           </Stack>
           <Box height="20vh"></Box>
           <Grid container spacing={4}>
-            {servicesList.map((service) => (
-              <Grid item md={4}>
+            {servicesList?.map((service) => (
+              <Grid item md={4} key={service.id}>
                 <Link href={"services/" + service.id}>
                   <Card>
                     <CardActionArea sx={{ p: 4 }}>
