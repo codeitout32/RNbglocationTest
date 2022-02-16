@@ -13,6 +13,7 @@ import React, { Fragment } from "react";
 import { handleImageError } from "@next/common/utils/handleImageError";
 import Clamp from "react-multiline-clamp";
 import Link from "next/link";
+import Image from "next/image";
 
 const GuideItem = ({ date, title, image, id }) => {
   const divStyle = {
@@ -27,6 +28,8 @@ const GuideItem = ({ date, title, image, id }) => {
     width: "100%",
     zIndex: -1,
   };
+
+  console.log("image", image);
 
   return (
     <Fragment>
@@ -46,12 +49,6 @@ const GuideItem = ({ date, title, image, id }) => {
         >
           <CardActionArea sx={{ zIndex: "1" }}>
             <CardMedia
-              component="img"
-              height="280"
-              width="95%"
-              image={image}
-              onError={handleImageError}
-              alt="green iguana"
               sx={{
                 p: 0,
                 border: 1,
@@ -62,12 +59,27 @@ const GuideItem = ({ date, title, image, id }) => {
                 position: "relative",
                 top: 0,
                 transition: ".5s",
+                overflow: "hidden",
                 ":hover": {
                   top: "-20px",
                   zIndex: "1",
                 },
               }}
-            />
+            >
+              <div
+                style={{ position: "relative", width: "100%", height: "280px" }}
+              >
+                <Image
+                  src={image || "https://picsum.photos/200"}
+                  alt="Picture of the author"
+                  layout="fill"
+                  objectFit="cover"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII="
+                  placeholder="blur"
+                  onError={handleImageError}
+                />
+              </div>
+            </CardMedia>
             <CardContent sx={{ mt: 3, textTransform: "capitalize" }}>
               {/* <Typography
               gutterBottom

@@ -10,6 +10,7 @@ const Logo = React.forwardRef(({ href, sx }, ref) => {
         <Grid
           container
           maxWidth="20%"
+          alignItems="center"
           sx={{
             ...sx,
             "&:hover": {
@@ -36,12 +37,11 @@ const Logo = React.forwardRef(({ href, sx }, ref) => {
             </Typography>
 
             <Typography
-              variant="h4"
-              noWrap
+              variant="h5"
               component="div"
-              fontSize="1.87rem"
               sx={{
                 display: { xs: "none", md: "flex" },
+                fontSize: { sm: "1.87rem" },
               }}
             >
               NFT Hub

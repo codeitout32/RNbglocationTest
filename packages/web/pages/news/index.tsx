@@ -21,42 +21,54 @@ import FeaturedNews from "src/components/featuredNews";
 import RecentArticles from "src/components/recentArticles";
 import Advert from "src/components/advert";
 import { useRouter } from "next/router";
-import { newsLoadingSelector } from "@next/common/selectors";
+import {
+  categoriesSelector,
+  newsLoadingSelector,
+} from "@next/common/selectors";
 import React from "react";
+import { fetchCategoriesStart } from "@next/common/slices/assets.slice";
+import getCategories from "src/components/newsDetailComponents/utils";
 
 export default function News() {
   // const [checked, setChecked] = React.useState(false);  state to show hide featured transition.
   const dispatch = useDispatch();
   const messages = useIntl();
   const loading = useSelector(newsLoadingSelector);
-  const pages = [
+  const categoriesState = useSelector(categoriesSelector);
+
+  const dummyPages = [
     { title: "BlockChain", url: "?cat=1" },
     { title: "NFTs", url: "?cat=2" },
     { title: "Opinions", url: "?cat=3" },
-    { title: "Technology", url: "?cat=4" },
+    { title: "Tech", url: "?cat=4" },
     // { title: "Cat 5", url: "?cat=5" },
     { title: "All News", url: "/news" },
   ];
 
-  const pages2 = [
-    { title: "Marketplace", url: "#" },
-    { title: "News", url: "/news" },
-    { title: "Drops", url: "/drops" },
-    { title: "Feed", url: "/feed" },
-  ];
+  //Categories from api
 
+  console.log("categories", categoriesState);
+
+  const categories = getCategories(categoriesState);
+
+  const pages = [...categories] || dummyPages;
+
+  console.log("pages", pages);
+
+  //Router
   const router = useRouter();
   const { cat } = router.query;
 
   useEffect(() => {
     //deprecated useEffect, this can be removed
     if (!cat) console.log("router1", cat);
+    dispatch(fetchCategoriesStart());
   }, []);
 
   useEffect(() => {
     if (!router.isReady) return;
     if (!cat) {
-      dispatch(fetchNewsStart({ row_per_page: "50" }));
+      dispatch(fetchNewsStart({ row_per_page: "10" }));
       return;
     }
     console.log("router", cat);

@@ -7,4 +7,5 @@ export const routes = {
   guides: serverUrl + "/guide",
   advert: serverUrl + "/advertise",
   services: serverUrl + "/our-service",
+  category: serverUrl + "/category",
 };

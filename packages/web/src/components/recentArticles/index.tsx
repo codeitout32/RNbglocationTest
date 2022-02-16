@@ -53,10 +53,15 @@ const RecentArticles = ({ category }) => {
   };
 
   React.useEffect(() => {
-    console.log("useEffect1", resultList);
+    console.log("resulList", resultList);
+  }, [resultList]);
+
+  React.useEffect(() => {
+    if (!recentNewsList?.length) return;
+    console.log("useEffect1", resultList, recentNewsList);
     const tempNews = [...resultList, ...recentNewsList];
     setResultList(() => duplicateRemover(tempNews));
-  }, [recentNews]);
+  }, [recentNewsList]);
 
   React.useEffect(() => {
     console.log("useEffect2", category, resultList);

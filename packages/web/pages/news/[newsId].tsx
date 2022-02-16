@@ -14,33 +14,42 @@ import NewsLatest from "src/components/newsDetailComponents/newsLatest";
 import { useRouter } from "next/router";
 import RelatedArticles from "src/components/newsDetailComponents/relatedArticles";
 import Advert from "src/components/advert";
-import { fetchAdvertStart } from "@next/common/slices/advert.slice";
-import { advertSelector } from "@next/common/selectors/";
+import {
+  fetchAdvertStart,
+  fetchCategoriesStart,
+} from "@next/common/slices/assets.slice";
+import { advertSelector, categoriesSelector } from "@next/common/selectors/";
 import { handleImageError } from "@next/common/utils/handleImageError";
+import getCategories from "src/components/newsDetailComponents/utils";
 
 export default function News() {
   const dispatch = useDispatch();
+  const categoriesState = useSelector(categoriesSelector);
 
   const router = useRouter();
   const { newsId } = router.query;
-  const pages = [
+  const dummyPages = [
     { title: "BlockChain", url: "/news/?cat=1" },
     { title: "NFTs", url: "/news/?cat=2" },
     { title: "Opinions", url: "/news/?cat=3" },
-    { title: "Technology", url: "/news/?cat=4" },
+    { title: "Tech", url: "/news/?cat=4" },
     // { title: "Cat 5", url: "/news/?cat=5" },
     { title: "All News", url: "/news/" },
   ];
 
-  const pages2 = [
-    { title: "Marketplace", url: "#" },
-    { title: "News", url: "/news" },
-    { title: "Drops", url: "/drops" },
-    { title: "Feed", url: "/feed" },
-  ];
+  //Categories from api
+
+  console.log("categories", categoriesState);
+
+  const categories = getCategories(categoriesState);
+
+  const pages = categories?.length ? [...categories] : dummyPages;
+
+  console.log("pages", pages);
 
   useEffect(() => {
     dispatch(fetchAdvertStart());
+    if (!categoriesState?.rows) dispatch(fetchCategoriesStart());
   }, []);
 
   const advert = useSelector(advertSelector);

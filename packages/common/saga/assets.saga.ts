@@ -1,6 +1,6 @@
 import { put, takeEvery, all } from "redux-saga/effects";
 import { routes } from "../config";
-import * as AdvertSlice from "../slices/advert.slice";
+import * as AssetsSlice from "../slices/assets.slice";
 
 import commonService from "../services/common.service";
 
@@ -17,28 +17,10 @@ function* fetchMultipleAdvertSaga(action) {
 
   try {
     const res = yield commonService(params);
-    yield put(AdvertSlice.fetchFeaturedAdvertStart({ is_featured: 1 }));
-    yield put(AdvertSlice.fetchAdvertSuccess(res));
+    yield put(AssetsSlice.fetchFeaturedAdvertStart({ is_featured: 1 }));
+    yield put(AssetsSlice.fetchAdvertSuccess(res));
   } catch (error) {
-    yield put(AdvertSlice.fetchAdvertError(error));
-    handleError(error);
-  }
-}
-function* fetchRelatedAdvertSaga(action) {
-  const searchparams = new URLSearchParams(action.payload).toString();
-  const params = {
-    method: "get",
-    route: `${routes.advert}?${searchparams}`,
-    headerCred: {
-      autherization: "myAuthToken",
-    },
-  };
-
-  try {
-    const res = yield commonService(params);
-    yield put(AdvertSlice.fetchRelatedAdvertSuccess(res));
-  } catch (error) {
-    yield put(AdvertSlice.fetchRelatedAdvertError(error));
+    yield put(AssetsSlice.fetchAdvertError(error));
     handleError(error);
   }
 }
@@ -54,43 +36,39 @@ function* fetchAdvertiseSaga(action) {
 
   try {
     const res = yield commonService(params);
-    yield put(AdvertSlice.fetchAdvertSuccess(res));
+    yield put(AssetsSlice.fetchAdvertSuccess(res));
   } catch (error) {
-    yield put(AdvertSlice.fetchAdvertError(error));
+    yield put(AssetsSlice.fetchAdvertError(error));
     handleError(error);
   }
 }
-function* fetchSingleAdvertSaga(action) {
+function* fetchCategoriesSaga(action) {
+  const searchparams = new URLSearchParams(action.payload).toString();
   const params = {
     method: "get",
-    route: `${routes.advert}/${action.payload.id}`,
+    route: routes.category,
     headerCred: {
-      autherization: "",
+      autherization: "myAuthToken",
     },
   };
 
   try {
     const res = yield commonService(params);
-    const relatedObject = {
-      category_id: res.current.category_id,
-      row_per_page: 6,
-    };
-    yield put(AdvertSlice.fetchRelatedAdvertStart(relatedObject));
-    yield put(AdvertSlice.fetchSingleAdvertSuccess(res));
+    yield put(AssetsSlice.fetchCategoriesSuccess(res));
   } catch (error) {
-    yield put(AdvertSlice.fetchSingleAdvertError(error));
+    yield put(AssetsSlice.fetchCategoriesError(error));
     handleError(error);
   }
 }
 
-export function* advertSaga() {
-  yield takeEvery(AdvertSlice.fetchAdvertStart, fetchAdvertiseSaga);
+export function* assetsSaga() {
+  yield takeEvery(AssetsSlice.fetchAdvertStart, fetchAdvertiseSaga);
+  yield takeEvery(AssetsSlice.fetchCategoriesStart, fetchCategoriesSaga);
   // yield takeEvery(AdvertSlice.fetchSingleAdvertStart, fetchSingleAdvertSaga);
   // yield takeEvery(AdvertSlice.fetchRelatedAdvertStart, fetchRelatedAdvertSaga);
   // yield takeEvery(AdvertSlice.fetchFeaturedAdvertStart, fetchFeaturedAdvertSaga);
 }
 
-//
 //
 // axios error handling
 function handleError(error) {

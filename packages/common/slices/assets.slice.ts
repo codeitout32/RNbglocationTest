@@ -16,14 +16,14 @@ const initialState: Advert = {
   singleAdvert: {
     relatedAdvert: [],
   },
-  featuredAdvert: [{}],
+  categories: [],
   loading: false,
   success: "",
   error: "",
 };
 
-export const advertSlice = createSlice({
-  name: "advert",
+export const assetsSlice = createSlice({
+  name: "assets",
   initialState,
   reducers: {
     fetchAdvertStart: (state) => {
@@ -60,50 +60,27 @@ export const advertSlice = createSlice({
         success: "success",
       };
     },
-    fetchSingleAdvertError: (state, action: PayloadAction<T>) => {
+    fetchSingleAdvertError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
     },
-    fetchRelatedAdvertStart: (state, action: PayloadAction<object>) => {
+    fetchCategoriesStart: (state) => {
       return {
         ...state,
         loading: true,
       };
     },
-    fetchRelatedAdvertSuccess: (state, action: PayloadAction<object>) => {
+    fetchCategoriesSuccess: (state, action) => {
       return {
         ...state,
         loading: false,
-        singleAdvert: {
-          ...state.singleAdvert,
-          relatedAdvert: action.payload,
-        },
+        categories: action.payload,
       };
     },
-    fetchRelatedAdvertError: (state, action: PayloadAction<object>) => {
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    },
-    fetchFeaturedAdvertStart: (state, action: PayloadAction<object>) => {
-      return {
-        ...state,
-        loading: true,
-      };
-    },
-    fetchFeaturedAdvertSuccess: (state, action: PayloadAction<object>) => {
-      return {
-        ...state,
-        loading: false,
-        featuredAdvert: action.payload,
-      };
-    },
-    fetchFeaturedAdvertError: (state, action: PayloadAction<object>) => {
+    fetchCategoriesError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: false,
@@ -121,13 +98,9 @@ export const {
   fetchSingleAdvertStart,
   fetchSingleAdvertSuccess,
   fetchSingleAdvertError,
-  fetchRelatedAdvertStart,
-  fetchRelatedAdvertSuccess,
-  fetchRelatedAdvertError,
+  fetchCategoriesStart,
+  fetchCategoriesSuccess,
+  fetchCategoriesError,
+} = assetsSlice.actions;
 
-  fetchFeaturedAdvertStart,
-  fetchFeaturedAdvertSuccess,
-  fetchFeaturedAdvertError,
-} = advertSlice.actions;
-
-export default advertSlice.reducer;
+export default assetsSlice.reducer;

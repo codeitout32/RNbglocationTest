@@ -115,7 +115,7 @@ export function* newsSaga() {
   yield takeEvery(NewsSlice.fetchSingleNewsStart, fetchSingleNewsSaga);
   yield takeEvery(NewsSlice.fetchRelatedNewsStart, fetchRelatedNewsSaga);
   yield takeLatest(NewsSlice.fetchRecentNewsStart, fetchRecentNewsSaga);
-  yield takeEvery(NewsSlice.fetchFeaturedNewsStart, fetchFeaturedNewsSaga);
+  yield takeLatest(NewsSlice.fetchFeaturedNewsStart, fetchFeaturedNewsSaga);
 }
 
 //

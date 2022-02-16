@@ -52,10 +52,9 @@ const NewsDetail = () => {
           <img
             src={current?.image}
             alt=""
-            maxHeight={450}
             width="100%"
             onError={handleImageError}
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", maxHeight: 450 }}
           />
         </Paper>
         <Typography variant="h5">{current?.title}</Typography>

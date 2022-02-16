@@ -10,6 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import React, { Fragment } from "react";
+import avatarBanner from "public/images/banner_avatar1.svg";
+import { rgbDataURL } from "@next/common/utils/rgbDataUrl";
+
+import Image from "next/image";
 
 const SliderItem = () => {
   return (
@@ -58,7 +62,19 @@ const SliderItem = () => {
                 </Grid>
                 <Grid item></Grid>
                 <Grid item md={6}>
-                  <img src="images/banner_avatar1.svg" alt="" />
+                  {/* <img src="images/banner_avatar1.svg" alt="" /> */}
+                  <Image
+                    placeholder="blur"
+                    src={avatarBanner || "https://picsum.photos/200"}
+                    alt="Picture of the author"
+                    blurDataURL={rgbDataURL(150, 150, 150)}
+                    // width={500} automatically provided
+                    // height={500} automatically provided
+                    // blurDataURL="data:..."
+                    // automatically
+                    // provided
+                    // Optional blur-up while loading
+                  />
                 </Grid>
               </Grid>
             </Container>

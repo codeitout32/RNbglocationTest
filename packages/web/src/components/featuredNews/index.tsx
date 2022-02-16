@@ -8,6 +8,9 @@ import { featuredNewsSelector } from "@next/common/selectors";
 import LinkNext from "next/link";
 
 import { handleImageError } from "@next/common/utils/handleImageError";
+import news from "pages/news";
+import Image from "next/image";
+
 const FeaturedNews = () => {
   const featuredNews = useSelector(featuredNewsSelector);
   console.log("featuredNews", featuredNews);
@@ -20,7 +23,7 @@ const FeaturedNews = () => {
           spacing={5}
           sx={{ flexDirection: { xs: "column-reverse", md: "row" } }}
         >
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Box>
               <Typography variant="h3" sx={{ typography: { xs: "h4" } }}>
                 {featured?.title}
@@ -44,7 +47,7 @@ const FeaturedNews = () => {
               </LinkNext>
             </Box>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} xs={12}>
             <Paper
               sx={{
                 borderRadius: "25px",
@@ -52,13 +55,26 @@ const FeaturedNews = () => {
                 bgcolor: "primary.main",
               }}
             >
-              <img
+              <div style={{ position: "relative" }} className="img-div">
+                <Image
+                  src={featured?.image || "https://picsum.photos/200"}
+                  alt="Picture of the author"
+                  layout="intrinsic"
+                  height={600}
+                  width={1000}
+                  objectFit="cover"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII="
+                  placeholder="blur"
+                  onError={handleImageError}
+                />
+              </div>
+              {/* <img
                 src={featured?.image}
                 alt=""
                 // height="300"
                 onError={handleImageError}
                 style={{ objectFit: "cover" }}
-              />
+              /> */}
             </Paper>
           </Grid>
         </Grid>

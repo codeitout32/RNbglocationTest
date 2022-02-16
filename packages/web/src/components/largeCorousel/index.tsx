@@ -24,7 +24,7 @@ const LargeCorousel = () => {
         }}
       >
         <SliderItem />
-        <SliderItem />
+        {/* <SliderItem /> */}
       </Carousel>
     </Fragment>
   );

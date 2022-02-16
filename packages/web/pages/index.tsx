@@ -30,13 +30,13 @@ export default function Home() {
       <Box sx={{ height: "10vh" }} />
       <NavsInfo />
       <Box sx={{ height: "10vh" }} />
-      <Marketplace />
-      <Box sx={{ height: "10vh" }} />
 
       <NewsCorousel />
       <Box sx={{ height: "10vh" }} />
 
       <HomeDropsList />
+      <Box sx={{ height: "10vh" }} />
+      <Marketplace />
       <Box sx={{ height: "10vh" }} />
       <Feed />
       <Box sx={{ height: "10vh" }} />

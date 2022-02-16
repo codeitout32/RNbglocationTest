@@ -9,6 +9,7 @@ import moment from "moment";
 
 // utils
 import { handleImageError } from "@next/common/utils/handleImageError";
+import Image from "next/image";
 const ArticleItem = ({ news }) => {
   const dummy = {
     description:
@@ -47,15 +48,28 @@ const ArticleItem = ({ news }) => {
                 overflow: "hidden",
                 bgcolor: "inherit",
                 width: { md: "250px" },
-                img: {
-                  objectFit: "cover",
+                ".img-div": {
+                  // objectFit: "cover",
                   height: { md: "180px" },
                   width: { xs: "95%", md: "100%" },
                   mx: "auto",
                 },
               }}
             >
-              <img src={news.image} onError={handleImageError} />
+              <div style={{ position: "relative" }} className="img-div">
+                <Image
+                  src={news.image || "https://picsum.photos/200"}
+                  alt="Picture of the author"
+                  layout="responsive"
+                  height={200}
+                  width={300}
+                  objectFit="contain"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII="
+                  placeholder="blur"
+                  onError={handleImageError}
+                />
+              </div>
+              {/* <img src={news.image} onError={handleImageError} /> */}
             </Paper>
           </Grid>
           <Grid item md={8} xs={12}>

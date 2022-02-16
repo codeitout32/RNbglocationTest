@@ -55,7 +55,7 @@ const GuidesnLists = () => {
             <Grid
               container
               direction="row"
-              justifyContent="space-evenly"
+              justifyContent="center"
               alignItems="flex-start"
               spacing={2}
             >

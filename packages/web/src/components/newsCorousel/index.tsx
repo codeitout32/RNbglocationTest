@@ -127,7 +127,7 @@ const NewsCorousel = () => {
               aria-label="news previous"
               className="swiper-next-button"
             >
-              <ArrowCircleRightOutlinedIcon />
+              <ArrowCircleRightOutlinedIcon sx={{ fontSize: "2.5rem" }} />
             </IconButton>
           </Stack>
         </Box>

@@ -2,7 +2,7 @@ import { fork, all, spawn } from "redux-saga/effects";
 import { newsSaga } from "./news.saga";
 import { dropsSaga } from "./drops.saga";
 import { guidesSaga } from "./guides.saga";
-import { advertSaga } from "./advert.saga";
+import { assetsSaga } from "./assets.saga";
 import { servicesSaga } from "./services.saga";
 
 export function* rootSaga() {
@@ -10,7 +10,7 @@ export function* rootSaga() {
     spawn(newsSaga),
     spawn(dropsSaga),
     spawn(guidesSaga),
-    spawn(advertSaga),
+    spawn(assetsSaga),
     spawn(servicesSaga),
   ]);
 }
