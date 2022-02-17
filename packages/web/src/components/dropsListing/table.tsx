@@ -94,6 +94,10 @@ export default function DropTable() {
     }
   }, [dropsListraw]);
 
+  const print = (x) => {
+    console.log("dropList from table", x);
+  };
+
   console.log("dropList from table", dropsList);
   return (
     <TableContainer component={"div"} sx={{ pb: 5 }}>
@@ -247,7 +251,8 @@ export default function DropTable() {
                         {/* Conditional social links ends */}
                       </TableCell>
                       <TableCell align="left">
-                        {moment(row.launch_date).format("hh:mm A")} UTC
+                        {moment(row.launch_date).utc().format("HH:mm A")} UTC{" "}
+                        {print(row.launch_date)}
                       </TableCell>
                       <TableCell align="left">{row.supply_content}</TableCell>
                       <TableCell align="left">

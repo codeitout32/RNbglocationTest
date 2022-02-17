@@ -83,7 +83,7 @@ const ArticleItem = ({ news }) => {
                 <Grid item md={8}>
                   <Typography variant="body1" color="grey.700">
                     {news?.created_at
-                      ? moment(news?.created_at).format("MMMM DD, YYYY")
+                      ? moment(news?.created_at).utc().format("MMMM DD, YYYY")
                       : dummy.date}
                   </Typography>
                 </Grid>

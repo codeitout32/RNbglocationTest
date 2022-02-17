@@ -158,9 +158,9 @@ const DropsDetail = () => {
             >
               <Grid item md={3} sm={6} xs={12}>
                 <Typography variant="h5">
-                  {moment(singleDrops.launch_date).format(
-                    "MMMM DD, YYYY" + (isLaunched() ? " HH:mm A" : "")
-                  )}
+                  {moment(singleDrops.launch_date)
+                    .utc()
+                    .format("MMMM DD, YYYY" + (isLaunched() ? " HH:mm A" : ""))}
                 </Typography>
                 <Typography variant="body2">
                   {isLaunched() ? " Date Time" : "Date"}
@@ -170,7 +170,9 @@ const DropsDetail = () => {
                 <Typography variant="h5">
                   {isLaunched()
                     ? `${singleDrops.listed_item}/${singleDrops.supply_content}`
-                    : moment(singleDrops.created_at).format("HH:mm A" + " UTC")}
+                    : moment(singleDrops.launch_date)
+                        .utc()
+                        .format("hh:mm A" + " UTC")}
                 </Typography>
                 <Typography variant="body2">
                   {isLaunched() ? "Listed item/ Total Supply " : "Time"}

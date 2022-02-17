@@ -130,7 +130,7 @@ export default function DropTable() {
                   {row.mint_price + " " + row.crypto_type}{" "}
                 </TableCell>
                 <TableCell align="left">
-                  {moment(row.created_at).format("MMMM DD, YYYY")}
+                  {moment(row.launch_date).utc().format("MMMM DD, YYYY")}
                 </TableCell>
                 <TableCell align="left" sx={{ whiteSpace: "nowrap" }}>
                   <TextLogo
