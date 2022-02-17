@@ -33,7 +33,7 @@ const Drops = () => {
   const pagination = useSelector(dropsPaginationSelector);
 
   //Rowperpage
-  const rpp = "5";
+  const rpp = "10";
 
   const handleTabChange = (event, newValue) => {
     // setdropsList({});

@@ -67,7 +67,9 @@ const SliderItem = () => {
                     placeholder="blur"
                     src={avatarBanner || "https://picsum.photos/200"}
                     alt="Picture of the author"
-                    blurDataURL={rgbDataURL(150, 150, 150)}
+                    blurDataURL={
+                      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM0TgMAANIAm3/ipYoAAAAASUVORK5CYII="
+                    }
                     // width={500} automatically provided
                     // height={500} automatically provided
                     // blurDataURL="data:..."

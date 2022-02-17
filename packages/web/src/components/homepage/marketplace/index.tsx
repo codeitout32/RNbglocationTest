@@ -1,5 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
+import Image from "next/image";
+
+// import marketComingSoon from "public/images/market_coming_soon.png";
 
 const Marketplace = () => {
   return (
@@ -16,6 +19,20 @@ const Marketplace = () => {
         >
           Coming Soon
         </Typography>
+
+        {/* <div style={{ position: "relative" }} className="img-div">
+                <Image
+                  src={featured?.image || "https://picsum.photos/200"}
+                  alt="Picture of the author"
+                  layout="intrinsic"
+                  height={600}
+                  width={1000}
+                  objectFit="cover"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM0TgMAANIAm3/ipYoAAAAASUVORK5CYII="
+                  placeholder="blur"
+                  onError={handleImageError}
+                />
+              </div> */}
 
         <img
           src="images/market_coming_soon.png"

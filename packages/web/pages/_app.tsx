@@ -47,7 +47,7 @@ export default function App({ Component, pageProps }) {
   }, [router]);
 
   return (
-    <PersistGate loading={<CircularLoader />} persistor={store.persistor}>
+    <PersistGate loading={null} persistor={store.persistor}>
       <Provider store={store}>
         <ThemeProvider theme={restheme}>
           <IntlProvider

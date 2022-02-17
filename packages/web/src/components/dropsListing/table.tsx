@@ -85,10 +85,9 @@ export default function DropTable() {
       setdropsList(dropsListraw);
       return;
     } else {
-      const temp = Object.keys(dropsListraw).reduce(
-        getReducer(dropsListraw),
-        dropsList
-      );
+      const temp = Object.keys(dropsListraw).reduce(getReducer(dropsListraw), {
+        ...dropsList,
+      });
       setdropsList(temp);
       console.log("page no 2 from effect");
     }

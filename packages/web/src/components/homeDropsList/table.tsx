@@ -148,6 +148,7 @@ export default function DropTable() {
               variant="body1"
               textAlign="center"
               color="text.primary"
+              component="div"
               pl={3}
             >
               No records found
