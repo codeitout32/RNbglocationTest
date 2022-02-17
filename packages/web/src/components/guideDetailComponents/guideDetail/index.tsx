@@ -27,7 +27,9 @@ const GuideDetail = () => {
       <StyledPaper>
         <Container maxWidth="md">
           <Box maxWidth={"720px"} mx="auto">
-            <Typography variant="h3" component="div">
+            <img src={current?.image} alt="" width="100%" />
+
+            <Typography variant="h3" component="div" my={2}>
               {current?.title}
             </Typography>
             <Typography
@@ -81,10 +83,9 @@ const GuideDetail = () => {
                 </>
               )}
             </Typography>
-            <Typography variant="h5" component="div" my={2}>
+            {/* <Typography variant="h5" component="div" my={2}>
               {current?.title}
-            </Typography>
-            <img src={current?.image} alt="" width="100%" />
+            </Typography> */}
             {/* <Stack
               direction="row"
               justifyContent="space-between"

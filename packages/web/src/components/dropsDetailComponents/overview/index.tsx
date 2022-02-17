@@ -21,34 +21,47 @@ const Overview = () => {
     {
       title: "Roadmap Score",
       value: singleDrops.roadmap_score,
+      tooltip:
+        "Based on how unique and strong the roadmap is from the other drops. Discord Members: Based on discord size, support and activity on their discord.",
     },
     {
       title: "Discord Score",
       value: singleDrops.discord_member,
+      tooltip: "Based on discord activity, active discord users and its size.",
     },
     {
       title: " Twitter Score",
       value: singleDrops.twitter_followers,
+      tooltip: "Based on legit interaction, engagement and its size.",
     },
     {
       title: "Team Score",
       value: singleDrops.team_score,
+      tooltip:
+        "If Doxxed, Based on the team’s background, experience, and ability to pull off on the roadmap. ",
     },
     {
       title: "Popularity Score",
       value: singleDrops.popularity_score,
+      tooltip:
+        "Based on how popular the project is among members, influencers and compared to other projects launching along with it.",
     },
     {
       title: "Flip Score",
       value: singleDrops.flip_score,
+      tooltip:
+        "Based on how likely it is to make profit when you want to instantly sell it post launch.",
     },
     {
       title: "Hodl Score",
       value: singleDrops.hodl_score,
+      tooltip:
+        "Based on the long term plans of the project, team dedication towards completing it and competency to complete it.",
     },
     {
       title: "Community Score",
       value: singleDrops.community_score,
+      tooltip: "Based on how strong of a community they have built.",
     },
   ];
 
@@ -136,8 +149,7 @@ const Overview = () => {
                     fontSize={".8rem"}
                     color="text.secondary"
                   >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                    aliquam
+                    {field.tooltip}
                   </Typography>
                 }
               >

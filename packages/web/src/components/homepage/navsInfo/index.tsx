@@ -51,7 +51,7 @@ const NavsInfo = () => {
     <Container maxWidth="lg">
       <Grid container spacing={5}>
         {navs.map((nav) => (
-          <Grid item md={3}>
+          <Grid item md={3} key={nav.title}>
             <Link href={nav.url}>
               <StyledCard>
                 <CardActionArea>

@@ -75,7 +75,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
         position="sticky"
         sx={{
           background:
-            "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.41220238095238093) 18%)",
+            "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.61220238095238093) 20%)",
           pt: 1,
         }}
       >

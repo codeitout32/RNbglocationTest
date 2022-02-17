@@ -144,15 +144,20 @@ export default function DropTable() {
             );
           })}
           {!dropsList?.length && (
-            <Typography
-              variant="body1"
-              textAlign="center"
-              color="text.primary"
-              component="div"
-              pl={3}
-            >
-              No records found
-            </Typography>
+            <TableRow>
+              <TableCell>
+                <Typography
+                  variant="body1"
+                  textAlign="center"
+                  color="text.primary"
+                  component="p"
+                  pl={3}
+                >
+                  No records found
+                </Typography>
+              </TableCell>
+              /
+            </TableRow>
           )}
         </TableBody>
       </Table>

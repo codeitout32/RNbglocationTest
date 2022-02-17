@@ -27,6 +27,7 @@ import moment from "moment";
 import TextLogo from "src/theme/textLogo";
 import { handleImageError } from "@next/common/utils/handleImageError";
 import getCryptoSvg from "@next/common/utils/getCryptoSvg";
+import { Fragment } from "react";
 
 function createData(name, size, price, date, image) {
   return { name, size, price, date, image };
@@ -102,8 +103,8 @@ export default function DropTable() {
             .map((x, index) => {
               if (!dropsList[x].length) return; //just to remove count key.
               return (
-                <>
-                  <TableRow key={x}>
+                <Fragment key={x}>
+                  <TableRow>
                     <TableCell
                       align="center"
                       component="td"
@@ -192,7 +193,7 @@ export default function DropTable() {
                               />
                             </Avatar>
                           </Box>
-                          <Link href={`drops/${row.id}`}>
+                          <Link href={`drops/${row.id}`} passHref>
                             <Linkm href="#">
                               <Typography
                                 variant="h5"
@@ -246,7 +247,7 @@ export default function DropTable() {
                         {/* Conditional social links ends */}
                       </TableCell>
                       <TableCell align="left">
-                        {moment(row.created_at).format("hh:mm A")} UTC
+                        {moment(row.launch_date).format("hh:mm A")} UTC
                       </TableCell>
                       <TableCell align="left">{row.supply_content}</TableCell>
                       <TableCell align="left">
@@ -266,7 +267,7 @@ export default function DropTable() {
                       </TableCell>
                     </TableRow>
                   ))}
-                </>
+                </Fragment>
               );
             })}
         </TableBody>

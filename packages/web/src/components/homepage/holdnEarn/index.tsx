@@ -12,7 +12,7 @@ const HoldNEarn = () => {
             xs: "60vh",
             md: "50vh",
           },
-          backgroundPosition: { xs: "left" },
+          backgroundPosition: { xs: "left", md: "center" },
         }}
       >
         <Container sx={{ height: "100%" }}>

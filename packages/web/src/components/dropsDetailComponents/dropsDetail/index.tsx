@@ -158,7 +158,7 @@ const DropsDetail = () => {
             >
               <Grid item md={3} sm={6} xs={12}>
                 <Typography variant="h5">
-                  {moment(singleDrops.created_at).format(
+                  {moment(singleDrops.launch_date).format(
                     "MMMM DD, YYYY" + (isLaunched() ? " HH:mm A" : "")
                   )}
                 </Typography>

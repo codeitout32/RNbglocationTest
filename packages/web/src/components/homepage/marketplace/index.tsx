@@ -1,8 +1,9 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import Image from "next/image";
+import { handleImageError } from "@next/common/utils/handleImageError";
 
-// import marketComingSoon from "public/images/market_coming_soon.png";
+import marketComingSoon from "public/images/market_coming_soon.png";
 
 const Marketplace = () => {
   return (
@@ -15,29 +16,32 @@ const Marketplace = () => {
           variant="h3"
           textAlign="center"
           gutterBottom
-          sx={{ position: "absolute", left: 0, right: 0 }}
+          sx={{ position: "absolute", left: 0, right: 0, zIndex: 2 }}
         >
           Coming Soon
         </Typography>
 
-        {/* <div style={{ position: "relative" }} className="img-div">
-                <Image
-                  src={featured?.image || "https://picsum.photos/200"}
-                  alt="Picture of the author"
-                  layout="intrinsic"
-                  height={600}
-                  width={1000}
-                  objectFit="cover"
-                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM0TgMAANIAm3/ipYoAAAAASUVORK5CYII="
-                  placeholder="blur"
-                  onError={handleImageError}
-                />
-              </div> */}
+        <Box
+          sx={{ position: "relative", "& img": { mx: "auto" } }}
+          className="img-div"
+        >
+          <Image
+            src={marketComingSoon || "https://picsum.photos/200"}
+            alt="Marketplace Coming Soon"
+            layout="responsive"
+            height="70%"
+            width="100vw"
+            objectFit="contain"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM0TgMAANIAm3/ipYoAAAAASUVORK5CYII="
+            placeholder="blur"
+            onError={handleImageError}
+          />
+        </Box>
 
-        <img
+        {/* <img
           src="images/market_coming_soon.png"
           alt="market place coming soon"
-        />
+        /> */}
       </Stack>
     </>
   );
