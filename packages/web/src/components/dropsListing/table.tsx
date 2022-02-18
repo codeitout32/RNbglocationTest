@@ -82,8 +82,9 @@ export default function DropTable() {
     console.log("from table", dropsListraw);
 
     console.log("dropList from effect", dropsList, dropsListraw);
-    if (pagination.page_num == 1) {
-      setdropsList(dropsListraw);
+    console.log("page num", pagination.page_num);
+    if (pagination.page_num < 2) {
+      setdropsList(dropsListraw || {});
       return;
     } else {
       const temp = Object.keys(dropsListraw).reduce(getReducer(dropsListraw), {
@@ -103,7 +104,9 @@ export default function DropTable() {
     <TableContainer component={"div"} sx={{ pb: 5 }}>
       <StyleTable aria-label="Drops List" sx={{ maxWidth: "xl", mx: "auto" }}>
         <TableBody>
-          {Object.keys(dropsList) // slice used to remove last element ie count
+          {Object.keys(dropsList)
+            .sort()
+            .reverse() // slice used to remove last element ie count
             .map((x, index) => {
               if (!dropsList[x].length) return; //just to remove count key.
               return (
