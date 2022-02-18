@@ -29,9 +29,16 @@ const StyledGradPaper = styled(GradPaper)(
   }
 
   .dialog-box {
-    background: url(/images/serv_dialog.svg);
+    // background: url(/images/serv_dialog.svg);
     background-size: contain;
     background-repeat: no-repeat;
+    border: 2px solid #3F3F46;
+    border-radius: 12px;
+    margin-left: 8px;
+  }
+
+  .marquee {
+    align-items: flex-start;
   }
 
  

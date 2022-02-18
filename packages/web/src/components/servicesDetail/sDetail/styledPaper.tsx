@@ -16,6 +16,10 @@ export const StyledPaper = styled("div")(
       }
   }
 
+  .using-image {
+    border-radius: 5px;
+  }
+
   .MuiCard-root {
       background-color: ${theme.palette.primary.main};
       border-radius: 20px;

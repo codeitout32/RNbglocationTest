@@ -30,3 +30,7 @@ export default reducers;
 //     services: serviceReducer,
 //   });
 // };
+
+// reducer reset on error
+// https://youtu.be/hszc3T0hdvU
+// https://bionicjulia.com/blog/clear-redux-toolkit-state-with-redux-persist-and-typescript

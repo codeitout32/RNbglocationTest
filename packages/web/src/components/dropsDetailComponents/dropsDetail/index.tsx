@@ -160,7 +160,7 @@ const DropsDetail = () => {
                 <Typography variant="h5">
                   {moment(singleDrops.launch_date)
                     .utc()
-                    .format("MMMM DD, YYYY" + (isLaunched() ? " HH:mm A" : ""))}
+                    .format("MMMM DD, YYYY" + (isLaunched() ? " hh:mm A" : ""))}
                 </Typography>
                 <Typography variant="body2">
                   {isLaunched() ? " Date Time" : "Date"}

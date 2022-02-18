@@ -13,7 +13,12 @@ const UsingBox = ({ item, dummy }) => {
           target="_blank"
           sx={{ "&:hover": { textDecoration: "none" } }}
         >
-          <img src={item.icon} alt="" onError={handleImageError1} />
+          <img
+            src={item.icon}
+            alt=""
+            onError={handleImageError1}
+            className="using-image"
+          />
           <Typography
             variant="body2"
             fontSize={"1.25rem"}

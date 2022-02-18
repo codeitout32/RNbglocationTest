@@ -107,7 +107,7 @@ const ServiceDetail = () => {
             <Typography variant="h5" component="div" my={2.5}>
               {users?.length ? "Who is using it?" : ""}
             </Typography>
-            <Grid container>
+            <Grid container spacing={3}>
               {users?.map((item, index) => (
                 <Grid item md={3} key={item.id}>
                   <UsingBox
