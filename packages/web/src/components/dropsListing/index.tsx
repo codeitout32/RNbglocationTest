@@ -88,7 +88,9 @@ const Drops = () => {
         row_per_page: rpp,
         group_by: "date",
         type: isUpcoming === "1" ? "upcoming" : "launched",
+        sort_type: "DESC",
         page_num: 1,
+        order_by: "launch_date",
       })
     );
     setSearch("");
