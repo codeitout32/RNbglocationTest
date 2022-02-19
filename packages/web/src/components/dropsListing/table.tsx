@@ -105,8 +105,7 @@ export default function DropTable() {
       <StyleTable aria-label="Drops List" sx={{ maxWidth: "xl", mx: "auto" }}>
         <TableBody>
           {Object.keys(dropsList)
-            .sort()
-            .reverse() // slice used to remove last element ie count
+            .sort() // slice used to remove last element ie count
             .map((x, index) => {
               if (!dropsList[x].length) return; //just to remove count key.
               return (
