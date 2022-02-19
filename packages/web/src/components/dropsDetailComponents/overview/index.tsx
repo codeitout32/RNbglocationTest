@@ -13,6 +13,8 @@ import StyledGradPaper from "./gradPaper";
 import { grey } from "@mui/material/colors";
 import CustomToolTip from "./customToolTip";
 import parse from "html-react-parser";
+import MeterSvg from "src/theme/meter";
+import { getColor, getDeg } from "./utils";
 
 const Overview = () => {
   const singleDrops = useSelector(singleDropsSelector);
@@ -130,7 +132,14 @@ const Overview = () => {
               placement="right"
               arrow
             >
-              <img src="/images/meter.svg" alt="" style={{ width: "100%" }} />
+              <div style={{ width: "100%" }}>
+                <MeterSvg
+                  color={getColor(singleDrops.overall_score)}
+                  rotation={getDeg(singleDrops.overall_score)}
+                />
+              </div>
+
+              {/* <img src="/images/meter.svg" alt="" style={{ width: "100%" }} /> */}
             </Tooltip>
             {/* <Paper>
               <Typography variant="body2" fontSize={"1.25rem"}>
