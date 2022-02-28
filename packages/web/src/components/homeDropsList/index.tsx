@@ -24,7 +24,7 @@ const HomeDropsList = () => {
     dispatch(
       fetchDropsStart({
         type: dropType == 1 ? "upcoming" : "launched",
-        sort_type: "DESC",
+        sort_type: "ASC",
       })
     );
   }, [dropType]);
