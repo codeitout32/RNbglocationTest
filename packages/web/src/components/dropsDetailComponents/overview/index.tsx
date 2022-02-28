@@ -1,11 +1,4 @@
-import {
-  Grid,
-  Paper,
-  Typography,
-  Container,
-  Tooltip,
-  Box,
-} from "@mui/material";
+import { Grid, Paper, Typography, Container, Tooltip, Box } from "@mui/material";
 import { singleDropsSelector } from "@next/common/selectors";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -39,8 +32,7 @@ const Overview = () => {
     {
       title: "Team Score",
       value: singleDrops.team_score,
-      tooltip:
-        "If Doxxed, Based on the team’s background, experience, and ability to pull off on the roadmap. ",
+      tooltip: "If Doxxed, Based on the team’s background, experience, and ability to pull off on the roadmap. ",
     },
     {
       title: "Popularity Score",
@@ -51,8 +43,7 @@ const Overview = () => {
     {
       title: "Flip Score",
       value: singleDrops.flip_score,
-      tooltip:
-        "Based on how likely it is to make profit when you want to instantly sell it post launch.",
+      tooltip: "Based on how likely it is to make profit when you want to instantly sell it post launch.",
     },
     {
       title: "Hodl Score",
@@ -69,13 +60,8 @@ const Overview = () => {
 
   return (
     <StyledGradPaper sx={{ bgcolor: "transparent" }}>
-      <Container maxWidth="lg">
-        <Typography
-          variant="h3"
-          textAlign="center"
-          component="div"
-          sx={{ my: 7 }}
-        >
+      <Container maxWidth='lg'>
+        <Typography variant='h3' textAlign='center' component='div' sx={{ my: 7 }}>
           Overview
         </Typography>
         <Grid
@@ -87,31 +73,20 @@ const Overview = () => {
               bgcolor: "black",
               p: 2,
             },
-          }}
-        >
+          }}>
           <Grid item md={3} xs={12}></Grid>
           <Grid item md={6} xs={12}>
-            <Typography variant="body2" align="center" fontSize={"1.25rem"}>
+            <Typography variant='body2' align='center' fontSize={"1.25rem"}>
               YNH Overall Score
             </Typography>
-            <Typography
-              variant="h3"
-              gutterBottom
-              align="center"
-              className="ovScore"
-            >
+            <Typography variant='h3' gutterBottom align='center' className='ovScore'>
               {singleDrops.overall_score}/100
             </Typography>
             <Tooltip
               title={
                 <Box sx={{}}>
-                  <Typography
-                    variant="body2"
-                    fontSize={".8rem"}
-                    color="text.secondary"
-                  >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                    aliquam
+                  <Typography variant='body2' fontSize={".8rem"} color='text.secondary'>
+                    Based on the average of all the scores and YNH team conclusion about the drop.
                   </Typography>
                 </Box>
               }
@@ -129,14 +104,10 @@ const Overview = () => {
                   },
                 },
               }}
-              placement="right"
-              arrow
-            >
+              placement='right'
+              arrow>
               <div style={{ width: "100%" }}>
-                <MeterSvg
-                  color={getColor(singleDrops.overall_score)}
-                  rotation={getDeg(singleDrops.overall_score)}
-                />
+                <MeterSvg color={getColor(singleDrops.overall_score)} rotation={getDeg(singleDrops.overall_score)} />
               </div>
 
               {/* <img src="/images/meter.svg" alt="" style={{ width: "100%" }} /> */}
@@ -149,46 +120,35 @@ const Overview = () => {
             </Paper> */}
           </Grid>
           <Grid item md={3} xs={12}></Grid>
-          {fieldList?.map((field) => (
+          {fieldList?.map(field => (
             <Grid item md={3} xs={12} key={field.title}>
               <CustomToolTip
                 title={
-                  <Typography
-                    variant="body2"
-                    fontSize={".8rem"}
-                    color="text.secondary"
-                  >
+                  <Typography variant='body2' fontSize={".8rem"} color='text.secondary'>
                     {field.tooltip}
                   </Typography>
-                }
-              >
+                }>
                 <Paper>
-                  <Typography variant="body2" fontSize={"1.25rem"}>
+                  <Typography variant='body2' fontSize={"1.25rem"}>
                     {field.title}
                   </Typography>
-                  <Typography variant="h4">{field.value}</Typography>
+                  <Typography variant='h4'>{field.value}</Typography>
                 </Paper>
               </CustomToolTip>
             </Grid>
           ))}
         </Grid>
-        <Typography
-          variant="h3"
-          textAlign="center"
-          component="div"
-          sx={{ my: 3, mt: 12 }}
-        >
+        <Typography variant='h3' textAlign='center' component='div' sx={{ my: 3, mt: 12 }}>
           Our Take
         </Typography>
         <Typography
-          variant="body1"
-          textAlign="center"
+          variant='body1'
+          textAlign='center'
           paragraph
-          component="div"
-          color="text.secondary"
+          component='div'
+          color='text.secondary'
           sx={{ mx: "auto" }}
-          width={{ md: "55%", xs: "95%" }}
-        >
+          width={{ md: "55%", xs: "95%" }}>
           {parse(singleDrops?.our_take_description || "")}
         </Typography>
       </Container>
