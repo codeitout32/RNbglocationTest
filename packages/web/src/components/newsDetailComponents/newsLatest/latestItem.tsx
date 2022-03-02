@@ -16,6 +16,7 @@ import ButtonTransparent from "src/theme/buttonTransparent";
 import ButtonWhite from "src/theme/buttonWhite";
 import Link from "next/link";
 
+import { getSlug } from "src/helper/generateSlug";
 import { handleImageError } from "@next/common/utils/handleImageError";
 
 //Clamp
@@ -25,8 +26,8 @@ const LatestItem = ({ news, asSidebar }) => {
   return (
     <>
       <CardActionArea>
-        <Link href={"/news/" + news.id}>
-          <Grid container spacing={1} justifyContent="center" sx={{ my: 0 }}>
+        <Link href={`/news/${news.id}/${getSlug(news.title)}`} passHref>
+          <Grid container spacing={1} justifyContent='center' sx={{ my: 0 }}>
             <Grid item md={3}>
               <Paper //Should had used box instead of paper
                 sx={{
@@ -38,8 +39,7 @@ const LatestItem = ({ news, asSidebar }) => {
                     objectFit: "cover",
                     mx: "auto",
                   },
-                }}
-              >
+                }}>
                 <img
                   // width={"60px"}
                   // height={"60px"}
@@ -54,7 +54,7 @@ const LatestItem = ({ news, asSidebar }) => {
                   bgcolor: "inherit",
                 }} /*Should had used box instead of paper*/
               >
-                <Typography variant="body1">
+                <Typography variant='body1'>
                   <Clamp withTooltip lines={2}>
                     {news.title}
                   </Clamp>

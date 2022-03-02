@@ -12,6 +12,7 @@ import { dropsListSelector } from "@next/common/selectors";
 import { useSelector } from "react-redux";
 import TextLogo from "src/theme/textLogo";
 
+import { getSlug } from "../../helper/generateSlug";
 import Linkm from "@mui/material/Link";
 import Link from "next/link";
 import moment from "moment";
@@ -97,12 +98,12 @@ export default function DropTable() {
                       <img src='https://picsum.photos/200' alt='fallback image' />
                     </Avatar>
                   </Box>
-                  <Link
-                    href={`drops/[dropsId]/[dropSlug]`}
-                    as={`drops/${row.id}/${row.title.replace(/[^a-zA-Z]/g, "-").replace(/^-+|-+(?=-|$)/g,'').toLowerCase()}`}>
-                    <Typography variant='h5' textAlign='center' color='text.primary' pl={3}>
-                      {row.title}
-                    </Typography>
+                  <Link href={`drops/[dropsId]/[dropSlug]`} as={`drops/${row.id}/${getSlug(row.title)}`} passHref>
+                    <Linkm href='#'>
+                      <Typography variant='h5' textAlign='center' color='text.primary' pl={3}>
+                        {row.title}
+                      </Typography>
+                    </Linkm>
                   </Link>
                 </TableCell>
                 <TableCell align='left'>{row.supply_content}</TableCell>

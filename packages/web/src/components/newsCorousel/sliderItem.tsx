@@ -10,14 +10,14 @@ import {
   Typography,
 } from "@mui/material";
 import React, { Fragment } from "react";
-import { StyledCard } from "./styled/styledCard";
-
 import moment from "moment";
 import Link from "next/link";
-import { handleImageError } from "@next/common/utils/handleImageError";
-
-//Clamp
 import Clamp from "react-multiline-clamp";
+
+import { StyledCard } from "./styled/styledCard";
+import { handleImageError } from "@next/common/utils/handleImageError";
+import { getSlug } from "../../helper/generateSlug";
+//Clamp
 
 const SliderItem = ({ date, title, image, id }) => {
   return (
@@ -29,28 +29,22 @@ const SliderItem = ({ date, title, image, id }) => {
 
           pb: 7,
           bgcolor: "#27272A",
-        }}
-      >
-        <Link href={`/news/${id}`}>
+        }}>
+        <Link href={`/news/[newsId]/[newsSlug]`} as={`/news/${id}/${getSlug(title)}`} passHref>
           <CardActionArea>
             <CardMedia
-              component="img"
-              height="300"
+              component='img'
+              height='300'
               image={image}
-              alt="green iguana"
+              alt='green iguana'
               sx={{ p: 1 }}
               onError={handleImageError}
             />
             <CardContent>
-              <Typography
-                gutterBottom
-                variant="subtitle2"
-                component="div"
-                color="text.secondary"
-              >
+              <Typography gutterBottom variant='subtitle2' component='div' color='text.secondary'>
                 {moment(date).utc().format("MMMM DD, YYYY")}
               </Typography>
-              <Typography variant="h5" fontSize={24} color="text.primary">
+              <Typography variant='h5' fontSize={24} color='text.primary'>
                 <Clamp withTooltip lines={2}>
                   {title}
                 </Clamp>

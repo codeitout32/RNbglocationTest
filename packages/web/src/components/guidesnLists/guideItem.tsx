@@ -14,13 +14,12 @@ import { handleImageError } from "@next/common/utils/handleImageError";
 import Clamp from "react-multiline-clamp";
 import Link from "next/link";
 import Image from "next/image";
-
+import { getSlug } from "src/helper/generateSlug";
 const GuideItem = ({ date, title, image, id }) => {
   const divStyle = {
     border: 1,
     borderRadius: 5,
-    background:
-      "radial-gradient(farthest-corner at 52% -16%, rgb(161, 161, 170) 20%, rgb(63, 63, 70) 68%)",
+    background: "radial-gradient(farthest-corner at 52% -16%, rgb(161, 161, 170) 20%, rgb(63, 63, 70) 68%)",
     // backgroundColor: "grey",
     height: "250px",
     position: "absolute",
@@ -33,7 +32,7 @@ const GuideItem = ({ date, title, image, id }) => {
 
   return (
     <Fragment>
-      <Link href={"/guides/" + id} passHref>
+      <Link href={`/guides/${id}/${getSlug(title)}`} passHref>
         <Card
           sx={{
             maxWidth: "350px",
@@ -45,8 +44,7 @@ const GuideItem = ({ date, title, image, id }) => {
             py: 3,
             // height: "40vh",
             // minHeight: "430px",
-          }}
-        >
+          }}>
           <CardActionArea sx={{ zIndex: "1" }}>
             <CardMedia
               sx={{
@@ -64,18 +62,15 @@ const GuideItem = ({ date, title, image, id }) => {
                   top: "-20px",
                   zIndex: "1",
                 },
-              }}
-            >
-              <div
-                style={{ position: "relative", width: "100%", height: "280px" }}
-              >
+              }}>
+              <div style={{ position: "relative", width: "100%", height: "280px" }}>
                 <Image
                   src={image || "https://picsum.photos/200"}
-                  alt="Picture of the author"
-                  layout="fill"
-                  objectFit="cover"
-                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII="
-                  placeholder="blur"
+                  alt='Picture of the author'
+                  layout='fill'
+                  objectFit='cover'
+                  blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII='
+                  placeholder='blur'
                   onError={handleImageError}
                 />
               </div>
@@ -89,7 +84,7 @@ const GuideItem = ({ date, title, image, id }) => {
             >
               {date}
             </Typography> */}
-              <Typography variant="h5" fontSize={{ xs: "1.87rem" }}>
+              <Typography variant='h5' fontSize={{ xs: "1.87rem" }}>
                 <Clamp withTooltip lines={2}>
                   {title} <br /> &nbsp;
                 </Clamp>

@@ -25,6 +25,7 @@ import TextLogo from "src/theme/textLogo";
 import { handleImageError } from "@next/common/utils/handleImageError";
 import getCryptoSvg from "@next/common/utils/getCryptoSvg";
 import { Fragment } from "react";
+import { getSlug } from "../../helper/generateSlug";
 
 function createData(name, size, price, date, image) {
   return { name, size, price, date, image };
@@ -179,22 +180,21 @@ export default function DropTable() {
                           </Box>
                           <Link
                             href={`drops/[dropsId]/[dropSlug]`}
-                            as={`drops/${row.id}/${row.title
-                              .replace(/[^a-zA-Z]/g, "-")
-                              .replace(/^-+|-+(?=-|$)/g, "")
-                              .toLowerCase()}`}
+                            as={`drops/${row.id}/${getSlug(row.title)}`}
                             passHref>
-                            <Typography variant='h5' textAlign='center' color='text.primary' pl={3}>
-                              {row.title} &nbsp;
-                              <img
-                                src={getCryptoSvg(row.crypto_type, false)}
-                                alt=''
-                                style={{
-                                  display: "inline-block",
-                                  verticalAlign: "sub",
-                                }}
-                              />
-                            </Typography>
+                            <Linkm href='#'>
+                              <Typography variant='h5' textAlign='center' color='text.primary' pl={3}>
+                                {row.title} &nbsp;
+                                <img
+                                  src={getCryptoSvg(row.crypto_type, false)}
+                                  alt=''
+                                  style={{
+                                    display: "inline-block",
+                                    verticalAlign: "sub",
+                                  }}
+                                />
+                              </Typography>
+                            </Linkm>
                           </Link>
                         </Box>
                       </TableCell>

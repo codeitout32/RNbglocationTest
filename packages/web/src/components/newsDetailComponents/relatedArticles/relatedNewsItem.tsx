@@ -15,6 +15,8 @@ import React, { Fragment } from "react";
 //Clamp
 import Clamp from "react-multiline-clamp";
 
+import { getSlug } from "src/helper/generateSlug";
+
 // taken from guidenlist item
 const RelatedNewsItem = ({ news }) => {
   const { date, title, image } = news;
@@ -22,8 +24,7 @@ const RelatedNewsItem = ({ news }) => {
   const divStyle = {
     border: 1,
     borderRadius: 5,
-    background:
-      "radial-gradient(farthest-corner at 52% -16%, rgb(161, 161, 170) 20%, rgb(63, 63, 70) 68%)",
+    background: "radial-gradient(farthest-corner at 52% -16%, rgb(161, 161, 170) 20%, rgb(63, 63, 70) 68%)",
     // backgroundColor: "grey",
     height: "250px",
     position: "absolute",
@@ -44,14 +45,13 @@ const RelatedNewsItem = ({ news }) => {
           py: 3,
           // height: "45vh",
           // minHeight: "430px",
-        }}
-      >
-        <Link href={`/news/${news.id}`}>
+        }}>
+        <Link href={`/news/${news.id}/${getSlug(news.title)}`}>
           <CardActionArea sx={{ zIndex: "1" }}>
             <CardMedia
-              component="img"
-              height="280"
-              width="95%"
+              component='img'
+              height='280'
+              width='95%'
               image={image}
               sx={{
                 p: 0,
@@ -78,7 +78,7 @@ const RelatedNewsItem = ({ news }) => {
             >
               {date}
             </Typography> */}
-              <Typography variant="h5" fontSize={{ xs: "1.8rem" }} sx={{}}>
+              <Typography variant='h5' fontSize={{ xs: "1.8rem" }} sx={{}}>
                 {/* {title?.length > 20
                   ? title.substring(0, 25).concat("...")
                   : title} */}

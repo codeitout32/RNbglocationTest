@@ -10,6 +10,8 @@ import moment from "moment";
 // utils
 import { handleImageError } from "@next/common/utils/handleImageError";
 import Image from "next/image";
+import { getSlug } from 'src/helper/generateSlug';
+
 const ArticleItem = ({ news }) => {
   const dummy = {
     description:
@@ -28,7 +30,7 @@ const ArticleItem = ({ news }) => {
 
   return (
     <>
-      <Link href={`news/${news.id}`}>
+      <Link href={`news/${news.id}/${getSlug(news.title)}`} passHref>
         <Grid
           container
           alignItems="center"

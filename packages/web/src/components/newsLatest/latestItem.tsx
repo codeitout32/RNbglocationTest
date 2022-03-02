@@ -1,14 +1,4 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Container,
-  Grid,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Paper, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React, { Fragment } from "react";
 import ButtonTransparent from "src/theme/buttonTransparent";
@@ -20,11 +10,12 @@ import { handleImageError } from "@next/common/utils/handleImageError";
 //Clamp
 import Clamp from "react-multiline-clamp";
 import Image from "next/image";
+import { getSlug } from "src/helper/generateSlug";
 
 const LatestItem = ({ news, asSidebar }) => {
   return (
     <>
-      <Grid container spacing={1} justifyContent="center" sx={{ my: 0.5 }}>
+      <Grid container spacing={1} justifyContent='center' sx={{ my: 0.5 }}>
         <Grid item md={3} sm={12}>
           <Paper
             sx={{
@@ -37,18 +28,17 @@ const LatestItem = ({ news, asSidebar }) => {
                 height: { md: "120px" },
                 mx: "auto",
               },
-            }}
-          >
-            <div style={{ position: "relative" }} className="img-div">
+            }}>
+            <div style={{ position: "relative" }} className='img-div'>
               <Image
                 src={news.image || "https://picsum.photos/200"}
-                alt="Picture of the author"
-                layout="intrinsic" //intrinsic
+                alt='Picture of the author'
+                layout='intrinsic' //intrinsic
                 height={600}
                 width={900}
-                objectFit="cover"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII="
-                placeholder="blur"
+                objectFit='cover'
+                blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII='
+                placeholder='blur'
                 onError={handleImageError}
               />
             </div>
@@ -67,7 +57,7 @@ const LatestItem = ({ news, asSidebar }) => {
                 {news.title}
               </Clamp>
             </Typography>
-            <Link href={"/news/" + news.id}>
+            <Link href={`/news/${news.id}/${getSlug(news.title)}`} passHref>
               <ButtonTransparent
                 sx={{
                   textTransform: "capitalize",
@@ -77,8 +67,7 @@ const LatestItem = ({ news, asSidebar }) => {
                   "&:hover": {
                     backgroundColor: "#1e1e1e",
                   },
-                }}
-              >
+                }}>
                 read more {"  "}
                 <ArrowForwardIcon sx={{ ml: 2, fontSize: "1.1rem" }} />
               </ButtonTransparent>

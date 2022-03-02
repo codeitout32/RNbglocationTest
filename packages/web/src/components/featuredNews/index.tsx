@@ -10,6 +10,7 @@ import LinkNext from "next/link";
 import { handleImageError } from "@next/common/utils/handleImageError";
 import news from "pages/news";
 import Image from "next/image";
+import { getSlug } from "src/helper/generateSlug";
 
 const FeaturedNews = () => {
   const featuredNews = useSelector(featuredNewsSelector);
@@ -17,21 +18,17 @@ const FeaturedNews = () => {
   const [featured, ...rest] = featuredNews.rows ? featuredNews.rows : [];
   return (
     <Fragment>
-      <Container sx={{ bgcolor: "primary.main" }} maxWidth="lg">
-        <Grid
-          container
-          spacing={5}
-          sx={{ flexDirection: { xs: "column-reverse", md: "row" } }}
-        >
+      <Container sx={{ bgcolor: "primary.main" }} maxWidth='lg'>
+        <Grid container spacing={5} sx={{ flexDirection: { xs: "column-reverse", md: "row" } }}>
           <Grid item md={6} xs={12}>
             <Box>
-              <Typography variant="h3" sx={{ typography: { xs: "h4" } }}>
+              <Typography variant='h3' sx={{ typography: { xs: "h4" } }}>
                 {featured?.title}
               </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+              <Typography variant='body1' color='text.secondary' sx={{ mt: 1 }}>
                 {featured?.short_description}
               </Typography>
-              <LinkNext href={"/news/" + featured?.id} passHref>
+              <LinkNext href={`/news/${featured?.id}/${getSlug(featured?.title)}`} passHref>
                 <ButtonWhite
                   sx={{
                     textTransform: "capitalize",
@@ -53,18 +50,17 @@ const FeaturedNews = () => {
                 borderRadius: "25px",
                 overflow: "hidden",
                 bgcolor: "primary.main",
-              }}
-            >
-              <div style={{ position: "relative" }} className="img-div">
+              }}>
+              <div style={{ position: "relative" }} className='img-div'>
                 <Image
                   src={featured?.image || "https://picsum.photos/200"}
-                  alt="Picture of the author"
-                  layout="intrinsic"
+                  alt='Picture of the author'
+                  layout='intrinsic'
                   height={600}
                   width={1000}
-                  objectFit="cover"
-                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM0TgMAANIAm3/ipYoAAAAASUVORK5CYII="
-                  placeholder="blur"
+                  objectFit='cover'
+                  blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mM0TgMAANIAm3/ipYoAAAAASUVORK5CYII='
+                  placeholder='blur'
                   onError={handleImageError}
                 />
               </div>

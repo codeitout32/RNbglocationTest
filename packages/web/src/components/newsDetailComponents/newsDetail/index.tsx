@@ -1,24 +1,13 @@
-import {
-  Backdrop,
-  Box,
-  Button,
-  CircularProgress,
-  Paper,
-  Skeleton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Backdrop, Box, Button, CircularProgress, Paper, Skeleton, Stack, Typography } from "@mui/material";
 import React from "react";
 import NewsNavButton from "../newsNavButton";
 import getDate from "@next/common/utils/dateFormater";
 import { useSelector } from "react-redux";
-import {
-  newsLoadingSelector,
-  singleNewsSelector,
-} from "@next/common/selectors";
+import { newsLoadingSelector, singleNewsSelector } from "@next/common/selectors";
 import { htmlParser } from "@next/common/utils/htmlParser";
 import parse from "html-react-parser";
 import moment from "moment";
+import { getSlug } from "../../../helper/generateSlug";
 import { handleImageError } from "@next/common/utils/handleImageError";
 
 const NewsDetail = () => {
@@ -51,26 +40,26 @@ const NewsDetail = () => {
         <Paper sx={{ overflow: "hidden" }}>
           <img
             src={current?.image}
-            alt=""
-            width="100%"
+            alt=''
+            width='100%'
             onError={handleImageError}
             style={{ objectFit: "cover", maxHeight: 450 }}
           />
         </Paper>
-        <Typography variant="h5">{current?.title}</Typography>
+        <Typography variant='h5'>{current?.title}</Typography>
         <Box sx={{ ...hFlxSpcbetween }}>
-          <Typography variant="body1" sx={subtitle1}>
+          <Typography variant='body1' sx={subtitle1}>
             By {current?.author}
           </Typography>
-          <Typography variant="body1" sx={subtitle1}>
+          <Typography variant='body1' sx={subtitle1}>
             {moment(current?.created_at).utc().format("MMMM DD, YYYY")}
           </Typography>
         </Box>
-        <Typography variant="body1" component="div" color="text.secondary">
+        <Typography variant='body1' component='div' color='text.secondary'>
           {parse(body)}
         </Typography>
 
-        {!current?.description && <Skeleton height="15vh"></Skeleton>}
+        {!current?.description && <Skeleton height='15vh'></Skeleton>}
 
         {/* <Typography variant="body2" component="p">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna ligula
@@ -139,15 +128,15 @@ const NewsDetail = () => {
         </Typography> */}
         <Box sx={hFlxSpcbetween}>
           <NewsNavButton
-            href={`/news/${previous?.id}`}
-            title="Previous"
+            href={`/news/${previous?.id}/${getSlug(previous?.title)}`}
+            title='Previous'
             body={previous?.title}
             sx={{ width: "48%" }}
             disabled={!previous}
           />
           <NewsNavButton
-            href={`/news/${next?.id}`}
-            title="Next"
+            href={`/news/${next?.id}/${getSlug(next?.title)}`}
+            title='Next'
             body={next?.title}
             sx={{ width: "48%" }}
             disabled={!next}
@@ -155,11 +144,8 @@ const NewsDetail = () => {
         </Box>
       </Stack>
       {loading && (
-        <Backdrop
-          sx={{ color: "Grey", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={true}
-        >
-          <CircularProgress color="inherit" />
+        <Backdrop sx={{ color: "Grey", zIndex: theme => theme.zIndex.drawer + 1 }} open={true}>
+          <CircularProgress color='inherit' />
           &nbsp; Loading...
         </Backdrop>
       )}
