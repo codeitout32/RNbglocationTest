@@ -33,15 +33,14 @@ export default function DropTable() {
   return (
     <TableContainer component={"div"} sx={{ pb: 5 }}>
       <Table
-        aria-label="simple table"
+        aria-label='simple table'
         sx={{
           maxWidth: "md",
           mx: "auto",
           minWidth: "70%",
           borderCollapse: "separate",
           borderSpacing: "0 2rem",
-        }}
-      >
+        }}>
         <TableHead>
           <TableRow
             sx={{
@@ -49,20 +48,18 @@ export default function DropTable() {
               "& th": { color: "text.secondary", fontSize: "10" },
               "& td": { fontSize: "1.2 rem", color: "text.secondary" },
               "& td, & th": { border: 0 },
-            }}
-          >
+            }}>
             <TableCell>Project</TableCell>
-            <TableCell align="left">Size</TableCell>
-            <TableCell align="left">Price</TableCell>
-            <TableCell align="left">Date</TableCell>
-            <TableCell align="left">YNH Score</TableCell>
+            <TableCell align='left'>Size</TableCell>
+            <TableCell align='left'>Price</TableCell>
+            <TableCell align='left'>Date</TableCell>
+            <TableCell align='left'>YNH Score</TableCell>
           </TableRow>
         </TableHead>
         <TableBody
           sx={{
             " .MuiTableCell-root": { borderBottom: "2px solid #27272a" },
-          }}
-        >
+          }}>
           {dropsList?.map((row, index) => {
             if (index > 10) return;
             return (
@@ -82,13 +79,8 @@ export default function DropTable() {
                   "&:hover": {
                     boxShadow: "0px 0px 64px -30px #FFFFFF",
                   },
-                }}
-              >
-                <TableCell
-                  component="th"
-                  scope="row"
-                  sx={{ display: "flex", alignItems: "center" }}
-                >
+                }}>
+                <TableCell component='th' scope='row' sx={{ display: "flex", alignItems: "center" }}>
                   <Box sx={{ position: "relative" }}>
                     {/* <img
                       src="/images/drops_check_tick.svg"
@@ -101,43 +93,23 @@ export default function DropTable() {
                       }}
                       width="45px"
                     /> */}
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={row.image}
-                      sx={{ width: 80, height: 80, border: 2 }}
-                    >
-                      <img
-                        src="https://picsum.photos/200"
-                        alt="fallback image"
-                      />
+                    <Avatar alt='Remy Sharp' src={row.image} sx={{ width: 80, height: 80, border: 2 }}>
+                      <img src='https://picsum.photos/200' alt='fallback image' />
                     </Avatar>
                   </Box>
-                  <Link href={`drops/${row.id}`}>
-                    <Linkm href="#">
-                      <Typography
-                        variant="h5"
-                        textAlign="center"
-                        color="text.primary"
-                        pl={3}
-                      >
-                        {row.title}
-                      </Typography>
-                    </Linkm>
+                  <Link
+                    href={`drops/[dropsId]/[dropSlug]`}
+                    as={`drops/${row.id}/${row.title.replace(/[^a-zA-Z]/g, "-").replace(/^-+|-+(?=-|$)/g,'').toLowerCase()}`}>
+                    <Typography variant='h5' textAlign='center' color='text.primary' pl={3}>
+                      {row.title}
+                    </Typography>
                   </Link>
                 </TableCell>
-                <TableCell align="left">{row.supply_content}</TableCell>
-                <TableCell align="left">
-                  {row.mint_price + " " + row.crypto_type}{" "}
-                </TableCell>
-                <TableCell align="left">
-                  {moment(row.launch_date).utc().format("MMMM DD, YYYY")}
-                </TableCell>
-                <TableCell align="left" sx={{ whiteSpace: "nowrap" }}>
-                  <TextLogo
-                    fontSize="small"
-                    sx={{ verticalAlign: "text-top", mr: 1 }}
-                    mr={1}
-                  />
+                <TableCell align='left'>{row.supply_content}</TableCell>
+                <TableCell align='left'>{row.mint_price + " " + row.crypto_type} </TableCell>
+                <TableCell align='left'>{moment(row.launch_date).utc().format("MMMM DD, YYYY")}</TableCell>
+                <TableCell align='left' sx={{ whiteSpace: "nowrap" }}>
+                  <TextLogo fontSize='small' sx={{ verticalAlign: "text-top", mr: 1 }} mr={1} />
                   {row.overall_score}
                 </TableCell>
               </TableRow>
@@ -146,13 +118,7 @@ export default function DropTable() {
           {!dropsList?.length && (
             <TableRow>
               <TableCell>
-                <Typography
-                  variant="body1"
-                  textAlign="center"
-                  color="text.primary"
-                  component="p"
-                  pl={3}
-                >
+                <Typography variant='body1' textAlign='center' color='text.primary' component='p' pl={3}>
                   No records found
                 </Typography>
               </TableCell>

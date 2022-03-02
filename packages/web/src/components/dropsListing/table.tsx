@@ -12,10 +12,7 @@ import Linkm from "@mui/material/Link";
 
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import {
-  dropsListSelector,
-  dropsPaginationSelector,
-} from "@next/common/selectors";
+import { dropsListSelector, dropsPaginationSelector } from "@next/common/selectors";
 import Image from "next/image";
 
 import DiscordIcon from "public/images/discord.svg";
@@ -41,7 +38,7 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, "https://picsum.photos/50/50"),
 ];
 
-const dateFunctn = (rawdate) => {
+const dateFunctn = rawdate => {
   const date = new Date(rawdate);
 
   const options = { day: "numeric", month: "long" };
@@ -50,7 +47,7 @@ const dateFunctn = (rawdate) => {
 };
 
 // reducer function for adding list to end of droplist
-const getReducer = (obj) => {
+const getReducer = obj => {
   console.log("object passed", obj);
   const obj2 = { ...obj };
   const reducer = (x, y) => {
@@ -95,14 +92,14 @@ export default function DropTable() {
     }
   }, [dropsListraw]);
 
-  const print = (x) => {
+  const print = x => {
     console.log("dropList from table", x);
   };
 
   console.log("dropList from table", dropsList);
   return (
     <TableContainer component={"div"} sx={{ pb: 5 }}>
-      <StyleTable aria-label="Drops List" sx={{ maxWidth: "xl", mx: "auto" }}>
+      <StyleTable aria-label='Drops List' sx={{ maxWidth: "xl", mx: "auto" }}>
         <TableBody>
           {Object.keys(dropsList)
             .sort() // slice used to remove last element ie count
@@ -111,17 +108,8 @@ export default function DropTable() {
               return (
                 <Fragment key={x}>
                   <TableRow>
-                    <TableCell
-                      align="center"
-                      component="td"
-                      colSpan={6}
-                      variant="head"
-                    >
-                      <Typography
-                        variant="h5"
-                        textAlign="center"
-                        color="grey.500"
-                      >
+                    <TableCell align='center' component='td' colSpan={6} variant='head'>
+                      <Typography variant='h5' textAlign='center' color='grey.500'>
                         {dateFunctn(x)}
                       </Typography>
                     </TableCell>
@@ -132,144 +120,110 @@ export default function DropTable() {
                       sx={{
                         "& th": { color: "text.secondary", fontSize: "10" },
                         "& td": {
-                          fontSize: (theme) => theme.typography.h5.fontSize,
+                          fontSize: theme => theme.typography.h5.fontSize,
                           color: "text.secondary",
                         },
-                      }}
-                    >
-                      <TableCell variant="head">Project</TableCell>
-                      <TableCell align="left" variant="head">
+                      }}>
+                      <TableCell variant='head'>Project</TableCell>
+                      <TableCell align='left' variant='head'>
                         Links
                       </TableCell>
-                      <TableCell align="left" variant="head">
+                      <TableCell align='left' variant='head'>
                         Time
                       </TableCell>
-                      <TableCell align="left" variant="head">
+                      <TableCell align='left' variant='head'>
                         Count
                       </TableCell>
-                      <TableCell align="left" variant="head">
+                      <TableCell align='left' variant='head'>
                         Price
                       </TableCell>
-                      <TableCell align="left" variant="head">
+                      <TableCell align='left' variant='head'>
                         YNH Score
                       </TableCell>
                     </TableRow>
                   )}
 
-                  {dropsList[x].map?.((row) => (
+                  {dropsList[x].map?.(row => (
                     <TableRow
                       key={row.id}
                       sx={{
                         // "&:last-child td, &:last-child th": { border: 0 },
                         "& td": {
                           color: "text.secondary",
-                          fontSize: (theme) => theme.typography.h5.fontSize,
+                          fontSize: theme => theme.typography.h5.fontSize,
                         },
-                      }}
-                    >
-                      <TableCell
-                        align="center"
-                        component="td"
-                        className="trstart"
-                      >
+                      }}>
+                      <TableCell align='center' component='td' className='trstart'>
                         <Box sx={{ display: "flex", alignItems: "center" }}>
                           <Box sx={{ position: "relative" }}>
                             {row.is_verified && (
                               <img
-                                src="/images/drops_check_tick.svg"
-                                alt=""
+                                src='/images/drops_check_tick.svg'
+                                alt=''
                                 style={{
                                   position: "absolute",
                                   right: "2%",
                                   top: "2%",
                                   zIndex: 1,
                                 }}
-                                width="18px"
+                                width='18px'
                               />
                             )}
                             <Avatar
-                              alt="Remy Sharp"
+                              alt='Remy Sharp'
                               src={row.image}
                               sx={{ width: 80, height: 80, border: 2 }}
-                              imgProps={{ onError: handleImageError }}
-                            >
-                              <img
-                                src="https://picsum.photos/200"
-                                alt="fallback image"
-                              />
+                              imgProps={{ onError: handleImageError }}>
+                              <img src='https://picsum.photos/200' alt='fallback image' />
                             </Avatar>
                           </Box>
-                          <Link href={`drops/${row.id}`} passHref>
-                            <Linkm href="#">
-                              <Typography
-                                variant="h5"
-                                textAlign="center"
-                                color="text.primary"
-                                pl={3}
-                              >
-                                {row.title} &nbsp;
-                                <img
-                                  src={getCryptoSvg(row.crypto_type, false)}
-                                  alt=""
-                                  style={{
-                                    display: "inline-block",
-                                    verticalAlign: "sub",
-                                  }}
-                                />
-                              </Typography>
-                            </Linkm>
+                          <Link
+                            href={`drops/[dropsId]/[dropSlug]`}
+                            as={`drops/${row.id}/${row.title
+                              .replace(/[^a-zA-Z]/g, "-")
+                              .replace(/^-+|-+(?=-|$)/g, "")
+                              .toLowerCase()}`}
+                            passHref>
+                            <Typography variant='h5' textAlign='center' color='text.primary' pl={3}>
+                              {row.title} &nbsp;
+                              <img
+                                src={getCryptoSvg(row.crypto_type, false)}
+                                alt=''
+                                style={{
+                                  display: "inline-block",
+                                  verticalAlign: "sub",
+                                }}
+                              />
+                            </Typography>
                           </Link>
                         </Box>
                       </TableCell>
-                      <TableCell align="left">
+                      <TableCell align='left'>
                         {/* Conditional social links  */}
                         {row.twitter_link && (
-                          <IconButton
-                            aria-label="discord"
-                            href={row.twitter_link}
-                            target="_blank"
-                          >
-                            <Image src={TwitterIcon} alt="" width={24} />
+                          <IconButton aria-label='discord' href={row.twitter_link} target='_blank'>
+                            <Image src={TwitterIcon} alt='' width={24} />
                           </IconButton>
                         )}
                         {row.discord_link && (
-                          <IconButton
-                            aria-label="discord"
-                            href={row.discord_link}
-                            target="_blank"
-                          >
-                            <Image src={DiscordIcon} alt="" width={24} />
+                          <IconButton aria-label='discord' href={row.discord_link} target='_blank'>
+                            <Image src={DiscordIcon} alt='' width={24} />
                           </IconButton>
                         )}
                         {row.website_link && (
-                          <IconButton
-                            aria-label="discord"
-                            href={row.website_link}
-                            target="_blank"
-                          >
-                            <Image src={LinkIcon} alt="" width={26} />
+                          <IconButton aria-label='discord' href={row.website_link} target='_blank'>
+                            <Image src={LinkIcon} alt='' width={26} />
                           </IconButton>
                         )}
                         {/* Conditional social links ends */}
                       </TableCell>
-                      <TableCell align="left">
-                        {moment(row.launch_date).utc().format("hh:mm A")} UTC{" "}
-                        {print(row.launch_date)}
+                      <TableCell align='left'>
+                        {moment(row.launch_date).utc().format("hh:mm A")} UTC {print(row.launch_date)}
                       </TableCell>
-                      <TableCell align="left">{row.supply_content}</TableCell>
-                      <TableCell align="left">
-                        {row.mint_price + " " + row.crypto_type}
-                      </TableCell>
-                      <TableCell
-                        align="left"
-                        className="trend"
-                        sx={{ whiteSpace: "nowrap" }}
-                      >
-                        <TextLogo
-                          fontSize="small"
-                          sx={{ mr: 1, verticalAlign: "text-top" }}
-                          mr={1}
-                        />
+                      <TableCell align='left'>{row.supply_content}</TableCell>
+                      <TableCell align='left'>{row.mint_price + " " + row.crypto_type}</TableCell>
+                      <TableCell align='left' className='trend' sx={{ whiteSpace: "nowrap" }}>
+                        <TextLogo fontSize='small' sx={{ mr: 1, verticalAlign: "text-top" }} mr={1} />
                         {row.overall_score}
                       </TableCell>
                     </TableRow>
