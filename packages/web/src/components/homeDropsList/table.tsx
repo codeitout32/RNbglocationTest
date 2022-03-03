@@ -108,7 +108,9 @@ export default function DropTable() {
                 </TableCell>
                 <TableCell align='left'>{row.supply_content}</TableCell>
                 <TableCell align='left'>{row.mint_price + " " + row.crypto_type} </TableCell>
-                <TableCell align='left'>{moment(row.launch_date).utc().format("MMMM DD, YYYY")}</TableCell>
+                <TableCell align='left'>
+                  {row.launch_date === "TBA" ? "TBA" : moment(row.launch_date).utc().format("MMMM DD, YYYY")}
+                </TableCell>
                 <TableCell align='left' sx={{ whiteSpace: "nowrap" }}>
                   <TextLogo fontSize='small' sx={{ verticalAlign: "text-top", mr: 1 }} mr={1} />
                   {row.overall_score}

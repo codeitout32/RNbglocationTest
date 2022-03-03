@@ -218,7 +218,8 @@ export default function DropTable() {
                         {/* Conditional social links ends */}
                       </TableCell>
                       <TableCell align='left'>
-                        {moment(row.launch_date).utc().format("hh:mm A")} UTC {print(row.launch_date)}
+                        {row.launch_date === "TBA" ? "TBA" : moment(row.launch_date).utc().format("hh:mm A")} UTC{" "}
+                        {print(row.launch_date)}
                       </TableCell>
                       <TableCell align='left'>{row.supply_content}</TableCell>
                       <TableCell align='left'>{row.mint_price + " " + row.crypto_type}</TableCell>

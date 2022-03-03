@@ -45,30 +45,13 @@ const DropsDetail = () => {
   console.log(router.asPath, router.basePath, router.pathname);
   return (
     <StyledPaper sx={{ bgcolor: "primary.main" }}>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        columnSpacing={2}
-      >
+      <Grid container direction='row' justifyContent='center' alignItems='center' columnSpacing={2}>
         <Grid item md={1}></Grid>
         <Grid item xs={10}>
-          <Grid
-            container
-            direction="row"
-            justifyContent="center"
-            alignItems="flex-end"
-            columnSpacing={2}
-          >
+          <Grid container direction='row' justifyContent='center' alignItems='flex-end' columnSpacing={2}>
             <Grid item xs={2} md={1}>
-              <ThumbUpOutlinedIcon fontSize="large" />
-              <Typography
-                variant="caption"
-                component="p"
-                fontFamily="Sen, sans-serif"
-                align="center"
-              >
+              <ThumbUpOutlinedIcon fontSize='large' />
+              <Typography variant='caption' component='p' fontFamily='Sen, sans-serif' align='center'>
                 {singleDrops.likes} Likes
               </Typography>
             </Grid>
@@ -76,56 +59,44 @@ const DropsDetail = () => {
               <Box sx={{ position: "relative" }}>
                 {singleDrops.is_verified && (
                   <img
-                    src="/images/drops_check_tick.svg"
-                    alt=""
+                    src='/images/drops_check_tick.svg'
+                    alt=''
                     style={{
                       position: "absolute",
                       right: "4%",
                       top: "4%",
                       zIndex: 1,
                     }}
-                    width="45px"
+                    width='45px'
                   />
                 )}
                 <Avatar
-                  alt="Remy Sharp"
+                  alt='Remy Sharp'
                   src={singleDrops.image}
                   sx={{
                     width: "100%",
                     maxWidth: 160,
                     height: "auto",
                   }}
-                  onError={handleImageError}
-                >
-                  <img src="https://picsum.photos/200" alt="fallback image" />
+                  onError={handleImageError}>
+                  <img src='https://picsum.photos/200' alt='fallback image' />
                 </Avatar>
               </Box>
             </Grid>
             <Grid item xs={2} md={1}>
-              <ThumbDownOutlinedIcon fontSize="large" />
-              <Typography
-                variant="caption"
-                component="p"
-                fontFamily="Sen, sans-serif"
-                align="center"
-              >
+              <ThumbDownOutlinedIcon fontSize='large' />
+              <Typography variant='caption' component='p' fontFamily='Sen, sans-serif' align='center'>
                 {singleDrops.dislikes} Dislikes
               </Typography>
             </Grid>
           </Grid>
 
-          <Stack
-            maxWidth="md"
-            alignItems="center"
-            spacing={3}
-            mt={2}
-            sx={{ mx: { sm: "15%", xs: "5%" } }}
-          >
-            <Typography variant="h3" component="div">
+          <Stack maxWidth='md' alignItems='center' spacing={3} mt={2} sx={{ mx: { sm: "15%", xs: "5%" } }}>
+            <Typography variant='h3' component='div'>
               {singleDrops.title}&nbsp;
               <img
                 src={getCryptoSvg(singleDrops.crypto_type, true)}
-                alt=""
+                alt=''
                 style={{
                   display: "inline-block",
                   verticalAlign: "sub",
@@ -154,60 +125,58 @@ const DropsDetail = () => {
                     textAlign: "center",
                   },
                 },
-              }}
-            >
+              }}>
               <Grid item md={3} sm={6} xs={12}>
-                <Typography variant="h5">
-                  {moment(singleDrops.launch_date)
-                    .utc()
-                    .format("MMMM DD, YYYY" + (isLaunched() ? " hh:mm A" : ""))}
+                <Typography variant='h5'>
+                  {singleDrops.launch_date === "TBA"
+                    ? "TBA"
+                    : moment(singleDrops.launch_date)
+                        .utc()
+                        .format("MMMM DD, YYYY" + (isLaunched() ? " hh:mm A" : ""))}
                 </Typography>
-                <Typography variant="body2">
-                  {isLaunched() ? " Date Time" : "Date"}
-                </Typography>
+                <Typography variant='body2'>{isLaunched() ? " Date Time" : "Date"}</Typography>
               </Grid>
               <Grid item md={3} sm={6} xs={12}>
-                <Typography variant="h5">
+                <Typography variant='h5'>
                   {isLaunched()
                     ? `${singleDrops.listed_item}/${singleDrops.supply_content}`
+                    : singleDrops.launch_date === "TBA"
+                    ? "TBA"
                     : moment(singleDrops.launch_date)
                         .utc()
                         .format("hh:mm A" + " UTC")}
                 </Typography>
-                <Typography variant="body2">
-                  {isLaunched() ? "Listed item/ Total Supply " : "Time"}
-                </Typography>
+                <Typography variant='body2'>{isLaunched() ? "Listed item/ Total Supply " : "Time"}</Typography>
               </Grid>
               <Grid item md={3} sm={6} xs={12}>
-                <Typography variant="h5">
+                <Typography variant='h5'>
                   {isLaunched()
-                    ? singleDrops.mint_price + " USD"
+                    ? singleDrops.mint_price === "TBA"
+                      ? "TBA"
+                      : singleDrops.mint_price + " USD"
                     : singleDrops.supply_content}
                 </Typography>
-                <Typography variant="body2">
-                  {isLaunched() ? "Floor Price " : "Total Supply"}
-                </Typography>
+                <Typography variant='body2'>{isLaunched() ? "Floor Price " : "Total Supply"}</Typography>
               </Grid>
               <Grid item md={3} sm={6} xs={12}>
-                <Typography variant="h5">
+                <Typography variant='h5'>
                   {isLaunched()
                     ? singleDrops.floor_mc + " USD"
+                    : singleDrops.mint_price === "TBA"
+                    ? "TBA"
                     : singleDrops.mint_price + " " + singleDrops.crypto_type}
                 </Typography>
-                <Typography variant="body2">
-                  {isLaunched() ? "Floor MC(USD)" : "Mint Price"}
-                </Typography>
+                <Typography variant='body2'>{isLaunched() ? "Floor MC(USD)" : "Mint Price"}</Typography>
               </Grid>
             </Grid>
           </Stack>
           <Typography
-            variant="body2"
+            variant='body2'
             fontSize={"1.25rem"}
-            textAlign="center"
-            component="p"
+            textAlign='center'
+            component='p'
             sx={{ my: 3, mx: "auto" }}
-            width={{ md: "60%", xs: "95%" }}
-          >
+            width={{ md: "60%", xs: "95%" }}>
             <Clamp withTooltip lines={3}>
               {singleDrops?.description} &nbsp;
             </Clamp>
@@ -222,8 +191,7 @@ const DropsDetail = () => {
             mt: {
               xs: 3,
             },
-          }}
-        >
+          }}>
           <Box
             sx={{
               display: "flex",
@@ -231,29 +199,18 @@ const DropsDetail = () => {
               flexDirection: { xs: "row", md: "column" },
               justifyContent: "center",
             }}
-            className="icon-box"
-          >
-            <IconButton
-              aria-label="link"
-              sx={{ color: grey[600] }}
-              href={singleDrops.website_link}
-              target="_blank"
-            >
+            className='icon-box'>
+            <IconButton aria-label='link' sx={{ color: grey[600] }} href={singleDrops.website_link} target='_blank'>
               <FontAwesomeIcon icon={faLink} />
             </IconButton>
             <IconButton
-              aria-label="delete"
+              aria-label='delete'
               sx={{ fontSize: { md: "1.2rem" } }}
               href={singleDrops.discord_link}
-              target="_blank"
-            >
+              target='_blank'>
               <FontAwesomeIcon icon={faDiscord} />
             </IconButton>
-            <IconButton
-              aria-label="delete"
-              href={singleDrops.twitter_link}
-              target="_blank"
-            >
+            <IconButton aria-label='delete' href={singleDrops.twitter_link} target='_blank'>
               <TwitterIcon />
             </IconButton>
             <RWebShare
@@ -261,9 +218,8 @@ const DropsDetail = () => {
                 text: "Checkout this Drop at Your NFT Hub",
                 url: singleDrops.website_link,
                 title: singleDrops.title,
-              }}
-            >
-              <IconButton aria-label="Share Drop">
+              }}>
+              <IconButton aria-label='Share Drop'>
                 <FontAwesomeIcon icon={faShare} />
               </IconButton>
             </RWebShare>
