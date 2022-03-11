@@ -1,9 +1,12 @@
-import { useMemo } from "react";
+// import { useMemo } from "react";
+import React from "react";
 import logger from "redux-logger";
 import createSagaMiddleware, { SagaMiddleware } from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { View, Text } from "react-native";
+import { Platform } from "react-native";
 
 import rootReducer from "../slices";
 
@@ -16,15 +19,16 @@ const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
   key: "root",
-  storage,
+  storage: AsyncStorage,
   timeout: null,
 };
+// console.log("hello react native from store", View);
 
 function initStore(initialState: AppState) {
-  const middleware:any[] = [sagaMiddleware as SagaMiddleware];
+  const middleware: any[] = [sagaMiddleware as SagaMiddleware];
   const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === "development" || __DEV__) {
     middleware.push(logger);
     return configureStore({
       reducer: persistedReducer,
@@ -33,7 +37,7 @@ function initStore(initialState: AppState) {
       initialState,
     });
   }
-
+  // middleware.push(logger); //remove this on devlopment
   return configureStore({
     reducer: persistedReducer,
     middleware: [...middleware],
@@ -68,7 +72,7 @@ export const initializeStore = (preloadedState: AppState) => {
 };
 
 export function useStore(initialState: AppState) {
-  return useMemo(() => initializeStore(initialState), [initialState]);
+  return React.useMemo(() => initializeStore(initialState), [initialState]);
 }
 
 export type AppState = ReturnType<typeof rootReducer>;

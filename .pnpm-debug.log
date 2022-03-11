@@ -1,0 +1,53 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "next",
+      "version": "1.0.0",
+      "main": "index.js",
+      "author": "Shivam Mishra <mishivam1999@gmail.com>",
+      "license": "MIT",
+      "private": true,
+      "workspaces": [
+        "packages/*",
+        "packages/web"
+      ],
+      "scripts": {
+        "dev": "next dev",
+        "build": "yarn workspace tailcrew_web run build",
+        "start": "yarn workspace tailcrew_web run start",
+        "test": "echo \"Error: no test specified\" && exit 1"
+      }
+    },
+    "prefix": "K:\\ReactProject\\solShort"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "K:\\.pnpm-store\\v3",
+    "virtualStoreDir": "K:\\ReactProject\\solShort\\node_modules\\.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "K:\\ReactProject\\solShort",
+    "stage": "resolution_started"
+  },
+  "4 error pnpm": {
+    "shortMessage": "Command failed with exit code 128: C:\\Program Files\\Git\\cmd\\git.EXE ls-remote git+ssh://git@github.com/packages/nativeApp.git HEAD",
+    "command": "C:\\Program Files\\Git\\cmd\\git.EXE ls-remote git+ssh://git@github.com/packages/nativeApp.git HEAD",
+    "escapedCommand": "\"C:\\Program Files\\Git\\cmd\\git.EXE\" ls-remote \"git+ssh://git@github.com/packages/nativeApp.git\" HEAD",
+    "exitCode": 128,
+    "stdout": "",
+    "stderr": "git@github.com: Permission denied (publickey).\r\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.",
+    "failed": true,
+    "timedOut": false,
+    "isCanceled": false,
+    "killed": false,
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "Command failed with exit code 128: C:\\Program Files\\Git\\cmd\\git.EXE ls-remote git+ssh://git@github.com/packages/nativeApp.git HEAD\ngit@github.com: Permission denied (publickey).\r\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.",
+      "stack": "pnpm: Command failed with exit code 128: C:\\Program Files\\Git\\cmd\\git.EXE ls-remote git+ssh://git@github.com/packages/nativeApp.git HEAD\ngit@github.com: Permission denied (publickey).\r\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.\n    at makeError (C:\\Users\\xXxHomie21\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:42502:17)\n    at handlePromise (C:\\Users\\xXxHomie21\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:43073:33)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async getRepoRefs (C:\\Users\\xXxHomie21\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:85029:23)\n    at async resolveRef (C:\\Users\\xXxHomie21\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:85041:20)\n    at async resolveGit (C:\\Users\\xXxHomie21\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:84992:24)\n    at async Object.resolve (C:\\Users\\xXxHomie21\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:86117:241)\n    at async run (C:\\Users\\xXxHomie21\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:74193:23)"
+    }
+  }
+}

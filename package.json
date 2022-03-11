@@ -5,14 +5,24 @@
   "author": "Shivam Mishra <mishivam1999@gmail.com>",
   "license": "MIT",
   "private": true,
-  "workspaces":[
-    "packages/*",
-	"packages/web"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "packages/web"
+    ],
+    "nohoist": [
+      "**",
+      "**/react-native",
+      "**/react-native/**"
+    ]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "yarn workspace tailcrew_web run build",
     "start": "yarn workspace tailcrew_web run start",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "react-native": "0.67.3"
   }
 }

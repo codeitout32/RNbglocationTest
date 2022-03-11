@@ -7,6 +7,7 @@ import commonService from "../services/common.service";
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function* fetchMultipleNewsSaga(action) {
+  console.log("hello from saga");
   const searchparams = new URLSearchParams(action.payload).toString();
   const params = {
     method: "get",
