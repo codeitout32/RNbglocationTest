@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Categories from '../screens/Categories';
-import MyApp from '../screens/HomeScreen/MyApp';
+import Home from '../screens/Home';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,14 +15,12 @@ const Navigation = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        {/* <MyApp /> */}
         <Stack.Screen
-          name="Home"
-          component={MyApp}
+          name='Home'
+          component={Home}
           initialParams={{catId: ''}}
         />
-
-        <Stack.Screen name="Category" component={Categories} />
+        <Stack.Screen name='Category' component={Categories} />
       </Stack.Navigator>
     </NavigationContainer>
   );
