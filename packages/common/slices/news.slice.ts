@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import formatISO from "date-fns/formatISO";
 
 export interface NewsList {
   newsList: Array<Object>;
@@ -10,6 +11,7 @@ export interface NewsList {
     pagination: Object;
   };
   success: string;
+  lastRefreshTime: string;
   error: object | string;
   featuredNews: object | string;
   relatedNews: {
@@ -36,6 +38,7 @@ const initialState: NewsList = {
   featuredNews: {
     rows: [],
   },
+  lastRefreshTime: "",
   loading: false,
   success: "",
   error: "",
@@ -56,6 +59,7 @@ export const newsSlice = createSlice({
         ...state,
         loading: false,
         newsList: action.payload,
+        lastRefreshTime: new Date().toISOString(),
       };
     },
     fetchNewsError: (state, action: PayloadAction<object>) => {

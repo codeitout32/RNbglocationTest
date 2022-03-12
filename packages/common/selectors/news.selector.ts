@@ -31,3 +31,7 @@ export const recentNewsPaginationSelector = createSelector(
   newsReducer,
   (news) => news.recentNews.pagination
 );
+export const lastRefreshTimeSelector = createSelector(
+  newsReducer,
+  (news) => news.lastRefreshTime
+);

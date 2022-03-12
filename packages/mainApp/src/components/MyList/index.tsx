@@ -13,7 +13,10 @@ import ListItem from '../ListItem';
 import {v4 as uuidv4} from 'uuid';
 import {useSelector} from 'react-redux';
 
-import {newsListSelector} from '@next/common/selectors/';
+import {
+  lastRefreshTimeSelector,
+  newsListSelector,
+} from '@next/common/selectors/';
 
 const HEIGHT = Dimensions.get('window').height;
 const DATA = [
@@ -57,7 +60,9 @@ const DATA = [
 const MyList = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [windowHeight, setWindowHeight] = useState(0);
-  const newsList = useSelector(newsListSelector);
+  const [newsList, setNewsList] = useState([]);
+  const newsListReducer = useSelector(newsListSelector);
+  const lastRefreshTimeReducer = useSelector(lastRefreshTimeSelector);
 
   const onLayout = event => {
     const {x, y, height, width} = event.nativeEvent.layout;
@@ -81,6 +86,7 @@ const MyList = () => {
   const SeparatorComponent = ({item}) => {
     return <View style={{height: HEIGHT * 0.2}} />;
   };
+
   // code for items view on change
   const [viewedItems, setViewedItems] = useState([]);
   const viewabilityConfig = {
@@ -96,13 +102,16 @@ const MyList = () => {
     {viewabilityConfig, onViewableItemsChanged},
   ]);
 
+  //code for news update
+
   useEffect(() => {
     console.log('newslist', newsList);
-  }, [newsList]);
+    setNewsList([...newsListReducer?.rows]);
+  }, [newsListReducer]);
   return (
     <View style={styles.container}>
       <FlatList
-        data={newsList.rows || []}
+        data={newsList || []}
         decelerationRate={'fast'}
         onLayout={onLayout}
         // snapToAlignment={'start'}
