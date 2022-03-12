@@ -30,14 +30,16 @@ const ItemBody = ({item}) => {
       </Text>
       <View style={styles.middleBar}>
         <Pressable style={styles.middleBarButton}>
-          <Icon name="clock" color="darkgrey" type="feather" />
+          <Icon name='clock' color='darkgrey' type='feather' />
           <Text style={styles.middleBarText}>
-            {format(parseISO(item.created_at), 'MMMM dd, yyyy')}
+            {formatDistance(new Date(item.created_at), new Date(), {
+              addSuffix: true,
+            })}
           </Text>
         </Pressable>
 
         <Pressable style={styles.middleBarButton}>
-          <Icon name="open-outline" color="darkgrey" type="ionicon" />
+          <Icon name='open-outline' color='darkgrey' type='ionicon' />
           <Text style={styles.middleBarText}>{item.author}</Text>
         </Pressable>
       </View>
@@ -50,12 +52,16 @@ const ItemBody = ({item}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 2,
+    marginHorizontal: 20,
+    marginTop: 50,
+  },
   middleBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    // textAlignVertical: 'top',
-    padding: 10,
+    paddingVertical: 10,
   },
   middleBarButton: {
     flexDirection: 'row',
@@ -65,12 +71,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     color: colors.primary,
     fontSize: 20,
-    marginHorizontal: 5,
-    // alignItems: 'baseline',
-    // textAlignVertical: 'center',
+    marginLeft: 10,
+    fontWeight: 'bold',
   },
   h3: {
     fontWeight: 'bold',
+    textTransform: 'capitalize',
   },
   img: {
     width: '100%',
@@ -78,17 +84,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
   },
-  container: {
-    flex: 2,
-  },
   contentContainer: {
     paddingVertical: 0,
   },
   item: {
-    // height: windowHeight,
     flex: 1,
-    // padding: 20,
-    // marginVertical: 8,
     marginHorizontal: 16,
   },
   title: {

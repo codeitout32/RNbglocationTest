@@ -69,14 +69,14 @@ const MyList = () => {
     setWindowHeight(height);
   };
   const renderItem = ({item}) => {
-    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
+    // const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
     const color = item.id === selectedId ? 'white' : 'black';
 
     return (
       <ListItem
         item={item}
         onPress={() => setSelectedId(item.id)}
-        backgroundColor={{backgroundColor}}
+        // backgroundColor={{backgroundColor}}
         textColor={{color}}
         windowHeight={windowHeight}
       />
@@ -115,6 +115,7 @@ const MyList = () => {
         decelerationRate={'fast'}
         onLayout={onLayout}
         snapToStart={false}
+        showsVerticalScrollIndicator={false}
         pagingEnabled
         renderItem={renderItem}
         keyExtractor={item => item.id}

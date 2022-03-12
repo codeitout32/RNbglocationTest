@@ -17,7 +17,6 @@ let height1 = HEIGHT;
 const ListItem = ({
   item,
   onPress,
-  backgroundColor,
   textColor,
   windowHeight,
 }) => {
@@ -27,7 +26,7 @@ const ListItem = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.item, backgroundColor, {height: windowHeight}]}>
+      style={[styles.item, {height: windowHeight}]}>
       <Image
         style={[styles.img, {height: windowHeight / 2.5}]}
         source={{uri: 'https://picsum.photos/400/300'}}
@@ -69,11 +68,7 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
   },
   item: {
-    // height: windowHeight,
     flex: 1,
-    // padding: 20,
-    // marginVertical: 8,
-    marginHorizontal: 16,
   },
   title: {
     fontSize: 32,
