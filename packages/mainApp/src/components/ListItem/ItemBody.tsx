@@ -79,9 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   container: {
-    // flex: 1,
-    // flexGrow: 1,
-    //   marginTop: StatusBar.currentHeight || 0,
+    flex: 2,
   },
   contentContainer: {
     paddingVertical: 0,

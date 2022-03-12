@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     top: '35%',
   },
   img: {
-    width: '100%',
+    flex:1.5,
   },
   container: {
     flex: 1,

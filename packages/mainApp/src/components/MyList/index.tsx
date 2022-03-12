@@ -114,19 +114,13 @@ const MyList = () => {
         data={newsList || []}
         decelerationRate={'fast'}
         onLayout={onLayout}
-        // snapToAlignment={'start'}
-        // snapToOffsets={DATA.map((x, i) => i * HEIGHT)}
         snapToStart={false}
         pagingEnabled
         renderItem={renderItem}
         keyExtractor={item => item.id}
         extraData={selectedId}
-        style={{flex: 1, backgroundColor: 'pink'}}
-        // ItemSeparatorComponent={SeparatorComponent}
-        // disableIntervalMomentum
+        style={{flex: 1}}
         windowSize={10}
-        // contentContainerStyle={styles.container}
-        // viewabilityConfig={viewabilityConfig}
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
       />
     </View>
@@ -135,9 +129,7 @@ const MyList = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    flexGrow: 1,
-    // marginTop: StatusBar.currentHeight || 0,
+    flex: 1,
   },
   contentContainer: {
     paddingVertical: 0,
