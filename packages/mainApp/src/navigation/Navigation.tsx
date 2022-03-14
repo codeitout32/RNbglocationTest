@@ -14,13 +14,15 @@ const Navigation = () => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-        }}>
+          gestureEnabled: true,
+        }}
+        swipeEnabled={true}>
         <Stack.Screen
-          name='Home'
+          name="Home"
           component={Home}
           initialParams={{catId: ''}}
         />
-        <Stack.Screen name='Category' component={Categories} />
+        <Stack.Screen name="Category" component={Categories} />
       </Stack.Navigator>
     </NavigationContainer>
   );

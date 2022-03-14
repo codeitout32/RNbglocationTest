@@ -95,8 +95,13 @@ const MyList = () => {
   };
 
   const onViewableItemsChanged = ({viewableItems, changed}) => {
-    console.log('items', viewableItems);
-    console.log('changed', changed);
+    console.table(viewableItems[0]);
+    console.table(changed);
+    if (viewableItems?.[0]?.index === 0) {
+      const readStart = viewableItems[0].key;
+    }
+    const readEnd = viewableItems?.[0]?.key;
+    // // dispatch();
   };
   const viewabilityConfigCallbackPairs = useRef([
     {viewabilityConfig, onViewableItemsChanged},

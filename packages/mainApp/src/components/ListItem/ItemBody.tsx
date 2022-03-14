@@ -30,7 +30,7 @@ const ItemBody = ({item}) => {
       </Text>
       <View style={styles.middleBar}>
         <Pressable style={styles.middleBarButton}>
-          <Icon name='clock' color='darkgrey' type='feather' />
+          <Icon name="clock" color="darkgrey" type="feather" />
           <Text style={styles.middleBarText}>
             {formatDistance(new Date(item.created_at), new Date(), {
               addSuffix: true,
@@ -38,8 +38,8 @@ const ItemBody = ({item}) => {
           </Text>
         </Pressable>
 
-        <Pressable style={styles.middleBarButton}>
-          <Icon name='open-outline' color='darkgrey' type='ionicon' />
+        <Pressable style={[styles.middleBarButton, {paddingLeft: '15%'}]}>
+          <Icon name="open-outline" color="darkgrey" type="ionicon" />
           <Text style={styles.middleBarText}>{item.author}</Text>
         </Pressable>
       </View>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   middleBar: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'baseline',
     paddingVertical: 10,
   },
