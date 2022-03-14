@@ -17,12 +17,12 @@ const Navigation = () => {
           gestureEnabled: true,
         }}
         swipeEnabled={true}>
+        <Stack.Screen name="Home" component={Home} initialParams={{catId: 1}} />
         <Stack.Screen
-          name="Home"
-          component={Home}
-          initialParams={{catId: ''}}
+          name="Category"
+          component={Categories}
+          initialParams={{catId: 1}} // only to show selected tab
         />
-        <Stack.Screen name="Category" component={Categories} />
       </Stack.Navigator>
     </NavigationContainer>
   );

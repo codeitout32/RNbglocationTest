@@ -16,10 +16,17 @@ const icons = [
 ];
 
 const Categories: React.FC<any> = props => {
-  const {navigation, categoriesList, fetchCategoriesStart} = props;
+  const {navigation, categoriesList, fetchCategoriesStart, route} = props;
   React.useEffect(() => {
     fetchCategoriesStart();
   }, []);
+
+  const catId = route.params?.catId;
+
+  const isSelected = (itemId: any) => ({
+    color: itemId == catId ? '#00BAFF' : 'darkgrey',
+    borderColor: itemId == catId ? '#00BAFF' : 'darkgrey',
+  });
   return (
     <SafeAreaProvider style={styles.container}>
       <Header title={'Categories'} navigation={Categories} />
@@ -31,14 +38,16 @@ const Categories: React.FC<any> = props => {
               navigation.navigate('Home', {catId: item.id});
             }}
             key={item.id}
-            style={styles.categoriesItem}>
+            style={[styles.categoriesItem, isSelected(item.id)]}>
             <Icon
               name={icons[index].name}
               type={icons[index].type}
-              color={styles.categoriesText.color}
+              color={isSelected(item.id).color}
               size={40}
             />
-            <Text style={styles.categoriesText}>{item.category_name}</Text>
+            <Text style={[styles.categoriesText, isSelected(item.id)]}>
+              {item.category_name}
+            </Text>
           </Pressable>
         ))}
       </View>

@@ -1,10 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#303030'},
+  container: {flex: 1, backgroundColor: 'white'},
   categoriesItem: {
     width: '30%',
-    height: 110,
+    height: 120,
     backgroundColor: 'transparent', //'#00BAFF',
     margin: '1.5%',
     justifyContent: 'center',

@@ -17,6 +17,7 @@ type HeaderComponentProps = {
   title: string;
   view?: string;
   navigation: object;
+  headerLinks: object;
 };
 
 type ParamList = {
@@ -25,18 +26,20 @@ type ParamList = {
   };
 };
 
+// navigation.navigate('Home', {catId: item.id});
+
 const Header: React.FunctionComponent<HeaderComponentProps> = props => {
   const docsNavigate = () => {
     console.log('hello');
     Linking.openURL(`https://reactnativeelements.com/docs/${props.view}`);
   };
-
+  const headerLinks = props.headerLinks;
   const playgroundNavigate = () => {
     console.log('hello');
     // Linking.openURL(`https://react-native-elements.js.org/#/${props.view}`);
   };
   const menuNavigate = () => {
-    props.navigation.navigate('Category');
+    props.navigation.navigate(headerLinks.menu.title, headerLinks.menu.params);
     console.log('hello');
   };
   console.log('hello from native');

@@ -13,9 +13,13 @@ const Home: React.FC<any> = props => {
     console.log('home', catId || '');
   }, [catId]);
 
+  const headerLinks = {
+    menu: {title: 'Category', params: {catId}},
+  };
+
   return (
     <SafeAreaProvider style={styles.view}>
-      <Header title={''} navigation={navigation} />
+      <Header title={''} navigation={navigation} headerLinks={headerLinks} />
       <MyList />
     </SafeAreaProvider>
   );
