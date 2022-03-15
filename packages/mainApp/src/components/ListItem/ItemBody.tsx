@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import colors from '@next/common/utils/theme';
-import {Text, useTheme, Icon} from 'react-native-elements';
+import {Text, Icon} from 'react-native-elements';
 import {
   format,
   formatDistance,
@@ -19,12 +19,14 @@ import {
   parseISO,
   subDays,
 } from 'date-fns';
+import {useTheme} from '@react-navigation/native';
 // import Icon from 'react-native-vector-icons/Feather';
 
 const ItemBody = ({item}) => {
+  const {colors} = useTheme();
   return (
     <View style={styles.container}>
-      <Text h4 h4Style={styles.h3}>
+      <Text h4 h4Style={[styles.h3, {color: colors.text}]}>
         {item.title ||
           'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>
@@ -43,7 +45,7 @@ const ItemBody = ({item}) => {
           <Text style={styles.middleBarText}>{item.author}</Text>
         </Pressable>
       </View>
-      <Text style={styles.text}>
+      <Text style={[styles.text, {color: colors.text}]}>
         {item.description ||
           'The Polish government passed a draft bill to create an 8 billion zloty ($1.75 billion) fund to help war refugees from Ukraine. The United Nations estimates more than 1.5 million people have fled Ukraine since Russia attacked its neighbour on Feb. 24. More than 1 million have crossed the border into Poland. Many thousands have been hosted across the country'}
       </Text>
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
   },
   middleBarText: {
     flexDirection: 'row',
-    color: colors.primary,
+    color: '#34CF54',
     fontSize: 20,
     marginLeft: 10,
     fontWeight: 'bold',

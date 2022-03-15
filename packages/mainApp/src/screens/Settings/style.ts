@@ -2,15 +2,20 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {flex: 1},
-  categoriesItem: {
-    width: '30%',
-    height: 120,
-    backgroundColor: 'transparent', //'#00BAFF',
-    margin: '1.5%',
-    justifyContent: 'center',
-    borderWidth: 2,
+  itemBar: {
+    // width: '30%',
+    // height: 120,
+    // backgroundColor: 'transparent', //'#00BAFF',
+    flexDirection: 'row',
+    paddingHorizontal: '5%',
+    flex: 1,
+    justifyContent: 'space-between',
+    borderWidth: 0,
     borderColor: 'darkgrey',
     borderRadius: 5,
+  },
+  h4Style: {
+    fontSize: 18,
   },
   categoriesText: {
     color: 'darkgrey',

@@ -1,11 +1,16 @@
 import React from 'react';
-import {Pressable, Text, View} from 'react-native';
+import {Pressable, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Icon} from 'react-native-elements';
-import {useTheme} from 'react-native-elements';
+import {Icon, Switch, Text} from 'react-native-elements';
 
 import Header from '../../components/Header';
 import styles from './style';
+import {useDispatch, useSelector} from 'react-redux';
+import {darkModeSelector} from '@next/common/selectors';
+import {setDarkMode} from '@next/common/slices/assets.slice';
+
+import {useTheme} from '@react-navigation/native';
+import {color} from 'react-native-elements/dist/helpers';
 
 const icons = [
   {name: 'compass', type: 'entypo'},
@@ -16,14 +21,24 @@ const icons = [
   {name: 'headphones', type: 'feather'},
 ];
 
-const Categories: React.FC<any> = props => {
+const Settings: React.FC<any> = props => {
   const {navigation, categoriesList, fetchCategoriesStart, route} = props;
   React.useEffect(() => {
     fetchCategoriesStart();
   }, []);
 
+  const {colors} = useTheme();
+
+  const dispatch = useDispatch();
+
+  const isDarkMode = useSelector(darkModeSelector);
+
   const catId = route.params?.catId;
 
+  const toggleDarkMode = () => {
+    console.log('isdark', isDarkMode);
+    dispatch(setDarkMode(!isDarkMode));
+  };
   const isSelected = (itemId: any) => ({
     color: itemId == catId ? '#00BAFF' : 'darkgrey',
     borderColor: itemId == catId ? '#00BAFF' : 'darkgrey',
@@ -36,36 +51,24 @@ const Categories: React.FC<any> = props => {
       icon: {name: 'home', type: 'font-awesome'},
     },
   };
-
+  console.log('color', colors);
   return (
-    <SafeAreaProvider style={styles.container}>
+    <SafeAreaProvider style={[styles.container]}>
       <Header
-        title={'Categories'}
+        title={'Settings'}
         navigation={navigation}
         headerLinks={headerLinks}
+        noSettings
       />
       <View style={styles.view}>
-        {(categoriesList?.rows || []).map((item: any, index: number) => (
-          <Pressable
-            onPress={() => {
-              console.log(item.id, item.title);
-              navigation.navigate('Home', {catId: item.id});
-            }}
-            key={item.id}
-            style={[styles.categoriesItem, isSelected(item.id)]}>
-            <Icon
-              name={icons[index].name}
-              type={icons[index].type}
-              color={isSelected(item.id).color}
-              size={40}
-            />
-            <Text style={[styles.categoriesText, isSelected(item.id)]}>
-              {item.category_name}
-            </Text>
-          </Pressable>
-        ))}
+        <View style={styles.itemBar}>
+          <Text h4 h4Style={[styles.h4Style, {color: colors.text}]}>
+            Dark Mode
+          </Text>
+          <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
+        </View>
       </View>
     </SafeAreaProvider>
   );
 };
-export default Categories;
+export default Settings;

@@ -1,6 +1,11 @@
-const colors = {
-  primary: "#34CF54",
-  secondary: "#349B54",
+const theme = {
+  colors: {
+    background: "white",
+  },
+  darkColors: {
+    background: "#3D4A3D",
+  },
+  mode: "dark",
 };
 
-export default colors;
+export default theme;

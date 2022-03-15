@@ -20,6 +20,7 @@ const initialState: Advert = {
   loading: false,
   success: "",
   error: "",
+  isDark: true,
 };
 
 export const assetsSlice = createSlice({
@@ -87,6 +88,12 @@ export const assetsSlice = createSlice({
         error: action.payload,
       };
     },
+    setDarkMode: (state, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        isDark: action.payload,
+      };
+    },
   },
 });
 
@@ -101,6 +108,7 @@ export const {
   fetchCategoriesStart,
   fetchCategoriesSuccess,
   fetchCategoriesError,
+  setDarkMode,
 } = assetsSlice.actions;
 
 export default assetsSlice.reducer;

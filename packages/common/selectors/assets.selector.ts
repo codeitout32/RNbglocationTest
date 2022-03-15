@@ -14,3 +14,7 @@ export const categoriesSelector = createSelector(
   assetsReducer,
   (assets) => assets?.categories
 );
+export const darkModeSelector = createSelector(
+  assetsReducer,
+  (assets) => assets?.isDark
+);

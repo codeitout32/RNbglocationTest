@@ -14,7 +14,11 @@ const Home: React.FC<any> = props => {
   }, [catId]);
 
   const headerLinks = {
-    menu: {title: 'Category', params: {catId}},
+    menu: {
+      link: 'Category',
+      params: {catId},
+      icon: {name: 'category', type: 'material'},
+    },
   };
 
   return (

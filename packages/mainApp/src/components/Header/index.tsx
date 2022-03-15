@@ -18,6 +18,7 @@ type HeaderComponentProps = {
   view?: string;
   navigation: object;
   headerLinks: object;
+  noSettings: boolean;
 };
 
 type ParamList = {
@@ -39,23 +40,36 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
     // Linking.openURL(`https://react-native-elements.js.org/#/${props.view}`);
   };
   const menuNavigate = () => {
-    props.navigation.navigate(headerLinks.menu.title, headerLinks.menu.params);
-    console.log('hello');
+    props.navigation.navigate(headerLinks.menu.link, headerLinks.menu.params);
   };
-  console.log('hello from native');
+  const settingsNavigate = () => {
+    props.navigation.navigate('Settings', headerLinks.menu.params);
+  };
+  console.log('hello from header');
   return (
     <HeaderRNE
       containerStyle={styles.headerContainer}
       leftComponent={
         <Pressable onPress={menuNavigate}>
-          <Icon name="menu" color="white" />
+          <Icon
+            name={headerLinks.menu.icon.name}
+            type={headerLinks.menu.icon.type}
+            size={30}
+            color="white"
+          />
         </Pressable>
       }
       rightComponent={
         <View style={styles.headerRight}>
-          <Pressable onPress={docsNavigate}>
-            <Icon name="settings" color="white" />
-          </Pressable>
+          {props.noSettings ? (
+            <Pressable onPress={() => props.navigation.goBack()}>
+              <Icon name="back" color="white" type="antdesign" />
+            </Pressable>
+          ) : (
+            <Pressable onPress={settingsNavigate}>
+              <Icon name="settings" color="white" />
+            </Pressable>
+          )}
           {/* <Pressable style={{marginLeft: 10}} onPress={playgroundNavigate}>
             <Icon type="antdesign" name="rocket1" color="white" />
           </Pressable> */}
