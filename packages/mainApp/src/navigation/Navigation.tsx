@@ -25,7 +25,8 @@ const Navigation = () => {
     ...DarkTheme,
     colors: {
       ...DarkTheme.colors,
-      text: '#e6dfdf',
+      text: '#F8FFF8',
+      background: '#3D4A3D',
     },
   };
 
