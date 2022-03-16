@@ -43,3 +43,8 @@ export const lastRefreshTimeSelector = createSelector(
   newsReducer,
   news => news.lastRefreshTime
 );
+
+export const newsUpdatedSelector = createSelector(
+  newsReducer,
+  news => news.isNewsUpdated
+);

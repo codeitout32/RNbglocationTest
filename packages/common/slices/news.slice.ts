@@ -9,6 +9,7 @@ export interface NewsList {
   success: string;
   lastRefreshTime: string | null;
   error: object | string;
+  isNewsUpdated: boolean;
 }
 
 const initialState: NewsList = {
@@ -18,7 +19,8 @@ const initialState: NewsList = {
   loading: false,
   newNewsLoading: false,
   success: '',
-  error: ''
+  error: '',
+  isNewsUpdated: false
 };
 
 export const newsSlice = createSlice({
@@ -41,14 +43,26 @@ export const newsSlice = createSlice({
     },
     updateNewsStateToRead: (state, action) => {
       const { readNewsId, isRead } = action.payload;
-      console.log("🚀~ readNewsId, isRead", readNewsId, isRead)
-      state.newsList.res.rows =  state.newsList.res.rows.map((news: object) => {
-        if (news.id === readNewsId) {
-          return { ...news, isRead };
+      const allNews = state.newsList?.res?.rows;
+      const res = allNews.map(item => {
+        if (item.id === readNewsId) {
+          return { ...item, isRead };
         }
-        return news;
+        return item;
       });
+      const readNews = {
+        res: {
+          rows: [...res],
+          count: res.length
+        }
+      };
+      return {
+        ...state,
+        loading: false,
+        newsList: readNews
+      };
     },
+
     fetchNewsError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
@@ -68,7 +82,7 @@ export const newsSlice = createSlice({
       const newNews = {
         res: {
           rows: [...newRows, ...oldNews],
-          count: state.newsList.count + action.payload.count
+          count: state.newsList.res.count + action.payload.count
         }
       };
 
@@ -86,6 +100,20 @@ export const newsSlice = createSlice({
         newNewsLoading: false,
         error: action.payload
       };
+    },
+    updateNewsAction: (state, action) => {
+      const reset = action.payload?.reset;
+      if (reset) {
+        return {
+          ...state,
+          isNewsUpdated: false
+        };
+      } else {
+        return {
+          ...state,
+          isNewsUpdated: true
+        };
+      }
     }
   }
 });
@@ -97,7 +125,8 @@ export const {
   fetchNewNewsStart,
   fetchNewNewsSuccess,
   fetchNewNewsError,
-  updateNewsStateToRead
+  updateNewsStateToRead,
+  updateNewsAction
 } = newsSlice.actions;
 
 export default newsSlice.reducer;

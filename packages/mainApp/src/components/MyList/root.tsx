@@ -17,31 +17,37 @@ const MyList = props => {
     newsList,
     newNewsList,
     updateNewsStateToRead,
+    isNewsUploaded,
+    updateNewsAction,
   } = props;
-
   const [selectedId, setSelectedId] = useState(null);
   const [windowHeight, setWindowHeight] = useState(0);
-  const [news, setNews] = useState([]);
-  //   const [currentNews, setCurrentNews] = useState({
-  //     id: null,
-  //     isRead: false,
-  //   } as any);
+  // const [news, setNews] = useState(newsList?.res?.rows);
+  // const [appState, setAppState] = useState(false);
 
   useEffect(() => {
-    handleNews();
-  }, [isLoading, newsList]);
 
-  const handleNews = () => {
-    if (!!newsList?.res?.rows) {
-      const unreadedNews = newsList?.res?.rows.filter(
-        news => news.isRead === false,
-      );
-      const readedNews = newsList?.res?.rows.filter(
-        news => news.isRead === true,
-      );
-      setNews([...unreadedNews, ...readedNews]);
-    }
-  };
+    // handleNews();
+  }, [isLoading,isNewNewsLoading, newsList]);
+
+  // useEffect(() => {
+  //   if (appState) { 
+  //     setNews(newsList?.res?.rows);
+  //   }
+  // }, [appState, newsList]);
+
+  // const handleNews = () => {
+  //   if (!!newsList?.res?.rows && !appState) {
+  //     const {rows: newsRows} = newsList.res;
+  //     const unreadNews = newsRows.filter((item: object) => !item.isRead);
+  //     const readNews = newsRows.filter((item: object) => item.isRead);
+  //     setNews([...unreadNews, ...readNews]);
+  //     setAppState(true);
+  //     console.log("called--news->",news);
+
+  //     // updateNewsAction();
+  //   }
+  // };
 
   const onLayout = event => {
     const {x, y, height, width} = event.nativeEvent.layout;
@@ -49,14 +55,12 @@ const MyList = props => {
   };
 
   const renderItem = ({item}) => {
-    // const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
     const color = item.id === selectedId ? 'white' : 'black';
 
     return (
       <ListItem
         item={item}
         onPress={() => setSelectedId(item.id)}
-        // backgroundColor={{backgroundColor}}
         textColor={{color}}
         windowHeight={windowHeight}
       />
@@ -69,19 +73,9 @@ const MyList = props => {
   };
 
   const onViewableItemsChanged = ({viewableItems, changed}) => {
-    console.log(viewableItems, changed);
     const readNewsId: number | null = changed[0]?.item?.id ?? null;
-    // setCurrentNews(changed[0]?.item);
-    // const isAvailable = newsList?.res?.rows.filter(
-    //   item => item.id === readNewsId && changed[0]?.isViewable,
-    // );
-    // //
-    if (viewableItems[0]?.item?.id === readNewsId && changed[0]?.isViewable) {
-      console.log('if block');
-
-      //   updateNewsStateToRead({readNewsId, isRead: true});
-    } else {
-      console.log('else block');
+    if (!changed[0]?.item?.isRead &&  viewableItems[0]?.item?.id === readNewsId && changed[0]?.isViewable) {
+      updateNewsStateToRead({readNewsId, isRead: true});
     }
   };
 
@@ -89,7 +83,6 @@ const MyList = props => {
     {viewabilityConfig, onViewableItemsChanged},
   ]);
 
-  console.log('-->', news);
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -100,7 +93,7 @@ const MyList = props => {
         />
       ) : (
         <FlatList
-          data={news || []}
+          data={newsList?.res?.rows || []}
           decelerationRate={'fast'}
           onLayout={onLayout}
           snapToStart={false}

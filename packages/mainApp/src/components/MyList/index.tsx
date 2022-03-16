@@ -7,11 +7,10 @@ import {
   newNewsListSelector,
   newsLoadingSelector,
   newNewsLoadingSelector,
+  newsUpdatedSelector,
 } from '@next/common/selectors/';
 
-import {
-  updateNewsStateToRead,
-} from '@next/common/slices/news.slice';
+import {updateNewsStateToRead,updateNewsAction} from '@next/common/slices/news.slice';
 
 const mapStateToProps = (state: any) => ({
   isNewsLoading: newsLoadingSelector(state),
@@ -19,8 +18,9 @@ const mapStateToProps = (state: any) => ({
   newsList: newsListSelector(state),
   newNewsList: newNewsListSelector(state),
   lastRefreshTimeReducer: lastRefreshTimeSelector(state),
+  isNewsUploaded: newsUpdatedSelector(state),
 });
 
 export default connect(mapStateToProps, {
-  updateNewsStateToRead,
+  updateNewsStateToRead,updateNewsAction
 })(MyList);
