@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'transparent', //'#00BAFF',
     flexDirection: 'row',
     paddingHorizontal: '5%',
-    flex: 1,
+    // width: '100%',
     justifyContent: 'space-between',
     borderWidth: 0,
     borderColor: 'darkgrey',
