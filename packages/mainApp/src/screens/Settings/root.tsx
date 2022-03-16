@@ -1,7 +1,7 @@
 import React from 'react';
 import {Pressable, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Icon, Switch, Text} from 'react-native-elements';
+import {Icon, Switch, Text, Card} from 'react-native-elements';
 
 import Header from '../../components/Header';
 import styles from './style';
@@ -61,12 +61,12 @@ const Settings: React.FC<any> = props => {
         noSettings
       />
       <View style={styles.view}>
-        <View style={styles.itemBar}>
+        <Card wrapperStyle={styles.itemBar} containerStyle={{flex: 1}}>
           <Text h4 h4Style={[styles.h4Style, {color: colors.text}]}>
             Dark Mode
           </Text>
           <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
-        </View>
+        </Card>
       </View>
     </SafeAreaProvider>
   );

@@ -30,8 +30,10 @@ const Navigation = () => {
     },
   };
 
+  console.log('darktheme', DarkTheme);
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} useDark={darkMode}>
       <NavigationContainer theme={darkMode ? MyTheme : DefaultTheme}>
         <Stack.Navigator
           screenOptions={{
