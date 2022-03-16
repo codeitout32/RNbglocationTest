@@ -6,11 +6,26 @@ import MyList from '../../components/MyList';
 import styles from './style';
 
 const Home: React.FC<any> = props => {
-  const {navigation, route, fetchNewsStart} = props;
+  const {
+    navigation,
+    route,
+    fetchNewsStart,
+    fetchNewNewsStart,
+    lastRefreshTime,
+    allNews,
+  } = props;
   const {catId} = route.params;
   useEffect(() => {
-    fetchNewsStart({category_id: catId || ''});
-    console.log('home', catId || '');
+    allNews.length > 0
+      ? fetchNewsStart({
+          sort_type: 'DESC',
+          order_by: 'created_at',
+        })
+      : fetchNewNewsStart({
+          sort_type: 'DESC',
+          order_by: 'created_at',
+          last_refresh_time: lastRefreshTime,
+        });
   }, [catId]);
 
   const headerLinks = {
