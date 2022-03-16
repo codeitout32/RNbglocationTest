@@ -79,9 +79,11 @@ export const newsSlice = createSlice({
     fetchNewNewsSuccess: (state, action) => {
       const newRows = action.payload?.res?.rows;
       const oldNews = state.newsList?.res?.rows;
+      const oldUnreadNews = oldNews.filter(item => !item.isRead);
+      const oldReadNews = oldNews.filter(item => item.isRead);
       const newNews = {
         res: {
-          rows: [...newRows, ...oldNews],
+          rows: [...newRows, ...oldUnreadNews, ...oldReadNews],
           count: state.newsList.res.count + action.payload.count
         }
       };
