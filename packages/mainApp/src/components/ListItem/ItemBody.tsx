@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  Dimensions,
-  Image,
-  StatusBar,
-  StyleSheet,
-  View,
-  Pressable,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, Pressable} from 'react-native';
 import colors from '@next/common/utils/theme';
 import {Text, Icon} from 'react-native-elements';
 import {
@@ -30,18 +21,28 @@ const ItemBody = ({item}) => {
         {item.title ||
           'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>
+      {/* <Text>{item.isRead ? 'Readed' : 'Unreaded'}</Text> */}
       <View style={styles.middleBar}>
         <Pressable style={styles.middleBarButton}>
-          <Icon name="clock" color="darkgrey" type="feather" />
+          <Icon
+            name='clock'
+            color='darkgrey'
+            type='feather'
+            tvParallaxProperties={undefined}
+          />
           <Text style={styles.middleBarText}>
             {formatDistance(new Date(item.created_at), new Date(), {
               addSuffix: true,
             })}
           </Text>
         </Pressable>
-
         <Pressable style={[styles.middleBarButton, {paddingLeft: '15%'}]}>
-          <Icon name="open-outline" color="darkgrey" type="ionicon" />
+          <Icon
+            name='open-outline'
+            color='darkgrey'
+            type='ionicon'
+            tvParallaxProperties={undefined}
+          />
           <Text style={styles.middleBarText}>{item.author}</Text>
         </Pressable>
       </View>
