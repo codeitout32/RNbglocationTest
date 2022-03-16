@@ -2,61 +2,31 @@ import React, {useState, useEffect, useRef} from 'react';
 import {
   FlatList,
   StyleSheet,
-  Dimensions,
   View,
   ActivityIndicator,
 } from 'react-native';
 import ListItem from '../ListItem';
-
-const HEIGHT = Dimensions.get('window').height;
 
 const MyList = props => {
   const {
     isLoading,
     isNewNewsLoading,
     newsList,
-    newNewsList,
     updateNewsStateToRead,
-    isNewsUploaded,
-    updateNewsAction,
   } = props;
   const [selectedId, setSelectedId] = useState(null);
   const [windowHeight, setWindowHeight] = useState(0);
-  // const [news, setNews] = useState(newsList?.res?.rows);
-  // const [appState, setAppState] = useState(false);
 
   useEffect(() => {
-
-    // handleNews();
   }, [isLoading,isNewNewsLoading, newsList]);
 
-  // useEffect(() => {
-  //   if (appState) { 
-  //     setNews(newsList?.res?.rows);
-  //   }
-  // }, [appState, newsList]);
-
-  // const handleNews = () => {
-  //   if (!!newsList?.res?.rows && !appState) {
-  //     const {rows: newsRows} = newsList.res;
-  //     const unreadNews = newsRows.filter((item: object) => !item.isRead);
-  //     const readNews = newsRows.filter((item: object) => item.isRead);
-  //     setNews([...unreadNews, ...readNews]);
-  //     setAppState(true);
-  //     console.log("called--news->",news);
-
-  //     // updateNewsAction();
-  //   }
-  // };
-
   const onLayout = event => {
-    const {x, y, height, width} = event.nativeEvent.layout;
+    const {height} = event.nativeEvent.layout;
     setWindowHeight(height);
   };
 
   const renderItem = ({item}) => {
     const color = item.id === selectedId ? 'white' : 'black';
-
     return (
       <ListItem
         item={item}
