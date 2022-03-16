@@ -21,7 +21,7 @@ const ItemBody = ({item}) => {
         {item.title ||
           'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>
-      {/* <Text>{item.isRead ? 'Readed' : 'Unreaded'}</Text> */}
+      <Text>{item.isRead ? 'Readed' : 'Unreaded'}</Text>
       <View style={styles.middleBar}>
         <Pressable style={styles.middleBarButton}>
           <Icon
