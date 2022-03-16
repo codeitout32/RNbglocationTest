@@ -2,26 +2,20 @@ import React from 'react';
 import {StyleSheet, View, Pressable} from 'react-native';
 import colors from '@next/common/utils/theme';
 import {Text, Icon} from 'react-native-elements';
-import {
-  format,
-  formatDistance,
-  formatRelative,
-  parse,
-  parseISO,
-  subDays,
-} from 'date-fns';
+import {formatDistance} from 'date-fns';
 import {useTheme} from '@react-navigation/native';
-// import Icon from 'react-native-vector-icons/Feather';
-
 const ItemBody = ({item}) => {
+  const placeholderDescription =
+    'The Polish government passed a draft bill to create an 8 billion zloty ($1.75 billion) fund to help war refugees from Ukraine. The United Nations estimates more than 1.5 million people have fled Ukraine since Russia attacked its neighbour on Feb. 24. More than 1 million have crossed the border into Poland. Many thousands have been hosted across the country';
   const {colors} = useTheme();
+
   return (
     <View style={styles.container}>
-      <Text h4 h4Style={[styles.h3, {color: colors.text}]}>
+      <Text numberOfLines={2}  h4 h4Style={[styles.h3, {color: colors.text}]}>
         {item.title ||
           'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>
-      <Text>{item.isRead ? 'Readed' : 'Unreaded'}</Text>
+      {/* <Text>{item.isRead ? 'Readed' : 'Unreaded'}</Text> */}
       <View style={styles.middleBar}>
         <Pressable style={styles.middleBarButton}>
           <Icon
@@ -46,9 +40,8 @@ const ItemBody = ({item}) => {
           <Text style={styles.middleBarText}>{item.author}</Text>
         </Pressable>
       </View>
-      <Text style={[styles.text, {color: colors.text}]}>
-        {item.description ||
-          'The Polish government passed a draft bill to create an 8 billion zloty ($1.75 billion) fund to help war refugees from Ukraine. The United Nations estimates more than 1.5 million people have fled Ukraine since Russia attacked its neighbour on Feb. 24. More than 1 million have crossed the border into Poland. Many thousands have been hosted across the country'}
+      <Text numberOfLines={8} style={[styles.text, {color: colors.text}]}>
+        {item.description ?? placeholderDescription}
       </Text>
     </View>
   );
