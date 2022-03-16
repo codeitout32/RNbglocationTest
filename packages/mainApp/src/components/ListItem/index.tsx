@@ -13,13 +13,7 @@ import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
 
 const HEIGHT = Dimensions.get('window').height;
-let height1 = HEIGHT;
-const ListItem = ({
-  item,
-  onPress,
-  textColor,
-  windowHeight,
-}) => {
+const ListItem = ({item, onPress, textColor, windowHeight}) => {
   const imgProps = {
     resizeMode: 'cover',
   };
@@ -29,23 +23,24 @@ const ListItem = ({
       style={[styles.item, {height: windowHeight}]}>
       <Image
         style={[styles.img, {height: windowHeight / 2.5}]}
-        source={{uri: 'https://picsum.photos/400/300'}}
-        defaultSource={{uri: 'https://picsum.photos/400/300'}}
+        source={{
+          // uri: item?.image ? item?.image : 'https://picsum.photos/400/300',
+          uri: 'https://picsum.photos/400/300',
+        }}
+        defaultSource={{
+          // uri: item?.image ? item?.image : 'https://picsum.photos/400/300',
+          uri: 'https://picsum.photos/400/300',
+        }}
         {...imgProps}
-        // containerStyle={styles.imgContainer}
-        // PlaceholderContent={<ActivityIndicator />}
       />
       <FAB
         visible={true}
         icon={{name: 'share-android', color: 'white', type: 'octicon'}}
-        color="gold"
+        color='gold'
         style={styles.fab}
         onPress={shareFunc}
       />
       <ItemBody item={item} />
-      {/* <Text style={[styles.title, textColor]}>
-        {item.title} Height: {windowHeight} {HEIGHT}
-      </Text> */}
     </TouchableOpacity>
   );
 };
@@ -57,7 +52,7 @@ const styles = StyleSheet.create({
     top: '35%',
   },
   img: {
-    flex:1.5,
+    flex: 1.5,
   },
   container: {
     flex: 1,
