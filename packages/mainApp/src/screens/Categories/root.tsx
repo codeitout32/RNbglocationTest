@@ -33,6 +33,7 @@ const Categories: React.FC<any> = props => {
       link: 'Home',
       params: {catId},
       icon: {name: 'home', type: 'font-awesome'},
+      reloadIcon: {name: '', type: ''},
     },
   };
 

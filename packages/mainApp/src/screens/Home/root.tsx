@@ -14,7 +14,7 @@ const Home: React.FC<any> = props => {
     lastRefreshTime,
     allNews,
   } = props;
-  const {catId} = route.params;
+  const {catId, isReload} = route.params;
   useEffect(() => {
     allNews.length > 0
       ? fetchNewsStart({
@@ -26,19 +26,31 @@ const Home: React.FC<any> = props => {
           order_by: 'created_at',
           last_refresh_time: lastRefreshTime,
         });
-  }, [catId]);
+
+    navigation.navigate('Home', {isReload: false});
+  }, [catId, isReload]);
 
   const headerLinks = {
     menu: {
       link: 'Category',
       params: {catId},
       icon: {name: 'category', type: 'material'},
+      reloadIcon: {name: 'refresh', type: 'material'},
+    },
+    relaod: {
+      link: 'Home',
+      params: {catId,isReload},
     },
   };
 
   return (
     <SafeAreaProvider style={styles.view}>
-      <Header title={''} navigation={navigation} headerLinks={headerLinks} noSettings={false} />
+      <Header
+        title={''}
+        navigation={navigation}
+        headerLinks={headerLinks}
+        noSettings={false}
+      />
       <MyList />
     </SafeAreaProvider>
   );
