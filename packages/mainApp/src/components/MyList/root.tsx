@@ -1,24 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  View,
-  ActivityIndicator,
-} from 'react-native';
+import {FlatList, StyleSheet, View, ActivityIndicator} from 'react-native';
 import ListItem from '../ListItem';
 
 const MyList = props => {
-  const {
-    isLoading,
-    isNewNewsLoading,
-    newsList,
-    updateNewsStateToRead,
-  } = props;
+  const {isLoading, isNewNewsLoading, newsList, updateNewsStateToRead} = props;
   const [selectedId, setSelectedId] = useState(null);
   const [windowHeight, setWindowHeight] = useState(0);
 
-  useEffect(() => {
-  }, [isLoading,isNewNewsLoading, newsList]);
+  useEffect(() => {}, [isLoading, isNewNewsLoading, newsList]);
 
   const onLayout = event => {
     const {height} = event.nativeEvent.layout;
@@ -44,7 +33,11 @@ const MyList = props => {
 
   const onViewableItemsChanged = ({viewableItems, changed}) => {
     const readNewsId: number | null = changed[0]?.item?.id ?? null;
-    if (!changed[0]?.item?.isRead &&  viewableItems[0]?.item?.id === readNewsId && changed[0]?.isViewable) {
+    if (
+      !changed[0]?.item?.isRead &&
+      viewableItems[0]?.item?.id === readNewsId &&
+      changed[0]?.isViewable
+    ) {
       updateNewsStateToRead({readNewsId, isRead: true});
     }
   };
@@ -55,7 +48,7 @@ const MyList = props => {
 
   return (
     <View style={styles.container}>
-      {isLoading ? (
+      {isLoading || isNewNewsLoading ? (
         <ActivityIndicator
           style={styles.indicatorMarginTop}
           size='large'
