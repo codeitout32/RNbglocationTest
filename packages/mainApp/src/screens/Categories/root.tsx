@@ -2,7 +2,6 @@ import React from 'react';
 import {Pressable, Text, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Icon} from 'react-native-elements';
-import {useTheme} from 'react-native-elements';
 
 import Header from '../../components/Header';
 import styles from './style';
@@ -43,13 +42,13 @@ const Categories: React.FC<any> = props => {
         title={'Categories'}
         navigation={navigation}
         headerLinks={headerLinks}
+        noSettings={false}
       />
       <View style={styles.view}>
         {(categoriesList?.rows || []).map((item: any, index: number) => (
           <Pressable
             onPress={() => {
-              console.log(item.id, item.title);
-              navigation.navigate('Home', {catId: item.id});
+              navigation.navigate('CategoryNews', {catId: item.id});
             }}
             key={item.id}
             style={[styles.categoriesItem, isSelected(item.id)]}>
@@ -58,6 +57,7 @@ const Categories: React.FC<any> = props => {
               type={icons[index].type}
               color={isSelected(item.id).color}
               size={40}
+              tvParallaxProperties={undefined}
             />
             <Text style={[styles.categoriesText, isSelected(item.id)]}>
               {item.category_name}
