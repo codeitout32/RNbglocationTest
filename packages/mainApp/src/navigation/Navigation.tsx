@@ -12,49 +12,57 @@ import Home from '../screens/Home';
 import Settings from '../screens/Settings';
 import {useSelector} from 'react-redux';
 import {darkModeSelector} from '@next/common/selectors';
-import {ThemeProvider, useTheme} from 'react-native-elements';
-
-import theme from '@next/common/utils/theme';
+import {ThemeProvider, useTheme, withTheme} from 'react-native-elements';
 
 const Stack = createNativeStackNavigator();
 
-const Navigation = () => {
+const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
   const darkMode = useSelector(darkModeSelector);
-  const {updateTheme} = useTheme();
+  const {updateTheme, replaceTheme} = props;
+
+  const {theme} = useTheme();
   const MyTheme = {
     ...DarkTheme,
     colors: {
       ...DarkTheme.colors,
       text: '#F8FFF8',
       background: '#3D4A3D',
+      card: '#556C4D',
     },
   };
 
-  console.log('darktheme', DarkTheme);
+  const theme1 = {
+    colors: {
+      primary: 'pink',
+    },
+  };
+
+  React.useEffect(() => {
+    if (darkMode) {
+      updateTheme({colors: {background: 'red'}});
+    }
+    console.log('hello from dark', theme);
+  }, [darkMode]);
+
+  // console.log('darktheme', DarkTheme);
 
   return (
-    <ThemeProvider theme={theme} useDark={darkMode}>
-      <NavigationContainer theme={darkMode ? MyTheme : DefaultTheme}>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-            gestureEnabled: true,
-          }}>
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            initialParams={{catId: 1}}
-          />
-          <Stack.Screen
-            name="Category"
-            component={Categories}
-            initialParams={{catId: 1}} // only to show selected tab
-          />
-          <Stack.Screen name="Settings" component={Settings} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </ThemeProvider>
+    <NavigationContainer theme={darkMode ? MyTheme : DefaultTheme}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          gestureEnabled: true,
+        }}>
+        <Stack.Screen name="Home" component={Home} initialParams={{catId: 1}} />
+        <Stack.Screen
+          name="Category"
+          component={Categories}
+          initialParams={{catId: 1}} // only to show selected tab
+        />
+        <Stack.Screen name="Settings" component={Settings} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
-export default Navigation;
+export default withTheme(Navigation);

@@ -3,13 +3,15 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {flex: 1},
   itemBar: {
-    // width: '30%',
+    // width: '80%',
     // height: 120,
-    // backgroundColor: 'transparent', //'#00BAFF',
+    backgroundColor: 'transparent', //'#00BAFF',
     flexDirection: 'row',
     paddingHorizontal: '5%',
     // width: '100%',
     justifyContent: 'space-between',
+    alignContent: 'stretch',
+    alignItems: 'stretch',
     borderWidth: 0,
     borderColor: 'darkgrey',
     borderRadius: 5,
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   view: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     flex: 1,
     flexWrap: 'wrap',
     paddingTop: 50,

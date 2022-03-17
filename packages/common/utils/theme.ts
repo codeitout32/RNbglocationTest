@@ -1,9 +1,11 @@
 const theme = {
   colors: {
-    background: "white",
+    background: "#3D4A3D",
+    black: "#3D4A3D",
   },
   darkColors: {
     background: "#3D4A3D",
+    card: "#3D4A3D",
   },
   mode: "dark",
 };

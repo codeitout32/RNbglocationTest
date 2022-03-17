@@ -18,7 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+import SplashScreen from 'react-native-splash-screen';
 import {
   Colors,
   DebugInstructions,
@@ -33,6 +33,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import Navigation from './src/navigation/Navigation';
 import {ThemeProvider} from 'react-native-elements';
 import {darkModeSelector} from '@next/common/selectors';
+import ThemeProviderMain from './src/themeProvider';
 
 const Section: React.FC<{
   title: string;
@@ -72,10 +73,14 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  React.useEffect(() => {
+    SplashScreen.hide();
+  });
+
   return (
     <PersistGate loading={null} persistor={store.persistor}>
       <Provider store={store}>
-        <Navigation />
+        <ThemeProviderMain />
       </Provider>
     </PersistGate>
   );

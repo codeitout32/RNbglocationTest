@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, View} from 'react-native';
+import {Linking, Pressable, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Icon, Switch, Text, Card} from 'react-native-elements';
 
@@ -11,6 +11,7 @@ import {setDarkMode} from '@next/common/slices/assets.slice';
 
 import {useTheme} from '@react-navigation/native';
 import {color} from 'react-native-elements/dist/helpers';
+import MyCard from './MyCard';
 
 const icons = [
   {name: 'compass', type: 'entypo'},
@@ -39,10 +40,6 @@ const Settings: React.FC<any> = props => {
     console.log('isdark', isDarkMode);
     dispatch(setDarkMode(!isDarkMode));
   };
-  const isSelected = (itemId: any) => ({
-    color: itemId == catId ? '#00BAFF' : 'darkgrey',
-    borderColor: itemId == catId ? '#00BAFF' : 'darkgrey',
-  });
 
   const headerLinks = {
     menu: {
@@ -52,6 +49,8 @@ const Settings: React.FC<any> = props => {
     },
   };
   console.log('color', colors);
+
+  // styles.itemBar.backgroundColor = colors.card;
   return (
     <SafeAreaProvider style={[styles.container]}>
       <Header
@@ -61,12 +60,47 @@ const Settings: React.FC<any> = props => {
         noSettings
       />
       <View style={styles.view}>
-        <Card wrapperStyle={styles.itemBar} containerStyle={{flex: 1}}>
+        <Card
+          wrapperStyle={[styles.itemBar]}
+          containerStyle={{width: '90%', backgroundColor: colors.card}}>
           <Text h4 h4Style={[styles.h4Style, {color: colors.text}]}>
             Dark Mode
           </Text>
           <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
         </Card>
+        <MyCard title={'Notifications'}>
+          <Switch disabled />
+        </MyCard>
+        <MyCard title={'Share This App'}>
+          <Icon
+            name="open-outline"
+            type="ionicon"
+            color={'#2E92FA'}
+            onPress={() => {
+              Linking.openURL('https://playstore.com');
+            }}
+          />
+        </MyCard>
+        <MyCard title={'Rate this App'}>
+          <Icon
+            name="open-outline"
+            type="ionicon"
+            color={'#2E92FA'}
+            onPress={() => {
+              Linking.openURL('https://playstore.com');
+            }}
+          />
+        </MyCard>
+        <MyCard title={'Give Feedback'}>
+          <Icon
+            name="open-outline"
+            type="ionicon"
+            color={'#2E92FA'}
+            onPress={() => {
+              Linking.openURL('https://playstore.com');
+            }}
+          />
+        </MyCard>
       </View>
     </SafeAreaProvider>
   );
