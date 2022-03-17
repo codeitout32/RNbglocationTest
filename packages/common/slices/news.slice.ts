@@ -4,23 +4,27 @@ import formatISO from 'date-fns/formatISO';
 export interface NewsList {
   newsList: Array<Object>;
   newNewsList: Array<Object>;
+  categoryNewsList: Array<Object>;
   loading: boolean;
   newNewsLoading: boolean;
   success: string;
   lastRefreshTime: string | null;
   error: object | string;
   isNewsUpdated: boolean;
+  isCategoryNewsLoading: boolean;
 }
 
 const initialState: NewsList = {
   newsList: [{}],
   newNewsList: [{}],
+  categoryNewsList: [{}],
   lastRefreshTime: null,
   loading: false,
   newNewsLoading: false,
   success: '',
   error: '',
-  isNewsUpdated: false
+  isNewsUpdated: false,
+  isCategoryNewsLoading: false
 };
 
 export const newsSlice = createSlice({
@@ -39,6 +43,14 @@ export const newsSlice = createSlice({
         loading: false,
         newsList: action.payload,
         lastRefreshTime: new Date().toISOString()
+      };
+    },
+
+    fetchNewsError: (state, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
       };
     },
     updateNewsStateToRead: (state, action) => {
@@ -63,13 +75,6 @@ export const newsSlice = createSlice({
       };
     },
 
-    fetchNewsError: (state, action: PayloadAction<object>) => {
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
-    },
     fetchNewNewsStart: (state, action) => {
       return {
         ...state,
@@ -79,15 +84,14 @@ export const newsSlice = createSlice({
     fetchNewNewsSuccess: (state, action) => {
       const newRows = action.payload?.res?.rows;
       const oldNews = state.newsList?.res?.rows;
-      const oldUnreadNews = oldNews.filter(item => !item.isRead);
-      const oldReadNews = oldNews.filter(item => item.isRead);
+      const oldUnreadNews = oldNews.filter((item: any) => !item.isRead);
+      const oldReadNews = oldNews.filter((item: any) => item.isRead);
       const newNews = {
         res: {
           rows: [...newRows, ...oldUnreadNews, ...oldReadNews],
           count: state.newsList.res.count + action.payload.count
         }
       };
-
       return {
         ...state,
         newNewsLoading: false,
@@ -116,6 +120,26 @@ export const newsSlice = createSlice({
           isNewsUpdated: true
         };
       }
+    },
+    fetchCategoryNewsStart: (state: any, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        isCategoryNewsLoading: true
+      };
+    },
+    fetchCategoryNewsSuccess: (state: any, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        isCategoryNewsLoading: false,
+        categoryNewsList: action.payload
+      };
+    },
+    fetchCategoryNewsError: (state: any, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        isCategoryNewsLoading: false,
+        error: action.payload
+      };
     }
   }
 });
@@ -128,7 +152,10 @@ export const {
   fetchNewNewsSuccess,
   fetchNewNewsError,
   updateNewsStateToRead,
-  updateNewsAction
+  updateNewsAction,
+  fetchCategoryNewsStart,
+  fetchCategoryNewsSuccess,
+  fetchCategoryNewsError
 } = newsSlice.actions;
 
 export default newsSlice.reducer;
