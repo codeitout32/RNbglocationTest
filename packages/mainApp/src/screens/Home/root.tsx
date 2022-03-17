@@ -38,7 +38,7 @@ const Home: React.FC<any> = props => {
 
   return (
     <SafeAreaProvider style={styles.view}>
-      <Header title={''} navigation={navigation} headerLinks={headerLinks} />
+      <Header title={''} navigation={navigation} headerLinks={headerLinks} noSettings={false} />
       <MyList />
     </SafeAreaProvider>
   );
