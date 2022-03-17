@@ -1,13 +1,5 @@
-import React from 'react';
-import {
-  ActivityIndicator,
-  Dimensions,
-  Image,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Image, StatusBar, StyleSheet, Text, View} from 'react-native';
 import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
@@ -15,9 +7,8 @@ import {useTheme} from '@react-navigation/native';
 import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
 
-const HEIGHT = Dimensions.get('window').height;
-let height1 = HEIGHT;
 const ListItem = ({item, onPress, textColor, windowHeight}) => {
+  const [shareIconVisibility, serShareIconVisibility] = useState(true);
   const imgProps = {
     resizeMode: 'cover',
   };
@@ -27,14 +18,15 @@ const ListItem = ({item, onPress, textColor, windowHeight}) => {
   const viewShot = React.useRef();
 
   const captureAndShareScreenshot = () => {
-    viewShot.current.capture().then(uri => {
+    serShareIconVisibility(false);
+    viewShot.current.capture().then((uri: any) => {
       shareFunc(uri);
-      console.log('do something with ', uri);
     });
+    serShareIconVisibility(true);
   };
   return (
     <ViewShot ref={viewShot} options={{format: 'jpg', quality: 0.9}}>
-      <TouchableOpacity
+      <View
         onPress={onPress}
         style={[
           styles.item,
@@ -45,21 +37,16 @@ const ListItem = ({item, onPress, textColor, windowHeight}) => {
           source={{uri: 'https://picsum.photos/400/300'}}
           defaultSource={{uri: 'https://picsum.photos/400/300'}}
           {...imgProps}
-          // containerStyle={styles.imgContainer}
-          // PlaceholderContent={<ActivityIndicator />}
         />
         <FAB
-          visible={true}
+          visible={shareIconVisibility}
           icon={{name: 'share-android', color: 'white', type: 'octicon'}}
-          color="gold"
+          color='gold'
           style={styles.fab}
           onPress={captureAndShareScreenshot}
         />
         <ItemBody item={item} />
-        {/* <Text style={[styles.title, textColor]}>
-        {item.title} Height: {windowHeight} {HEIGHT}
-      </Text> */}
-      </TouchableOpacity>
+      </View>
     </ViewShot>
   );
 };

@@ -3,22 +3,18 @@ import {
   FlatList,
   StyleSheet,
   View,
+  Text,
   ActivityIndicator,
 } from 'react-native';
 import ListItem from '../ListItem';
+import {useTheme} from '@react-navigation/native';
 
-const MyList = props => {
-  const {
-    isLoading,
-    isNewNewsLoading,
-    newsList,
-    updateNewsStateToRead,
-  } = props;
+const CategoryList: React.FC<any> = props => {
+  const {isLoading, categoryNewsList, updateNewsStateToRead} = props;
   const [selectedId, setSelectedId] = useState(null);
   const [windowHeight, setWindowHeight] = useState(0);
-
-  useEffect(() => {
-  }, [isLoading,isNewNewsLoading, newsList]);
+  const {colors} = useTheme();
+  useEffect(() => {}, [isLoading, categoryNewsList]);
 
   const onLayout = event => {
     const {height} = event.nativeEvent.layout;
@@ -44,7 +40,11 @@ const MyList = props => {
 
   const onViewableItemsChanged = ({viewableItems, changed}) => {
     const readNewsId: number | null = changed[0]?.item?.id ?? null;
-    if (!changed[0]?.item?.isRead &&  viewableItems[0]?.item?.id === readNewsId && changed[0]?.isViewable) {
+    if (
+      !changed[0]?.item?.isRead &&
+      viewableItems[0]?.item?.id === readNewsId &&
+      changed[0]?.isViewable
+    ) {
       updateNewsStateToRead({readNewsId, isRead: true});
     }
   };
@@ -61,9 +61,9 @@ const MyList = props => {
           size='large'
           color='#00ff00'
         />
-      ) : (
+      ) : categoryNewsList?.res?.rows.length > 0 ? (
         <FlatList
-          data={newsList?.res?.rows || []}
+          data={categoryNewsList?.res?.rows || []}
           decelerationRate={'fast'}
           onLayout={onLayout}
           snapToStart={false}
@@ -78,6 +78,12 @@ const MyList = props => {
             viewabilityConfigCallbackPairs.current
           }
         />
+      ) : (
+        <View>
+          <Text style={[styles.noNewsText, {color: `${colors.text}`}]}>
+            We don't have news in this category
+          </Text>
+        </View>
       )}
     </View>
   );
@@ -93,6 +99,11 @@ const styles = StyleSheet.create({
   indicatorMarginTop: {
     marginTop: 20,
   },
+  noNewsText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+  },
 });
 
-export default MyList;
+export default CategoryList;

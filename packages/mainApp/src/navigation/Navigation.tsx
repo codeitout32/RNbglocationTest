@@ -7,8 +7,9 @@ import {
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Categories from '../screens/Categories';
 import Home from '../screens/Home';
+import Categories from '../screens/Categories';
+import CategoryNews from '../screens/CategoryNews';
 import Settings from '../screens/Settings';
 import {useSelector} from 'react-redux';
 import {darkModeSelector} from '@next/common/selectors';
@@ -57,6 +58,11 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
         <Stack.Screen
           name="Category"
           component={Categories}
+          initialParams={{catId: 1}} // only to show selected tab
+        />
+        <Stack.Screen
+          name="CategoryNews"
+          component={CategoryNews}
           initialParams={{catId: 1}} // only to show selected tab
         />
         <Stack.Screen name="Settings" component={Settings} />
