@@ -70,9 +70,6 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
               <Icon name="settings" color="white" />
             </Pressable>
           )}
-          {/* <Pressable style={{marginLeft: 10}} onPress={playgroundNavigate}>
-            <Icon type="antdesign" name="rocket1" color="white" />
-          </Pressable> */}
         </View>
       }
       centerComponent={{
