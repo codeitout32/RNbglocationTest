@@ -1,12 +1,19 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {FlatList, StyleSheet, View, ActivityIndicator} from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
 import ListItem from '../ListItem';
+import {useTheme} from '@react-navigation/native';
 
 const CategoryList: React.FC<any> = props => {
   const {isLoading, categoryNewsList, updateNewsStateToRead} = props;
   const [selectedId, setSelectedId] = useState(null);
   const [windowHeight, setWindowHeight] = useState(0);
-
+  const {colors} = useTheme();
   useEffect(() => {}, [isLoading, categoryNewsList]);
 
   const onLayout = event => {
@@ -54,7 +61,7 @@ const CategoryList: React.FC<any> = props => {
           size='large'
           color='#00ff00'
         />
-      ) : (
+      ) : categoryNewsList?.res?.rows.length > 0 ? (
         <FlatList
           data={categoryNewsList?.res?.rows || []}
           decelerationRate={'fast'}
@@ -71,6 +78,12 @@ const CategoryList: React.FC<any> = props => {
             viewabilityConfigCallbackPairs.current
           }
         />
+      ) : (
+        <View>
+          <Text style={[styles.noNewsText, {color: `${colors.text}`}]}>
+            We don't have news in this category
+          </Text>
+        </View>
       )}
     </View>
   );
@@ -85,6 +98,11 @@ const styles = StyleSheet.create({
   },
   indicatorMarginTop: {
     marginTop: 20,
+  },
+  noNewsText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
   },
 });
 
