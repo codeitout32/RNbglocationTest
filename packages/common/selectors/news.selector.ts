@@ -5,46 +5,53 @@ const newsReducer = (state: AppState) => state.news;
 
 export const newsListSelector = createSelector(
   newsReducer,
-  news => news.newsList??[]
+  (news: any) => news.newsList ?? []
 );
 export const newNewsListSelector = createSelector(
   newsReducer,
-  news => news.newNewsList
+  (news: any) => news.newNewsList
 );
 export const singleNewsSelector = createSelector(
   newsReducer,
-  news => news.singleNews
+  (news: any) => news.singleNews
 );
 export const newsLoadingSelector = createSelector(
   newsReducer,
-  news => news.loading
+  (news: any) => news.loading
 );
 export const newNewsLoadingSelector = createSelector(
   newsReducer,
-  news => news.newNewsLoading
+  (news: any) => news.newNewsLoading
 );
 export const featuredNewsSelector = createSelector(
   newsReducer,
-  news => news.featuredNews
+  (news: any) => news.featuredNews
 );
 export const recentNewsSelector = createSelector(
   newsReducer,
-  news => news.recentNews
+  (news: any) => news.recentNews
 );
 export const relatedNewsSelector = createSelector(
   newsReducer,
-  news => news.relatedNews
+  (news: any) => news.relatedNews
 );
 export const recentNewsPaginationSelector = createSelector(
   newsReducer,
-  news => news.recentNews.pagination
+  (news: any) => news.recentNews.pagination
 );
 export const lastRefreshTimeSelector = createSelector(
   newsReducer,
-  news => news.lastRefreshTime
+  (news: any) => news.lastRefreshTime
 );
-
 export const newsUpdatedSelector = createSelector(
   newsReducer,
-  news => news.isNewsUpdated
+  (news: any) => news.isNewsUpdated
+);
+export const categoryNewsListSelector = createSelector(
+  newsReducer,
+  (news: any) => news.categoryNewsList
+);
+export const categoryNewsLoadingSelector = createSelector(
+  newsReducer,
+  (news: any) => news.isCategoryNewsLoading
 );
