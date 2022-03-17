@@ -44,7 +44,27 @@ function* fetchNewNewsSaga(action) {
   }
 }
 
+function* fetchCategoryNewsSaga(action) {
+  const searchparams = new URLSearchParams(action.payload).toString();
+  const params = {
+    method: 'get',
+    route: `${routes.news}?${searchparams}`,
+    headerCred: {
+      autherization: 'myAuthToken'
+    }
+  };
+  try {
+    const res = yield commonService(params);
+    res.rows = res.rows.map((news: Object) => ({ ...news, isRead: false }));
+    yield put(NewsSlice.fetchCategoryNewsSuccess({ res }));
+  } catch (error) {
+    console.log('~ error', error);
+    yield put(NewsSlice.fetchCategoryNewsError(error));
+  }
+}
+
 export function* newsSaga() {
   yield takeEvery(NewsSlice.fetchNewsStart, fetchNewsSaga);
   yield takeEvery(NewsSlice.fetchNewNewsStart, fetchNewNewsSaga);
+  yield takeEvery(NewsSlice.fetchCategoryNewsStart, fetchCategoryNewsSaga);
 }
