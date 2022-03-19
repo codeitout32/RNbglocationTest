@@ -26,21 +26,7 @@ export default function Home() {
     <>
       <Header pages={pages} />
       {/* Preiviously xl container was here */}
-      <LargeCorousel />
-      <Box sx={{ height: "10vh" }} />
-      <NavsInfo />
-      <Box sx={{ height: "10vh" }} />
-
-      <NewsCorousel />
-      <Box sx={{ height: "10vh" }} />
-
-      <HomeDropsList />
-      <Box sx={{ height: "10vh" }} />
-      <Marketplace />
-      <Box sx={{ height: "10vh" }} />
-      <Feed />
-      <Box sx={{ height: "10vh" }} />
-      <HoldNEarn />
+      <Container maxWidth="md"></Container>
       <Box sx={{ height: "10vh" }} />
       <Footer />
     </>

@@ -37,17 +37,18 @@ const theme = createTheme({
     },
   },
   palette: {
+    mode: "light",
     text: {
-      primary: "#fff",
+      primary: "#44444d",
       secondary: grey[500],
     },
 
     background: {
-      default: "#000",
+      default: "#fff",
     },
 
     primary: {
-      main: "#000",
+      main: "#fff",
       dark: "#333",
       contrastText: "#fff",
     },

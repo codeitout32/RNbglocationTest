@@ -73,32 +73,35 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
     <>
       <AppBar
         position="sticky"
+        elevation={3}
         sx={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.61220238095238093) 20%)",
+          // background:
+          //   "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.61220238095238093) 20%)",
           pt: 1,
         }}
       >
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <Link href="/" passHref>
-              <Logo sx={{ mr: 0, display: { xs: "none", md: "flex" } }} />
-            </Link>
-
             {/* <Logo sx={{ fontSize: 10 }} /> */}
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "flex", md: "flex" },
+                color: "text.primary",
+              }}
+            >
               <IconButton
-                size="large"
+                size="medium"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
                 // onClick={() => setDrawer(true)}
-                color="inherit"
+                color="default"
               >
-                <MenuIcon />
+                <MenuIcon fontSize="large" />
               </IconButton>
-
+              Menu
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -127,11 +130,17 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
               </Menu>
             </Box>
 
+            <Box
+              sx={{ mr: 0, flexGrow: 1, display: { xs: "none", md: "flex" } }}
+            >
+              <Logo />
+            </Box>
+
             <Typography
               variant="h6"
               noWrap
               component="div"
-              sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+              sx={{ flexGrow: 1, display: { xs: "none", md: "none" } }}
             >
               <Link href="/" passHref>
                 <IconButton sx={{ ml: "-10px" }}>
@@ -140,7 +149,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
               </Link>
             </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "none" } }}>
               {mainPages?.map((page, index) => (
                 <Link href={`${page.url}`} key={page.title} passHref>
                   <Button
