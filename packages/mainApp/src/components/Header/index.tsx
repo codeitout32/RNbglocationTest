@@ -53,7 +53,6 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
                 <Icon
                   name={headerLinks.menu.reloadIcon.name}
                   type={headerLinks.menu.reloadIcon.type}
-                  size={26}
                   color='white'
                 />
               </Pressable>
@@ -99,6 +98,7 @@ const styles = StyleSheet.create({
   },
   refreshIcon: {
     marginRight: 16,
+    marginBottom:-10,
   },
 });
 

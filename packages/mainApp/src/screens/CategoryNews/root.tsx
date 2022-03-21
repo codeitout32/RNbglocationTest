@@ -12,7 +12,7 @@ const CategoryNews: React.FC<any> = props => {
     fetchCategoryNewsStart({
       sort_type: 'DESC',
       order_by: 'created_at',
-      category_id: catId,
+      category_id: catId === 0 ? '' : catId,
     });
     navigation.navigate('CategoryNews', {catId, isReload: false});
   }, [catId, isReload]);

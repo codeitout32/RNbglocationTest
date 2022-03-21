@@ -57,17 +57,17 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
         <Stack.Screen
           name='Home'
           component={Home}
-          initialParams={{catId: 1, isReload: false}}
+          initialParams={{catId: 0, isReload: false}}
         />
         <Stack.Screen
           name='Category'
           component={Categories}
-          initialParams={{catId: 1}} // only to show selected tab
+          initialParams={{catId: 0}} // only to show selected tab
         />
         <Stack.Screen
           name='CategoryNews'
           component={CategoryNews}
-          initialParams={{catId: 1, isReload: false}} // only to show selected tab
+          initialParams={{catId: 0, isReload: false}} // only to show selected tab
         />
         <Stack.Screen name='Settings' component={Settings} />
       </Stack.Navigator>

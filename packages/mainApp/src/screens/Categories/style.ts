@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   categoriesText: {
     color: 'darkgrey',
     textAlign: 'center',
+    textTransform:'capitalize',
     fontSize: 20,
   },
   view: {
