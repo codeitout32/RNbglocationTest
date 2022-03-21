@@ -45,7 +45,7 @@ const ItemBody = ({item}) => {
             })}
           </Text>
         </Pressable>
-        <Pressable style={[styles.middleBarButton, {paddingLeft: '15%'}]}>
+        <Pressable style={[styles.middleBarButton, {paddingRight: '15%'}]}>
           <Icon
             name='open-outline'
             color='darkgrey'
@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
   },
   middleBar: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
+    flexWrap:'wrap',
     alignItems: 'baseline',
     paddingVertical: 6,
   },
