@@ -8,13 +8,8 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import SearchIcon from "@mui/icons-material/Search";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ButtonWhite from "src/theme/buttonWhite";
 import { Grid, Link as Linkm } from "@mui/material";
@@ -59,6 +54,10 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleDrawer = () => {
+    setDrawer((state) => !state);
+  };
   //Menu's state and functions end
 
   const mainPages = [...pages];
@@ -68,6 +67,10 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
   const restPages = mainPages.splice(collapseMenuAfter);
 
   console.log("headerpages", mainPages, restPages, pages);
+
+  React.useEffect(() => {
+    console.log("drawer state header", toggleDrawer);
+  }, [toggleDrawer]);
 
   return (
     <>
@@ -80,7 +83,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
           pt: 1,
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth={false}>
           <Toolbar disableGutters>
             {/* <Logo sx={{ fontSize: 10 }} /> */}
             <Box
@@ -95,8 +98,8 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                // onClick={() => setDrawer(true)}
+                // onClick={handleOpenNavMenu}
+                onClick={() => setDrawer(true)}
                 color="default"
               >
                 <MenuIcon fontSize="large" />
@@ -133,7 +136,8 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
             <Box
               sx={{ mr: 0, flexGrow: 1, display: { xs: "none", md: "flex" } }}
             >
-              <Logo />
+              {/* <Logo /> */}
+              <img src="./images/Logo.svg" alt="" width={170} />
             </Box>
 
             <Typography
@@ -304,7 +308,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
               </Menu>
             </Box>
           </Toolbar>
-          <MenuDrawer toggle={toggleDrawer} />
+          <MenuDrawer toggle={toggleDrawer} handleDrawer={handleDrawer} />
         </Container>
       </AppBar>
     </>

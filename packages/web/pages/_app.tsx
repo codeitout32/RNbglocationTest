@@ -56,7 +56,7 @@ export default function App({ Component, pageProps }) {
             messages={AppLocale.en.messages}
           >
             <Head>
-              <title>Your NFT Hub</title>
+              <title>SolShorts</title>
               <meta
                 name="viewport"
                 content="initial-scale=1.0, width=device-width"

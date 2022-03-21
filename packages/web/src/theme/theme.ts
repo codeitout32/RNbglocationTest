@@ -13,27 +13,29 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Noto Serif", serif',
+    // fontFamily: '"Noto Serif", serif',
+    fontWeightRegular: 300,
 
     body1: {
-      fontFamily: '"DM Sans", sans-serif',
+      // fontFamily: '"DM Sans", sans-serif',
       fontSize: "0.99rem",
       // textTransform: "capitalize",
     },
     body2: {
-      fontFamily: '"DM Sans", sans-serif',
+      // fontFamily: '"DM Sans", sans-serif',
       color: "#616161",
     },
     button: {
-      fontFamily: '"DM Sans", sans-serif',
+      // fontFamily: '"DM Sans", sans-serif',
       fontWeight: 500,
       textTransform: "capitalize",
     },
     subtitle2: {
-      fontFamily: '"DM Sans", sans-serif',
+      // fontFamily: '"DM Sans", sans-serif',
     },
-    h5: {
-      textTransform: "capitalize",
+    h6: {
+      fontWeight: 300,
+      lineHeight: 1.2,
     },
   },
   palette: {

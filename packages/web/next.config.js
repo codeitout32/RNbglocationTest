@@ -21,7 +21,7 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ["3.139.241.130", "picsum.photos"],
+    domains: ["3.139.241.130", "picsum.photos", "solshorts.herokuapp.com"],
   },
   typescript: {
     ignoreBuildErrors: true,

@@ -18,7 +18,7 @@ import Header from "src/components/header";
 import LargeCorousel from "src/components/largeCorousel";
 import NewsLatest from "src/components/newsLatest";
 import FeaturedNews from "src/components/featuredNews";
-import RecentArticles from "src/components/recentArticles";
+import RecentArticles from "src/components/NewsList";
 import Advert from "src/components/advert";
 import { useRouter } from "next/router";
 import {
