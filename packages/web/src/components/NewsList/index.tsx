@@ -44,8 +44,8 @@ const NewsList = ({ category }) => {
   const handleLoadmore = (e) => {
     dispatch(
       fetchNewsStart({
-        ...newsList?.pagination,
-        page_num: newsList?.pagination?.page_num + 1,
+        ...newsListRaw?.pagination,
+        page_num: newsListRaw?.pagination?.page_num + 1,
       })
     );
   };
