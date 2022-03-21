@@ -78,7 +78,7 @@ const ArticleItem = ({ news }) => {
         <Grid item md={7} xs={12}>
           <Box ml={1}>
             <Typography variant="h6" sx={{ mt: 1 }}>
-              <Link href={`news/${news.id}/${getSlug(news.title)}`} passHref>
+              <Link href={`/news/${news.id}/${getSlug(news.title)}`} passHref>
                 <a> {news.title || dummy.title} </a>
               </Link>
             </Typography>
@@ -111,7 +111,7 @@ const ArticleItem = ({ news }) => {
               </Grid> */}
 
             <Typography variant="body1" sx={{ mt: 1 }} component="div">
-              {parse(news.description)}
+              {parse(news?.description ?? "")}
             </Typography>
           </Box>
           {/* <ButtonTransparent

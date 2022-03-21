@@ -24,6 +24,7 @@ const initialState: NewsList = {
   success: "",
   error: "",
   isNewsUpdated: false,
+  singleNews: {},
   isCategoryNewsLoading: false,
 };
 
@@ -35,7 +36,7 @@ export const newsSlice = createSlice({
       return {
         ...state,
         loading: true,
-        newsList: { pagination: action.payload },
+        newsList: { pagination: action.payload, ...state.newsList },
       };
     },
     fetchNewsSuccess: (state, action) => {
@@ -48,6 +49,27 @@ export const newsSlice = createSlice({
     },
 
     fetchNewsError: (state, action: PayloadAction<object>) => {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    },
+    fetchSingleNewsStart: (state) => {
+      return {
+        ...state,
+        loading: true,
+      };
+    },
+    fetchSingleNewsSuccess: (state, action) => {
+      return {
+        ...state,
+        loading: false,
+        singleNews: action.payload,
+        success: "success",
+      };
+    },
+    fetchSingleNewsError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: false,
@@ -157,6 +179,9 @@ export const {
   fetchCategoryNewsStart,
   fetchCategoryNewsSuccess,
   fetchCategoryNewsError,
+  fetchSingleNewsStart,
+  fetchSingleNewsSuccess,
+  fetchSingleNewsError,
 } = newsSlice.actions;
 
 export default newsSlice.reducer;

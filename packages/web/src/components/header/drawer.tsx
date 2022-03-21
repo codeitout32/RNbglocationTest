@@ -10,14 +10,35 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { ListSubheader } from "@mui/material";
+import { fetchCategoriesStart } from "@next/common/slices/assets.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { categoriesSelector } from "@next/common/selectors";
 
 export default function MenuDrawer({ toggle, handleDrawer }) {
   const [state, setState] = React.useState({
     left: false,
   });
+
+  const dumCategories = [
+    "All News",
+    "India",
+    "Business",
+    "Sports",
+    "World",
+    "Politics",
+    "Entertainment",
+  ];
+
+  const dispatch = useDispatch();
+  const categoriesList = useSelector(categoriesSelector)?.rows ?? dumCategories;
+
   React.useEffect(() => {
     console.log("drawer state", state);
   }, [state]);
+
+  React.useEffect(() => {
+    dispatch(fetchCategoriesStart());
+  }, []);
 
   const toggleDrawer = (anchor, open) => {
     console.log("hello from toggler");
@@ -49,20 +70,15 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
           </ListSubheader>
         }
       >
-        {[
-          "All News",
-          "India",
-          "Business",
-          "Sports",
-          "World",
-          "Politics",
-          "Entertainment",
-        ].map((text, index) => (
-          <ListItem button key={text}>
+        {categoriesList?.map((item, index) => (
+          <ListItem button key={item.id ?? item}>
             {/* <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon> */}
-            <ListItemText primary={text} sx={{ color: "white", pl: 2 }} />
+            <ListItemText
+              primary={item.category_name ?? item}
+              sx={{ color: "white", pl: 2 }}
+            />
           </ListItem>
         ))}
       </List>

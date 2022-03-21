@@ -22,7 +22,7 @@ import LogoIcon from "src/theme/logo";
 import MenuDrawer from "./drawer";
 
 import MyMenu from "./myMenu";
-const Header = ({ pages, collapseMenuAfter = 5 }) => {
+const Header = ({ pages = [], collapseMenuAfter = 5 }) => {
   // const pages = ["Marketplace", "News", "Drops", "Feed"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -137,7 +137,7 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
               sx={{ mr: 0, flexGrow: 1, display: { xs: "none", md: "flex" } }}
             >
               {/* <Logo /> */}
-              <img src="./images/Logo.svg" alt="" width={170} />
+              <img src="/images/Logo.svg" alt="" width={170} />
             </Box>
 
             <Typography
@@ -268,21 +268,6 @@ const Header = ({ pages, collapseMenuAfter = 5 }) => {
               )}
 
               {/* Button back and select wallet */}
-              {isActive("/news") ? (
-                <Link href="/" passHref>
-                  <Button
-                    variant="contained"
-                    sx={{ border: "1px white solid" }}
-                  >
-                    <ArrowBackIcon fontSize="small" /> &nbsp; Back to home
-                  </Button>
-                </Link>
-              ) : (
-                ""
-                // <ButtonWhite sx={{ textTransform: "capitalize" }}>
-                //   Select Wallet
-                // </ButtonWhite>
-              )}
 
               <Menu
                 sx={{ mt: "45px" }}

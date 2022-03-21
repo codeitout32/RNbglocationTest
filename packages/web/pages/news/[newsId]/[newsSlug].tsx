@@ -18,9 +18,15 @@ import {
   fetchAdvertStart,
   fetchCategoriesStart,
 } from "@next/common/slices/assets.slice";
-import { advertSelector, categoriesSelector } from "@next/common/selectors/";
+import {
+  advertSelector,
+  categoriesSelector,
+  singleNewsSelector,
+} from "@next/common/selectors/";
 import { handleImageError } from "@next/common/utils/handleImageError";
 import getCategories from "src/components/newsDetailComponents/utils";
+import AppLinksCard from "src/components/AppLinksCard";
+import ArticleItem from "src/components/NewsList/articleItem";
 
 export default function News() {
   const dispatch = useDispatch();
@@ -43,16 +49,15 @@ export default function News() {
 
   const categories = getCategories(categoriesState);
 
+  const singleNews = useSelector(singleNewsSelector);
+
   const pages = categories?.length ? [...categories] : dummyPages;
 
   console.log("pages", pages);
 
   useEffect(() => {
-    dispatch(fetchAdvertStart());
     if (!categoriesState?.rows) dispatch(fetchCategoriesStart());
   }, []);
-
-  const advert = useSelector(advertSelector);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -60,37 +65,13 @@ export default function News() {
   }, [newsId]);
   return (
     <Fragment>
-      <Header pages={pages} collapseMenuAfter={3} />
-      <Container maxWidth="xl">
-        <Box sx={{ height: { md: "10vh", xs: "4vh" } }} />
-        <Grid container maxWidth="lg" spacing={2} mx="auto">
-          <Grid item md={8} xs={11}>
-            <NewsDetail />
-          </Grid>
-          <Grid item md={4} xs={11}>
-            <Box sx={{ height: "450px" }}>
-              <Link href={advert?.[0]?.ad_link} target="_blank">
-                <img
-                  src={advert?.[0]?.image}
-                  alt=""
-                  onError={handleImageError}
-                  height="100%"
-                  width="100%"
-                  style={{ objectFit: "contain" }}
-                />
-              </Link>
-            </Box>
-            <NewsLatest asSidebar={false} />
-          </Grid>
-        </Grid>
-
-        <Box sx={{ height: "10vh" }} />
-        <RelatedArticles />
-        {/* <Box sx={{ height: "200px" }} /> */}
-        <Box sx={{ height: "10vh" }} />
-        {/* <Skeleton variant="rectangular" width="100%" height={500} /> */}
+      <Header />
+      <Container maxWidth="md">
+        <Box sx={{ height: { md: "3vh", xs: "4vh" } }} />
+        <AppLinksCard />
+        <Box sx={{ height: { md: "3vh", xs: "4vh" } }} />
+        <ArticleItem news={singleNews?.current} />
       </Container>
-      <Advert />
       <Box sx={{ height: "10vh" }} />
       <Footer />
     </Fragment>
