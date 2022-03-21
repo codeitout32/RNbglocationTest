@@ -46,6 +46,23 @@ const Categories: React.FC<any> = props => {
         noSettings={false}
       />
       <View style={styles.view}>
+        <Pressable
+          onPress={() => {
+            navigation.navigate('CategoryNews', {catId: 0});
+          }}
+          key={0}
+          style={[styles.categoriesItem, isSelected(0)]}>
+          <Icon
+            name={'book'}
+            type={'font-awesome'}
+            color={isSelected(0).color}
+            size={40}
+            tvParallaxProperties={undefined}
+          />
+          <Text style={[styles.categoriesText, isSelected(0)]}>
+            All News
+          </Text>
+        </Pressable>
         {(categoriesList?.rows || []).map((item: any, index: number) => (
           <Pressable
             onPress={() => {
