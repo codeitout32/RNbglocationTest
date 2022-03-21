@@ -54,18 +54,22 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
           headerShown: false,
           gestureEnabled: true,
         }}>
-        <Stack.Screen name="Home" component={Home} initialParams={{catId: 1}} />
         <Stack.Screen
-          name="Category"
+          name='Home'
+          component={Home}
+          initialParams={{catId: 1, isReload: false}}
+        />
+        <Stack.Screen
+          name='Category'
           component={Categories}
           initialParams={{catId: 1}} // only to show selected tab
         />
         <Stack.Screen
-          name="CategoryNews"
+          name='CategoryNews'
           component={CategoryNews}
-          initialParams={{catId: 1}} // only to show selected tab
+          initialParams={{catId: 1, isReload: false}} // only to show selected tab
         />
-        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name='Settings' component={Settings} />
       </Stack.Navigator>
     </NavigationContainer>
   );

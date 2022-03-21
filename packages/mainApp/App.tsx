@@ -9,30 +9,12 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, useColorScheme, View} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Provider} from 'react-redux';
-import {useSelector} from 'react-redux';
 import {useStore} from '@next/common/store';
 import {PersistGate} from 'redux-persist/integration/react';
-import Navigation from './src/navigation/Navigation';
-import {ThemeProvider} from 'react-native-elements';
-import {darkModeSelector} from '@next/common/selectors';
 import ThemeProviderMain from './src/themeProvider';
 
 const Section: React.FC<{
