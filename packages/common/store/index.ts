@@ -4,7 +4,6 @@ import logger from "redux-logger";
 import createSagaMiddleware, { SagaMiddleware } from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, Text } from "react-native";
 import { Platform } from "react-native";
 
@@ -19,7 +18,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
   key: "root",
-  storage: AsyncStorage,
+  storage: storage,
   timeout: null,
 };
 // console.log("hello react native from store", View);

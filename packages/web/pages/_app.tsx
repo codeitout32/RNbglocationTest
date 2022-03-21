@@ -9,7 +9,7 @@ import { useStore } from "@next/common/store";
 
 import AppLocale from "localization";
 import EnLang from "localization/entries/en-US";
-import restheme from "src/theme";
+import restheme from "src/theme/theme";
 import CircularLoader from "src/components/loader";
 import GlobalStyles from "@mui/material/GlobalStyles";
 
@@ -56,14 +56,13 @@ export default function App({ Component, pageProps }) {
             messages={AppLocale.en.messages}
           >
             <Head>
-              <title>Your NFT Hub</title>
+              <title>SolShorts</title>
               <meta
                 name="viewport"
                 content="initial-scale=1.0, width=device-width"
               />
             </Head>
             <CssBaseline />
-            <GlobalStyles styles={{ root: { textTransform: "capitalize" } }} />
             <Component {...pageProps} />
           </IntlProvider>
         </ThemeProvider>

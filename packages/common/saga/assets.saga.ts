@@ -1,6 +1,6 @@
-import { put, takeEvery, all } from "redux-saga/effects";
 import { routes } from "../config";
 import * as AssetsSlice from "../slices/assets.slice";
+import { put, takeEvery, all } from "redux-saga/effects";
 
 import commonService from "../services/common.service";
 

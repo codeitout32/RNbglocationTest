@@ -9,35 +9,65 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { ListSubheader } from "@mui/material";
 
-export default function MenuDrawer({ toggle }) {
+export default function MenuDrawer({ toggle, handleDrawer }) {
   const [state, setState] = React.useState({
     left: false,
   });
+  React.useEffect(() => {
+    console.log("drawer state", state);
+  }, [state]);
 
   const toggleDrawer = (anchor, open) => {
-    setState({ ["left"]: open });
+    console.log("hello from toggler");
+    setState({ [anchor]: open });
   };
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 200,
+        bgcolor: "#303036",
+        px: 1,
+        "& .Mui-selected": {
+          bgcolor: "#808290",
+        },
+      }}
       role="presentation"
-      onClick={() => toggleDrawer(anchor, false)}
-      onKeyDown={() => toggleDrawer(anchor, false)}
+      onClick={handleClose}
+      onKeyDown={handleClose}
     >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+      <List
+        subheader={
+          <ListSubheader
+            component="div"
+            id="nested-list-subheader"
+            sx={{ bgcolor: "transparent" }}
+          >
+            Categories
+          </ListSubheader>
+        }
+      >
+        {[
+          "All News",
+          "India",
+          "Business",
+          "Sports",
+          "World",
+          "Politics",
+          "Entertainment",
+        ].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>
+            {/* <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
+            </ListItemIcon> */}
+            <ListItemText primary={text} sx={{ color: "white", pl: 2 }} />
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
+      {/* <List>
         {["All mail", "Trash", "Spam"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
@@ -46,26 +76,37 @@ export default function MenuDrawer({ toggle }) {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </Box>
   );
 
-  if (toggle) {
-    if (!state.left) {
-      toggleDrawer("left", true);
+  React.useEffect(() => {
+    //this effect can be removed check in future devlopment.
+    if (toggle) {
+      if (!state.left) {
+        console.log("hello from toggle");
+        toggleDrawer("left", true);
+      }
     }
-  }
+  }, [toggle]);
+
+  const handleClose = () => {
+    console.log("hello drawer closed");
+    toggleDrawer("left", false);
+    handleDrawer();
+  };
 
   return (
-    <div>
+    <>
       <SwipeableDrawer
         anchor="left"
         open={state["left"]}
-        onClose={() => toggleDrawer("left", false)}
+        onClose={handleClose}
         onOpen={() => toggleDrawer("left", true)}
+        PaperProps={{ sx: { bgcolor: "#303036" } }}
       >
         {list("left")}
       </SwipeableDrawer>
-    </div>
+    </>
   );
 }

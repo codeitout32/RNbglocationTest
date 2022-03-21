@@ -37,6 +37,7 @@ const theme = createTheme({
     },
   },
   palette: {
+    mode: "dark",
     text: {
       primary: "#fff",
       secondary: grey[500],
