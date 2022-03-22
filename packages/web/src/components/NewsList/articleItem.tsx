@@ -78,8 +78,8 @@ const ArticleItem = ({ news }) => {
         <Grid item md={7} xs={12}>
           <Box ml={1}>
             <Typography variant="h6" sx={{ mt: 1 }}>
-              <Link href={`/news/${news.id}/${getSlug(news.title)}`} passHref>
-                <a> {news.title || dummy.title} </a>
+              <Link href={`/news/${news?.id}/${getSlug(news?.title)}`} passHref>
+                <a> {news?.title || dummy.title} </a>
               </Link>
             </Typography>
 

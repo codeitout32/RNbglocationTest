@@ -1,4 +1,4 @@
-import { Box, Card } from "@mui/material";
+import { Box, Card, Link } from "@mui/material";
 
 import React from "react";
 
@@ -19,14 +19,11 @@ const AppLinksCard = () => {
         For the best experience use <b>SolShorts</b> app on your smartphone
       </div>
       <Box sx={{ display: "flex" }}>
-        <img
-          src={process.env.NEXT_PUBLIC_IMAGE_URL + "/images/appstore.png"}
-          width={125}
-        />
-        <img
-          src={process.env.NEXT_PUBLIC_IMAGE_URL + "/images/playstore.png"}
-          width={125}
-        />
+        <Link href="#">
+          <img src={"/images/appstore.png"} width={125} />
+        </Link>
+
+        <img src={"/images/playstore.png"} width={125} />
       </Box>
     </Card>
   );
