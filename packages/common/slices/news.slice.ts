@@ -33,10 +33,11 @@ export const newsSlice = createSlice({
   initialState,
   reducers: {
     fetchNewsStart: (state, action) => {
+      console.log("fetchNewsStart action", action);
       return {
         ...state,
         loading: true,
-        newsList: { pagination: action.payload, ...state.newsList },
+        newsList: { ...state.newsList, pagination: action.payload },
       };
     },
     fetchNewsSuccess: (state, action) => {

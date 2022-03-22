@@ -30,7 +30,7 @@ const Footer = () => {
               sx={{
                 borderRight: 1,
                 display: "flex",
-                justifyContent: "flex-end",
+                alignItems: "flex-end",
                 flexDirection: "column",
                 pr: 2,
               }}
@@ -55,7 +55,7 @@ const Footer = () => {
                       fontFamily: "DM Sans",
                     }}
                   >
-                    solshorts
+                    Solshorts
                   </Typography>
                 </Grid>
               </Grid>
@@ -64,12 +64,13 @@ const Footer = () => {
                 color={"text.secondary"}
                 component="p"
                 align="right"
+                width="50%"
                 sx={{
                   my: 2,
                   // fontSize: "1rem",
                 }}
               >
-                solshorts Pvt Ltd. Copyright &copy; 2022
+                Solshorts Pvt Ltd. Copyright &copy; 2022
               </Typography>
             </Grid>
             <Grid item md={3}></Grid>

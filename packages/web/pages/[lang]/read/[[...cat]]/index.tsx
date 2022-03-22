@@ -44,6 +44,13 @@ export default function News() {
     if (!router.isReady) return;
     console.log("router query", router.query);
     console.log("categoryId", categoryId);
+    dispatch(
+      fetchNewsStart({
+        row_per_page: 10,
+        page_num: 1,
+        category_id: categoryId ? categoryId : "",
+      })
+    );
   }, [router]);
   return (
     <>

@@ -30,15 +30,6 @@ const NewsList = ({ lang, category }) => {
   const [resultList, setResultList] = React.useState([]);
   const dispatch = useDispatch();
 
-  const divStyle = {
-    position: "relative",
-    top: "-200px",
-
-    height: "270px",
-    background: "linear-gradient(180deg, #000 0%, #3F3F46 100%)",
-    marginBottom: "-200px",
-  };
-
   const newsLoading = useSelector(newsLoadingSelector);
   const newsListRaw = useSelector(newsListSelector);
 
@@ -69,13 +60,13 @@ const NewsList = ({ lang, category }) => {
   React.useEffect(() => {
     console.log("useEffect2", category, resultList);
     setResultList([]);
-    dispatch(
-      fetchNewsStart({
-        row_per_page: 10,
-        page_num: 1,
-        category_id: category ? category : "",
-      })
-    );
+    // dispatch(
+    //   fetchNewsStart({
+    //     row_per_page: 10,
+    //     page_num: 1,
+    //     category_id: category ? category : "",
+    //   })
+    // );
   }, [category]);
   return (
     <Fragment>

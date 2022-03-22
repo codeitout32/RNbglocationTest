@@ -35,7 +35,7 @@ export default function Home() {
       <Header pages={pages} />
       {/* Preiviously xl container was here */}
       <Container maxWidth="md" disableGutters>
-        <NewsList />
+        {/* <NewsList /> */}
       </Container>
       <Box sx={{ height: "10vh" }} />
       <Footer />
