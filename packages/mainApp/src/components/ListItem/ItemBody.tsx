@@ -5,26 +5,16 @@ import {Text, Icon} from 'react-native-elements';
 import {formatDistance} from 'date-fns';
 import {useTheme} from '@react-navigation/native';
 import RenderHtml from 'react-native-render-html';
+import {getStringFromHtml} from '../../util/htmlParser';
 
 const ItemBody = ({item}) => {
   const placeholderDescription =
     'The Polish government passed a draft bill to create an 8 billion zloty ($1.75 billion) fund to help war refugees from Ukraine. The United Nations estimates more than 1.5 million people have fled Ukraine since Russia attacked its neighbour on Feb. 24. More than 1 million have crossed the border into Poland. Many thousands have been hosted across the country';
   const {colors} = useTheme();
 
-  const {width} = useWindowDimensions();
-  const source = {
-    html: `${item.description ?? placeholderDescription}`,
-  };
-  const htmlStyles = {
-    body: {
-      color: `${colors.text}`,
-      textAlign: 'justify',
-      fontSize: 16,
-    },
-  };
   return (
     <View style={styles.container}>
-      <Text numberOfLines={3} style={[styles.h3, {color: colors.text}]}>
+      <Text numberOfLines={3} style={[styles.h3, {color: colors.title}]}>
         {item.title ||
           'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>
@@ -32,7 +22,7 @@ const ItemBody = ({item}) => {
         {item.isRead ? 'Readed' : 'Unreaded'}
       </Text> */}
       <View style={styles.middleBar}>
-        <Pressable style={styles.middleBarButton}>
+        <Pressable style={[styles.middleBarButton, {paddingRight: '5%'}]}>
           <Icon
             name='clock'
             color='darkgrey'
@@ -45,7 +35,7 @@ const ItemBody = ({item}) => {
             })}
           </Text>
         </Pressable>
-        <Pressable style={[styles.middleBarButton, {paddingRight: '15%'}]}>
+        <Pressable style={[styles.middleBarButton]}>
           <Icon
             name='open-outline'
             color='darkgrey'
@@ -55,12 +45,14 @@ const ItemBody = ({item}) => {
           <Text style={styles.middleBarText}>{item.author}</Text>
         </Pressable>
       </View>
-      <View>
-        <RenderHtml
-          contentWidth={width}
-          source={source}
-          tagsStyles={htmlStyles}
-        />
+      <View style={styles.description}>
+        <Text
+          numberOfLines={10}
+          style={[styles.descriptionText, {color: colors.text}]}>
+          {item.description
+            ? getStringFromHtml(item.description)
+            : placeholderDescription}
+        </Text>
       </View>
     </View>
   );
@@ -74,10 +66,9 @@ const styles = StyleSheet.create({
   },
   middleBar: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap:'wrap',
+    flexWrap: 'wrap',
     alignItems: 'baseline',
-    paddingVertical: 6,
+    marginTop: 15,
   },
   middleBarButton: {
     flexDirection: 'row',
@@ -86,15 +77,12 @@ const styles = StyleSheet.create({
   middleBarText: {
     flexDirection: 'row',
     color: '#34CF54',
-    fontSize: 20,
+    fontSize: 16,
     marginLeft: 10,
-    fontWeight: 'bold',
   },
   h3: {
-    fontWeight: 'bold',
     fontSize: 20,
     textTransform: 'capitalize',
-    textAlign: 'justify',
   },
   img: {
     width: '100%',
@@ -111,6 +99,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+  },
+  description: {
+    marginTop: 15,
+  },
+  descriptionText: {
+    fontSize: 16,
   },
 });
 
