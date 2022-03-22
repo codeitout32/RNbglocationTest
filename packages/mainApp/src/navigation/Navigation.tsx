@@ -20,14 +20,16 @@ const Stack = createNativeStackNavigator();
 const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
   const darkMode = useSelector(darkModeSelector);
   const {updateTheme, replaceTheme} = props;
+  DefaultTheme.colors['title'] = '#000';
 
   const {theme} = useTheme();
   const MyTheme = {
     ...DarkTheme,
     colors: {
       ...DarkTheme.colors,
-      text: '#F8FFF8',
-      background: '#3D4A3D',
+      title: '#c3c3c3',
+      text: '#828282',
+      background: '#2c2c2c',
       card: '#556C4D',
     },
   };
@@ -42,10 +44,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
     if (darkMode) {
       updateTheme({colors: {background: 'red'}});
     }
-    console.log('hello from dark', theme);
   }, [darkMode]);
-
-  // console.log('darktheme', DarkTheme);
 
   return (
     <NavigationContainer theme={darkMode ? MyTheme : DefaultTheme}>
