@@ -26,7 +26,7 @@ import { duplicateRemover } from "./utils";
 import appstoreImage from "../../../public/images/appstore.png";
 import AppLinksCard from "../AppLinksCard";
 
-const NewsList = ({ category }) => {
+const NewsList = ({ lang, category }) => {
   const [resultList, setResultList] = React.useState([]);
   const dispatch = useDispatch();
 

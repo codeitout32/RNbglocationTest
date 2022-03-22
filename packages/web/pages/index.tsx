@@ -1,5 +1,5 @@
 import { Container, Box } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useIntl } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
 import HomeDropsList from "src/components/homeDropsList";
@@ -12,6 +12,7 @@ import Feed from "src/components/homepage/feed";
 import HoldNEarn from "src/components/homepage/holdnEarn";
 import NavsInfo from "src/components/homepage/navsInfo";
 import NewsList from "src/components/NewsList";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const messages = useIntl();
@@ -22,6 +23,12 @@ export default function Home() {
     { title: "Marketplace", url: "/marketplace" },
     { title: "Feed", url: "/feed" },
   ];
+
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/en/read/");
+  }, []);
 
   return (
     <>

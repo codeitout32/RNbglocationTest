@@ -9,10 +9,11 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { ListSubheader } from "@mui/material";
+import { ListItemButton, ListSubheader } from "@mui/material";
 import { fetchCategoriesStart } from "@next/common/slices/assets.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { categoriesSelector } from "@next/common/selectors";
+import Link from "next/link";
 
 export default function MenuDrawer({ toggle, handleDrawer }) {
   const [state, setState] = React.useState({
@@ -29,6 +30,7 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
     "Entertainment",
   ];
 
+  const lang = "en";
   const dispatch = useDispatch();
   const categoriesList = useSelector(categoriesSelector)?.rows ?? dumCategories;
 
@@ -70,16 +72,28 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
           </ListSubheader>
         }
       >
-        {categoriesList?.map((item, index) => (
-          <ListItem button key={item.id ?? item}>
+        {/* All news button */}
+
+        <Link href={`/${lang}/read`} passHref>
+          <ListItemButton href="#" component="a">
             {/* <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon> */}
-            <ListItemText
-              primary={item.category_name ?? item}
-              sx={{ color: "white", pl: 2 }}
-            />
-          </ListItem>
+            <ListItemText primary="All News" sx={{ color: "white", pl: 2 }} />
+          </ListItemButton>
+        </Link>
+        {categoriesList?.map((item, index) => (
+          <Link href={`/${lang}/read/${item?.category_name}`} passHref>
+            <ListItemButton key={item.id ?? item} component="a">
+              {/* <ListItemIcon>
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon> */}
+              <ListItemText
+                primary={item.category_name ?? item}
+                sx={{ color: "white", pl: 2 }}
+              />
+            </ListItemButton>
+          </Link>
         ))}
       </List>
       <Divider />
