@@ -12,7 +12,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import { ListItemButton, ListSubheader } from "@mui/material";
 import { fetchCategoriesStart } from "@next/common/slices/assets.slice";
 import { useDispatch, useSelector } from "react-redux";
-import { categoriesSelector } from "@next/common/selectors";
+import { categoriesSelector, newsListSelector } from "@next/common/selectors";
 import Link from "next/link";
 
 export default function MenuDrawer({ toggle, handleDrawer }) {
@@ -33,6 +33,8 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
   const lang = "en";
   const dispatch = useDispatch();
   const categoriesList = useSelector(categoriesSelector)?.rows ?? dumCategories;
+  const pagination = useSelector(newsListSelector)?.pagination;
+  const catid = pagination.category_id;
 
   React.useEffect(() => {
     console.log("drawer state", state);
@@ -53,7 +55,7 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
         width: anchor === "top" || anchor === "bottom" ? "auto" : 200,
         bgcolor: "#303036",
         px: 1,
-        "& .Mui-selected": {
+        "&& 	.MuiListItemButton-root.Mui-selected": {
           bgcolor: "#808290",
         },
       }}
@@ -75,7 +77,7 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
         {/* All news button */}
 
         <Link href={`/${lang}/read`} passHref>
-          <ListItemButton href="#" component="a">
+          <ListItemButton href="#" component="a" selected={catid == ""}>
             {/* <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon> */}
@@ -84,7 +86,11 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
         </Link>
         {categoriesList?.map((item, index) => (
           <Link href={`/${lang}/read/${item?.category_name}`} passHref>
-            <ListItemButton key={item.id ?? item} component="a">
+            <ListItemButton
+              key={item.id ?? item}
+              component="a"
+              selected={item.id == catid}
+            >
               {/* <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon> */}
