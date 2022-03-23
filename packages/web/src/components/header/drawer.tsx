@@ -9,15 +9,40 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { ListSubheader } from "@mui/material";
+import { ButtonGroup, ListItemButton, ListSubheader } from "@mui/material";
+import { fetchCategoriesStart } from "@next/common/slices/assets.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { categoriesSelector, newsListSelector } from "@next/common/selectors";
+import Link from "next/link";
 
 export default function MenuDrawer({ toggle, handleDrawer }) {
   const [state, setState] = React.useState({
     left: false,
   });
+
+  const dumCategories = [
+    "All News",
+    "India",
+    "Business",
+    "Sports",
+    "World",
+    "Politics",
+    "Entertainment",
+  ];
+
+  const lang = "en";
+  const dispatch = useDispatch();
+  const categoriesList = useSelector(categoriesSelector)?.rows ?? dumCategories;
+  const pagination = useSelector(newsListSelector)?.pagination;
+  const catid = pagination.category_id;
+
   React.useEffect(() => {
     console.log("drawer state", state);
   }, [state]);
+
+  React.useEffect(() => {
+    dispatch(fetchCategoriesStart());
+  }, []);
 
   const toggleDrawer = (anchor, open) => {
     console.log("hello from toggler");
@@ -30,7 +55,7 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
         width: anchor === "top" || anchor === "bottom" ? "auto" : 200,
         bgcolor: "#303036",
         px: 1,
-        "& .Mui-selected": {
+        "&& 	.MuiListItemButton-root.Mui-selected": {
           bgcolor: "#808290",
         },
       }}
@@ -38,6 +63,18 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
       onClick={handleClose}
       onKeyDown={handleClose}
     >
+      <Box
+        sx={{
+          p: 2,
+          marginBottom: 1,
+          ".selected": { bgcolor: "#808290", color: "#303036" },
+        }}
+      >
+        <ButtonGroup variant="outlined">
+          <Button className={"selected"}>English</Button>
+          <Button>Hindi</Button>
+        </ButtonGroup>
+      </Box>
       <List
         subheader={
           <ListSubheader
@@ -49,21 +86,32 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
           </ListSubheader>
         }
       >
-        {[
-          "All News",
-          "India",
-          "Business",
-          "Sports",
-          "World",
-          "Politics",
-          "Entertainment",
-        ].map((text, index) => (
-          <ListItem button key={text}>
+        {/* All news button */}
+
+        <Link href={`/${lang}/read`} passHref>
+          <ListItemButton href="#" component="a" selected={catid == ""}>
             {/* <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon> */}
-            <ListItemText primary={text} sx={{ color: "white", pl: 2 }} />
-          </ListItem>
+            <ListItemText primary="All News" sx={{ color: "white", pl: 2 }} />
+          </ListItemButton>
+        </Link>
+        {categoriesList?.map((item, index) => (
+          <Link href={`/${lang}/read/${item?.category_name}`} passHref>
+            <ListItemButton
+              key={item.id ?? item}
+              component="a"
+              selected={item.id == catid}
+            >
+              {/* <ListItemIcon>
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon> */}
+              <ListItemText
+                primary={item.category_name ?? item}
+                sx={{ color: "white", pl: 2 }}
+              />
+            </ListItemButton>
+          </Link>
         ))}
       </List>
       <Divider />

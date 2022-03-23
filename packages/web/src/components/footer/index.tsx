@@ -1,6 +1,16 @@
-import { Box, Container, Grid, Link, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  IconButton,
+  Link,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import Logo from "src/theme/logo";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import FacebookIcon from "@mui/icons-material/Facebook";
 
 const Footer = () => {
   const company = [
@@ -30,7 +40,7 @@ const Footer = () => {
               sx={{
                 borderRight: 1,
                 display: "flex",
-                justifyContent: "flex-end",
+                alignItems: "flex-end",
                 flexDirection: "column",
                 pr: 2,
               }}
@@ -55,24 +65,55 @@ const Footer = () => {
                       fontFamily: "DM Sans",
                     }}
                   >
-                    solshorts
+                    Solshorts
                   </Typography>
                 </Grid>
               </Grid>
               <Typography
-                variant="body1"
+                variant="body2"
                 color={"text.secondary"}
                 component="p"
                 align="right"
+                width="50%"
                 sx={{
                   my: 2,
                   // fontSize: "1rem",
                 }}
               >
-                solshorts Pvt Ltd. Copyright &copy; 2022
+                <b>Solshorts</b> Pvt Ltd. Copyright &copy; 2022
               </Typography>
             </Grid>
-            <Grid item md={3}></Grid>
+            <Grid item md={3} pl={2}>
+              <Typography
+                variant="h4"
+                fontWeight={500}
+                // color="text.secondary"
+                sx={
+                  {
+                    //   fontSize: "1rem",
+                  }
+                }
+                gutterBottom
+              >
+                Contact us
+              </Typography>
+              <Typography
+                variant="body2"
+                color={"primary"}
+                component="a"
+                align="right"
+                width="50%"
+                target="_blank"
+                href="#"
+                sx={{
+                  my: 2,
+                  // fontSize: "1rem",
+                }}
+              >
+                Terms &amp; conditions <br />
+                Privacy Policies
+              </Typography>
+            </Grid>
             <Grid item md={3} xs={6}>
               {/* <Typography
                 variant="h5"
@@ -102,35 +143,25 @@ const Footer = () => {
                 </Link>
               ))} */}
             </Grid>
-            <Grid item md={3} xs={6}>
-              {/* <Typography
-                variant="h5"
-                color="text.secondary"
-                sx={
-                  {
-                    //   fontSize: "1rem",
-                  }
-                }
-                gutterBottom
-              >
-                Community
-              </Typography>
-              {commuinty.map((item) => (
-                <Link
-                  href={item.link}
-                  underline="none"
-                  color="inherit"
-                  sx={{
-                    display: "block",
-                    typography: "h6",
-                    fontFamily: "DM Sans",
-                  }}
-                  key={item.title}
-                  target="_blank"
-                >
-                  {item.title}
-                </Link>
-              ))} */}
+            <Grid
+              item
+              md={3}
+              xs={6}
+              sx={{
+                display: "flex",
+                alignItems: "flex-end",
+                ".MuiSvgIcon-root": { color: "white" },
+              }}
+            >
+              <IconButton>
+                <LinkedInIcon fontSize="large" />
+              </IconButton>
+              <IconButton>
+                <TwitterIcon fontSize="large" />
+              </IconButton>
+              <IconButton>
+                <FacebookIcon fontSize="large" />
+              </IconButton>
             </Grid>
           </Grid>
           {/* <Typography
