@@ -3,21 +3,14 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {flex: 1},
   itemBar: {
-    // width: '80%',
-    // height: 120,
-    backgroundColor: 'transparent', //'#00BAFF',
+    width: '80%',
     flexDirection: 'row',
-    paddingHorizontal: '5%',
-    // width: '100%',
+    paddingVertical: '5%',
     justifyContent: 'space-between',
-    alignContent: 'stretch',
-    alignItems: 'stretch',
-    borderWidth: 0,
-    borderColor: 'darkgrey',
-    borderRadius: 5,
   },
-  h4Style: {
+  title: {
     fontSize: 18,
+    marginLeft: '10%',
   },
   categoriesText: {
     color: 'darkgrey',
@@ -25,14 +18,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   view: {
-    // flexDirection: 'row',
     flex: 1,
     flexWrap: 'wrap',
-    paddingTop: 50,
-    // justifyContent: 'space-evenly',
-    alignItems: 'baseline',
-    // alignContent: 'center',
-    // height: 100,
+    paddingTop: 30,
+    alignContent: 'center',
   },
   sectionTitle: {
     fontSize: 24,
@@ -45,6 +34,22 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  hr: {
+    width: '80%',
+    marginVertical: '4%',
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray',
+  },
+  headingText: {
+    width: '80%',
+    marginBottom: '3%',
+    fontSize: 18,
+  },
+  pickerStyle: {
+    width: '41%',
+    textAlign:'center',
+    margin: -15,  
   },
 });
 export default styles;

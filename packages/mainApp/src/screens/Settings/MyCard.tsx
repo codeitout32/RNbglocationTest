@@ -4,17 +4,20 @@ import styles from './style';
 import {Card, Text, Icon} from 'react-native-elements';
 
 import {useTheme} from '@react-navigation/native';
-const MyCard = ({title, children}) => {
+const MyCard = ({title, children, iconName, iconColor, iconType, onPress}) => {
   const {colors} = useTheme();
   return (
-    <Card
-      wrapperStyle={styles.itemBar}
-      containerStyle={{width: '90%', backgroundColor: colors.card}}>
-      <Text h4 h4Style={[styles.h4Style, {color: colors.text}]}>
-        {title}
-      </Text>
+    <View style={styles.itemBar}>
+      <View style={{flexDirection: 'row'}}>
+        <Icon name={iconName} color={iconColor} type={iconType} />
+        <Text
+          style={[styles.title, {color: colors.settingText}]}
+          onPress={onPress}>
+          {title}
+        </Text>
+      </View>
       {children}
-    </Card>
+    </View>
   );
 };
 

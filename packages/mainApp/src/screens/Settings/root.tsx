@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import {Linking, Pressable, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Icon, Switch, Text, Card} from 'react-native-elements';
+import {Icon, Switch, Text, Card, ListItem} from 'react-native-elements';
+import {Picker} from '@react-native-picker/picker';
 
 import Header from '../../components/Header';
 import styles from './style';
@@ -24,20 +25,22 @@ const icons = [
 
 const Settings: React.FC<any> = props => {
   const {navigation, categoriesList, fetchCategoriesStart, route} = props;
+  const [selectedLanguage, setSelectedLanguage] = useState();
+
+  const pickerRef = useRef();
+  const {colors} = useTheme();
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector(darkModeSelector);
+  const catId = route.params?.catId;
+
   React.useEffect(() => {
     fetchCategoriesStart();
   }, []);
 
-  const {colors} = useTheme();
-
-  const dispatch = useDispatch();
-
-  const isDarkMode = useSelector(darkModeSelector);
-
-  const catId = route.params?.catId;
+  const open = () => pickerRef.current.focus();
+  const close = () => pickerRef.current.blur();
 
   const toggleDarkMode = () => {
-    console.log('isdark', isDarkMode);
     dispatch(setDarkMode(!isDarkMode));
   };
 
@@ -48,9 +51,7 @@ const Settings: React.FC<any> = props => {
       icon: {name: 'home', type: 'font-awesome'},
     },
   };
-  console.log('color', colors);
 
-  // styles.itemBar.backgroundColor = colors.card;
   return (
     <SafeAreaProvider style={[styles.container]}>
       <Header
@@ -60,47 +61,72 @@ const Settings: React.FC<any> = props => {
         noSettings
       />
       <View style={styles.view}>
-        <Card
-          wrapperStyle={[styles.itemBar]}
-          containerStyle={{width: '90%', backgroundColor: colors.card}}>
-          <Text h4 h4Style={[styles.h4Style, {color: colors.text}]}>
-            Dark Mode
-          </Text>
-          <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
-        </Card>
-        <MyCard title={'Notifications'}>
+        <MyCard
+          title={'Language'}
+          iconName={'language'}
+          iconColor={colors.settingText}
+          iconType={'entypo'}>
+          <Picker
+            style={[styles.pickerStyle, {color: colors.settingText}]}
+            ref={pickerRef}
+            dropdownIconColor={colors.settingText}
+            dropdownIconStyle={{marginLeft: 10}}
+            dropdownIconRippleColor={colors.settingText}
+            mode='dropdown'
+            selectedValue={selectedLanguage}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedLanguage(itemValue)
+            }>
+            <Picker.Item label='English' value='en' />
+            <Picker.Item label='Hindi' value='hi' />
+          </Picker>
+        </MyCard>
+        <MyCard
+          title={'Notifications'}
+          iconName={'notifications'}
+          iconColor={colors.settingText}
+          iconType={'ionicon'}>
           <Switch disabled />
         </MyCard>
-        <MyCard title={'Share This App'}>
+        <View style={[styles.itemBar,{marginTop:"5%"}]}>
           <Icon
-            name="open-outline"
-            type="ionicon"
-            color={'#2E92FA'}
-            onPress={() => {
-              Linking.openURL('https://playstore.com');
-            }}
+           name="questioncircleo"
+           type='ant-design'
+           color={colors.settingText}
+           size={30}
           />
+          <Text style={[styles.headingText, {color: colors.settingText}]}>
+            Personalize Your Feed
+          </Text>
+        </View>
+        <MyCard
+          title={'Dark Mode'}
+          iconName={'theme-light-dark'}
+          iconColor={colors.settingText}
+          iconType={'material-community'}>
+          <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
         </MyCard>
-        <MyCard title={'Rate this App'}>
-          <Icon
-            name="open-outline"
-            type="ionicon"
-            color={'#2E92FA'}
-            onPress={() => {
-              Linking.openURL('https://playstore.com');
-            }}
-          />
-        </MyCard>
-        <MyCard title={'Give Feedback'}>
-          <Icon
-            name="open-outline"
-            type="ionicon"
-            color={'#2E92FA'}
-            onPress={() => {
-              Linking.openURL('https://playstore.com');
-            }}
-          />
-        </MyCard>
+        <MyCard
+          title={'Share This App'}
+          iconName={'share'}
+          iconColor={colors.settingText}
+          iconType={'fa'}
+          onPress={() => Linking.openURL('https://playstore.com')}
+        />
+        <MyCard
+          title={'Rate this App'}
+          iconName={'star-rate'}
+          iconColor={colors.settingText}
+          iconType={'material-icons'}
+          onPress={() => Linking.openURL('https://playstore.com')}
+        />
+        <MyCard
+          title={'Give Feedback'}
+          iconName={'feedback'}
+          iconColor={colors.settingText}
+          iconType={'material-icons'}
+          onPress={() => Linking.openURL('https://playstore.com')}
+        />
       </View>
     </SafeAreaProvider>
   );
