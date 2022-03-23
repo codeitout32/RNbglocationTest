@@ -21,6 +21,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
   const darkMode = useSelector(darkModeSelector);
   const {updateTheme, replaceTheme} = props;
   DefaultTheme.colors['title'] = '#000';
+  DefaultTheme.colors['settingText'] = '#000';
 
   const {theme} = useTheme();
   const MyTheme = {
@@ -31,6 +32,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
       text: '#828282',
       background: '#2c2c2c',
       card: '#556C4D',
+      settingText:'#fff'
     },
   };
 
