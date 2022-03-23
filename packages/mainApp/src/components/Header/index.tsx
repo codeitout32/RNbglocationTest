@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Linking, Pressable} from 'react-native';
-import {Header as HeaderRNE, Icon} from 'react-native-elements';
+import {Header as HeaderRNE, Icon, Image} from 'react-native-elements';
 
 type HeaderComponentProps = {
   title: string;
@@ -32,11 +32,15 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
       leftComponent={
         <>
           <Pressable onPress={menuNavigate}>
-            <Icon
+            {/* <Icon
               name={headerLinks.menu.icon.name}
               type={headerLinks.menu.icon.type}
               size={30}
               color='white'
+            /> */}
+            <Image
+              source={require('../../assets/logo-light.png')}
+              style={{width: 30, height: 30}}
             />
           </Pressable>
         </>
@@ -67,6 +71,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
         text: props.title || 'SolShorts',
         style: styles.heading,
       }}
+      
     />
   );
 };
@@ -98,7 +103,7 @@ const styles = StyleSheet.create({
   },
   refreshIcon: {
     marginRight: 16,
-    marginBottom:-10,
+    marginBottom: -10,
   },
 });
 
