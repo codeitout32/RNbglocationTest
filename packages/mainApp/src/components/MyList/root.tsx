@@ -1,5 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {FlatList, StyleSheet, View, ActivityIndicator} from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  ActivityIndicator,
+  ToastAndroid,
+} from 'react-native';
 import ListItem from '../ListItem';
 
 const MyList = props => {
@@ -7,7 +13,20 @@ const MyList = props => {
   const [selectedId, setSelectedId] = useState(null);
   const [windowHeight, setWindowHeight] = useState(0);
 
-  useEffect(() => {}, [isLoading, isNewNewsLoading, newsList]);
+  useEffect(() => {
+    if (newsList?.res?.newNewsCount > 0) {
+      ToastAndroid.show(
+        `${newsList?.res?.newNewsCount} new shorts`,
+        ToastAndroid.SHORT,
+      );
+    }
+    if (newsList?.res?.unreadNewsCount > 0) {
+      ToastAndroid.show(
+        `${newsList?.res?.unreadNewsCount} unread shorts below`,
+        ToastAndroid.SHORT,
+      );
+    }
+  }, [isLoading, isNewNewsLoading, newsList]);
 
   const onLayout = event => {
     const {height} = event.nativeEvent.layout;
