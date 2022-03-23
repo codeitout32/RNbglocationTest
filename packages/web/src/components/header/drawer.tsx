@@ -9,7 +9,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { ListItemButton, ListSubheader } from "@mui/material";
+import { ButtonGroup, ListItemButton, ListSubheader } from "@mui/material";
 import { fetchCategoriesStart } from "@next/common/slices/assets.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { categoriesSelector, newsListSelector } from "@next/common/selectors";
@@ -63,6 +63,18 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
       onClick={handleClose}
       onKeyDown={handleClose}
     >
+      <Box
+        sx={{
+          p: 2,
+          marginBottom: 1,
+          ".selected": { bgcolor: "#808290", color: "#303036" },
+        }}
+      >
+        <ButtonGroup variant="outlined">
+          <Button className={"selected"}>English</Button>
+          <Button>Hindi</Button>
+        </ButtonGroup>
+      </Box>
       <List
         subheader={
           <ListSubheader

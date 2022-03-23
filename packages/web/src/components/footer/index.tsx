@@ -150,14 +150,18 @@ const Footer = () => {
               sx={{
                 display: "flex",
                 alignItems: "flex-end",
-                ".MuiSvgIcon-root": { mx: 1, color: "white" },
+                ".MuiSvgIcon-root": { color: "white" },
               }}
             >
               <IconButton>
                 <LinkedInIcon fontSize="large" />
               </IconButton>
-              <TwitterIcon fontSize="large" />
-              <FacebookIcon fontSize="large" />
+              <IconButton>
+                <TwitterIcon fontSize="large" />
+              </IconButton>
+              <IconButton>
+                <FacebookIcon fontSize="large" />
+              </IconButton>
             </Grid>
           </Grid>
           {/* <Typography
