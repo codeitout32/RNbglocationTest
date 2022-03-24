@@ -32,16 +32,16 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
       leftComponent={
         <>
           <Pressable onPress={menuNavigate}>
-            {/* <Icon
+            <Icon
               name={headerLinks.menu.icon.name}
               type={headerLinks.menu.icon.type}
               size={30}
-              color='white'
-            /> */}
-            <Image
+              color="white"
+            />
+            {/* <Image
               source={require('../../assets/logo-light.png')}
               style={{width: 30, height: 30}}
-            />
+            /> */}
           </Pressable>
         </>
       }
@@ -49,7 +49,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
         <View style={styles.headerRight}>
           {props.noSettings ? (
             <Pressable onPress={() => props.navigation.goBack()}>
-              <Icon name='back' color='white' type='antdesign' />
+              <Icon name="back" color="white" type="antdesign" />
             </Pressable>
           ) : (
             <>
@@ -57,11 +57,11 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
                 <Icon
                   name={headerLinks.menu.reloadIcon.name}
                   type={headerLinks.menu.reloadIcon.type}
-                  color='white'
+                  color="white"
                 />
               </Pressable>
               <Pressable onPress={settingsNavigate}>
-                <Icon name='settings' color='white' />
+                <Icon name="settings" color="white" />
               </Pressable>
             </>
           )}
@@ -71,7 +71,6 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
         text: props.title || 'SolShorts',
         style: styles.heading,
       }}
-      
     />
   );
 };

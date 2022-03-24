@@ -1,4 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import {View} from 'react-native';
+import {Gesture, GestureDetector} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import Header from '../../components/Header';
@@ -14,6 +16,10 @@ const Home: React.FC<any> = props => {
     lastRefreshTime,
     allNews,
   } = props;
+  const [isTouched, setIsToched] = useState(false);
+  const handleTouched = () => {
+    setIsToched(state => !state);
+  };
   const {catId, isReload} = route.params;
   useEffect(() => {
     allNews.length > 0
@@ -39,9 +45,13 @@ const Home: React.FC<any> = props => {
     },
     relaod: {
       link: 'Home',
-      params: {catId,isReload},
+      params: {catId, isReload},
     },
   };
+
+  const tap = Gesture.Tap().onStart(() => {
+    console.log('tap');
+  });
 
   return (
     <SafeAreaProvider style={styles.view}>
@@ -51,7 +61,12 @@ const Home: React.FC<any> = props => {
         headerLinks={headerLinks}
         noSettings={false}
       />
-      <MyList />
+
+      <GestureDetector gesture={tap}>
+        <View>
+          <MyList handleTouched={handleTouched} />
+        </View>
+      </GestureDetector>
     </SafeAreaProvider>
   );
 };

@@ -36,7 +36,7 @@ const Footer = () => {
             <Grid
               item
               md={3}
-              xs={12}
+              xs={6}
               sx={{
                 borderRight: 1,
                 display: "flex",
@@ -83,20 +83,26 @@ const Footer = () => {
                 <b>Solshorts</b> Pvt Ltd. Copyright &copy; 2022
               </Typography>
             </Grid>
-            <Grid item md={3} pl={2}>
-              <Typography
-                variant="h4"
-                fontWeight={500}
-                // color="text.secondary"
-                sx={
-                  {
-                    //   fontSize: "1rem",
-                  }
-                }
-                gutterBottom
+            <Grid item xs={6} md={3} pl={2}>
+              <Link
+                target="_blank"
+                href="mailto:abc@gmail.com"
+                underline="none"
               >
-                Contact us
-              </Typography>
+                <Typography
+                  variant="h4"
+                  fontWeight={500}
+                  // color="text.secondary"
+                  sx={
+                    {
+                      //   fontSize: "1rem",
+                    }
+                  }
+                  gutterBottom
+                >
+                  Contact us
+                </Typography>
+              </Link>
               <Typography
                 variant="body2"
                 color={"primary"}
