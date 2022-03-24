@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import formatISO from "date-fns/formatISO";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import formatISO from 'date-fns/formatISO';
 
 export interface NewsList {
   newsList: Array<Object>;
@@ -21,23 +21,23 @@ const initialState: NewsList = {
   lastRefreshTime: null,
   loading: false,
   newNewsLoading: false,
-  success: "",
-  error: "",
+  success: '',
+  error: '',
   isNewsUpdated: false,
   singleNews: {},
-  isCategoryNewsLoading: false,
+  isCategoryNewsLoading: false
 };
 
 export const newsSlice = createSlice({
-  name: "newsList",
+  name: 'newsList',
   initialState,
   reducers: {
     fetchNewsStart: (state, action) => {
-      console.log("fetchNewsStart action", action);
+      console.log('fetchNewsStart action', action);
       return {
         ...state,
         loading: true,
-        newsList: { ...state.newsList, pagination: action.payload },
+        newsList: { ...state.newsList, pagination: action.payload }
       };
     },
     fetchNewsSuccess: (state, action) => {
@@ -45,7 +45,7 @@ export const newsSlice = createSlice({
         ...state,
         loading: false,
         newsList: { ...state.newsList, ...action.payload },
-        lastRefreshTime: new Date().toISOString(),
+        lastRefreshTime: new Date().toISOString()
       };
     },
 
@@ -53,13 +53,13 @@ export const newsSlice = createSlice({
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: action.payload
       };
     },
-    fetchSingleNewsStart: (state) => {
+    fetchSingleNewsStart: state => {
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     },
     fetchSingleNewsSuccess: (state, action) => {
@@ -67,20 +67,20 @@ export const newsSlice = createSlice({
         ...state,
         loading: false,
         singleNews: action.payload,
-        success: "success",
+        success: 'success'
       };
     },
     fetchSingleNewsError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        error: action.payload
       };
     },
     updateNewsStateToRead: (state, action) => {
       const { readNewsId, isRead } = action.payload;
       const allNews = state.newsList?.res?.rows;
-      const res = allNews.map((item) => {
+      const res = allNews.map(item => {
         if (item.id === readNewsId) {
           return { ...item, isRead };
         }
@@ -89,20 +89,20 @@ export const newsSlice = createSlice({
       const readNews = {
         res: {
           rows: [...res],
-          count: res.length,
-        },
+          count: res.length
+        }
       };
       return {
         ...state,
         loading: false,
-        newsList: readNews,
+        newsList: readNews
       };
     },
 
     fetchNewNewsStart: (state, action) => {
       return {
         ...state,
-        newNewsLoading: true,
+        newNewsLoading: true
       };
     },
     fetchNewNewsSuccess: (state, action) => {
@@ -114,21 +114,23 @@ export const newsSlice = createSlice({
         res: {
           rows: [...newRows, ...oldUnreadNews, ...oldReadNews],
           count: state.newsList.res.count + action.payload.count,
-        },
+          newNewsCount: action.payload?.res?.count,
+          unreadNewsCount:oldUnreadNews.length
+        }
       };
       return {
         ...state,
         newNewsLoading: false,
         newNewsList: action.payload,
         newsList: newNews,
-        lastRefreshTime: new Date().toISOString(),
+        lastRefreshTime: new Date().toISOString()
       };
     },
     fetchNewNewsError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         newNewsLoading: false,
-        error: action.payload,
+        error: action.payload
       };
     },
     updateNewsAction: (state, action) => {
@@ -136,36 +138,36 @@ export const newsSlice = createSlice({
       if (reset) {
         return {
           ...state,
-          isNewsUpdated: false,
+          isNewsUpdated: false
         };
       } else {
         return {
           ...state,
-          isNewsUpdated: true,
+          isNewsUpdated: true
         };
       }
     },
     fetchCategoryNewsStart: (state: any, action: PayloadAction<object>) => {
       return {
         ...state,
-        isCategoryNewsLoading: true,
+        isCategoryNewsLoading: true
       };
     },
     fetchCategoryNewsSuccess: (state: any, action: PayloadAction<object>) => {
       return {
         ...state,
         isCategoryNewsLoading: false,
-        categoryNewsList: action.payload,
+        categoryNewsList: action.payload
       };
     },
     fetchCategoryNewsError: (state: any, action: PayloadAction<object>) => {
       return {
         ...state,
         isCategoryNewsLoading: false,
-        error: action.payload,
+        error: action.payload
       };
-    },
-  },
+    }
+  }
 });
 
 export const {
@@ -182,7 +184,7 @@ export const {
   fetchCategoryNewsError,
   fetchSingleNewsStart,
   fetchSingleNewsSuccess,
-  fetchSingleNewsError,
+  fetchSingleNewsError
 } = newsSlice.actions;
 
 export default newsSlice.reducer;
