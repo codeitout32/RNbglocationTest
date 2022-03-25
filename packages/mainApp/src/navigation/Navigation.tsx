@@ -23,6 +23,8 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
   DefaultTheme.colors['title'] = '#000';
   DefaultTheme.colors['settingText'] = '#000';
 
+  DefaultTheme.colors['background'] = 'rgba(250, 250, 250, 0.9)';
+
   const {theme} = useTheme();
   const MyTheme = {
     ...DarkTheme,
@@ -30,9 +32,9 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
       ...DarkTheme.colors,
       title: '#c3c3c3',
       text: '#828282',
-      background: '#2c2c2c',
-      card: '#556C4D',
-      settingText:'#fff'
+      background: 'rgba(41, 41, 41, 0.9)',
+      card: '#444',
+      settingText: '#fff',
     },
   };
 
@@ -42,11 +44,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
     },
   };
 
-  React.useEffect(() => {
-    if (darkMode) {
-      updateTheme({colors: {background: 'red'}});
-    }
-  }, [darkMode]);
+  console.log('DefaultTheme', DefaultTheme);
 
   return (
     <NavigationContainer theme={darkMode ? MyTheme : DefaultTheme}>
@@ -54,23 +52,30 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
         screenOptions={{
           headerShown: false,
           gestureEnabled: true,
+          cardOverlayEnabled: true,
+          cardOverlay: true,
         }}>
         <Stack.Screen
-          name='Home'
+          name="Home"
           component={Home}
           initialParams={{catId: 0, isReload: false}}
         />
         <Stack.Screen
-          name='Category'
+          name="Category"
           component={Categories}
           initialParams={{catId: 0}} // only to show selected tab
+          options={{presentation: 'transparentModal'}}
         />
         <Stack.Screen
-          name='CategoryNews'
+          name="CategoryNews"
           component={CategoryNews}
           initialParams={{catId: 0, isReload: false}} // only to show selected tab
         />
-        <Stack.Screen name='Settings' component={Settings} />
+        <Stack.Screen
+          name="Settings"
+          component={Settings}
+          options={{presentation: 'transparentModal'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

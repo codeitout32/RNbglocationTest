@@ -59,7 +59,7 @@ const Home: React.FC<any> = props => {
 
   return (
     <SafeAreaProvider style={styles.view}>
-      <View style={styles.header} collapsable={false}>
+      {/* <View style={styles.header} collapsable={false}>
         {isTouched && (
           <Header
             title={''}
@@ -68,7 +68,13 @@ const Home: React.FC<any> = props => {
             noSettings={false}
           />
         )}
-      </View>
+      </View> */}
+      <Header
+        title={''}
+        navigation={navigation}
+        headerLinks={headerLinks}
+        noSettings={false}
+      />
 
       <MyList handleTouched={handleTouched} />
     </SafeAreaProvider>

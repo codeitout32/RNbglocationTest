@@ -2,9 +2,9 @@ import React from 'react';
 import {Pressable, Text, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Icon} from 'react-native-elements';
-
 import Header from '../../components/Header';
 import styles from './style';
+import {useTheme} from '@react-navigation/native';
 
 const icons = [
   {name: 'compass', type: 'entypo'},
@@ -37,8 +37,10 @@ const Categories: React.FC<any> = props => {
     },
   };
 
+  const {colors} = useTheme();
   return (
-    <SafeAreaProvider style={styles.container}>
+    <SafeAreaProvider
+      style={[styles.container, {backgroundColor: colors.background}]}>
       <Header
         title={'Categories'}
         navigation={navigation}
@@ -59,9 +61,7 @@ const Categories: React.FC<any> = props => {
             size={40}
             tvParallaxProperties={undefined}
           />
-          <Text style={[styles.categoriesText, isSelected(0)]}>
-            All News
-          </Text>
+          <Text style={[styles.categoriesText, isSelected(0)]}>All News</Text>
         </Pressable>
         {(categoriesList?.rows || []).map((item: any, index: number) => (
           <Pressable
@@ -74,7 +74,7 @@ const Categories: React.FC<any> = props => {
               name={icons[index].name}
               type={icons[index].type}
               color={isSelected(item.id).color}
-              size={40}
+              size={42}
               tvParallaxProperties={undefined}
             />
             <Text style={[styles.categoriesText, isSelected(item.id)]}>
