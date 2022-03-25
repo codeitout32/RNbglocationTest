@@ -3,9 +3,9 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {flex: 1},
   itemBar: {
-    width: '80%',
+    width: '90%',
     flexDirection: 'row',
-    paddingVertical: '5%',
+    paddingVertical: '6%',
     justifyContent: 'space-between',
   },
   title: {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     flexWrap: 'wrap',
-    paddingTop: 30,
+    // paddingTop: 30,
     alignContent: 'center',
   },
   sectionTitle: {
@@ -44,12 +44,24 @@ const styles = StyleSheet.create({
   headingText: {
     width: '80%',
     marginBottom: '3%',
+    marginLeft: '3%',
     fontSize: 18,
   },
   pickerStyle: {
     width: '41%',
-    textAlign:'center',
-    margin: -15,  
+    textAlign: 'center',
+    margin: -15,
+  },
+  borderBottom: {
+    width: '90%',
+    borderBottomWidth: 1,
+    borderBottomColor: '#828282',
+  },
+  personalizeFeed: {
+    flexDirection: 'row',
+    paddingTop:"10%",
+    paddingBottom: '10%',
+    width: '90%',
   },
 });
 export default styles;
