@@ -32,16 +32,16 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
       leftComponent={
         <>
           <Pressable onPress={menuNavigate}>
-            <Icon
+            {/* <Icon
               name={headerLinks.menu.icon.name}
               type={headerLinks.menu.icon.type}
               size={30}
               color="white"
-            />
-            {/* <Image
+            /> */}
+            <Image
               source={require('../../assets/logo-light.png')}
               style={{width: 30, height: 30}}
-            /> */}
+            />
           </Pressable>
         </>
       }
@@ -71,6 +71,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
         text: props.title || 'SolShorts',
         style: styles.heading,
       }}
+      statusBarProps={{backgroundColor: ''}}
     />
   );
 };
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#34CF54',
     width: '100%',
-    paddingVertical: 15,
+    paddingVertical: 10,
   },
   heading: {
     color: 'white',

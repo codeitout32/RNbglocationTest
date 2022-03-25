@@ -25,29 +25,32 @@ const ListItem = ({item, onPress, textColor, windowHeight}) => {
     serShareIconVisibility(true);
   };
   return (
-    <ViewShot ref={viewShot} options={{format: 'jpg', quality: 0.9}}>
-      <View
-        onPress={onPress}
-        style={[
-          styles.item,
-          {height: windowHeight, backgroundColor: colors.background},
-        ]}>
-        <Image
-          style={[styles.img, {height: windowHeight / 2.5}]}
-          source={{uri: 'https://picsum.photos/400/300'}}
-          defaultSource={{uri: 'https://picsum.photos/400/300'}}
-          {...imgProps}
-        />
-        <FAB
-          visible={shareIconVisibility}
-          icon={{name: 'share-android', color: 'white', type: 'octicon'}}
-          color='gold'
-          style={styles.fab}
-          onPress={captureAndShareScreenshot}
-        />
-        <ItemBody item={item} />
-      </View>
-    </ViewShot>
+    <>
+      <ViewShot ref={viewShot} options={{format: 'jpg', quality: 0.9}}>
+        <View
+          onPress={onPress}
+          style={[
+            styles.item,
+            {height: windowHeight, backgroundColor: colors.background},
+          ]}>
+          <Image
+            style={[styles.img, {height: windowHeight / 2.5}]}
+            source={{uri: 'https://picsum.photos/400/300'}}
+            defaultSource={{uri: 'https://picsum.photos/400/300'}}
+            {...imgProps}
+          />
+
+          <ItemBody item={item} />
+        </View>
+      </ViewShot>
+      <FAB
+        visible={shareIconVisibility}
+        icon={{name: 'share-android', color: 'white', type: 'octicon'}}
+        color="gold"
+        style={styles.fab}
+        onPress={captureAndShareScreenshot}
+      />
+    </>
   );
 };
 

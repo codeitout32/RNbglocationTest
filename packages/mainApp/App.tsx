@@ -16,6 +16,7 @@ import {Provider} from 'react-redux';
 import {useStore} from '@next/common/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import ThemeProviderMain from './src/themeProvider';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const Section: React.FC<{
   title: string;
@@ -62,7 +63,9 @@ const App = () => {
   return (
     <PersistGate loading={null} persistor={store.persistor}>
       <Provider store={store}>
-        <ThemeProviderMain />
+        <GestureHandlerRootView style={{flex: 1}}>
+          <ThemeProviderMain />
+        </GestureHandlerRootView>
       </Provider>
     </PersistGate>
   );

@@ -76,13 +76,14 @@ const MyList = props => {
   ]);
 
   //animated functions
-  const tap = Gesture.Tap().onStart(() => {
-    console.log('tap');
+  const tap = Gesture.Tap().onStart(e => {
+    console.log('tap1');
+    handleTouched();
   });
 
   return (
     <GestureDetector gesture={tap}>
-      <View style={styles.container}>
+      <View style={styles.container} collapsable={true}>
         {isLoading || isNewNewsLoading ? (
           <ActivityIndicator
             style={styles.indicatorMarginTop}
@@ -108,7 +109,7 @@ const MyList = props => {
             onStartShouldSetResponder={e => true}
             onResponderReject={e => console.log('respondergrant', e)}
             onResponderRelease={e => console.log('responderrelease')}
-            onScroll={e => console.log('pressed')}
+            onScroll={e => console.log('pressed1')}
           />
         )}
       </View>
