@@ -93,7 +93,7 @@ const Settings: React.FC<any> = props => {
           </MyCard>
         </View>
         <View
-          style={styles.personalizeFeed}>
+          style={[styles.personalizeFeed,borderBottom]}>
           <Icon
             name='questioncircleo'
             type='ant-design'

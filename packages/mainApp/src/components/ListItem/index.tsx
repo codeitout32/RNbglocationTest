@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
     right: 20,
-    top: '35%',
+    top: '37%',
   },
   img: {
     flex: 1.5,

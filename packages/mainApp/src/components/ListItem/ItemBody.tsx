@@ -27,6 +27,7 @@ const ItemBody = ({item}) => {
             name='clock'
             color='darkgrey'
             type='feather'
+            size={16}
             tvParallaxProperties={undefined}
           />
           <Text style={styles.middleBarText}>
@@ -40,6 +41,7 @@ const ItemBody = ({item}) => {
             name='open-outline'
             color='darkgrey'
             type='ionicon'
+            size={16}
             tvParallaxProperties={undefined}
           />
           <Text style={styles.middleBarText}>{item.author}</Text>
@@ -47,13 +49,21 @@ const ItemBody = ({item}) => {
       </View>
       <View style={styles.description}>
         <Text
-          numberOfLines={10}
+          numberOfLines={8}
           style={[styles.descriptionText, {color: colors.text}]}>
           {item.description
             ? getStringFromHtml(item.description)
             : placeholderDescription}
         </Text>
       </View>
+      {/* <View>
+        <Text style={{color: 'gray'}}>
+          swipe left for more /{' '}
+          {formatDistance(new Date(item.created_at), new Date(), {
+            addSuffix: true,
+          })}
+        </Text>
+      </View> */}
     </View>
   );
 };
@@ -62,7 +72,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     marginHorizontal: 20,
-    marginTop: 50,
+    marginTop: 10,
   },
   middleBar: {
     flexDirection: 'row',
@@ -77,7 +87,7 @@ const styles = StyleSheet.create({
   middleBarText: {
     flexDirection: 'row',
     color: '#34CF54',
-    fontSize: 16,
+    fontSize: 14,
     marginLeft: 10,
   },
   h3: {
@@ -105,6 +115,7 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     fontSize: 16,
+    lineHeight: 25,
   },
 });
 
