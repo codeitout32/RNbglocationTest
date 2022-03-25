@@ -61,51 +61,58 @@ const Settings: React.FC<any> = props => {
         noSettings
       />
       <View style={styles.view}>
-        <MyCard
-          title={'Language'}
-          iconName={'language'}
-          iconColor={colors.settingText}
-          iconType={'entypo'}>
-          <Picker
-            style={[styles.pickerStyle, {color: colors.settingText}]}
-            ref={pickerRef}
-            dropdownIconColor={colors.settingText}
-            dropdownIconStyle={{marginLeft: 10}}
-            dropdownIconRippleColor={colors.settingText}
-            mode='dropdown'
-            selectedValue={selectedLanguage}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedLanguage(itemValue)
-            }>
-            <Picker.Item label='English' value='en' />
-            <Picker.Item label='Hindi' value='hi' />
-          </Picker>
-        </MyCard>
-        <MyCard
-          title={'Notifications'}
-          iconName={'notifications'}
-          iconColor={colors.settingText}
-          iconType={'ionicon'}>
-          <Switch disabled />
-        </MyCard>
-        <View style={[styles.itemBar,{marginTop:"5%"}]}>
+        <View style={styles.borderBottom}>
+          <MyCard
+            title={'Language'}
+            iconName={'language'}
+            iconColor={colors.settingText}
+            iconType={'entypo'}>
+            <Picker
+              style={[styles.pickerStyle, {color: colors.settingText}]}
+              ref={pickerRef}
+              dropdownIconColor={colors.settingText}
+              dropdownIconStyle={{marginLeft: 10}}
+              dropdownIconRippleColor={colors.settingText}
+              mode='dropdown'
+              selectedValue={selectedLanguage}
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedLanguage(itemValue)
+              }>
+              <Picker.Item label='English' value='en' />
+              <Picker.Item label='Hindi' value='hi' />
+            </Picker>
+          </MyCard>
+        </View>
+        <View style={styles.borderBottom}>
+          <MyCard
+            title={'Notifications'}
+            iconName={'notifications'}
+            iconColor={colors.settingText}
+            iconType={'ionicon'}>
+            <Switch disabled />
+          </MyCard>
+        </View>
+        <View
+          style={styles.personalizeFeed}>
           <Icon
-           name="questioncircleo"
-           type='ant-design'
-           color={colors.settingText}
-           size={30}
+            name='questioncircleo'
+            type='ant-design'
+            color={colors.settingText}
+            size={30}
           />
           <Text style={[styles.headingText, {color: colors.settingText}]}>
             Personalize Your Feed
           </Text>
         </View>
-        <MyCard
-          title={'Dark Mode'}
-          iconName={'theme-light-dark'}
-          iconColor={colors.settingText}
-          iconType={'material-community'}>
-          <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
-        </MyCard>
+        <View style={styles.borderBottom}>
+          <MyCard
+            title={'Dark Mode'}
+            iconName={'theme-light-dark'}
+            iconColor={colors.settingText}
+            iconType={'material-community'}>
+            <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
+          </MyCard>
+        </View>
         <MyCard
           title={'Share This App'}
           iconName={'share'}
