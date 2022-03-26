@@ -1,6 +1,20 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+  absolute: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    zIndex: 0,
+  },
+  headerBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 70,
+    paddingHorizontal: 20,
+  },
   container: {flex: 1},
   categoriesItem: {
     width: '28%',
@@ -11,6 +25,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(169, 169, 169, .3)',
     borderRadius: 5,
+    opacity: 0.7,
   },
   categoriesText: {
     color: 'darkgrey',

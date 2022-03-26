@@ -3,6 +3,7 @@ import {Linking, Pressable, ScrollView, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Icon, Switch, Text, Card, ListItem} from 'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
+import SelectDropdown from 'react-native-select-dropdown';
 
 import Header from '../../components/Header';
 import styles from './style';
@@ -40,6 +41,8 @@ const Settings: React.FC<any> = props => {
   const open = () => pickerRef.current.focus();
   const close = () => pickerRef.current.blur();
 
+  const lang = ['English', 'Hindi'];
+
   const toggleDarkMode = () => {
     dispatch(setDarkMode(!isDarkMode));
   };
@@ -69,7 +72,7 @@ const Settings: React.FC<any> = props => {
                 iconName={'language'}
                 iconColor={colors.settingText}
                 iconType={'entypo'}>
-                <Picker
+                {/* <Picker
                   style={[styles.pickerStyle, {color: colors.settingText}]}
                   ref={pickerRef}
                   dropdownIconColor={colors.settingText}
@@ -82,7 +85,38 @@ const Settings: React.FC<any> = props => {
                   }>
                   <Picker.Item label="English" value="en" />
                   <Picker.Item label="Hindi" value="hi" />
-                </Picker>
+                </Picker> */}
+
+                <SelectDropdown
+                  data={lang}
+                  onSelect={(selectedItem, index) => {
+                    console.log(selectedItem, index);
+                  }}
+                  buttonTextAfterSelection={(selectedItem, index) => {
+                    // text represented after item is selected
+                    // if data array is an array of objects then return selectedItem.property to render after item is selected
+                    return selectedItem;
+                  }}
+                  rowTextForSelection={(item, index) => {
+                    // text represented for each item in dropdown
+                    // if data array is an array of objects then return item.property to represent item in dropdown
+                    return item;
+                  }}
+                  buttonStyle={{
+                    backgroundColor: 'transparent',
+                    height: 35,
+                    paddingHorizontal: 0,
+                    width: 100,
+                  }}
+                  buttonTextStyle={{}}
+                  defaultValueByIndex={0}
+                  renderDropdownIcon={() => (
+                    <Icon name={'chevron-down'} type={'entypo'} />
+                  )}
+                  dropdownStyle={{
+                    height: 100,
+                  }}
+                />
               </MyCard>
             </View>
             <View style={styles.borderBottom}>

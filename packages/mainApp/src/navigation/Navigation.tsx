@@ -20,21 +20,22 @@ const Stack = createNativeStackNavigator();
 const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
   const darkMode = useSelector(darkModeSelector);
   const {updateTheme, replaceTheme} = props;
-  DefaultTheme.colors['title'] = '#000';
-  DefaultTheme.colors['settingText'] = '#000';
+  DefaultTheme.colors['title'] = 'rgba(0, 0, 0, 0.8)';
+  DefaultTheme.colors['settingText'] ='rgba(0, 0, 0, 0.6)';
 
-  DefaultTheme.colors['background'] = 'rgba(250, 250, 250, 0.9)';
+  DefaultTheme.colors['background'] = 'rgba(250, 250, 250, 0.95)';
+  DefaultTheme.colors['text'] = 'rgba(0, 0, 0, 0.6)';
 
   const {theme} = useTheme();
   const MyTheme = {
     ...DarkTheme,
     colors: {
       ...DarkTheme.colors,
-      title: '#c3c3c3',
-      text: '#828282',
-      background: 'rgba(41, 41, 41, 0.9)',
+      title: 'rgba(255, 255, 255, 0.87)',
+      text: 'rgba(255, 255, 255, 0.6)',
+      background: 'rgba(16, 32, 39, 0.9)',
       card: '#444',
-      settingText: '#fff',
+      settingText: 'rgba(255, 255, 255, 0.6)',
     },
   };
 
@@ -54,6 +55,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
           gestureEnabled: true,
           cardOverlayEnabled: true,
           cardOverlay: true,
+          animationEnabled: false,
         }}>
         <Stack.Screen
           name="Home"
@@ -74,7 +76,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
         <Stack.Screen
           name="Settings"
           component={Settings}
-          options={{presentation: 'transparentModal'}}
+          options={{presentation: 'transparentModal', animationEnabled: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

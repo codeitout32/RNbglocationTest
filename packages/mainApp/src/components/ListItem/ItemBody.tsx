@@ -14,7 +14,11 @@ const ItemBody = ({item}) => {
 
   return (
     <View style={styles.container}>
-      <Text numberOfLines={3} style={[styles.h3, {color: colors.title}]}>
+      <Text
+        numberOfLines={3}
+        h4
+        h4Style={styles.h3}
+        style={[styles.h3, {color: colors.title}]}>
         {item.title ||
           'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>
@@ -24,9 +28,9 @@ const ItemBody = ({item}) => {
       <View style={styles.middleBar}>
         <Pressable style={[styles.middleBarButton, {paddingRight: '5%'}]}>
           <Icon
-            name='clock'
-            color='darkgrey'
-            type='feather'
+            name="clock"
+            color="darkgrey"
+            type="feather"
             size={16}
             tvParallaxProperties={undefined}
           />
@@ -38,9 +42,9 @@ const ItemBody = ({item}) => {
         </Pressable>
         <Pressable style={[styles.middleBarButton]}>
           <Icon
-            name='open-outline'
-            color='darkgrey'
-            type='ionicon'
+            name="open-outline"
+            color="darkgrey"
+            type="ionicon"
             size={16}
             tvParallaxProperties={undefined}
           />
@@ -72,7 +76,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     marginHorizontal: 20,
-    marginTop: 10,
+    marginTop: 20,
   },
   middleBar: {
     flexDirection: 'row',
@@ -91,8 +95,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   h3: {
-    fontSize: 20,
+    fontSize: 26,
     textTransform: 'capitalize',
+    fontWeight: '400',
   },
   img: {
     width: '100%',
@@ -114,7 +119,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   descriptionText: {
-    fontSize: 16,
+    fontSize: 18,
     lineHeight: 25,
   },
 });
