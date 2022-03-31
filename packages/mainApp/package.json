@@ -11,7 +11,6 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
     "@next/common": "*",
     "@react-native-async-storage/async-storage": "^1.16.1",
     "@react-native-community/blur": "^3.6.0",
@@ -36,7 +35,7 @@
     "react-native-elements": "^3.4.2",
     "react-native-flipper": "^0.137.0",
     "react-native-fs": "^2.19.0",
-    "react-native-gesture-handler": "^2.3.0",
+    "react-native-gesture-handler": "^2.3.2",
     "react-native-in-app-review": "^3.3.2",
     "react-native-rate": "^1.2.9",
     "react-native-reanimated": "^2.4.1",

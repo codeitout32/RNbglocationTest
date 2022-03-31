@@ -15,6 +15,7 @@ const MyList = props => {
     isNewNewsLoading,
     newsList,
     updateNewsStateToRead,
+    navigation,
     handleTouched,
   } = props;
   const [selectedId, setSelectedId] = useState(null);

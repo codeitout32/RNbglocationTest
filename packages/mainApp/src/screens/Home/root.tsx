@@ -1,10 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
-} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import Header from '../../components/Header';
@@ -53,13 +48,10 @@ const Home: React.FC<any> = props => {
     },
   };
 
-  const tap = Gesture.Tap().onStart(() => {
-    console.log('tap');
-  });
 
   return (
     <SafeAreaProvider style={styles.view}>
-      {/* <View style={styles.header} collapsable={false}>
+      <View style={styles.header} collapsable={false}>
         {isTouched && (
           <Header
             title={''}
@@ -68,13 +60,13 @@ const Home: React.FC<any> = props => {
             noSettings={false}
           />
         )}
-      </View> */}
-      <Header
+      </View>
+      {/* <Header
         title={''}
         navigation={navigation}
         headerLinks={headerLinks}
         noSettings={false}
-      />
+      /> */}
 
       <MyList handleTouched={handleTouched} />
     </SafeAreaProvider>
