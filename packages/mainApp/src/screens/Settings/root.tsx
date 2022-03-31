@@ -15,7 +15,7 @@ import {
   checkNotifications,
   requestNotifications,
 } from 'react-native-permissions';
-import {getDeviceId} from 'react-native-device-info';
+import {getDeviceToken} from 'react-native-device-info';
 
 import Header from '../../components/Header';
 import styles from './style';
@@ -67,7 +67,7 @@ const Settings: React.FC<any> = props => {
   }, []);
   React.useEffect(() => {
     if (!userIdState?.id) {
-      const device_id = getDeviceId();
+      const device_id = getDeviceToken();
       const device_type = Platform.OS;
       const notification_status = true;
       console.log('userid', device_id, device_type, notification_status);

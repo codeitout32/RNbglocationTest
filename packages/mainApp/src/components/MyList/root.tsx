@@ -50,15 +50,17 @@ const MyList = props => {
   const renderItem = ({item}) => {
     const color = item.id === selectedId ? 'white' : 'black';
     return (
-      <ListItem
-        item={item}
-        onPress={() => {
-          setSelectedId(item.id);
-          console.log('pressed');
-        }}
-        textColor={{color}}
-        windowHeight={windowHeight}
-      />
+      <Pressable onPress={handleTouched} style={{flex: 1}}>
+        <ListItem
+          item={item}
+          onPress={() => {
+            setSelectedId(item.id);
+            console.log('pressed');
+          }}
+          textColor={{color}}
+          windowHeight={windowHeight}
+        />
+      </Pressable>
     );
   };
 
@@ -85,12 +87,11 @@ const MyList = props => {
   //animated functions
   const tap = Gesture.Tap().onStart(e => {
     console.log('tap1');
-    // handleTouched();
+    handleTouched();
   });
 
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
-      {/* <Pressable onPress={handleTouched} style={{flex: 1}}> */}
       {isLoading || isNewNewsLoading ? (
         <ActivityIndicator
           style={styles.indicatorMarginTop}
@@ -113,15 +114,13 @@ const MyList = props => {
           viewabilityConfigCallbackPairs={
             viewabilityConfigCallbackPairs.current
           }
-          // onStartShouldSetResponder={e => true}
           // onResponderReject={e => console.log('respondergrant', e)}
           // onResponderRelease={e => console.log('responderrelease')}
-          // onScroll={e => {
-          //   if (e?.nativeEvent?.velocity?.y > 0 ?? false) hendleScroll();
-          // }}
+          onScroll={e => {
+            if (e?.nativeEvent?.velocity?.y > 0 ?? false) hendleScroll();
+          }}
         />
       )}
-      {/* </Pressable> */}
     </SafeAreaView>
   );
 };

@@ -24,7 +24,7 @@ const Home: React.FC<any> = props => {
   const [isTouched, setIsToched] = useState(false);
   const handleTouched = () => {
     console.log('tap', 'state', isTouched);
-    // setIsToched(state => !state);
+    setIsToched(state => !state);
   };
   const hendleScroll = () => {
     console.log('scrolled', 'state', isTouched);
@@ -60,27 +60,26 @@ const Home: React.FC<any> = props => {
   };
 
   const tap = Gesture.Tap().onStart(() => {
-    console.log('tap');
+    console.log('tap gesture');
     handleTouched();
   });
 
   return (
-    <GestureDetector gesture={tap}>
-      <SafeAreaView style={styles.view} collapsable={false}>
-        <MotiView
-          from={{opacity: isTouched ? 0 : 1}}
-          animate={{opacity: isTouched ? 1 : 0}}
-          transition={{type: 'timing', duration: 60}}
-          style={{zIndex: 100}}>
-          <Header
-            title={''}
-            navigation={navigation}
-            headerLinks={headerLinks}
-            noSettings={false}
-          />
-        </MotiView>
+    <SafeAreaView style={styles.view} collapsable={false}>
+      <MotiView
+        from={{opacity: isTouched ? 0 : 1}}
+        animate={{opacity: isTouched ? 1 : 0}}
+        transition={{type: 'timing', duration: 60}}
+        style={{zIndex: 100}}>
+        <Header
+          title={''}
+          navigation={navigation}
+          headerLinks={headerLinks}
+          noSettings={false}
+        />
+      </MotiView>
 
-        {/* <View style={styles.header} collapsable={false}>
+      {/* <View style={styles.header} collapsable={false}>
           <Header
             title={''}
             navigation={navigation}
@@ -88,9 +87,8 @@ const Home: React.FC<any> = props => {
             noSettings={false}
           />
         </View> */}
-        <MyList handleTouched={handleTouched} hendleScroll={hendleScroll} />
-      </SafeAreaView>
-    </GestureDetector>
+      <MyList handleTouched={handleTouched} hendleScroll={hendleScroll} />
+    </SafeAreaView>
   );
 };
 

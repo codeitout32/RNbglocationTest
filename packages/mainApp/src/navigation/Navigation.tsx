@@ -57,7 +57,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          gestureEnabled: true,
+          // gestureEnabled: true,
           cardOverlayEnabled: true,
           // cardOverlay: true,
           animationEnabled: false,
@@ -95,4 +95,4 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
   );
 };
 
-export default withTheme(Navigation);
+export default Navigation;
