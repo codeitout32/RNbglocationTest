@@ -5,7 +5,7 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../screens/Home';
 import Categories from '../screens/Categories';
@@ -14,14 +14,19 @@ import Settings from '../screens/Settings';
 import {useSelector} from 'react-redux';
 import {darkModeSelector} from '@next/common/selectors';
 import {ThemeProvider, useTheme, withTheme} from 'react-native-elements';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {
+  gestureHandlerRootHOC,
+  GestureHandlerRootView,
+} from 'react-native-gesture-handler';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
   const darkMode = useSelector(darkModeSelector);
   const {updateTheme, replaceTheme} = props;
   DefaultTheme.colors['title'] = 'rgba(0, 0, 0, 0.8)';
-  DefaultTheme.colors['settingText'] ='rgba(0, 0, 0, 0.6)';
+  DefaultTheme.colors['settingText'] = 'rgba(0, 0, 0, 0.6)';
 
   DefaultTheme.colors['background'] = 'rgba(250, 250, 250, 0.95)';
   DefaultTheme.colors['text'] = 'rgba(0, 0, 0, 0.6)';
@@ -33,7 +38,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
       ...DarkTheme.colors,
       title: 'rgba(255, 255, 255, 0.87)',
       text: 'rgba(255, 255, 255, 0.6)',
-      background: 'rgba(16, 32, 39, 0.9)',
+      background: 'rgba(66, 66, 66, 0.95)',
       card: '#444',
       settingText: 'rgba(255, 255, 255, 0.6)',
     },
@@ -54,13 +59,16 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
           headerShown: false,
           gestureEnabled: true,
           cardOverlayEnabled: true,
-          cardOverlay: true,
+          // cardOverlay: true,
           animationEnabled: false,
         }}>
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={gestureHandlerRootHOC(Home)}
           initialParams={{catId: 0, isReload: false}}
+          options={{
+            animationEnabled: false,
+          }}
         />
         <Stack.Screen
           name="Category"
@@ -76,7 +84,11 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
         <Stack.Screen
           name="Settings"
           component={Settings}
-          options={{presentation: 'transparentModal', animationEnabled: false}}
+          options={{
+            presentation: 'transparentModal',
+            // animationEnabled: false,
+            headerShown: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

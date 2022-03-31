@@ -9,4 +9,6 @@ export const routes = {
   advert: serverUrl + "/advertise",
   services: serverUrl + "/our-service",
   category: serverUrl + "/category",
+  user: serverUrl + "/user",
+  notificationStatus: serverUrl + "/user/notification-status",
 };

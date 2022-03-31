@@ -5,9 +5,15 @@ import {
   View,
   ActivityIndicator,
   ToastAndroid,
+  Pressable,
 } from 'react-native';
 import ListItem from '../ListItem';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import {
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from 'react-native-gesture-handler';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const MyList = props => {
   const {
@@ -16,6 +22,7 @@ const MyList = props => {
     newsList,
     updateNewsStateToRead,
     handleTouched,
+    hendleScroll,
   } = props;
   const [selectedId, setSelectedId] = useState(null);
   const [windowHeight, setWindowHeight] = useState(0);
@@ -78,42 +85,44 @@ const MyList = props => {
   //animated functions
   const tap = Gesture.Tap().onStart(e => {
     console.log('tap1');
-    handleTouched();
+    // handleTouched();
   });
 
   return (
-    <GestureDetector gesture={tap}>
-      <View style={styles.container} collapsable={true}>
-        {isLoading || isNewNewsLoading ? (
-          <ActivityIndicator
-            style={styles.indicatorMarginTop}
-            size="large"
-            color="#00ff00"
-          />
-        ) : (
-          <FlatList
-            data={newsList?.res?.rows || []}
-            decelerationRate={'fast'}
-            onLayout={onLayout}
-            snapToStart={false}
-            showsVerticalScrollIndicator={false}
-            pagingEnabled
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            extraData={selectedId}
-            style={{flex: 1}}
-            windowSize={10}
-            viewabilityConfigCallbackPairs={
-              viewabilityConfigCallbackPairs.current
-            }
-            onStartShouldSetResponder={e => true}
-            onResponderReject={e => console.log('respondergrant', e)}
-            onResponderRelease={e => console.log('responderrelease')}
-            onScroll={e => console.log('pressed1')}
-          />
-        )}
-      </View>
-    </GestureDetector>
+    <SafeAreaView style={styles.container} collapsable={false}>
+      {/* <Pressable onPress={handleTouched} style={{flex: 1}}> */}
+      {isLoading || isNewNewsLoading ? (
+        <ActivityIndicator
+          style={styles.indicatorMarginTop}
+          size="large"
+          color="#00ff00"
+        />
+      ) : (
+        <FlatList
+          data={newsList?.res?.rows || []}
+          decelerationRate={'fast'}
+          onLayout={onLayout}
+          snapToStart={false}
+          showsVerticalScrollIndicator={false}
+          pagingEnabled
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          extraData={selectedId}
+          style={{flex: 1}}
+          windowSize={10}
+          viewabilityConfigCallbackPairs={
+            viewabilityConfigCallbackPairs.current
+          }
+          // onStartShouldSetResponder={e => true}
+          // onResponderReject={e => console.log('respondergrant', e)}
+          // onResponderRelease={e => console.log('responderrelease')}
+          // onScroll={e => {
+          //   if (e?.nativeEvent?.velocity?.y > 0 ?? false) hendleScroll();
+          // }}
+        />
+      )}
+      {/* </Pressable> */}
+    </SafeAreaView>
   );
 };
 
@@ -126,6 +135,7 @@ const styles = StyleSheet.create({
   },
   indicatorMarginTop: {
     marginTop: 20,
+    paddingTop: 20,
   },
 });
 

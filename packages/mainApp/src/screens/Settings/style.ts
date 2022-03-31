@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {flex: 1},
+  container: {flex: 1, backgroundColor: 'transparent'},
   itemBar: {
     // width: '90%',
     flexDirection: 'row',
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     // flexWrap: 'wrap',
-    // paddingTop: 30,
+    paddingTop: 100,
     alignContent: 'center',
   },
   sectionTitle: {

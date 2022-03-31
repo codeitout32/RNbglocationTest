@@ -27,7 +27,8 @@ function initStore(initialState: AppState) {
   const middleware: any[] = [sagaMiddleware as SagaMiddleware];
   const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-  if (process.env.NODE_ENV === "development" ?? __DEV__) {
+  if (process.env.NODE_ENV === "development" || __DEV__) {
+    console.log("development mode");
     middleware.push(logger);
     return configureStore({
       reducer: persistedReducer,
@@ -37,6 +38,7 @@ function initStore(initialState: AppState) {
     });
   }
   // middleware.push(logger); //remove this on devlopment
+  console.log("production mode");
   return configureStore({
     reducer: persistedReducer,
     middleware: [...middleware],

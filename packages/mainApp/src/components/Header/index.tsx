@@ -71,20 +71,24 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
         text: props.title || 'SolShorts',
         style: styles.heading,
       }}
-      statusBarProps={{backgroundColor: ''}}
+      statusBarProps={{translucent: true, backgroundColor: 'black'}}
     />
   );
 };
 
 const styles = StyleSheet.create({
   headerContainer: {
-    flexGrow: 0,
-    flexShrink: 1,
+    // paddingTop: -20,
+    // flexGrow: 0,
+    // flexShrink: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#34CF54',
     width: '100%',
-    paddingVertical: 10,
+    // paddingVertical: 10,
+    position: 'absolute',
+    // top: 40,
+    zIndex: 10000,
   },
   heading: {
     color: 'white',
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
   headerRight: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 5,
+    // marginTop: 5,
   },
   subheaderText: {
     color: 'white',
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
   },
   refreshIcon: {
     marginRight: 16,
-    marginBottom: -10,
+    // marginBottom: -10,
   },
 });
 

@@ -7,7 +7,7 @@
  *
  * @format
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import {StyleSheet, Text, useColorScheme, View} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
@@ -17,6 +17,8 @@ import {useStore} from '@next/common/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import ThemeProviderMain from './src/themeProvider';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {getNotifications} from './src/res/getNotifications';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const Section: React.FC<{
   title: string;
@@ -58,14 +60,15 @@ const App = () => {
 
   React.useEffect(() => {
     SplashScreen.hide();
+    // getNotifications();
   });
 
   return (
     <PersistGate loading={null} persistor={store.persistor}>
       <Provider store={store}>
-        <GestureHandlerRootView style={{flex: 1}}>
-          <ThemeProviderMain />
-        </GestureHandlerRootView>
+        {/* <SafeAreaProvider> */}
+        <ThemeProviderMain />
+        {/* </SafeAreaProvider> */}
       </Provider>
     </PersistGate>
   );

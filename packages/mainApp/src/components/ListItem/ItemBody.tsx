@@ -18,7 +18,7 @@ const ItemBody = ({item}) => {
         numberOfLines={3}
         h4
         h4Style={styles.h3}
-        style={[styles.h3, {color: colors.title}]}>
+        style={[{color: colors.title}]}>
         {item.title ||
           'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   h3: {
-    fontSize: 26,
+    fontSize: 24,
     textTransform: 'capitalize',
     fontWeight: '400',
   },
