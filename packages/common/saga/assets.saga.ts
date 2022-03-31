@@ -42,6 +42,47 @@ function* fetchAdvertiseSaga(action) {
     handleError(error);
   }
 }
+
+function* getUserIdSaga(action) {
+  console.log("userid", action.payload);
+  const params = {
+    method: "post",
+    route: routes.user,
+    headerCred: {
+      autherization: "myAuthToken",
+    },
+    data: action.payload,
+  };
+
+  try {
+    const res = yield commonService(params);
+    yield put(AssetsSlice.getUserIdSuccess(res));
+  } catch (error) {
+    yield put(AssetsSlice.getUserIdError(error));
+    handleError(error);
+  }
+}
+
+function* updateNotificationSaga(action: { payload: any }) {
+  console.log("userid", action.payload);
+  const params = {
+    method: "post",
+    route: routes.notificationStatus,
+    headerCred: {
+      autherization: "myAuthToken",
+    },
+    data: action.payload,
+  };
+
+  try {
+    const res = yield commonService(params);
+    yield put(AssetsSlice.updateNotificationSuccess(res));
+  } catch (error) {
+    yield put(AssetsSlice.updateNotificationError(error));
+    handleError(error);
+  }
+}
+
 function* fetchCategoriesSaga(action) {
   const searchparams = new URLSearchParams(action.payload).toString();
   const params = {
@@ -64,6 +105,9 @@ function* fetchCategoriesSaga(action) {
 export function* assetsSaga() {
   yield takeEvery(AssetsSlice.fetchAdvertStart, fetchAdvertiseSaga);
   yield takeEvery(AssetsSlice.fetchCategoriesStart, fetchCategoriesSaga);
+  yield takeEvery(AssetsSlice.getUserIdStart, getUserIdSaga);
+  yield takeEvery(AssetsSlice.updateNotificationStart, updateNotificationSaga);
+
   // yield takeEvery(AdvertSlice.fetchSingleAdvertStart, fetchSingleAdvertSaga);
   // yield takeEvery(AdvertSlice.fetchRelatedAdvertStart, fetchRelatedAdvertSaga);
   // yield takeEvery(AdvertSlice.fetchFeaturedAdvertStart, fetchFeaturedAdvertSaga);

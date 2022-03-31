@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "646763365406",
+    "project_id": "solshortapp",
+    "storage_bucket": "solshortapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646763365406:android:81d461263ead7b97129a0f",
+        "android_client_info": {
+          "package_name": "com.mainapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646763365406-7q8cmk72s84vdc0lu7ueprvmr5a2rhsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG4X8mlsUkwedEcpttsRJsRflBGsIn2io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646763365406-7q8cmk72s84vdc0lu7ueprvmr5a2rhsb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
