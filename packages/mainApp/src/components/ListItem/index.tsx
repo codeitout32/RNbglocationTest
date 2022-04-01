@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
-import {Image, StatusBar, StyleSheet, Text, View} from 'react-native';
-import {FAB} from 'react-native-elements';
+import React, {useEffect, useState} from 'react';
+import {Image, StatusBar, StyleSheet, View} from 'react-native';
+import {FAB, Text} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
+import {delay} from 'lodash';
 
 import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
+import ViewShotFooter from './ViewShotFooter';
 
 const ListItem = ({item, onPress, textColor, windowHeight}) => {
-  const [shareIconVisibility, serShareIconVisibility] = useState(true);
+  const [isCapturing, setIsCapturing] = useState(false);
   const imgProps = {
     resizeMode: 'cover',
   };
@@ -18,12 +20,22 @@ const ListItem = ({item, onPress, textColor, windowHeight}) => {
   const viewShot = React.useRef();
 
   const captureAndShareScreenshot = () => {
-    serShareIconVisibility(false);
-    viewShot.current.capture().then((uri: any) => {
-      shareFunc(uri);
-    });
-    serShareIconVisibility(true);
+    setIsCapturing(true);
   };
+
+  useEffect(() => {
+    if (!isCapturing) return;
+    console.log('starting shot share');
+    const shotstart = viewShot.current
+      .capture()
+      .then((uri: any) => {
+        shareFunc(uri);
+      })
+      .then(() => setIsCapturing(false));
+
+    delay(() => shotstart, 300);
+  }, [isCapturing]);
+
   return (
     <>
       <ViewShot ref={viewShot} options={{format: 'jpg', quality: 0.9}}>
@@ -41,10 +53,12 @@ const ListItem = ({item, onPress, textColor, windowHeight}) => {
           />
 
           <ItemBody item={item} />
+          <View style={{display: isCapturing ? 'flex' : 'none'}}>
+            <ViewShotFooter />
+          </View>
         </View>
       </ViewShot>
       <FAB
-        visible={shareIconVisibility}
         icon={{name: 'share-android', color: 'white', type: 'octicon'}}
         color="gold"
         style={styles.fab}
@@ -76,6 +90,16 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+  },
+  snapFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 5,
+    paddingHorizontal: 10,
+  },
+  snapFooterItem: {
+    flexDirection: 'row',
   },
 });
 

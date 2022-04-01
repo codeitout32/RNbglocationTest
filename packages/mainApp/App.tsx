@@ -7,7 +7,7 @@
  *
  * @format
  */
-import 'react-native-gesture-handler';
+// import 'react-native-gesture-handler';
 import React from 'react';
 import {StyleSheet, Text, useColorScheme, View} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
@@ -58,6 +58,8 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  console.log('hellor from app.tsx');
+
   React.useEffect(() => {
     SplashScreen.hide();
     // getNotifications();
@@ -66,9 +68,7 @@ const App = () => {
   return (
     <PersistGate loading={null} persistor={store.persistor}>
       <Provider store={store}>
-        {/* <SafeAreaProvider> */}
         <ThemeProviderMain />
-        {/* </SafeAreaProvider> */}
       </Provider>
     </PersistGate>
   );

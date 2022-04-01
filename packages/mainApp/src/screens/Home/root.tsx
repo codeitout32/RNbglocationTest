@@ -64,6 +64,8 @@ const Home: React.FC<any> = props => {
     handleTouched();
   });
 
+  console.log('hellor from home');
+
   return (
     <SafeAreaView style={styles.view} collapsable={false}>
       <MotiView

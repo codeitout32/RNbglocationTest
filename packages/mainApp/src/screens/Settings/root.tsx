@@ -6,6 +6,7 @@ import {
   View,
   Platform,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 // import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {Icon, Switch, Text, Card, ListItem} from 'react-native-elements';
@@ -114,16 +115,15 @@ const Settings: React.FC<any> = props => {
         noSettings
       />
       <ScrollView>
-        <GestureDetector gesture={tap}>
-          <View style={[styles.view, {backgroundColor: colors.background}]}>
-            <View>
-              <View style={styles.borderBottom}>
-                <MyCard
-                  title={'Language'}
-                  iconName={'language'}
-                  iconColor={colors.settingText}
-                  iconType={'entypo'}>
-                  {/* <Picker
+        <View style={[styles.view, {backgroundColor: colors.background}]}>
+          <View>
+            <View style={styles.borderBottom}>
+              <MyCard
+                title={'Language'}
+                iconName={'language'}
+                iconColor={colors.settingText}
+                iconType={'entypo'}>
+                {/* <Picker
                   style={[styles.pickerStyle, {color: colors.settingText}]}
                   ref={pickerRef}
                   dropdownIconColor={colors.settingText}
@@ -138,101 +138,101 @@ const Settings: React.FC<any> = props => {
                   <Picker.Item label="Hindi" value="hi" />
                 </Picker> */}
 
-                  <SelectDropdown
-                    data={lang}
-                    onSelect={(selectedItem, index) => {
-                      console.log(selectedItem, index);
-                    }}
-                    buttonTextAfterSelection={(selectedItem, index) => {
-                      // text represented after item is selected
-                      // if data array is an array of objects then return selectedItem.property to render after item is selected
-                      return selectedItem;
-                    }}
-                    rowTextForSelection={(item, index) => {
-                      // text represented for each item in dropdown
-                      // if data array is an array of objects then return item.property to represent item in dropdown
-                      return item;
-                    }}
-                    buttonStyle={{
-                      backgroundColor: 'transparent',
-                      height: 35,
-                      paddingHorizontal: 0,
-                      width: 100,
-                    }}
-                    buttonTextStyle={{
-                      color: colors.text,
-                    }}
-                    defaultValueByIndex={0}
-                    renderDropdownIcon={() => (
-                      <Icon
-                        name={'chevron-down'}
-                        type={'entypo'}
-                        color={colors.text}
-                      />
-                    )}
-                    dropdownStyle={{
-                      height: 100,
-                    }}
-                  />
-                </MyCard>
-              </View>
-              <View style={styles.borderBottom}>
-                <MyCard
-                  title={'Notifications'}
-                  iconName={'notifications'}
-                  iconColor={colors.settingText}
-                  iconType={'ionicon'}>
-                  {loadingSelector && (
-                    <Text style={{color: colors.text}}>Wait...</Text>
+                <SelectDropdown
+                  data={lang}
+                  onSelect={(selectedItem, index) => {
+                    console.log(selectedItem, index);
+                  }}
+                  buttonTextAfterSelection={(selectedItem, index) => {
+                    // text represented after item is selected
+                    // if data array is an array of objects then return selectedItem.property to render after item is selected
+                    return selectedItem;
+                  }}
+                  rowTextForSelection={(item, index) => {
+                    // text represented for each item in dropdown
+                    // if data array is an array of objects then return item.property to represent item in dropdown
+                    return item;
+                  }}
+                  buttonStyle={{
+                    backgroundColor: 'transparent',
+                    height: 35,
+                    paddingHorizontal: 0,
+                    width: 100,
+                  }}
+                  buttonTextStyle={{
+                    color: colors.text,
+                  }}
+                  defaultValueByIndex={0}
+                  renderDropdownIcon={() => (
+                    <Icon
+                      name={'chevron-down'}
+                      type={'entypo'}
+                      color={colors.text}
+                    />
                   )}
-                  <Switch
-                    value={userIdState?.notification_status}
-                    onChange={toggleNotification}
-                  />
-                </MyCard>
-              </View>
-              <View style={[styles.borderBottom]}>
-                <MyCard
-                  title={'Personalize Your Feed'}
-                  iconName={'questioncircleo'}
-                  iconColor={colors?.settingText}
-                  iconType={'ant-design'}></MyCard>
-              </View>
-              <View style={styles.borderBottom}>
-                <MyCard
-                  title={'Dark Mode'}
-                  iconName={'theme-light-dark'}
-                  iconColor={colors.settingText}
-                  iconType={'material-community'}>
-                  <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
-                </MyCard>
-              </View>
+                  dropdownStyle={{
+                    height: 100,
+                  }}
+                />
+              </MyCard>
             </View>
-            <View>
+            <View style={styles.borderBottom}>
               <MyCard
-                title={'Share This App'}
-                iconName={'share'}
+                title={'Notifications'}
+                iconName={'notifications'}
                 iconColor={colors.settingText}
-                iconType={'fa'}
-                onPress={() => Linking.openURL('https://playstore.com')}
-              />
+                iconType={'ionicon'}>
+                {loadingSelector && (
+                  // <Text style={{color: colors.text}}>Wait...</Text>
+                  <ActivityIndicator size="small" color="#0000ff" />
+                )}
+                <Switch
+                  value={userIdState?.notification_status}
+                  onChange={toggleNotification}
+                />
+              </MyCard>
+            </View>
+            <View style={[styles.borderBottom]}>
               <MyCard
-                title={'Rate this App'}
-                iconName={'star-rate'}
-                iconColor={colors.settingText}
-                iconType={'material-icons'}
-                onPress={() => Linking.openURL('https://playstore.com')}
-              />
+                title={'Personalize Your Feed'}
+                iconName={'questioncircleo'}
+                iconColor={colors?.settingText}
+                iconType={'ant-design'}></MyCard>
+            </View>
+            <View style={styles.borderBottom}>
               <MyCard
-                title={'Give Feedback'}
-                iconName={'feedback'}
+                title={'Dark Mode'}
+                iconName={'theme-light-dark'}
                 iconColor={colors.settingText}
-                iconType={'material-icons'}
-                onPress={() => Linking.openURL('https://playstore.com')}
-              />
+                iconType={'material-community'}>
+                <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
+              </MyCard>
             </View>
           </View>
-        </GestureDetector>
+          <View>
+            <MyCard
+              title={'Share This App'}
+              iconName={'share'}
+              iconColor={colors.settingText}
+              iconType={'fa'}
+              onPress={() => Linking.openURL('https://playstore.com')}
+            />
+            <MyCard
+              title={'Rate this App'}
+              iconName={'star-rate'}
+              iconColor={colors.settingText}
+              iconType={'material-icons'}
+              onPress={() => Linking.openURL('https://playstore.com')}
+            />
+            <MyCard
+              title={'Give Feedback'}
+              iconName={'feedback'}
+              iconColor={colors.settingText}
+              iconType={'material-icons'}
+              onPress={() => Linking.openURL('https://playstore.com')}
+            />
+          </View>
+        </View>
       </ScrollView>
     </View>
   );

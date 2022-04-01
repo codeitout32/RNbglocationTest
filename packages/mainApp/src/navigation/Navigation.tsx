@@ -5,7 +5,8 @@ import {
   DefaultTheme,
   NavigationContainer,
 } from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Home from '../screens/Home';
 import Categories from '../screens/Categories';
@@ -20,7 +21,7 @@ import {
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
   const darkMode = useSelector(darkModeSelector);
@@ -52,23 +53,21 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
 
   console.log('DefaultTheme', DefaultTheme);
 
+  console.log('hellor from navigation');
+
   return (
     <NavigationContainer theme={darkMode ? MyTheme : DefaultTheme}>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          // gestureEnabled: true,
+          gestureEnabled: true,
           cardOverlayEnabled: true,
-          // cardOverlay: true,
-          animationEnabled: false,
+          cardOverlay: true,
         }}>
         <Stack.Screen
           name="Home"
-          component={gestureHandlerRootHOC(Home)}
+          component={Home}
           initialParams={{catId: 0, isReload: false}}
-          options={{
-            animationEnabled: false,
-          }}
         />
         <Stack.Screen
           name="Category"

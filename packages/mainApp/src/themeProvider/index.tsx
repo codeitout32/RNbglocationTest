@@ -5,13 +5,18 @@ import {darkModeSelector} from '@next/common/selectors';
 import theme from '@next/common/utils/theme';
 import {useSelector} from 'react-redux';
 import Navigation from '../navigation/Navigation';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+
 const ThemeProviderMain = () => {
   const darkMode = useSelector(darkModeSelector);
+  console.log('hellor from theme');
   return (
     <ThemeProvider theme={theme} useDark={darkMode}>
-      <Navigation />
+      <View style={{flex: 1}}>
+        <Navigation />
+      </View>
     </ThemeProvider>
   );
 };

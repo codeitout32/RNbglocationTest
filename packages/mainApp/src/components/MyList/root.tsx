@@ -64,6 +64,12 @@ const MyList = props => {
     );
   };
 
+  const newsListRaw = newsList?.res?.rows;
+
+  // const finalNewsList = pushAdsToNewsList(newsListRaw, adsList)
+
+  //Add adds to news
+
   const viewabilityConfig = {
     waitForInteraction: true,
     viewAreaCoveragePercentThreshold: 95,
