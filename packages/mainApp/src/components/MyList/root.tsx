@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, memo} from 'react';
+import React, {useState, useEffect, useCallback, memo} from 'react';
 import {
   StyleSheet,
   ActivityIndicator,
@@ -15,6 +15,40 @@ import {dimensions} from '../../res/dimensions';
 
 const {window} = dimensions;
 
+const list = [
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+];
 interface IRenderItem {
   item: any;
   selectedId: string;
@@ -26,10 +60,7 @@ const RenderItem: React.FC<IRenderItem> = memo(
   ({item, selectedId, handleTouched, setSelectedId}) => {
     const color = item.id === selectedId ? 'white' : 'black';
     return (
-      <Pressable
-        onPress={handleTouched}
-        // style={{flex: 1, transform: [{scaleY: -1}]}}
-        >
+      <Pressable onPress={handleTouched} style={{flex: 1}}>
         <ListItem
           item={item}
           onPress={() => {
@@ -49,14 +80,12 @@ const MyList = props => {
     isLoading,
     isNewNewsLoading,
     newsList,
-    // updateNewsStateToRead,
-    handleTouched,
-    // hendleScroll,
+    toggleAppBarAction,
+    setIsAppBarVisibleAction,
   } = props;
-  const [selectedId, setSelectedId] = useState('');
-  const [windowHeight, setWindowHeight] = useState(0);
 
-  console.log("newList", newsList)
+  const [selectedId, setSelectedId] = useState('');
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     if (newsList?.res?.newNewsCount > 0) {
@@ -73,30 +102,26 @@ const MyList = props => {
     }
   }, [isLoading, isNewNewsLoading, newsList]);
 
-  // const onLayout = event => {
-  //   const {height} = event.nativeEvent.layout;
-  //   setWindowHeight(height);
-  // };
+  const handleSnapToItem = useCallback(
+    (idx: number) => {
+      setIndex(idx);
+      if (idx < index) setIsAppBarVisibleAction(true);
+      else setIsAppBarVisibleAction(false);
+    },
+    [index],
+  );
 
-  // const viewabilityConfig = {
-  //   waitForInteraction: true,
-  //   viewAreaCoveragePercentThreshold: 95,
-  // };
+  const getItemLayout = useCallback((data: any, idx: number) => {
+    return {
+      length: window.height,
+      offset: window.height * index,
+      index: idx,
+    };
+  }, []);
 
-  // const onViewableItemsChanged = ({viewableItems, changed}) => {
-  //   const readNewsId: number | null = changed[0]?.item?.id ?? null;
-  //   if (
-  //     !changed[0]?.item?.isRead &&
-  //     viewableItems[0]?.item?.id === readNewsId &&
-  //     changed[0]?.isViewable
-  //   ) {
-  //     updateNewsStateToRead({readNewsId, isRead: true});
-  //   }
-  // };
-
-  // const viewabilityConfigCallbackPairs = useRef([
-  //   {viewabilityConfig, onViewableItemsChanged},
-  // ]);
+  const keyExtractor = useCallback((item: any, idx: number) => {
+    return 'news_' + item?.id + '_' + idx;
+  }, []);
 
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
@@ -107,32 +132,35 @@ const MyList = props => {
           color="#00ff00"
         />
       ) : (
-        // <View style={styles.carousel}>
-          <Carousel
-            data={newsList?.res?.rows || [{}]}
-            renderItem={({item}) => {
-              return (
-                <RenderItem
-                  item={item}
-                  handleTouched={handleTouched}
-                  selectedId={selectedId}
-                  setSelectedId={setSelectedId}
-                />
-              );
-            }}
-            sliderHeight={300}
-            itemHeight={window.height}
-            vertical
-            layout={'stack'}
-            layoutCardOffset={8}
-            activeAnimationType="spring"
-            decelerationRate={8}
-            // swipeThreshold={-20}
-            // scrollEnabled={false}
-            // lockScrollWhileSnapping
-            // activeSlideOffset={0}
-          />
-        // </View>
+        <Carousel
+          data={newsList?.res?.rows || list.reverse()}
+          renderItem={({item}) => {
+            return (
+              <RenderItem
+                item={item}
+                handleTouched={toggleAppBarAction}
+                selectedId={selectedId}
+                setSelectedId={setSelectedId}
+              />
+            );
+          }}
+          sliderHeight={300}
+          itemHeight={window.height}
+          vertical
+          layout={'stack'}
+          layoutCardOffset={8}
+          activeAnimationType="timing"
+          decelerationRate={8}
+          onSnapToItem={handleSnapToItem}
+          windowSize={5}
+          maxToRenderPerBatch={3}
+          keyExtractor={keyExtractor}
+          getItemLayout={getItemLayout}
+          // swipeThreshold={-20}
+          // scrollEnabled={false}
+          // lockScrollWhileSnapping
+          // activeSlideOffset={0}
+        />
       )}
     </SafeAreaView>
   );
@@ -150,33 +178,9 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   carousel: {
-    // flex: 1,
-    // transform: [{scaleY: -1}],
+    flex: 1,
+    transform: [{scaleY: -1}],
   },
 });
 
-export default MyList;
-
-{
-  /* <FlatList
-          data={newsList?.res?.rows || []}
-          decelerationRate={'fast'}
-          onLayout={onLayout}
-          snapToStart={false}
-          showsVerticalScrollIndicator={false}
-          pagingEnabled
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          extraData={selectedId}
-          style={{flex: 1}}
-          windowSize={10}
-          viewabilityConfigCallbackPairs={
-            viewabilityConfigCallbackPairs.current
-          }
-          // onResponderReject={e => console.log('respondergrant', e)}
-          // onResponderRelease={e => console.log('responderrelease')}
-          onScroll={e => {
-            if (e?.nativeEvent?.velocity?.y > 0 ?? false) hendleScroll();
-          }}
-        /> */
-}
+export default memo(MyList);

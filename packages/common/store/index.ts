@@ -19,6 +19,7 @@ const persistConfig = {
   key: "root",
   storage: storage,
   timeout: null,
+  blacklist: ['appBar']
 };
 // console.log("hello react native from store", View);
 

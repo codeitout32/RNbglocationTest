@@ -60,14 +60,14 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
           // gestureEnabled: true,
           // cardOverlayEnabled: true,
           // cardOverlay: true,
-          animationEnabled: false,
+          animationEnabled: true,
         }}>
         <Stack.Screen
           name="Home"
           component={gestureHandlerRootHOC(Home)}
           initialParams={{catId: 0, isReload: false}}
           options={{
-            animationEnabled: false,
+            animationEnabled: true,
           }}
         />
         <Stack.Screen

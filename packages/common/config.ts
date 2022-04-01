@@ -1,6 +1,6 @@
 // import { serverUrl } from "./serverUrl";
 
-const serverUrl = "https://solshorts.herokuapp.com/api";
+const serverUrl = "http://dev.solshorts.io";
 console.log("serverurl", serverUrl);
 //add your api routes here...
 export const routes = {

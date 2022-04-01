@@ -1,14 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {View, SafeAreaView} from 'react-native';
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
-} from 'react-native-gesture-handler';
-// import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
-import {MotiView, AnimatePresence} from 'moti';
+import React, {useEffect, memo} from 'react';
+import {SafeAreaView} from 'react-native';
 
-import Header from '../../components/Header';
+import AppBar from '../../components/AppBar';
 import MyList from '../../components/MyList';
 import styles from './style';
 
@@ -21,16 +14,9 @@ const Home: React.FC<any> = props => {
     lastRefreshTime,
     allNews,
   } = props;
-  const [isTouched, setIsToched] = useState(false);
-  const handleTouched = () => {
-    console.log('tap', 'state', isTouched);
-    setIsToched(state => !state);
-  };
-  const hendleScroll = () => {
-    console.log('scrolled', 'state', isTouched);
-    if (isTouched) setIsToched(false);
-  };
+
   const {catId, isReload} = route.params;
+
   useEffect(() => {
     allNews.length > 0
       ? fetchNewsStart({
@@ -61,30 +47,10 @@ const Home: React.FC<any> = props => {
 
   return (
     <SafeAreaView style={styles.view} collapsable={false}>
-      <MotiView
-        from={{translateY: isTouched ? -50 : 0, opacity: isTouched ? 0 : 1}}
-        animate={{translateY: isTouched ? 0 : -50, opacity: isTouched ? 1 : 0}}
-        transition={{type: 'timing', duration: 100}}
-        style={{zIndex: 100}}>
-        <Header
-          title={''}
-          navigation={navigation}
-          headerLinks={headerLinks}
-          noSettings={false}
-        />
-      </MotiView>
-
-      {/* <View style={styles.header} collapsable={false}>
-          <Header
-            title={''}
-            navigation={navigation}
-            headerLinks={headerLinks}
-            noSettings={false}
-          />
-        </View> */}
-      <MyList handleTouched={handleTouched} hendleScroll={hendleScroll} />
+      <AppBar headerLinks={headerLinks} />
+      <MyList headerLinks={headerLinks} />
     </SafeAreaView>
   );
 };
 
-export default Home;
+export default memo(Home);
