@@ -49,6 +49,7 @@ const MyList = props => {
     newsList,
     toggleAppBarAction,
     setIsAppBarVisibleAction,
+    updateNewsStateToRead,
   } = props;
 
   const [selectedId, setSelectedId] = useState('');
@@ -121,6 +122,26 @@ const MyList = props => {
     return 'news_' + item?.id + '_' + idx;
   }, []);
 
+  const viewabilityConfig = {
+    waitForInteraction: true,
+    viewAreaCoveragePercentThreshold: 95,
+  };
+
+  const onViewableItemsChanged = ({viewableItems, changed}) => {
+    const readNewsId: number | null = changed[0]?.item?.id ?? null;
+    if (
+      !changed[0]?.item?.isRead &&
+      viewableItems[0]?.item?.id === readNewsId &&
+      changed[0]?.isViewable
+    ) {
+      updateNewsStateToRead({readNewsId, isRead: true});
+    }
+  };
+
+  const viewabilityConfigCallbackPairs = useRef([
+    {viewabilityConfig, onViewableItemsChanged},
+  ]);
+
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
       {isLoading || isNewNewsLoading ? (
@@ -154,6 +175,9 @@ const MyList = props => {
           maxToRenderPerBatch={3}
           keyExtractor={keyExtractor}
           getItemLayout={getItemLayout}
+          viewabilityConfigCallbackPairs={
+            viewabilityConfigCallbackPairs.current
+          }
           // swipeThreshold={-20}
           // scrollEnabled={false}
           // lockScrollWhileSnapping
