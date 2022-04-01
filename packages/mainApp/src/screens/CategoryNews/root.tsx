@@ -4,6 +4,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Header from '../../components/Header';
 import CategoryList from '../../components/CategoryList';
 import styles from './style';
+import AppBar from '../../components/AppBar';
 
 const CategoryNews: React.FC<any> = props => {
   const {navigation, route, fetchCategoryNewsStart} = props;
@@ -32,12 +33,7 @@ const CategoryNews: React.FC<any> = props => {
 
   return (
     <SafeAreaProvider style={styles.view}>
-      <Header
-        title={'News by category'}
-        navigation={navigation}
-        headerLinks={headerLinks}
-        noSettings={false}
-      />
+      <AppBar headerLinks={headerLinks} />
       <CategoryList />
     </SafeAreaProvider>
   );

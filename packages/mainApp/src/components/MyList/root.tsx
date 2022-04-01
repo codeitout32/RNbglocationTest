@@ -16,40 +16,6 @@ import {updateNewsStateToRead} from '@next/common/slices/news.slice';
 
 const {window} = dimensions;
 
-const list = [
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-];
 interface IRenderItem {
   item: any;
   selectedId: string;
@@ -165,7 +131,7 @@ const MyList = props => {
         />
       ) : (
         <Carousel
-          data={newsList?.res?.rows || list.reverse()}
+          data={newsList?.res?.rows || []}
           renderItem={({item}) => {
             return (
               <RenderItem

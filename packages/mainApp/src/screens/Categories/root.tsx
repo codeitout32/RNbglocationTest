@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Pressable, View} from 'react-native';
+import {Pressable, View, Image} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Icon, Text} from 'react-native-elements';
 import Header from '../../components/Header';
@@ -16,6 +16,8 @@ const icons = [
   {name: 'trophy', type: 'evilicon'},
   {name: 'headphones', type: 'feather'},
 ];
+
+const imageUrl = 'http://dev.solshorts.io/';
 
 const Categories: React.FC<any> = props => {
   const {navigation, categoriesList, fetchCategoriesStart, route} = props;
@@ -47,7 +49,7 @@ const Categories: React.FC<any> = props => {
   const handleRendered = () => {
     setrendered(true);
   };
-
+  console.log('category ', categoriesList?.rows);
   const {colors} = useTheme();
   return (
     <SafeAreaProvider
@@ -103,19 +105,19 @@ const Categories: React.FC<any> = props => {
         {(categoriesList?.rows || []).map((item: any, index: number) => (
           <Pressable
             onPress={() => {
-              navigation.navigate('CategoryNews', {catId: item.id});
+              navigation.navigate('CategoryNews', {catId: item?.id});
             }}
-            key={item.id}
-            style={[styles.categoriesItem, isSelected(item.id)]}>
+            key={item?.id}
+            style={[styles.categoriesItem, isSelected(item?.id)]}>
             <Icon
-              name={icons[index].name}
-              type={icons[index].type}
-              color={isSelected(item.id).color}
+              name={icons[index]?.name}
+              type={icons[index]?.type}
+              color={isSelected(item?.id).color}
               size={42}
               tvParallaxProperties={undefined}
             />
             <Text style={[styles.categoriesText, isSelected(item.id)]}>
-              {item.category_name}
+              {item?.category_name}
             </Text>
           </Pressable>
         ))}
