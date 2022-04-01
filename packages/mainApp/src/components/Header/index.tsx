@@ -1,30 +1,31 @@
 import React from 'react';
 import {StyleSheet, View, Linking, Pressable} from 'react-native';
 import {Header as HeaderRNE, Icon, Image} from 'react-native-elements';
+import {useNavigation} from '@react-navigation/native';
 
 type HeaderComponentProps = {
   title: string;
   view?: string;
-  navigation: object;
   headerLinks: object;
   noSettings: boolean;
 };
 
 const Header: React.FunctionComponent<HeaderComponentProps> = props => {
+  const navigation = useNavigation();
   const docsNavigate = () => {
     console.log('hello');
     Linking.openURL(`https://reactnativeelements.com/docs/${props.view}`);
   };
   const headerLinks = props.headerLinks;
   const menuNavigate = () => {
-    props.navigation.navigate(headerLinks.menu.link, headerLinks.menu.params);
+    navigation.navigate(headerLinks.menu.link, headerLinks.menu.params);
   };
   const settingsNavigate = () => {
-    props.navigation.navigate('Settings', headerLinks.menu.params);
+    navigation.navigate('Settings', headerLinks.menu.params);
   };
 
   const handleRefresh = () => {
-    props.navigation.navigate(headerLinks.relaod.link, {isReload: true});
+    navigation.navigate(headerLinks.relaod.link, {isReload: true});
   };
   return (
     <HeaderRNE
@@ -48,7 +49,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
       rightComponent={
         <View style={styles.headerRight}>
           {props.noSettings ? (
-            <Pressable onPress={() => props.navigation.goBack()}>
+            <Pressable onPress={() => navigation.goBack()}>
               <Icon name="back" color="white" type="antdesign" />
             </Pressable>
           ) : (

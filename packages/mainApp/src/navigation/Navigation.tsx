@@ -60,14 +60,27 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+<<<<<<< HEAD
           gestureEnabled: true,
           cardOverlayEnabled: true,
           cardOverlay: true,
+=======
+          // gestureEnabled: true,
+          // cardOverlayEnabled: true,
+          // cardOverlay: true,
+          animationEnabled: true,
+>>>>>>> c5e8dd0a14ace62502ce0b3b91614b9d5e2a964d
         }}>
         <Stack.Screen
           name="Home"
           component={Home}
           initialParams={{catId: 0, isReload: false}}
+<<<<<<< HEAD
+=======
+          options={{
+            animationEnabled: true,
+          }}
+>>>>>>> c5e8dd0a14ace62502ce0b3b91614b9d5e2a964d
         />
         <Stack.Screen
           name="Category"

@@ -34,11 +34,11 @@ const ItemBody = ({item}) => {
             size={16}
             tvParallaxProperties={undefined}
           />
-          <Text style={styles.middleBarText}>
-            {formatDistance(new Date(item.created_at), new Date(), {
+          {/* <Text style={styles.middleBarText}>
+            {formatDistance(new Date(item?.created_at), new Date(), {
               addSuffix: true,
             })}
-          </Text>
+          </Text> */}
         </Pressable>
         <Pressable style={[styles.middleBarButton]}>
           <Icon
@@ -48,7 +48,7 @@ const ItemBody = ({item}) => {
             size={16}
             tvParallaxProperties={undefined}
           />
-          <Text style={styles.middleBarText}>{item.author}</Text>
+          <Text style={styles.middleBarText}>{item?.author}</Text>
         </Pressable>
       </View>
       <View style={styles.description}>

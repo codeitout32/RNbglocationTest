@@ -1,2 +1,11 @@
 node_modules/
 .env
+
+packages/old_apps
+.pnpm-debug.log
+.yarnrc
+
+yarn.lock
+yarn-error.log
+pnpm-lock.yaml
+pnpm-workspace.yaml
