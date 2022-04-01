@@ -19,7 +19,7 @@ const ItemBody = ({item}) => {
         h4
         h4Style={styles.h3}
         style={[{color: colors.title}]}>
-        {item.title ||
+        {item?.title ||
           'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>
       {/* <Text style={{color: 'white'}}>

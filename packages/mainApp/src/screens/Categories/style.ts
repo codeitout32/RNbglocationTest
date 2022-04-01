@@ -56,5 +56,9 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  img: {
+    width: 100,
+    height: 100,
+  },
 });
 export default styles;
