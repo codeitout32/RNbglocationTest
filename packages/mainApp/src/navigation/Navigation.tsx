@@ -58,7 +58,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
         screenOptions={{
           headerShown: false,
           // gestureEnabled: true,
-          cardOverlayEnabled: true,
+          // cardOverlayEnabled: true,
           // cardOverlay: true,
           animationEnabled: false,
         }}>

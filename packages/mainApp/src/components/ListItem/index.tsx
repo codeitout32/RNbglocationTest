@@ -4,8 +4,12 @@ import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
 
+import {dimensions} from '../../res/dimensions';
+
 import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
+
+const {width, height} = dimensions.window;
 
 const ListItem = ({item, onPress, textColor, windowHeight}) => {
   const [shareIconVisibility, serShareIconVisibility] = useState(true);
@@ -31,10 +35,10 @@ const ListItem = ({item, onPress, textColor, windowHeight}) => {
           onPress={onPress}
           style={[
             styles.item,
-            {height: windowHeight, backgroundColor: colors.background},
+            {height: height, backgroundColor: colors.background},
           ]}>
           <Image
-            style={[styles.img, {height: windowHeight / 2.5}]}
+            style={[styles.img, {height: height / 2.5}]}
             source={{uri: 'https://picsum.photos/400/300'}}
             defaultSource={{uri: 'https://picsum.photos/400/300'}}
             {...imgProps}

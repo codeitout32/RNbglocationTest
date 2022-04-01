@@ -71,11 +71,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
         text: props.title || 'SolShorts',
         style: styles.heading,
       }}
-<<<<<<< HEAD
-      statusBarProps={{backgroundColor: 'transparent',}}
-=======
       statusBarProps={{translucent: true, backgroundColor: 'black'}}
->>>>>>> 1deada7ffee9870f0783b806db167b3954a93962
     />
   );
 };

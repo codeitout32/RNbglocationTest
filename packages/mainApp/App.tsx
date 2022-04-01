@@ -7,18 +7,17 @@
  *
  * @format
  */
+import 'react-native-reanimated';
 import 'react-native-gesture-handler';
 import React from 'react';
 import {StyleSheet, Text, useColorScheme, View} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Provider} from 'react-redux';
-import {useStore} from '@next/common/store';
+import {appStore} from '@next/common/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import ThemeProviderMain from './src/themeProvider';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {getNotifications} from './src/res/getNotifications';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+
 
 const Section: React.FC<{
   title: string;
@@ -49,7 +48,7 @@ const Section: React.FC<{
 };
 
 const App = () => {
-  const store = useStore();
+  // const store = useStore();
 
   //Not usable for now maybe used in future
   const isDarkMode = useColorScheme() === 'dark';
@@ -61,11 +60,11 @@ const App = () => {
   React.useEffect(() => {
     SplashScreen.hide();
     // getNotifications();
-  });
+  },[]);
 
   return (
-    <PersistGate loading={null} persistor={store.persistor}>
-      <Provider store={store}>
+    <PersistGate loading={null} persistor={appStore.persistor}>
+      <Provider store={appStore}>
         {/* <SafeAreaProvider> */}
         <ThemeProviderMain />
         {/* </SafeAreaProvider> */}

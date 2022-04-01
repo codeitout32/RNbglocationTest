@@ -48,6 +48,7 @@ function* fetchSingleNewsSaga(action) {
 }
 
 function* fetchNewNewsSaga(action) {
+  console.log("fetchNewNewsSaga", action);
   const searchparams = new URLSearchParams(action.payload).toString();
   const params = {
     method: "get",

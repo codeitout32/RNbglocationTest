@@ -1,32 +1,62 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, memo} from 'react';
 import {
-  FlatList,
   StyleSheet,
-  View,
   ActivityIndicator,
   ToastAndroid,
   Pressable,
+  View,
 } from 'react-native';
 import ListItem from '../ListItem';
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
-} from 'react-native-gesture-handler';
+
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Carousel from 'react-native-snap-carousel';
+
+import {dimensions} from '../../res/dimensions';
+
+const {window} = dimensions;
+
+interface IRenderItem {
+  item: any;
+  selectedId: string;
+  handleTouched: any;
+  setSelectedId: any;
+}
+
+const RenderItem: React.FC<IRenderItem> = memo(
+  ({item, selectedId, handleTouched, setSelectedId}) => {
+    const color = item.id === selectedId ? 'white' : 'black';
+    return (
+      <Pressable
+        onPress={handleTouched}
+        // style={{flex: 1, transform: [{scaleY: -1}]}}
+        >
+        <ListItem
+          item={item}
+          onPress={() => {
+            setSelectedId(item.id);
+            console.log('pressed');
+          }}
+          textColor={{color}}
+          windowHeight={window.height}
+        />
+      </Pressable>
+    );
+  },
+);
 
 const MyList = props => {
   const {
     isLoading,
     isNewNewsLoading,
     newsList,
-    updateNewsStateToRead,
-    navigation,
+    // updateNewsStateToRead,
     handleTouched,
-    hendleScroll,
+    // hendleScroll,
   } = props;
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState('');
   const [windowHeight, setWindowHeight] = useState(0);
+
+  console.log("newList", newsList)
 
   useEffect(() => {
     if (newsList?.res?.newNewsCount > 0) {
@@ -43,53 +73,30 @@ const MyList = props => {
     }
   }, [isLoading, isNewNewsLoading, newsList]);
 
-  const onLayout = event => {
-    const {height} = event.nativeEvent.layout;
-    setWindowHeight(height);
-  };
+  // const onLayout = event => {
+  //   const {height} = event.nativeEvent.layout;
+  //   setWindowHeight(height);
+  // };
 
-  const renderItem = ({item}) => {
-    const color = item.id === selectedId ? 'white' : 'black';
-    return (
-      <Pressable onPress={handleTouched} style={{flex: 1}}>
-        <ListItem
-          item={item}
-          onPress={() => {
-            setSelectedId(item.id);
-            console.log('pressed');
-          }}
-          textColor={{color}}
-          windowHeight={windowHeight}
-        />
-      </Pressable>
-    );
-  };
+  // const viewabilityConfig = {
+  //   waitForInteraction: true,
+  //   viewAreaCoveragePercentThreshold: 95,
+  // };
 
-  const viewabilityConfig = {
-    waitForInteraction: true,
-    viewAreaCoveragePercentThreshold: 95,
-  };
+  // const onViewableItemsChanged = ({viewableItems, changed}) => {
+  //   const readNewsId: number | null = changed[0]?.item?.id ?? null;
+  //   if (
+  //     !changed[0]?.item?.isRead &&
+  //     viewableItems[0]?.item?.id === readNewsId &&
+  //     changed[0]?.isViewable
+  //   ) {
+  //     updateNewsStateToRead({readNewsId, isRead: true});
+  //   }
+  // };
 
-  const onViewableItemsChanged = ({viewableItems, changed}) => {
-    const readNewsId: number | null = changed[0]?.item?.id ?? null;
-    if (
-      !changed[0]?.item?.isRead &&
-      viewableItems[0]?.item?.id === readNewsId &&
-      changed[0]?.isViewable
-    ) {
-      updateNewsStateToRead({readNewsId, isRead: true});
-    }
-  };
-
-  const viewabilityConfigCallbackPairs = useRef([
-    {viewabilityConfig, onViewableItemsChanged},
-  ]);
-
-  //animated functions
-  const tap = Gesture.Tap().onStart(e => {
-    console.log('tap1');
-    handleTouched();
-  });
+  // const viewabilityConfigCallbackPairs = useRef([
+  //   {viewabilityConfig, onViewableItemsChanged},
+  // ]);
 
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
@@ -100,7 +107,58 @@ const MyList = props => {
           color="#00ff00"
         />
       ) : (
-        <FlatList
+        // <View style={styles.carousel}>
+          <Carousel
+            data={newsList?.res?.rows || [{}]}
+            renderItem={({item}) => {
+              return (
+                <RenderItem
+                  item={item}
+                  handleTouched={handleTouched}
+                  selectedId={selectedId}
+                  setSelectedId={setSelectedId}
+                />
+              );
+            }}
+            sliderHeight={300}
+            itemHeight={window.height}
+            vertical
+            layout={'stack'}
+            layoutCardOffset={8}
+            activeAnimationType="spring"
+            decelerationRate={8}
+            // swipeThreshold={-20}
+            // scrollEnabled={false}
+            // lockScrollWhileSnapping
+            // activeSlideOffset={0}
+          />
+        // </View>
+      )}
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  contentContainer: {
+    paddingVertical: 0,
+  },
+  indicatorMarginTop: {
+    marginTop: 30,
+    paddingTop: 30,
+  },
+  carousel: {
+    // flex: 1,
+    // transform: [{scaleY: -1}],
+  },
+});
+
+export default MyList;
+
+{
+  /* <FlatList
           data={newsList?.res?.rows || []}
           decelerationRate={'fast'}
           onLayout={onLayout}
@@ -120,23 +178,5 @@ const MyList = props => {
           onScroll={e => {
             if (e?.nativeEvent?.velocity?.y > 0 ?? false) hendleScroll();
           }}
-        />
-      )}
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  contentContainer: {
-    paddingVertical: 0,
-  },
-  indicatorMarginTop: {
-    marginTop: 20,
-    paddingTop: 20,
-  },
-});
-
-export default MyList;
+        /> */
+}
