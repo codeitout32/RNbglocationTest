@@ -51,21 +51,25 @@ const CategoryList: React.FC<any> = props => {
     );
   };
 
-  // const viewabilityConfig = {
-  //   waitForInteraction: true,
-  //   viewAreaCoveragePercentThreshold: 95,
-  // };
+  const viewabilityConfig = {
+    waitForInteraction: true,
+    viewAreaCoveragePercentThreshold: 95,
+  };
 
-  // const onViewableItemsChanged = ({viewableItems, changed}) => {
-  //   const readNewsId: number | null = changed[0]?.item?.id ?? null;
-  //   if (
-  //     !changed[0]?.item?.isRead &&
-  //     viewableItems[0]?.item?.id === readNewsId &&
-  //     changed[0]?.isViewable
-  //   ) {
-  //     updateNewsStateToRead({readNewsId, isRead: true});
-  //   }
-  // };
+  const onViewableItemsChanged = ({viewableItems, changed}) => {
+    const readNewsId: number | null = changed[0]?.item?.id ?? null;
+    if (
+      !changed[0]?.item?.isRead &&
+      viewableItems[0]?.item?.id === readNewsId &&
+      changed[0]?.isViewable
+    ) {
+      updateNewsStateToRead({readNewsId, isRead: true});
+    }
+  };
+
+  const viewabilityConfigCallbackPairs = useRef([
+    {viewabilityConfig, onViewableItemsChanged},
+  ]);
 
   const handleSnapToItem = useCallback(
     (idx: number) => {
@@ -111,6 +115,9 @@ const CategoryList: React.FC<any> = props => {
           windowSize={5}
           maxToRenderPerBatch={3}
           keyExtractor={keyExtractor}
+          viewabilityConfigCallbackPairs={
+            viewabilityConfigCallbackPairs.current
+          }
           getItemLayout={getItemLayout}
         />
       ) : (
