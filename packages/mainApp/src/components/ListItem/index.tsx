@@ -1,17 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Image, StatusBar, StyleSheet, View} from 'react-native';
-import {FAB, Text} from 'react-native-elements';
+import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
 import {delay} from 'lodash';
 
 import {dimensions} from '../../res/dimensions';
+import config from '../../res/config';
 
 import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
 import ViewShotFooter from './ViewShotFooter';
 
-const {width, height} = dimensions.window;
+const {height} = dimensions.window;
 
 const ListItem = ({item, onPress}) => {
   const [shareIconVisibility, serShareIconVisibility] = useState(true);
@@ -26,6 +27,7 @@ const ListItem = ({item, onPress}) => {
   const captureAndShareScreenshot = () => {
     setIsCapturing(true);
   };
+<<<<<<< HEAD
 
   useEffect(() => {
     if (!isCapturing) return;
@@ -39,10 +41,13 @@ const ListItem = ({item, onPress}) => {
 
     delay(() => shotstart, 300);
   }, [isCapturing]);
+=======
+  // console.log(item);
+>>>>>>> e8d45024fed85e8f6383adb60fa80fa10e53b691
 
   return (
     <>
-      <ViewShot ref={viewShot} options={{format: 'jpg', quality: 0.9}}>
+      <ViewShot ref={viewShot} options={{format: 'jpg', quality: 1}}>
         <View
           onPress={onPress}
           style={[
@@ -51,15 +56,17 @@ const ListItem = ({item, onPress}) => {
           ]}>
           <Image
             style={[styles.img, {height: height / 2.5}]}
-            source={{uri: 'https://picsum.photos/400/300'}}
-            defaultSource={{uri: 'https://picsum.photos/400/300'}}
+            source={{uri: config.imgUrl + item?.image}}
             {...imgProps}
           />
 
           <ItemBody item={item} />
+<<<<<<< HEAD
           <View style={{display: isCapturing ? 'flex' : 'none'}}>
             <ViewShotFooter />
           </View>
+=======
+>>>>>>> e8d45024fed85e8f6383adb60fa80fa10e53b691
         </View>
       </ViewShot>
       <FAB

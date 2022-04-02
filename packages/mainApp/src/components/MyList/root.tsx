@@ -4,12 +4,13 @@ import {
   ActivityIndicator,
   ToastAndroid,
   Pressable,
-  View,
 } from 'react-native';
-import ListItem from '../ListItem';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
+
+import NoNews from '../../components/NoNews';
+import ListItem from '../ListItem';
 
 import {dimensions} from '../../res/dimensions';
 import {updateNewsStateToRead} from '@next/common/slices/news.slice';
@@ -141,6 +142,8 @@ const MyList = props => {
     {viewabilityConfig, onViewableItemsChanged},
   ]);
 
+  console.log(newsList?.res?.rows.length > 0);
+
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
       {isLoading || isNewNewsLoading ? (
@@ -149,7 +152,7 @@ const MyList = props => {
           size="large"
           color="#00ff00"
         />
-      ) : (
+      ) : newsList?.res?.rows.length > 0 ? (
         <Carousel
           data={newsList?.res?.rows || []}
           renderItem={({item, index: idx}) => {
@@ -178,12 +181,9 @@ const MyList = props => {
           viewabilityConfigCallbackPairs={
             viewabilityConfigCallbackPairs.current
           }
-
-          // swipeThreshold={-20}
-          // scrollEnabled={false}
-          // lockScrollWhileSnapping
-          // activeSlideOffset={0}
         />
+      ) : (
+        <NoNews />
       )}
     </SafeAreaView>
   );

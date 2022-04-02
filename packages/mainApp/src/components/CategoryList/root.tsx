@@ -12,6 +12,7 @@ import {useTheme} from '@react-navigation/native';
 
 import {dimensions} from '../../res/dimensions';
 import Carousel from 'react-native-snap-carousel';
+import NoNews from '../NoNews';
 
 const {window} = dimensions;
 
@@ -121,11 +122,7 @@ const CategoryList: React.FC<any> = props => {
           getItemLayout={getItemLayout}
         />
       ) : (
-        <View>
-          <Text style={[styles.noNewsText, {color: `${colors.text}`}]}>
-            We don't have news in this category
-          </Text>
-        </View>
+        <NoNews forCategory />
       )}
     </View>
   );
