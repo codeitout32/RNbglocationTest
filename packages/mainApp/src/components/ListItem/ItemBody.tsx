@@ -26,7 +26,7 @@ const ItemBody = ({item}) => {
         numberOfLines={3}
         h4
         h4Style={styles.h3}
-        style={[styles.newsTitle, {color: colors.title}]}>
+        style={[styles.newsTitle, {color: colors?.title}]}>
         {item?.title ||
           'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>

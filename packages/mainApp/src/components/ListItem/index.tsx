@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
-import {Image, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {Image, StatusBar, StyleSheet, View} from 'react-native';
 import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
 
 import {dimensions} from '../../res/dimensions';
+import config from '../../res/config';
 
 import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
 
-const {width, height} = dimensions.window;
+const {height} = dimensions.window;
 
-const ListItem = ({item, onPress,}) => {
+const ListItem = ({item, onPress}) => {
   const [shareIconVisibility, serShareIconVisibility] = useState(true);
   const imgProps = {
     resizeMode: 'cover',
@@ -28,9 +29,11 @@ const ListItem = ({item, onPress,}) => {
     });
     serShareIconVisibility(true);
   };
+  // console.log(item);
+
   return (
     <>
-      <ViewShot ref={viewShot} options={{format: 'jpg', quality: 0.9}}>
+      <ViewShot ref={viewShot} options={{format: 'jpg', quality: 1}}>
         <View
           onPress={onPress}
           style={[
@@ -39,12 +42,11 @@ const ListItem = ({item, onPress,}) => {
           ]}>
           <Image
             style={[styles.img, {height: height / 2.5}]}
-            source={{uri: 'https://picsum.photos/400/300'}}
-            defaultSource={{uri: 'https://picsum.photos/400/300'}}
+            source={{uri: config.imgUrl + item?.image}}
             {...imgProps}
           />
 
-          <ItemBody item={item}/>
+          <ItemBody item={item} />
         </View>
       </ViewShot>
       <FAB
