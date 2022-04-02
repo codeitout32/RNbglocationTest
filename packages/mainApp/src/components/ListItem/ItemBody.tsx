@@ -2,12 +2,16 @@ import React from 'react';
 import {StyleSheet, View, Pressable} from 'react-native';
 import {Text, Icon} from 'react-native-elements';
 import {formatDistance} from 'date-fns';
+import {useDispatch} from 'react-redux';
 import {useTheme} from '@react-navigation/native';
 import {getStringFromHtml} from '../../util/htmlParser';
+import {appBarActions} from '@next/common/slices/appBar.slice';
 
 import Fonts from '../../res/fonts';
 
 const ItemBody = ({item}) => {
+  const {toggleAppBarAction} = appBarActions;
+  const dispatch = useDispatch();
   const placeholderDescription =
     'The Polish government passed a draft bill to create an 8 billion zloty ($1.75 billion) fund to help war refugees from Ukraine. The United Nations estimates more than 1.5 million people have fled Ukraine since Russia attacked its neighbour on Feb. 24. More than 1 million have crossed the border into Poland. Many thousands have been hosted across the country';
   const {colors} = useTheme();
@@ -21,7 +25,10 @@ const ItemBody = ({item}) => {
   );
 
   return (
-    <View style={{...styles.container}}>
+    // <Pressable onPress={() => dispatch(toggleAppBarAction())}>
+    <Pressable
+      style={{...styles.container}}
+      onPress={() => dispatch(toggleAppBarAction())}>
       <Text
         numberOfLines={3}
         h4
@@ -63,7 +70,8 @@ const ItemBody = ({item}) => {
             : placeholderDescription}
         </Text>
       </View>
-    </View>
+    </Pressable>
+    // </Pressable>
   );
 };
 

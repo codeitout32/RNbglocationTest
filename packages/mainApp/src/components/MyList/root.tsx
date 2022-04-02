@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useCallback, memo, useRef} from 'react';
-import {StyleSheet, ToastAndroid, Pressable} from 'react-native';
+import {Pressable, StyleSheet, ToastAndroid, View} from 'react-native';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
@@ -22,19 +22,13 @@ interface IRenderItem {
 
 const RenderItem: React.FC<IRenderItem> = memo(({item, handleTouched}) => {
   return (
-    <Pressable
-      onPress={handleTouched}
-      style={{
-        flex: 1,
-      }}>
-      <ListItem
-        item={item}
-        // onPress={() => {
-        //   setSelectedId(item.id);
-        //   console.log('pressed');
-        // }}
-      />
-    </Pressable>
+    <ListItem
+      item={item}
+      // onPress={() => {
+      //   setSelectedId(item.id);
+      //   console.log('pressed');
+      // }}
+    />
   );
 });
 
