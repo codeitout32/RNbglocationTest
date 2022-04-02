@@ -12,7 +12,7 @@ import shareFunc from './shareFunc';
 
 const {height} = dimensions.window;
 
-const ListItem = ({item, onPress}) => {
+const ListItem = ({item}) => {
   const [shareIconVisibility, serShareIconVisibility] = useState(true);
   const imgProps = {
     resizeMode: 'cover',
@@ -35,7 +35,7 @@ const ListItem = ({item, onPress}) => {
     <>
       <ViewShot ref={viewShot} options={{format: 'jpg', quality: 1}}>
         <View
-          onPress={onPress}
+          // onPress={onPress}
           style={[
             styles.item,
             {height: height, backgroundColor: colors.background},
