@@ -60,14 +60,14 @@ const ItemBody = ({item}) => {
             : placeholderDescription}
         </Text>
       </View>
-      {/* <View>
+      <View>
         <Text style={{color: 'gray'}}>
           swipe left for more /{' '}
           {formatDistance(new Date(item.created_at), new Date(), {
             addSuffix: true,
           })}
         </Text>
-      </View> */}
+      </View>
     </View>
   );
 };

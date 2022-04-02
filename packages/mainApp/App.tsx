@@ -14,10 +14,11 @@ import {StyleSheet, Text, useColorScheme, View} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Provider} from 'react-redux';
+// import {appStore} from '@next/common/store';
 import {appStore} from '@next/common/store';
+
 import {PersistGate} from 'redux-persist/integration/react';
 import ThemeProviderMain from './src/themeProvider';
-
 
 const Section: React.FC<{
   title: string;
@@ -62,17 +63,11 @@ const App = () => {
   React.useEffect(() => {
     SplashScreen.hide();
     // getNotifications();
-  },[]);
+  }, []);
 
   return (
-<<<<<<< HEAD
-    <PersistGate loading={null} persistor={store.persistor}>
-      <Provider store={store}>
-=======
     <PersistGate loading={null} persistor={appStore.persistor}>
       <Provider store={appStore}>
-        {/* <SafeAreaProvider> */}
->>>>>>> c5e8dd0a14ace62502ce0b3b91614b9d5e2a964d
         <ThemeProviderMain />
       </Provider>
     </PersistGate>

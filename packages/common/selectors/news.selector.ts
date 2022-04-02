@@ -1,5 +1,5 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { AppState } from '../store';
+import { createSelector } from "@reduxjs/toolkit";
+import { AppState } from "../store";
 
 const newsReducer = (state: AppState) => state.news;
 

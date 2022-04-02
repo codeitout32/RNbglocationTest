@@ -82,7 +82,7 @@ const MyList = props => {
   const getItemLayout = useCallback((data: any, idx: number) => {
     return {
       length: window.height,
-      offset: window.height * index,
+      offset: window.height * idx,
       index: idx,
     };
   }, []);
@@ -93,31 +93,31 @@ const MyList = props => {
 
   //Add adds to news
 
-  const viewabilityConfig = {
-    waitForInteraction: true,
-    viewAreaCoveragePercentThreshold: 95,
-  };
+  // const viewabilityConfig = {
+  //   waitForInteraction: true,
+  //   viewAreaCoveragePercentThreshold: 95,
+  // };
 
-  const onViewableItemsChanged = ({viewableItems, changed}) => {
-    const readNewsId: number | null = changed[0]?.item?.id ?? null;
-    if (
-      !changed[0]?.item?.isRead &&
-      viewableItems[0]?.item?.id === readNewsId &&
-      changed[0]?.isViewable
-    ) {
-      updateNewsStateToRead({readNewsId, isRead: true});
-    }
-  };
+  // const onViewableItemsChanged = ({viewableItems, changed}) => {
+  //   const readNewsId: number | null = changed[0]?.item?.id ?? null;
+  //   if (
+  //     !changed[0]?.item?.isRead &&
+  //     viewableItems[0]?.item?.id === readNewsId &&
+  //     changed[0]?.isViewable
+  //   ) {
+  //     updateNewsStateToRead({readNewsId, isRead: true});
+  //   }
+  // };
 
-  const viewabilityConfigCallbackPairs = useRef([
-    {viewabilityConfig, onViewableItemsChanged},
-  ]);
+  // const viewabilityConfigCallbackPairs = useRef([
+  //   {viewabilityConfig, onViewableItemsChanged},
+  // ]);
 
-  //animated functions
-  const tap = Gesture.Tap().onStart(e => {
-    console.log('tap1');
-    handleTouched();
-  });
+  // //animated functions
+  // const tap = Gesture.Tap().onStart(e => {
+  //   console.log('tap1');
+  //   handleTouched();
+
   const keyExtractor = useCallback((item: any, idx: number) => {
     return 'news_' + item?.id + '_' + idx;
   }, []);

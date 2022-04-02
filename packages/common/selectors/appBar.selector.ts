@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-import { AppState } from "../store/index";
+import { AppState } from "../store";
 
 const appBarReducer = (state: AppState) => state.appBar;
 

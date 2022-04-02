@@ -13,12 +13,12 @@ const ViewShotFooter = () => {
       <View style={styles.snapFooterItem}>
         <Image
           source={require('../../assets/appstore.png')}
-          style={{height: 25, width: 70, resizeMode: 'contain'}}
+          style={{height: 30, width: 80, resizeMode: 'contain'}}
           resizeMethod="scale"
         />
         <Image
           source={{uri: googleImg}}
-          style={{height: 25, width: 70, resizeMode: 'contain'}}
+          style={{height: 30, width: 80, resizeMode: 'contain'}}
         />
       </View>
       <View style={styles.snapFooterItem}>
