@@ -20,10 +20,11 @@ interface IRenderItem {
   selectedId: string;
   handleTouched: any;
   setSelectedId: any;
+  opacity: number;
 }
 
 const RenderItem: React.FC<IRenderItem> = memo(
-  ({item, selectedId, handleTouched, setSelectedId}) => {
+  ({item, selectedId, handleTouched, setSelectedId, opacity}) => {
     const color = item.id === selectedId ? 'white' : 'black';
     return (
       <Pressable onPress={handleTouched} style={{flex: 1}}>
@@ -33,8 +34,6 @@ const RenderItem: React.FC<IRenderItem> = memo(
             setSelectedId(item.id);
             console.log('pressed');
           }}
-          textColor={{color}}
-          windowHeight={window.height}
         />
       </Pressable>
     );
@@ -95,7 +94,7 @@ const MyList = props => {
     viewAreaCoveragePercentThreshold: 95,
   };
 
-  const onViewableItemsChanged = ({viewableItems, changed}) => {
+  const onViewableItemsChanged = useCallback(({viewableItems, changed}) => {
     const readNewsId: number | null = changed[0]?.item?.id ?? null;
     if (
       !changed[0]?.item?.isRead &&
@@ -104,7 +103,7 @@ const MyList = props => {
     ) {
       updateNewsStateToRead({readNewsId, isRead: true});
     }
-  };
+  }, []);
 
   const viewabilityConfigCallbackPairs = useRef([
     {viewabilityConfig, onViewableItemsChanged},
@@ -121,13 +120,14 @@ const MyList = props => {
       ) : (
         <Carousel
           data={newsList?.res?.rows || []}
-          renderItem={({item}) => {
+          renderItem={({item, index: idx}) => {
             return (
               <RenderItem
                 item={item}
                 handleTouched={toggleAppBarAction}
                 selectedId={selectedId}
                 setSelectedId={setSelectedId}
+                opacity={index > idx ? 0 : 1}
               />
             );
           }}
@@ -146,6 +146,7 @@ const MyList = props => {
           viewabilityConfigCallbackPairs={
             viewabilityConfigCallbackPairs.current
           }
+
           // swipeThreshold={-20}
           // scrollEnabled={false}
           // lockScrollWhileSnapping

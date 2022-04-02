@@ -13,7 +13,7 @@ const ItemBody = ({item}) => {
   const {colors} = useTheme();
 
   return (
-    <View style={styles.container}>
+    <View style={{...styles.container,}}>
       <Text
         numberOfLines={3}
         h4
@@ -34,11 +34,11 @@ const ItemBody = ({item}) => {
             size={16}
             tvParallaxProperties={undefined}
           />
-          {/* <Text style={styles.middleBarText}>
+          <Text style={styles.middleBarText}>
             {formatDistance(new Date(item?.created_at), new Date(), {
               addSuffix: true,
             })}
-          </Text> */}
+          </Text>
         </Pressable>
         <Pressable style={[styles.middleBarButton]}>
           <Icon

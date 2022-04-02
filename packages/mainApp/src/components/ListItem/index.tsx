@@ -11,7 +11,7 @@ import shareFunc from './shareFunc';
 
 const {width, height} = dimensions.window;
 
-const ListItem = ({item, onPress, textColor, windowHeight}) => {
+const ListItem = ({item, onPress,}) => {
   const [shareIconVisibility, serShareIconVisibility] = useState(true);
   const imgProps = {
     resizeMode: 'cover',
@@ -44,7 +44,7 @@ const ListItem = ({item, onPress, textColor, windowHeight}) => {
             {...imgProps}
           />
 
-          <ItemBody item={item} />
+          <ItemBody item={item}/>
         </View>
       </ViewShot>
       <FAB

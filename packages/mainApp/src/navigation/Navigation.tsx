@@ -38,7 +38,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
       ...DarkTheme.colors,
       title: 'rgba(255, 255, 255, 0.87)',
       text: 'rgba(255, 255, 255, 0.6)',
-      background: 'rgba(66, 66, 66, 0.95)',
+      background: '#282C35',
       card: '#444',
       settingText: 'rgba(255, 255, 255, 0.6)',
     },
