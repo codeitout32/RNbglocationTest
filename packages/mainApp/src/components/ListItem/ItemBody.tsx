@@ -1,30 +1,35 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Pressable, useWindowDimensions} from 'react-native';
-import colors from '@next/common/utils/theme';
+import React from 'react';
+import {StyleSheet, View, Pressable} from 'react-native';
 import {Text, Icon} from 'react-native-elements';
 import {formatDistance} from 'date-fns';
 import {useTheme} from '@react-navigation/native';
-import RenderHtml from 'react-native-render-html';
 import {getStringFromHtml} from '../../util/htmlParser';
+
+import Fonts from '../../res/fonts';
 
 const ItemBody = ({item}) => {
   const placeholderDescription =
     'The Polish government passed a draft bill to create an 8 billion zloty ($1.75 billion) fund to help war refugees from Ukraine. The United Nations estimates more than 1.5 million people have fled Ukraine since Russia attacked its neighbour on Feb. 24. More than 1 million have crossed the border into Poland. Many thousands have been hosted across the country';
   const {colors} = useTheme();
 
+  const newsUploadTime = formatDistance(
+    new Date(item?.created_at),
+    new Date(),
+    {
+      addSuffix: true,
+    },
+  );
+
   return (
-    <View style={{...styles.container,}}>
+    <View style={{...styles.container}}>
       <Text
         numberOfLines={3}
         h4
         h4Style={styles.h3}
-        style={[{color: colors.title}]}>
+        style={[styles.newsTitle, {color: colors.title}]}>
         {item?.title ||
           'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>
-      {/* <Text style={{color: 'white'}}>
-        {item.isRead ? 'Readed' : 'Unreaded'}
-      </Text> */}
       <View style={styles.middleBar}>
         <Pressable style={[styles.middleBarButton, {paddingRight: '5%'}]}>
           <Icon
@@ -35,9 +40,7 @@ const ItemBody = ({item}) => {
             tvParallaxProperties={undefined}
           />
           <Text style={styles.middleBarText}>
-            {formatDistance(new Date(item?.created_at), new Date(), {
-              addSuffix: true,
-            })}
+            {newsUploadTime[0].toUpperCase() + newsUploadTime.slice(1)}
           </Text>
         </Pressable>
         <Pressable style={[styles.middleBarButton]}>
@@ -60,14 +63,6 @@ const ItemBody = ({item}) => {
             : placeholderDescription}
         </Text>
       </View>
-      {/* <View>
-        <Text style={{color: 'gray'}}>
-          swipe left for more /{' '}
-          {formatDistance(new Date(item.created_at), new Date(), {
-            addSuffix: true,
-          })}
-        </Text>
-      </View> */}
     </View>
   );
 };
@@ -77,6 +72,9 @@ const styles = StyleSheet.create({
     flex: 2,
     marginHorizontal: 20,
     marginTop: 20,
+  },
+  newsTitle: {
+    fontFamily: Fonts.robotoRegular,
   },
   middleBar: {
     flexDirection: 'row',
@@ -93,6 +91,7 @@ const styles = StyleSheet.create({
     color: '#34CF54',
     fontSize: 14,
     marginLeft: 10,
+    fontFamily: Fonts.robotoLight,
   },
   h3: {
     fontSize: 24,
@@ -119,8 +118,9 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   descriptionText: {
-    fontSize: 18,
-    lineHeight: 25,
+    fontSize: 16,
+    lineHeight: 22,
+    fontFamily: Fonts.robotoLight,
   },
 });
 
