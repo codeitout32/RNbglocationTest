@@ -38,7 +38,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
       ...DarkTheme.colors,
       title: 'rgba(255, 255, 255, 0.8)',
       text: 'rgba(255, 255, 255, 0.6)',
-      background: '#282C35',
+      background: 'rgba(45, 45, 45, 0.95)',
       card: '#444',
       settingText: 'rgba(255, 255, 255, 0.6)',
     },
@@ -71,6 +71,8 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
             initialParams={{catId: 0, isReload: false}}
             options={{
               animationEnabled: true,
+              cardOverlayEnabled: false,
+              cardOverlay: false,
             }}
           />
           <Stack.Screen

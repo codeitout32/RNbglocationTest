@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StatusBar, StyleSheet, View} from 'react-native';
 import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
@@ -16,6 +16,7 @@ const {height} = dimensions.window;
 
 const ListItem = ({item, onPress}) => {
   const [shareIconVisibility, serShareIconVisibility] = useState(true);
+  const [isCapturing, setIsCapturing] = useState(false);
   const imgProps = {
     resizeMode: 'cover',
   };
@@ -27,7 +28,6 @@ const ListItem = ({item, onPress}) => {
   const captureAndShareScreenshot = () => {
     setIsCapturing(true);
   };
-<<<<<<< HEAD
 
   useEffect(() => {
     if (!isCapturing) return;
@@ -41,9 +41,6 @@ const ListItem = ({item, onPress}) => {
 
     delay(() => shotstart, 300);
   }, [isCapturing]);
-=======
-  // console.log(item);
->>>>>>> e8d45024fed85e8f6383adb60fa80fa10e53b691
 
   return (
     <>
@@ -61,12 +58,9 @@ const ListItem = ({item, onPress}) => {
           />
 
           <ItemBody item={item} />
-<<<<<<< HEAD
           <View style={{display: isCapturing ? 'flex' : 'none'}}>
             <ViewShotFooter />
           </View>
-=======
->>>>>>> e8d45024fed85e8f6383adb60fa80fa10e53b691
         </View>
       </ViewShot>
       <FAB

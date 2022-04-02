@@ -106,14 +106,14 @@ export const newsSlice = createSlice({
       };
     },
     fetchNewNewsSuccess: (state, action) => {
-      const newRows = action.payload?.res?.rows;
-      const oldNews = state.newsList?.res?.rows;
+      const newRows = action.payload?.res?.rows || [];
+      const oldNews = state.newsList?.res?.rows || [];
       const oldUnreadNews = oldNews?.filter?.((item: any) => !item.isRead);
       const oldReadNews = oldNews?.filter?.((item: any) => item.isRead);
       const newNews = {
         res: {
           rows: [...newRows, ...oldUnreadNews, ...oldReadNews],
-          count: state.newsList.res.count + action.payload.count,
+          count: state?.newsList?.res?.count + action.payload?.count ?? 0,
           newNewsCount: action.payload?.res?.count,
           unreadNewsCount: oldUnreadNews.length,
         },

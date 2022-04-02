@@ -12,10 +12,7 @@ import {
 import {Icon, Switch, Text, Card, ListItem} from 'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
 import SelectDropdown from 'react-native-select-dropdown';
-import {
-  checkNotifications,
-  requestNotifications,
-} from 'react-native-permissions';
+import messaging from '@react-native-firebase/messaging';
 import {getDeviceToken} from 'react-native-device-info';
 
 import Header from '../../components/Header';
@@ -63,16 +60,23 @@ const Settings: React.FC<any> = props => {
   const userIdState = useSelector(userIdSelector);
   const loadingSelector = useSelector(assetsLoadingSelector);
 
-  React.useEffect(() => {
-    fetchCategoriesStart();
-  }, []);
+  const sendFcmToken = async () => {
+    await messaging().registerDeviceForRemoteMessages();
+    const token = await messaging().getToken();
+    return token;
+  };
+
+  // React.useEffect(() => {
+  //   fetchCategoriesStart();
+  // }, []);
   React.useEffect(() => {
     if (!userIdState?.id) {
-      const device_id = getDeviceToken();
-      const device_type = Platform.OS;
-      const notification_status = true;
-      console.log('userid', device_id, device_type, notification_status);
-      dispatch(getUserIdStart({device_id, device_type, notification_status}));
+      sendFcmToken().then(device_id => {
+        const device_type = Platform.OS;
+        const notification_status = true;
+        console.log('userid', device_id, device_type, notification_status);
+        dispatch(getUserIdStart({device_id, device_type, notification_status}));
+      });
     }
   }, []);
 
