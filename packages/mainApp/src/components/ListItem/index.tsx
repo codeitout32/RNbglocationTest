@@ -13,8 +13,8 @@ import ViewShotFooter from './ViewShotFooter';
 
 const {width, height} = dimensions.window;
 
-const ListItem = ({item, onPress, textColor, windowHeight}) => {
-  const [isCapturing, setIsCapturing] = useState(false);
+const ListItem = ({item, onPress}) => {
+  const [shareIconVisibility, serShareIconVisibility] = useState(true);
   const imgProps = {
     resizeMode: 'cover',
   };
