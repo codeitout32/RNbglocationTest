@@ -5,6 +5,7 @@ import guidesReducer from "./guides.slice";
 import assetsReducer from "./assets.slice";
 import serviceReducer from "./services.slice";
 import appBarReducer from "./appBar.slice";
+import advertsReducer from "./adverts.slice";
 
 const reducers = combineReducers({
   news: newsReducer,
@@ -13,6 +14,7 @@ const reducers = combineReducers({
   assets: assetsReducer,
   services: serviceReducer,
   appBar: appBarReducer,
+  adverts: advertsReducer,
 });
 
 export default reducers;

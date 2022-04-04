@@ -140,7 +140,7 @@ const MyList = props => {
 
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
-      {isLoading || isNewNewsLoading ? (
+      {isLoading && isNewNewsLoading ? (
         <LoadingNews />
       ) : newsListRaw?.length > 0 ? (
         <Carousel

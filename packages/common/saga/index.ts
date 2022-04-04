@@ -4,6 +4,7 @@ import { dropsSaga } from "./drops.saga";
 import { guidesSaga } from "./guides.saga";
 import { assetsSaga } from "./assets.saga";
 import { servicesSaga } from "./services.saga";
+import { advertsSaga } from "./adverts.saga";
 
 export function* rootSaga() {
   yield all([
@@ -12,7 +13,6 @@ export function* rootSaga() {
     spawn(guidesSaga),
     spawn(assetsSaga),
     spawn(servicesSaga),
+    spawn(advertsSaga),
   ]);
-
-
 }

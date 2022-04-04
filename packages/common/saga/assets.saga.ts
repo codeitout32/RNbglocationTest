@@ -6,43 +6,6 @@ import commonService from "../services/common.service";
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-function* fetchMultipleAdvertSaga(action) {
-  const params = {
-    method: "get",
-    route: `${routes.advert}`,
-    headerCred: {
-      autherization: "myAuthToken",
-    },
-  };
-
-  try {
-    const res = yield commonService(params);
-    yield put(AssetsSlice.fetchFeaturedAdvertStart({ is_featured: 1 }));
-    yield put(AssetsSlice.fetchAdvertSuccess(res));
-  } catch (error) {
-    yield put(AssetsSlice.fetchAdvertError(error));
-    handleError(error);
-  }
-}
-function* fetchAdvertiseSaga(action) {
-  const searchparams = new URLSearchParams(action.payload).toString();
-  const params = {
-    method: "get",
-    route: routes.advert,
-    headerCred: {
-      autherization: "myAuthToken",
-    },
-  };
-
-  try {
-    const res = yield commonService(params);
-    yield put(AssetsSlice.fetchAdvertSuccess(res));
-  } catch (error) {
-    yield put(AssetsSlice.fetchAdvertError(error));
-    handleError(error);
-  }
-}
-
 function* getUserIdSaga(action) {
   console.log("userid", action.payload);
   const params = {
@@ -103,7 +66,6 @@ function* fetchCategoriesSaga(action) {
 }
 
 export function* assetsSaga() {
-  yield takeEvery(AssetsSlice.fetchAdvertStart, fetchAdvertiseSaga);
   yield takeEvery(AssetsSlice.fetchCategoriesStart, fetchCategoriesSaga);
   yield takeEvery(AssetsSlice.getUserIdStart, getUserIdSaga);
   yield takeEvery(AssetsSlice.updateNotificationStart, updateNotificationSaga);
