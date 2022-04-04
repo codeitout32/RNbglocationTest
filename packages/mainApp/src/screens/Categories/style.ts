@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   headerBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 70,
+    paddingTop: 40,
     paddingHorizontal: 20,
   },
   container: {flex: 1},

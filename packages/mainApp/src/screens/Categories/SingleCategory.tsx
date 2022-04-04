@@ -32,7 +32,7 @@ const SingleCategory: React.FC<ISinlgeCategory> = props => {
         borderWidth: 2,
       },
       text: {
-        color: itemId === catId ? '#00BAFF' : colors.text,
+        color: itemId === catId ? colors.green : colors.text,
       },
     };
   };
