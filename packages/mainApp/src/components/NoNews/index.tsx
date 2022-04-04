@@ -28,7 +28,7 @@ const NoNews: React.FC<INoNews> = ({forCategory = false}: INoNews) => {
     <Pressable onPress={handleClick} style={styles.noNewsContainer}>
       <Image source={require('../../assets/no_news.png')} />
 
-      <Text style={[styles.noNewsText, {color: colors?.title}]}>
+      <Text style={[styles.noNewsText, {color: colors?.text}]}>
         {!forCategory ? 'No news found' : 'No news found for selected category'}
       </Text>
     </Pressable>

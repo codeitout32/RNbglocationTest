@@ -1,10 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useCallback, memo, useRef} from 'react';
-import {
-  StyleSheet,
-  ActivityIndicator,
-  ToastAndroid,
-  Pressable,
-} from 'react-native';
+import {Pressable, StyleSheet, ToastAndroid, View} from 'react-native';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
@@ -14,33 +10,28 @@ import ListItem from '../ListItem';
 
 import {dimensions} from '../../res/dimensions';
 import {updateNewsStateToRead} from '@next/common/slices/news.slice';
+import LoadingNews from '../LoadingNews';
 
 const {window} = dimensions;
 
 interface IRenderItem {
   item: any;
-  selectedId: string;
+  selectedId?: string;
   handleTouched: any;
-  setSelectedId: any;
-  opacity: number;
+  setSelectedId?: any;
 }
 
-const RenderItem: React.FC<IRenderItem> = memo(
-  ({item, selectedId, handleTouched, setSelectedId, opacity}) => {
-    const color = item.id === selectedId ? 'white' : 'black';
-    return (
-      <Pressable onPress={handleTouched} style={{flex: 1}}>
-        <ListItem
-          item={item}
-          onPress={() => {
-            setSelectedId(item.id);
-            console.log('pressed');
-          }}
-        />
-      </Pressable>
-    );
-  },
-);
+const RenderItem: React.FC<IRenderItem> = memo(({item, handleTouched}) => {
+  return (
+    <ListItem
+      item={item}
+      // onPress={() => {
+      //   setSelectedId(item.id);
+      //   console.log('pressed');
+      // }}
+    />
+  );
+});
 
 const MyList = props => {
   const {
@@ -52,7 +43,7 @@ const MyList = props => {
     updateNewsStateToRead,
   } = props;
 
-  const [selectedId, setSelectedId] = useState('');
+  // const [selectedId, setSelectedId] = useState('');
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -73,8 +64,18 @@ const MyList = props => {
   const handleSnapToItem = useCallback(
     (idx: number) => {
       setIndex(idx);
-      if (idx < index) setIsAppBarVisibleAction(true);
-      else setIsAppBarVisibleAction(false);
+      if (idx < index) {
+        setIsAppBarVisibleAction(true);
+      } else {
+        setIsAppBarVisibleAction(false);
+      }
+
+      // if (idx + (1 % 5) && idx > index) {
+      //   ToastAndroid.show(
+      //     `${newsList?.res?.unreadNewsCount} unread shorts below`,
+      //     ToastAndroid.SHORT,
+      //   );
+      // }
     },
     [index],
   );
@@ -147,22 +148,16 @@ const MyList = props => {
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
       {isLoading || isNewNewsLoading ? (
-        <ActivityIndicator
-          style={styles.indicatorMarginTop}
-          size="large"
-          color="#00ff00"
-        />
+        <LoadingNews />
       ) : newsList?.res?.rows.length > 0 ? (
         <Carousel
           data={newsList?.res?.rows || []}
-          renderItem={({item, index: idx}) => {
+          renderItem={({item}) => {
             return (
               <RenderItem
                 item={item}
                 handleTouched={toggleAppBarAction}
-                selectedId={selectedId}
-                setSelectedId={setSelectedId}
-                opacity={index > idx ? 0 : 1}
+                // setSelectedId={setSelectedId}
               />
             );
           }}

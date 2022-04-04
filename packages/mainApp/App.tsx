@@ -19,34 +19,7 @@ import {appStore} from '@next/common/store';
 
 import {PersistGate} from 'redux-persist/integration/react';
 import ThemeProviderMain from './src/themeProvider';
-
-const Section: React.FC<{
-  title: string;
-}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+import LoadingNews from './src/components/LoadingNews';
 
 const App = () => {
   // const store = useStore();
@@ -66,7 +39,7 @@ const App = () => {
   }, []);
 
   return (
-    <PersistGate loading={null} persistor={appStore.persistor}>
+    <PersistGate loading={<LoadingNews />} persistor={appStore.persistor}>
       <Provider store={appStore}>
         <ThemeProviderMain />
       </Provider>
