@@ -20,44 +20,32 @@ const SingleCategory: React.FC<ISinlgeCategory> = props => {
     return {
       item: {
         opacity: catId === itemId ? 1 : 0.7,
-      },
-      imgContainer: {
-        width: itemId === catId ? 110 : 100,
-        height: itemId === catId ? 110 : 100,
-      },
-      img: {
-        borderColor: itemId === catId ? '#FFFFFF' : colors.text,
-        width: itemId === catId ? 110 : 100,
-        height: itemId === catId ? 110 : 100,
+        borderColor: itemId === catId ? colors.border : colors.border,
+        width: itemId === catId ? 120 : 120,
+        height: itemId === catId ? 120 : 120,
         borderWidth: 2,
-      },
-      text: {
-        color: itemId === catId ? colors.green : colors.text,
       },
     };
   };
 
-  const {} = useMemo(() => isSelected(item?.id), []);
+  const onSelectStyle = useMemo(() => isSelected(item?.id), []);
 
   return (
-    <View style={[styles.categoriesItem, isSelected(item?.id)?.item]}>
+    <View style={[styles.categoriesItem, onSelectStyle.item]}>
       <Pressable
         onPress={() => {
           navigation.navigate('CategoryNews', {catId: item?.id});
         }}
         key={item?.id}
-        style={[
-          styles.categoryImgContainer,
-          isSelected(item?.id)?.imgContainer,
-        ]}>
+       >
         <Image
           source={{uri: config.imgUrl + item?.image}}
-          style={[styles.categoryImg, isSelected(item?.id)?.img]}
+          style={[styles.categoryImg]}
         />
+        <Text style={[styles.categoriesText]}>
+          {item?.category_name}
+        </Text>
       </Pressable>
-      <Text style={[styles.categoriesText, isSelected(item.id)?.text]}>
-        {item?.category_name}
-      </Text>
     </View>
   );
 };
