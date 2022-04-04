@@ -12,6 +12,7 @@ import config from '../../res/config';
 import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
 import ViewShotFooter from './ViewShotFooter';
+import { delay } from 'lodash';
 
 const {height, width} = dimensions.window;
 
@@ -68,21 +69,6 @@ const ListItem = ({item}) => {
               {...imgProps}
             />
           ) : (
-            // <WebView
-            //   // style={[{flex: 1, height: height / 2.5}]}
-            //   source={{
-            //     html: `<iframe
-            //         width="100%"
-            //         height="100%"
-            //         src="https://www.youtube.com/embed/5oH9Nr3bKfw"
-            //         title="YouTube video player"
-            //         frameborder="0"
-            //         allow="accelerometer; autoplay; clipboard-write; encrypted-media"
-            //         allowfullscreen></iframe>`,
-            //   }}
-            //   javaScriptEnabled={true}
-            //   domStorageEnabled={true}
-            // />
             <YoutubePlayer
               height={240}
               play={true}
@@ -101,7 +87,7 @@ const ListItem = ({item}) => {
       <FAB
         icon={{name: 'share-android', color: 'white', type: 'octicon'}}
         color="gold"
-        style={[styles.fab, {top: item?.video ? '47%' : '37%'}]}
+        style={[styles.fab, {top: item?.video ? '25.5%' : '37%'}]}
         onPress={captureAndShareScreenshot}
       />
     </>
@@ -144,3 +130,19 @@ const styles = StyleSheet.create({
 });
 
 export default ListItem;
+
+// <WebView
+//   // style={[{flex: 1, height: height / 2.5}]}
+//   source={{
+//     html: `<iframe
+//         width="100%"
+//         height="100%"
+//         src="https://www.youtube.com/embed/5oH9Nr3bKfw"
+//         title="YouTube video player"
+//         frameborder="0"
+//         allow="accelerometer; autoplay; clipboard-write; encrypted-media"
+//         allowfullscreen></iframe>`,
+//   }}
+//   javaScriptEnabled={true}
+//   domStorageEnabled={true}
+// />
