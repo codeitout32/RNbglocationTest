@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     // paddingVertical: 10,
     position: 'absolute',
     // top: 40,
-    zIndex: 10000,
+    zIndex: 100000,
   },
   heading: {
     color: 'white',

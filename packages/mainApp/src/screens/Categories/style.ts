@@ -12,20 +12,46 @@ const styles = StyleSheet.create({
   headerBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 70,
+    paddingTop: 40,
     paddingHorizontal: 20,
   },
   container: {flex: 1},
   categoriesItem: {
-    width: '28%',
+    marginHorizontal: 10,
+    width: 120,
     height: 120,
-    backgroundColor: 'transparent', //'#00BAFF',
-    marginVertical: '2.5%',
+    marginVertical: '3.5%',
+    opacity: 0.7,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  categoryImgContainer: {
+    width: 100,
+    height: 100,
+  },
+
+  categoryImg: {
+    width: 100,
+    height: 100,
+    flex: 1,
     borderWidth: 1,
     borderColor: 'rgba(169, 169, 169, .3)',
     borderRadius: 5,
-    opacity: 0.7,
+    resizeMode: 'cover',
+  },
+
+  categoryContainer: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    // flexBasis: 2,
+    flexWrap: 'wrap',
   },
   categoriesText: {
     color: 'darkgrey',
@@ -40,9 +66,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     paddingTop: 50,
     justifyContent: 'space-evenly',
-    // alignItems: 'flex-start',
-    // alignContent: 'flex-start',
-    // height: 100,
   },
   sectionTitle: {
     fontSize: 24,

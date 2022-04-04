@@ -3,10 +3,8 @@ import {Image, StatusBar, StyleSheet, View} from 'react-native';
 import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
-// import WebView from 'react-native-webview';
+import WebView from 'react-native-webview';
 import YoutubePlayer from 'react-native-youtube-iframe';
-
-import {delay} from 'lodash';
 
 import {dimensions} from '../../res/dimensions';
 import config from '../../res/config';
@@ -15,6 +13,7 @@ import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
 import ViewShotFooter from './ViewShotFooter';
 import AdItem from './AdItem';
+import {delay} from 'lodash';
 
 const {height, width} = dimensions.window;
 
@@ -149,3 +148,19 @@ const styles = StyleSheet.create({
 });
 
 export default ListItem;
+
+// <WebView
+//   // style={[{flex: 1, height: height / 2.5}]}
+//   source={{
+//     html: `<iframe
+//         width="100%"
+//         height="100%"
+//         src="https://www.youtube.com/embed/5oH9Nr3bKfw"
+//         title="YouTube video player"
+//         frameborder="0"
+//         allow="accelerometer; autoplay; clipboard-write; encrypted-media"
+//         allowfullscreen></iframe>`,
+//   }}
+//   javaScriptEnabled={true}
+//   domStorageEnabled={true}
+// />
