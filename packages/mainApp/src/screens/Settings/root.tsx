@@ -119,7 +119,7 @@ const Settings: React.FC<any> = props => {
         noSettings
       />
       <ScrollView>
-        <View style={[styles.view, {backgroundColor: colors.background}]}>
+        <View style={[styles.view, {backgroundColor: colors.transparentBg}]}>
           <View>
             <View style={styles.borderBottom}>
               <MyCard

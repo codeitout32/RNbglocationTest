@@ -19,7 +19,7 @@ const Categories: React.FC<any> = props => {
   const {colors} = useTheme();
   return (
     <SafeAreaProvider
-      style={[styles.container, {backgroundColor: colors.background}]}>
+      style={[styles.container, {backgroundColor: colors?.transparentBg}]}>
       <View style={styles.headerBar}>
         <Text h4 style={{color: colors.title}}>
           Categories

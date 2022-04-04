@@ -27,9 +27,10 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
   const {updateTheme, replaceTheme} = props;
   DefaultTheme.colors['title'] = 'rgba(0, 0, 0, 0.8)';
   DefaultTheme.colors['settingText'] = 'rgba(0, 0, 0, 0.6)';
-
+  DefaultTheme.colors['green'] = '#34CF54';
   DefaultTheme.colors['background'] = 'rgba(250, 250, 250, 0.95)';
   DefaultTheme.colors['text'] = 'rgba(0, 0, 0, 0.6)';
+  DefaultTheme.colors['transparentBg'] = 'rgba(45,45,45,0.95)';
 
   const {theme} = useTheme();
   const MyTheme = {
@@ -38,15 +39,11 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
       ...DarkTheme.colors,
       title: 'rgba(255, 255, 255, 0.8)',
       text: 'rgba(255, 255, 255, 0.6)',
-      background: 'rgba(45, 45, 45, 0.95)',
+      transparentBg: 'rgba(45,45,45,0.95)',
+      background: 'rgba(45, 45, 45,1)',
       card: '#444',
       settingText: 'rgba(255, 255, 255, 0.6)',
-    },
-  };
-
-  const theme1 = {
-    colors: {
-      primary: 'pink',
+      green: '#34CF54',
     },
   };
 
