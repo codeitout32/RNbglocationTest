@@ -8,6 +8,7 @@ import {
   newsLoadingSelector,
   newNewsLoadingSelector,
   newsUpdatedSelector,
+  advertListSelector,
 } from '@next/common/selectors/';
 
 import {
@@ -25,6 +26,7 @@ const mapStateToProps = (state: any) => ({
   newNewsList: newNewsListSelector(state),
   lastRefreshTimeReducer: lastRefreshTimeSelector(state),
   isNewsUploaded: newsUpdatedSelector(state),
+  advertListStore: advertListSelector(state),
 });
 
 export default connect(mapStateToProps, {

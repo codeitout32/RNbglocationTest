@@ -10,6 +10,7 @@ import {
   lastRefreshTimeSelector,
   newsListSelector,
 } from '@next/common/selectors';
+import {fetchAdvertStart} from '@next/common/slices/adverts.slice';
 
 const mapStateToProps = (state: any) => ({
   allNews: newsListSelector(state),
@@ -19,4 +20,5 @@ const mapStateToProps = (state: any) => ({
 export default connect(mapStateToProps, {
   fetchNewsStart,
   fetchNewNewsStart,
+  fetchAdvertStart,
 })(Home);
