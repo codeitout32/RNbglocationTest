@@ -3,10 +3,8 @@ import {Image, StatusBar, StyleSheet, View} from 'react-native';
 import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
-// import WebView from 'react-native-webview';
+import WebView from 'react-native-webview';
 import YoutubePlayer from 'react-native-youtube-iframe';
-
-import {delay} from 'lodash';
 
 import {dimensions} from '../../res/dimensions';
 import config from '../../res/config';
@@ -90,7 +88,7 @@ const ListItem = ({item}) => {
               play={true}
               videoId={item?.video}
               mute={true}
-              webViewStyle={{marginTop: 20}}
+              // webViewStyle={{height: 400}}
             />
           )}
 
