@@ -10,6 +10,7 @@ import ListItem from '../ListItem';
 import {dimensions} from '../../res/dimensions';
 import Carousel from 'react-native-snap-carousel';
 import NoNews from '../NoNews';
+import LoadingNews from '../LoadingNews';
 
 const {window} = dimensions;
 
@@ -90,11 +91,7 @@ const CategoryList: React.FC<any> = props => {
   return (
     <View style={styles.container}>
       {isLoading ? (
-        <ActivityIndicator
-          style={styles.indicatorMarginTop}
-          size="large"
-          color="#00ff00"
-        />
+        <LoadingNews />
       ) : categoryNewsList?.res?.rows.length > 0 ? (
         <Carousel
           data={categoryNewsList?.res?.rows || []}

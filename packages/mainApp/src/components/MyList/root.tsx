@@ -54,7 +54,6 @@ const MyList = props => {
   const handleSnapToItem = useCallback(
     (idx: number) => {
       setIndex(idx);
-      console.log(idx);
       if (idx === 0) {
         setGoToTop(false);
       }

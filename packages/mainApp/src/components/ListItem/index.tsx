@@ -1,12 +1,11 @@
 import React, {useEffect, useState, memo} from 'react';
-import {Image, StatusBar, StyleSheet, View} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import {dimensions} from '../../res/dimensions';
-import config from '../../res/config';
 
 import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
@@ -14,15 +13,12 @@ import ViewShotFooter from './ViewShotFooter';
 import AdItem from './AdItem';
 import PlaceHolderImage from '../PlaceHolderMedia';
 import {delay} from 'lodash';
+// import WebView from 'react-native-webview';
 
 const {height} = dimensions.window;
 
 const ListItem = ({item}) => {
   const [isCapturing, setIsCapturing] = useState(false);
-  const imgProps = {
-    resizeMode: 'cover',
-  };
-
   const {colors} = useTheme();
 
   const viewShot = React.useRef();
@@ -64,7 +60,7 @@ const ListItem = ({item}) => {
               />
             ) : (
               <YoutubePlayer
-                height={240}
+                height={245}
                 play={true}
                 videoId={item?.video}
                 mute={true}
@@ -83,6 +79,7 @@ const ListItem = ({item}) => {
           style={[
             styles.fab,
             {top: item?.media_type !== 'image' ? '26%' : '37%'},
+            // {top: '37%'},
           ]}
           onPress={captureAndShareScreenshot}
         />
@@ -133,18 +130,25 @@ const styles = StyleSheet.create({
 
 export default memo(ListItem);
 
-// <WebView
-//   // style={[{flex: 1, height: height / 2.5}]}
-//   source={{
-//     html: `<iframe
-//         width="100%"
-//         height="100%"
-//         src="https://www.youtube.com/embed/5oH9Nr3bKfw"
-//         title="YouTube video player"
-//         frameborder="0"
-//         allow="accelerometer; autoplay; clipboard-write; encrypted-media"
-//         allowfullscreen></iframe>`,
-//   }}
-//   javaScriptEnabled={true}
-//   domStorageEnabled={true}
-// />
+//<iframe width="853" height="480" src="https://www.youtube.com/embed/lqNpCH-xcGE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{
+  /* 
+  <style> embed {
+    height: `${height/2.5}`;
+    width: "100%"
+  }
+  <embed src="https://www.youtube.com/embed/lqNpCH-xcGE"></embed>
+ </style>
+//
+//
+//
+{
+  /* <iframe
+  width="853"
+  height="480"
+  src="https://www.youtube.com/embed/lqNpCH-xcGE"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen></iframe>; */
+}
