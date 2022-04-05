@@ -1,14 +1,11 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {
-  FlatList,
   StyleSheet,
   View,
-  Text,
   ActivityIndicator,
-  Pressable,
 } from 'react-native';
 import ListItem from '../ListItem';
-import {useTheme} from '@react-navigation/native';
+
 
 import {dimensions} from '../../res/dimensions';
 import Carousel from 'react-native-snap-carousel';
@@ -21,36 +18,23 @@ const CategoryList: React.FC<any> = props => {
     isLoading,
     categoryNewsList,
     updateNewsStateToRead,
-    toggleAppBarAction,
     setIsAppBarVisibleAction,
+    setShowTopIcon,
+    goToTop,
+    setGoToTop,
   } = props;
-  const [selectedId, setSelectedId] = useState(null);
-  // const [windowHeight, setWindowHeight] = useState(0);
+
+  const snapRef = useRef<React.LegacyRef<any>>();
 
   const [index, setIndex] = useState(0);
-  const {colors} = useTheme();
+
   useEffect(() => {}, [isLoading, categoryNewsList]);
 
-  // const onLayout = event => {
-  //   const {height} = event.nativeEvent.layout;
-  //   setWindowHeight(height);
-  // };
-
-  const renderItem = ({item}) => {
-    const color = item.id === selectedId ? 'white' : 'black';
-    return (
-      <Pressable onPress={toggleAppBarAction}>
-        <ListItem
-          item={item}
-          onPress={() => {
-            setSelectedId(item.id);
-          }}
-          textColor={{color}}
-          windowHeight={window.height}
-        />
-      </Pressable>
-    );
-  };
+  useEffect(() => {
+    if (goToTop && snapRef.current) {
+      snapRef.current?.snapToItem(0);
+    }
+  }, [goToTop]);
 
   const viewabilityConfig = {
     waitForInteraction: true,
@@ -75,6 +59,16 @@ const CategoryList: React.FC<any> = props => {
   const handleSnapToItem = useCallback(
     (idx: number) => {
       setIndex(idx);
+      console.log(idx);
+      if (idx === 0) {
+        setGoToTop(false);
+      }
+
+      if (idx > 0) {
+        setShowTopIcon(true);
+      } else {
+        setShowTopIcon(false);
+      }
       if (idx < index) setIsAppBarVisibleAction(true);
       else setIsAppBarVisibleAction(false);
     },
@@ -104,7 +98,10 @@ const CategoryList: React.FC<any> = props => {
       ) : categoryNewsList?.res?.rows.length > 0 ? (
         <Carousel
           data={categoryNewsList?.res?.rows || []}
-          renderItem={renderItem}
+          renderItem={({item}) => {
+            return <ListItem item={item} />;
+          }}
+          ref={snapRef}
           sliderHeight={300}
           itemHeight={window.height}
           vertical

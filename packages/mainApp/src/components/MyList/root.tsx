@@ -10,42 +10,23 @@ import ListItem from '../ListItem';
 
 import {dimensions} from '../../res/dimensions';
 import LoadingNews from '../LoadingNews';
+import pushAdsToNewsList from './utils/pushAdsToNewsList';
 
 const {window} = dimensions;
-
-interface IRenderItem {
-  item: any;
-  selectedId?: string;
-  handleTouched: any;
-  setSelectedId?: any;
-}
-
-const RenderItem: React.FC<IRenderItem> = memo(({item, handleTouched}) => {
-  return (
-    <ListItem
-      item={item}
-      // onPress={() => {
-      //   setSelectedId(item.id);
-      //   console.log('pressed');
-      // }}
-    />
-  );
-});
 
 const MyList = props => {
   const {
     isLoading,
     isNewNewsLoading,
     newsList,
-    toggleAppBarAction,
     setIsAppBarVisibleAction,
     updateNewsStateToRead,
     setShowTopIcon,
     goToTop,
     setGoToTop,
+    advertListStore,
   } = props;
-  console.log('goToTop: ', goToTop);
-  // const [selectedId, setSelectedId] = useState('');
+
   const [index, setIndex] = useState(0);
   const snapRef = useRef<React.LegacyRef<any>>();
 
@@ -89,13 +70,6 @@ const MyList = props => {
       } else {
         setIsAppBarVisibleAction(false);
       }
-
-      // if (idx + (1 % 5) && idx > index) {
-      //   ToastAndroid.show(
-      //     `${newsList?.res?.unreadNewsCount} unread shorts below`,
-      //     ToastAndroid.SHORT,
-      //   );
-      // }
     },
     [index],
   );
@@ -107,6 +81,11 @@ const MyList = props => {
       index: idx,
     };
   }, []);
+
+  const newsListRaw = newsList?.res?.rows;
+
+  const finalNewsList =
+    pushAdsToNewsList(newsListRaw, advertListStore?.rows) ?? [];
 
   const keyExtractor = useCallback((item: any, idx: number) => {
     return 'news_' + item?.id + '_' + idx;
@@ -132,23 +111,15 @@ const MyList = props => {
     {viewabilityConfig, onViewableItemsChanged},
   ]);
 
-  console.log(newsList?.res?.rows.length > 0);
-
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
-      {isLoading || isNewNewsLoading ? (
+      {isLoading && isNewNewsLoading ? (
         <LoadingNews />
-      ) : newsList?.res?.rows.length > 0 ? (
+      ) : newsListRaw?.length > 0 ? (
         <Carousel
-          data={newsList?.res?.rows || []}
+          data={finalNewsList || []}
           renderItem={({item}) => {
-            return (
-              <RenderItem
-                item={item}
-                handleTouched={toggleAppBarAction}
-                // setSelectedId={setSelectedId}
-              />
-            );
+            return <ListItem item={item} />;
           }}
           ref={snapRef}
           sliderHeight={300}
@@ -167,12 +138,6 @@ const MyList = props => {
             viewabilityConfigCallbackPairs.current
           }
           alwaysBounceVertical
-          onScrollToTop={() => {
-            console.log('Scrolled at top');
-          }}
-          snapToItem={goToTop && 0}
-          // snapToOffsets={goToTop ? [0,2,5] : undefined}
-          snapToStart={goToTop}
         />
       ) : (
         <NoNews />

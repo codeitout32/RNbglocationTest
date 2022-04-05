@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, memo} from 'react';
 import {Image, StatusBar, StyleSheet, View} from 'react-native';
 import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
-import WebView from 'react-native-webview';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import {dimensions} from '../../res/dimensions';
@@ -12,12 +11,12 @@ import config from '../../res/config';
 import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
 import ViewShotFooter from './ViewShotFooter';
-import { delay } from 'lodash';
+import AdItem from './AdItem';
+import {delay} from 'lodash';
 
-const {height, width} = dimensions.window;
+const {height} = dimensions.window;
 
 const ListItem = ({item}) => {
-  const [shareIconVisibility, serShareIconVisibility] = useState(true);
   const [isCapturing, setIsCapturing] = useState(false);
   const imgProps = {
     resizeMode: 'cover',
@@ -43,55 +42,49 @@ const ListItem = ({item}) => {
 
     delay(() => shotstart, 300);
   }, [isCapturing]);
-  const videoUrl = item?.video?.replace('watch?v=', 'embed/');
-  console.log(
-    '\n\n\n>>>>>>>>>>>item:',
-    item?.media_type,
-    item?.video,
-    item?.video?.split(' '),
-    videoUrl,
-    '\n\n\n',
-  );
 
-  return (
-    <>
-      <ViewShot ref={viewShot} options={{format: 'jpg', quality: 1}}>
-        <View
-          // onPress={onPress}
-          style={[
-            styles.item,
-            {height: height, backgroundColor: colors.background},
-          ]}>
-          {item?.media_type === 'image' ? (
-            <Image
-              style={[styles.img, {height: height / 2.5}]}
-              source={{uri: config.imgUrl + item?.image}}
-              {...imgProps}
-            />
-          ) : (
-            <YoutubePlayer
-              height={240}
-              play={true}
-              videoId={item?.video}
-              mute={true}
-              // webViewStyle={{height: 400}}
-            />
-          )}
+  if (item?.title !== undefined) {
+    return (
+      <>
+        <ViewShot ref={viewShot} options={{format: 'jpg', quality: 1}}>
+          <View
+            // onPress={onPress}
+            style={[
+              styles.item,
+              {height: height, backgroundColor: colors.background},
+            ]}>
+            {item?.media_type === 'image' ? (
+              <Image
+                style={[styles.img, {height: height / 2.5}]}
+                source={{uri: config.imgUrl + item?.image}}
+                {...imgProps}
+              />
+            ) : (
+              <YoutubePlayer
+                height={240}
+                play={true}
+                videoId={item?.video}
+                mute={true}
+              />
+            )}
 
-          <ItemBody item={item} />
-          <View style={{display: isCapturing ? 'flex' : 'none'}}>
-            <ViewShotFooter />
+            <ItemBody item={item} />
+            <View style={{display: isCapturing ? 'flex' : 'none'}}>
+              <ViewShotFooter />
+            </View>
           </View>
-        </View>
-      </ViewShot>
-      <FAB
-        icon={{name: 'share-android', color: 'white', type: 'octicon'}}
-        color="gold"
-        style={[styles.fab, {top: item?.video ? '25.5%' : '37%'}]}
-        onPress={captureAndShareScreenshot}
-      />
-    </>
-  );
+        </ViewShot>
+        <FAB
+          icon={{name: 'share-android', color: 'white', type: 'octicon'}}
+          color="gold"
+          style={[styles.fab, {top: item?.video ? '26%' : '37%'}]}
+          onPress={captureAndShareScreenshot}
+        />
+      </>
+    );
+  } else {
+    return <AdItem item={item} />;
+  }
 };
 
 const styles = StyleSheet.create({
@@ -129,7 +122,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListItem;
+export default memo(ListItem);
 
 // <WebView
 //   // style={[{flex: 1, height: height / 2.5}]}

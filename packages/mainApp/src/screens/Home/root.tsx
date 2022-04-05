@@ -1,5 +1,6 @@
 import React, {useEffect, memo} from 'react';
-import {SafeAreaView} from 'react-native';
+import {Button, Pressable, SafeAreaView, Text} from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import AppBar from '../../components/AppBar';
 import MyList from '../../components/MyList';
@@ -11,9 +12,12 @@ const Home: React.FC<any> = props => {
     route,
     fetchNewsStart,
     fetchNewNewsStart,
+    fetchAdvertStart,
     lastRefreshTime,
     allNews,
   } = props;
+
+  const dispatch = useDispatch();
 
   const {catId, isReload} = route.params;
 
@@ -29,8 +33,11 @@ const Home: React.FC<any> = props => {
           last_refresh_time: lastRefreshTime,
         });
 
+    dispatch(fetchAdvertStart());
     navigation.navigate('Home', {isReload: false});
   }, [catId, isReload]);
+
+  const startad = () => {};
 
   const headerLinks = {
     menu: {
