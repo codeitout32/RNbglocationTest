@@ -12,6 +12,7 @@ import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
 import ViewShotFooter from './ViewShotFooter';
 import AdItem from './AdItem';
+import PlaceHolderImage from '../PlaceHolderMedia';
 import {delay} from 'lodash';
 
 const {height} = dimensions.window;
@@ -43,6 +44,8 @@ const ListItem = ({item}) => {
     delay(() => shotstart, 300);
   }, [isCapturing]);
 
+  console.log('Med', item?.media_type, item?.media_type === 'image');
+
   if (item?.title !== undefined) {
     return (
       <>
@@ -54,10 +57,10 @@ const ListItem = ({item}) => {
               {height: height, backgroundColor: colors.background},
             ]}>
             {item?.media_type === 'image' ? (
-              <Image
+              <PlaceHolderImage
                 style={[styles.img, {height: height / 2.5}]}
-                source={{uri: config.imgUrl + item?.image}}
-                {...imgProps}
+                mediaUrl={item?.image}
+                placeholderStyle={{height: height / 2.5, width: '100%'}}
               />
             ) : (
               <YoutubePlayer
@@ -77,7 +80,10 @@ const ListItem = ({item}) => {
         <FAB
           icon={{name: 'share-android', color: 'white', type: 'octicon'}}
           color="gold"
-          style={[styles.fab, {top: item?.video ? '26%' : '37%'}]}
+          style={[
+            styles.fab,
+            {top: item?.media_type !== 'image' ? '26%' : '37%'},
+          ]}
           onPress={captureAndShareScreenshot}
         />
       </>
@@ -95,6 +101,7 @@ const styles = StyleSheet.create({
   },
   img: {
     flex: 1.5,
+    resizeMode: 'cover',
   },
   container: {
     flex: 1,
@@ -106,9 +113,11 @@ const styles = StyleSheet.create({
   },
   item: {
     flex: 0,
+    borderRadius: 20,
   },
   title: {
     fontSize: 32,
+    // transform:
   },
   snapFooter: {
     flexDirection: 'row',

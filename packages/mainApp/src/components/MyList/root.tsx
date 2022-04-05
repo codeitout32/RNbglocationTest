@@ -81,6 +81,7 @@ const MyList = props => {
       index: idx,
     };
   }, []);
+  console.log('length: ', newsList?.res?.rows);
 
   const newsListRaw = newsList?.res?.rows;
 
@@ -138,6 +139,7 @@ const MyList = props => {
             viewabilityConfigCallbackPairs.current
           }
           alwaysBounceVertical
+          
         />
       ) : (
         <NoNews />

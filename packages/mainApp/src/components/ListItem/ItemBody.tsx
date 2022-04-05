@@ -31,7 +31,7 @@ const ItemBody = ({item}) => {
       addSuffix: true,
     },
   );
-  console.log(item);
+  // console.log(item);
 
   const openNewsInBrowser = async () => {
     try {
