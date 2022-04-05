@@ -2,6 +2,11 @@ import React from 'react';
 import {StyleSheet, View, Linking, Pressable} from 'react-native';
 import {Header as HeaderRNE, Icon, Image} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
+import VectorIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useSelector, useDispatch} from 'react-redux';
+
+import {appBarActions} from '@next/common/slices/appBar.slice';
+import {selectShowUpArrow} from '@next/common/selectors';
 
 type HeaderComponentProps = {
   title: string;
@@ -11,7 +16,12 @@ type HeaderComponentProps = {
 };
 
 const Header: React.FunctionComponent<HeaderComponentProps> = props => {
+  const {setGoToTop} = appBarActions;
+
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const showUpArrow = useSelector(selectShowUpArrow);
+
   const docsNavigate = () => {
     console.log('hello');
     Linking.openURL(`https://reactnativeelements.com/docs/${props.view}`);
@@ -27,18 +37,18 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
   const handleRefresh = () => {
     navigation.navigate(headerLinks.relaod.link, {isReload: true});
   };
+
+  const onTopClick = () => {
+    console.log('onTopClick');
+    dispatch(setGoToTop(true));
+  };
+
   return (
     <HeaderRNE
       containerStyle={styles.headerContainer}
       leftComponent={
         <>
           <Pressable onPress={menuNavigate}>
-            {/* <Icon
-              name={headerLinks.menu.icon.name}
-              type={headerLinks.menu.icon.type}
-              size={30}
-              color="white"
-            /> */}
             <Image
               source={require('../../assets/logo-light.png')}
               style={{width: 30, height: 30}}
@@ -54,12 +64,22 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
             </Pressable>
           ) : (
             <>
-              <Pressable style={styles.refreshIcon} onPress={handleRefresh}>
-                <Icon
-                  name={headerLinks.menu.reloadIcon.name}
-                  type={headerLinks.menu.reloadIcon.type}
-                  color="white"
-                />
+              <Pressable
+                style={styles.refreshIcon}
+                onPress={!showUpArrow ? handleRefresh : onTopClick}>
+                {!showUpArrow ? (
+                  <Icon
+                    name={headerLinks.menu.reloadIcon.name}
+                    type={headerLinks.menu.reloadIcon.type}
+                    color="white"
+                  />
+                ) : (
+                  <VectorIcons
+                    name="arrow-collapse-up"
+                    size={24}
+                    color="white"
+                  />
+                )}
               </Pressable>
               <Pressable onPress={settingsNavigate}>
                 <Icon name="settings" color="white" />
@@ -79,9 +99,6 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    // paddingTop: -20,
-    // flexGrow: 0,
-    // flexShrink: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#34CF54',

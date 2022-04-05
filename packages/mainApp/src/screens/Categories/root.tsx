@@ -22,7 +22,7 @@ const Categories: React.FC<any> = props => {
       style={[styles.container, {backgroundColor: colors?.transparentBg}]}>
       <ScrollView>
         <View style={styles.headerBar}>
-          <Text h4 style={{color: colors.green}}>
+          <Text h4 style={{color: colors.text}}>
             Categories
           </Text>
           <Pressable onPress={() => props.navigation.goBack()}>
@@ -38,7 +38,11 @@ const Categories: React.FC<any> = props => {
         <View style={styles.view}>
           <View style={styles.categoryContainer}>
             {(categoriesList?.rows || []).map((item: any) => (
-              <SingleCategory item={item} catId={catId} />
+              <SingleCategory
+                key={'category_' + item?.id}
+                item={item}
+                catId={catId}
+              />
             ))}
           </View>
         </View>

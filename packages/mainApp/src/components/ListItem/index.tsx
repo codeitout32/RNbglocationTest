@@ -1,29 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import {Image, StatusBar, StyleSheet, View} from 'react-native';
+import React, {useEffect, useState, memo} from 'react';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
-import WebView from 'react-native-webview';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import {dimensions} from '../../res/dimensions';
-import config from '../../res/config';
 
 import ItemBody from './ItemBody';
 import shareFunc from './shareFunc';
 import ViewShotFooter from './ViewShotFooter';
 import AdItem from './AdItem';
+import PlaceHolderImage from '../PlaceHolderMedia';
 import {delay} from 'lodash';
+// import WebView from 'react-native-webview';
 
-const {height, width} = dimensions.window;
+const {height} = dimensions.window;
 
 const ListItem = ({item}) => {
-  const [shareIconVisibility, serShareIconVisibility] = useState(true);
   const [isCapturing, setIsCapturing] = useState(false);
-  const imgProps = {
-    resizeMode: 'cover',
-  };
-
   const {colors} = useTheme();
 
   const viewShot = React.useRef();
@@ -44,17 +39,10 @@ const ListItem = ({item}) => {
 
     delay(() => shotstart, 300);
   }, [isCapturing]);
-  const videoUrl = item?.video?.replace('watch?v=', 'embed/');
-  // console.log(
-  //   '\n\n\n>>>>>>>>>>>item:',
-  //   item?.media_type,
-  //   item?.video,
-  //   item?.video?.split(' '),
-  //   videoUrl,
-  //   '\n\n\n',
-  // );
 
-  if (item?.title != undefined)
+  console.log('Med', item?.media_type, item?.media_type === 'image');
+
+  if (item?.title !== undefined) {
     return (
       <>
         <ViewShot ref={viewShot} options={{format: 'jpg', quality: 1}}>
@@ -65,33 +53,17 @@ const ListItem = ({item}) => {
               {height: height, backgroundColor: colors.background},
             ]}>
             {item?.media_type === 'image' ? (
-              <Image
+              <PlaceHolderImage
                 style={[styles.img, {height: height / 2.5}]}
-                source={{uri: config.imgUrl + item?.image}}
-                {...imgProps}
+                mediaUrl={item?.image}
+                placeholderStyle={{height: height / 2.5, width: '100%'}}
               />
             ) : (
-              // <WebView
-              //   // style={[{flex: 1, height: height / 2.5}]}
-              //   source={{
-              //     html: `<iframe
-              //         width="100%"
-              //         height="100%"
-              //         src="https://www.youtube.com/embed/5oH9Nr3bKfw"
-              //         title="YouTube video player"
-              //         frameborder="0"
-              //         allow="accelerometer; autoplay; clipboard-write; encrypted-media"
-              //         allowfullscreen></iframe>`,
-              //   }}
-              //   javaScriptEnabled={true}
-              //   domStorageEnabled={true}
-              // />
               <YoutubePlayer
-                height={240}
+                height={245}
                 play={true}
                 videoId={item?.video}
                 mute={true}
-                webViewStyle={{marginTop: 20}}
               />
             )}
 
@@ -104,12 +76,18 @@ const ListItem = ({item}) => {
         <FAB
           icon={{name: 'share-android', color: 'white', type: 'octicon'}}
           color="gold"
-          style={[styles.fab, {top: item?.video ? '47%' : '37%'}]}
+          style={[
+            styles.fab,
+            {top: item?.media_type !== 'image' ? '26%' : '37%'},
+            // {top: '37%'},
+          ]}
           onPress={captureAndShareScreenshot}
         />
       </>
     );
-  else return <AdItem item={item} />;
+  } else {
+    return <AdItem item={item} />;
+  }
 };
 
 const styles = StyleSheet.create({
@@ -120,6 +98,7 @@ const styles = StyleSheet.create({
   },
   img: {
     flex: 1.5,
+    resizeMode: 'cover',
   },
   container: {
     flex: 1,
@@ -131,9 +110,11 @@ const styles = StyleSheet.create({
   },
   item: {
     flex: 0,
+    borderRadius: 20,
   },
   title: {
     fontSize: 32,
+    // transform:
   },
   snapFooter: {
     flexDirection: 'row',
@@ -147,20 +128,27 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListItem;
+export default memo(ListItem);
 
-// <WebView
-//   // style={[{flex: 1, height: height / 2.5}]}
-//   source={{
-//     html: `<iframe
-//         width="100%"
-//         height="100%"
-//         src="https://www.youtube.com/embed/5oH9Nr3bKfw"
-//         title="YouTube video player"
-//         frameborder="0"
-//         allow="accelerometer; autoplay; clipboard-write; encrypted-media"
-//         allowfullscreen></iframe>`,
-//   }}
-//   javaScriptEnabled={true}
-//   domStorageEnabled={true}
-// />
+//<iframe width="853" height="480" src="https://www.youtube.com/embed/lqNpCH-xcGE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{
+  /* 
+  <style> embed {
+    height: `${height/2.5}`;
+    width: "100%"
+  }
+  <embed src="https://www.youtube.com/embed/lqNpCH-xcGE"></embed>
+ </style>
+//
+//
+//
+{
+  /* <iframe
+  width="853"
+  height="480"
+  src="https://www.youtube.com/embed/lqNpCH-xcGE"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen></iframe>; */
+}

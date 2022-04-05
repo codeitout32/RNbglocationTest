@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useCallback, memo, useRef} from 'react';
-import {Pressable, StyleSheet, ToastAndroid, View} from 'react-native';
+import {StyleSheet, ToastAndroid} from 'react-native';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
@@ -14,39 +14,22 @@ import pushAdsToNewsList from './utils/pushAdsToNewsList';
 
 const {window} = dimensions;
 
-interface IRenderItem {
-  item: any;
-  selectedId?: string;
-  handleTouched: any;
-  setSelectedId?: any;
-}
-
-const RenderItem: React.FC<IRenderItem> = memo(({item, handleTouched}) => {
-  return (
-    <ListItem
-      item={item}
-      // onPress={() => {
-      //   setSelectedId(item.id);
-      //   console.log('pressed');
-      // }}
-    />
-  );
-});
-
 const MyList = props => {
   const {
     isNewsLoading,
     isNewNewsLoading,
     newsList,
-    toggleAppBarAction,
     setIsAppBarVisibleAction,
     updateNewsStateToRead,
+    setShowTopIcon,
+    goToTop,
+    setGoToTop,
     advertListStore,
     fetchingStarted,
   } = props;
 
-  // const [selectedId, setSelectedId] = useState('');
   const [index, setIndex] = useState(0);
+  const snapRef = useRef<React.LegacyRef<any>>();
 
   useEffect(() => {
     if (newsList?.res?.newNewsCount > 0) {
@@ -63,21 +46,30 @@ const MyList = props => {
     }
   }, [isNewsLoading, isNewNewsLoading, newsList]);
 
+  useEffect(() => {
+    if (goToTop && snapRef.current) {
+      snapRef.current?.snapToItem(0);
+    }
+  }, [goToTop]);
+
   const handleSnapToItem = useCallback(
     (idx: number) => {
       setIndex(idx);
+      if (idx === 0) {
+        setGoToTop(false);
+      }
+
+      if (idx > 0) {
+        setShowTopIcon(true);
+      } else {
+        setShowTopIcon(false);
+      }
+
       if (idx < index) {
         setIsAppBarVisibleAction(true);
       } else {
         setIsAppBarVisibleAction(false);
       }
-
-      // if (idx + (1 % 5) && idx > index) {
-      //   ToastAndroid.show(
-      //     `${newsList?.res?.unreadNewsCount} unread shorts below`,
-      //     ToastAndroid.SHORT,
-      //   );
-      // }
     },
     [index],
   );
@@ -89,29 +81,13 @@ const MyList = props => {
       index: idx,
     };
   }, []);
+  console.log('length: ', newsList?.res?.rows);
 
   const newsListRaw = newsList?.res?.rows;
-
-  console.log('ads store', advertListStore);
 
   const finalNewsList = advertListStore?.rows
     ? pushAdsToNewsList(newsListRaw, advertListStore?.rows)
     : newsListRaw;
-
-  console.log('finalNewsList', finalNewsList);
-
-  // Add adds to news
-
-  // const onViewableItemsChanged = ({viewableItems, changed}) => {
-  //   const readNewsId: number | null = changed[0]?.item?.id ?? null;
-  //   if (
-  //     !changed[0]?.item?.isRead &&
-  //     viewableItems[0]?.item?.id === readNewsId &&
-  //     changed[0]?.isViewable
-  //   ) {
-  //     updateNewsStateToRead({readNewsId, isRead: true});
-  //   }
-  // };
 
   const keyExtractor = useCallback((item: any, idx: number) => {
     return 'news_' + item?.id + '_' + idx;
@@ -137,8 +113,6 @@ const MyList = props => {
     {viewabilityConfig, onViewableItemsChanged},
   ]);
 
-  console.log({isNewsLoading, isNewNewsLoading, fetchingStarted});
-
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
       {isNewsLoading || isNewNewsLoading || !fetchingStarted ? (
@@ -147,14 +121,9 @@ const MyList = props => {
         <Carousel
           data={finalNewsList || []}
           renderItem={({item}) => {
-            return (
-              <RenderItem
-                item={item}
-                handleTouched={toggleAppBarAction}
-                // setSelectedId={setSelectedId}
-              />
-            );
+            return <ListItem item={item} />;
           }}
+          ref={snapRef}
           sliderHeight={300}
           itemHeight={window.height}
           vertical
@@ -170,6 +139,7 @@ const MyList = props => {
           viewabilityConfigCallbackPairs={
             viewabilityConfigCallbackPairs.current
           }
+          alwaysBounceVertical
         />
       ) : (
         <NoNews />

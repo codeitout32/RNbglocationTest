@@ -1,5 +1,13 @@
 import React from 'react';
-import {StyleSheet, View, Pressable} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Pressable,
+  Linking,
+  ToastAndroid,
+  Platform,
+  AlertIOS,
+} from 'react-native';
 import {Text, Icon} from 'react-native-elements';
 import {formatDistance} from 'date-fns';
 import {useDispatch} from 'react-redux';
@@ -23,6 +31,23 @@ const ItemBody = ({item}) => {
       addSuffix: true,
     },
   );
+  // console.log(item);
+
+  const openNewsInBrowser = async () => {
+    try {
+      const isSupported = await Linking.canOpenURL(item?.author);
+      if (isSupported) {
+        await Linking.openURL(item?.author);
+      }
+    } catch (e) {
+      const msg = 'Link is not supported!';
+      if (Platform.OS === 'android') {
+        ToastAndroid.show(msg, ToastAndroid.SHORT);
+      } else {
+        AlertIOS.alert(msg);
+      }
+    }
+  };
 
   return (
     // <Pressable onPress={() => dispatch(toggleAppBarAction())}>

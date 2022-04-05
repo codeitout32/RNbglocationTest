@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import fonts from '../../res/fonts';
 
 const styles = StyleSheet.create({
   absolute: {
@@ -26,6 +27,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(169, 169, 169, .3)',
+    borderRadius: 5,
   },
 
   categoryImgContainer: {
@@ -37,8 +41,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     flex: 1,
-    borderWidth: 1,
-    borderColor: 'rgba(169, 169, 169, .3)',
     borderRadius: 5,
     resizeMode: 'cover',
   },
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
     color: 'darkgrey',
     textAlign: 'center',
     textTransform: 'capitalize',
+    fontFamily: fonts.robotoBold,
     fontSize: 16,
     marginTop: '5%',
   },
