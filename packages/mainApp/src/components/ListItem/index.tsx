@@ -45,14 +45,14 @@ const ListItem = ({item}) => {
     delay(() => shotstart, 300);
   }, [isCapturing]);
   const videoUrl = item?.video?.replace('watch?v=', 'embed/');
-  console.log(
-    '\n\n\n>>>>>>>>>>>item:',
-    item?.media_type,
-    item?.video,
-    item?.video?.split(' '),
-    videoUrl,
-    '\n\n\n',
-  );
+  // console.log(
+  //   '\n\n\n>>>>>>>>>>>item:',
+  //   item?.media_type,
+  //   item?.video,
+  //   item?.video?.split(' '),
+  //   videoUrl,
+  //   '\n\n\n',
+  // );
 
   if (item?.title != undefined)
     return (

@@ -120,10 +120,10 @@ export const newsSlice = createSlice({
       };
       return {
         ...state,
-        newNewsLoading: false,
         newNewsList: action.payload,
         newsList: newNews,
         lastRefreshTime: new Date().toISOString(),
+        newNewsLoading: false,
       };
     },
     fetchNewNewsError: (state, action: PayloadAction<object>) => {

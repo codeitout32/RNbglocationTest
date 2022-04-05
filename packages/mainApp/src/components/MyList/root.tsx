@@ -9,7 +9,6 @@ import NoNews from '../../components/NoNews';
 import ListItem from '../ListItem';
 
 import {dimensions} from '../../res/dimensions';
-import {updateNewsStateToRead} from '@next/common/slices/news.slice';
 import LoadingNews from '../LoadingNews';
 import pushAdsToNewsList from './utils/pushAdsToNewsList';
 
@@ -36,13 +35,14 @@ const RenderItem: React.FC<IRenderItem> = memo(({item, handleTouched}) => {
 
 const MyList = props => {
   const {
-    isLoading,
+    isNewsLoading,
     isNewNewsLoading,
     newsList,
     toggleAppBarAction,
     setIsAppBarVisibleAction,
     updateNewsStateToRead,
     advertListStore,
+    fetchingStarted,
   } = props;
 
   // const [selectedId, setSelectedId] = useState('');
@@ -61,7 +61,7 @@ const MyList = props => {
         ToastAndroid.SHORT,
       );
     }
-  }, [isLoading, isNewNewsLoading, newsList]);
+  }, [isNewsLoading, isNewNewsLoading, newsList]);
 
   const handleSnapToItem = useCallback(
     (idx: number) => {
@@ -94,8 +94,9 @@ const MyList = props => {
 
   console.log('ads store', advertListStore);
 
-  const finalNewsList =
-    pushAdsToNewsList(newsListRaw, advertListStore?.rows) ?? [];
+  const finalNewsList = advertListStore?.rows
+    ? pushAdsToNewsList(newsListRaw, advertListStore?.rows)
+    : newsListRaw;
 
   console.log('finalNewsList', finalNewsList);
 
@@ -136,11 +137,11 @@ const MyList = props => {
     {viewabilityConfig, onViewableItemsChanged},
   ]);
 
-  console.log(newsList?.res?.rows.length > 0);
+  console.log({isNewsLoading, isNewNewsLoading, fetchingStarted});
 
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
-      {isLoading && isNewNewsLoading ? (
+      {isNewsLoading || isNewNewsLoading || !fetchingStarted ? (
         <LoadingNews />
       ) : newsListRaw?.length > 0 ? (
         <Carousel
