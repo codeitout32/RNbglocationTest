@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useCallback, memo, useRef} from 'react';
-import {Pressable, StyleSheet, ToastAndroid, View} from 'react-native';
+import {StyleSheet, ToastAndroid} from 'react-native';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
@@ -9,7 +9,6 @@ import NoNews from '../../components/NoNews';
 import ListItem from '../ListItem';
 
 import {dimensions} from '../../res/dimensions';
-import {updateNewsStateToRead} from '@next/common/slices/news.slice';
 import LoadingNews from '../LoadingNews';
 
 const {window} = dimensions;
@@ -41,10 +40,14 @@ const MyList = props => {
     toggleAppBarAction,
     setIsAppBarVisibleAction,
     updateNewsStateToRead,
+    setShowTopIcon,
+    goToTop,
+    setGoToTop,
   } = props;
-
+  console.log('goToTop: ', goToTop);
   // const [selectedId, setSelectedId] = useState('');
   const [index, setIndex] = useState(0);
+  const snapRef = useRef<React.LegacyRef<any>>();
 
   useEffect(() => {
     if (newsList?.res?.newNewsCount > 0) {
@@ -61,9 +64,26 @@ const MyList = props => {
     }
   }, [isLoading, isNewNewsLoading, newsList]);
 
+  useEffect(() => {
+    if (goToTop && snapRef.current) {
+      snapRef.current?.snapToItem(0);
+    }
+  }, [goToTop]);
+
   const handleSnapToItem = useCallback(
     (idx: number) => {
       setIndex(idx);
+      console.log(idx);
+      if (idx === 0) {
+        setGoToTop(false);
+      }
+
+      if (idx > 0) {
+        setShowTopIcon(true);
+      } else {
+        setShowTopIcon(false);
+      }
+
       if (idx < index) {
         setIsAppBarVisibleAction(true);
       } else {
@@ -87,37 +107,6 @@ const MyList = props => {
       index: idx,
     };
   }, []);
-
-  const newsListRaw = newsList?.res?.rows;
-
-  // const finalNewsList = pushAdsToNewsList(newsListRaw, adsList)
-
-  //Add adds to news
-
-  // const viewabilityConfig = {
-  //   waitForInteraction: true,
-  //   viewAreaCoveragePercentThreshold: 95,
-  // };
-
-  // const onViewableItemsChanged = ({viewableItems, changed}) => {
-  //   const readNewsId: number | null = changed[0]?.item?.id ?? null;
-  //   if (
-  //     !changed[0]?.item?.isRead &&
-  //     viewableItems[0]?.item?.id === readNewsId &&
-  //     changed[0]?.isViewable
-  //   ) {
-  //     updateNewsStateToRead({readNewsId, isRead: true});
-  //   }
-  // };
-
-  // const viewabilityConfigCallbackPairs = useRef([
-  //   {viewabilityConfig, onViewableItemsChanged},
-  // ]);
-
-  // //animated functions
-  // const tap = Gesture.Tap().onStart(e => {
-  //   console.log('tap1');
-  //   handleTouched();
 
   const keyExtractor = useCallback((item: any, idx: number) => {
     return 'news_' + item?.id + '_' + idx;
@@ -161,6 +150,7 @@ const MyList = props => {
               />
             );
           }}
+          ref={snapRef}
           sliderHeight={300}
           itemHeight={window.height}
           vertical
@@ -176,6 +166,13 @@ const MyList = props => {
           viewabilityConfigCallbackPairs={
             viewabilityConfigCallbackPairs.current
           }
+          alwaysBounceVertical
+          onScrollToTop={() => {
+            console.log('Scrolled at top');
+          }}
+          snapToItem={goToTop && 0}
+          // snapToOffsets={goToTop ? [0,2,5] : undefined}
+          snapToStart={goToTop}
         />
       ) : (
         <NoNews />

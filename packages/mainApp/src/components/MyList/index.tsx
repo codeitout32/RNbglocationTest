@@ -8,6 +8,7 @@ import {
   newsLoadingSelector,
   newNewsLoadingSelector,
   newsUpdatedSelector,
+  selectGoToTop,
 } from '@next/common/selectors/';
 
 import {
@@ -16,7 +17,12 @@ import {
 } from '@next/common/slices/news.slice';
 import {appBarActions} from '@next/common/slices/appBar.slice';
 
-const {toggleAppBarAction, setIsAppBarVisibleAction} = appBarActions;
+const {
+  toggleAppBarAction,
+  setIsAppBarVisibleAction,
+  setShowTopIcon,
+  setGoToTop,
+} = appBarActions;
 
 const mapStateToProps = (state: any) => ({
   isNewsLoading: newsLoadingSelector(state),
@@ -25,11 +31,14 @@ const mapStateToProps = (state: any) => ({
   newNewsList: newNewsListSelector(state),
   lastRefreshTimeReducer: lastRefreshTimeSelector(state),
   isNewsUploaded: newsUpdatedSelector(state),
+  goToTop: selectGoToTop(state),
 });
 
 export default connect(mapStateToProps, {
   updateNewsStateToRead,
   updateNewsAction,
+  setShowTopIcon,
   toggleAppBarAction,
   setIsAppBarVisibleAction,
+  setGoToTop,
 })(MyList);
