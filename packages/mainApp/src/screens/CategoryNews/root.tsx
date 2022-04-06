@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import Header from '../../components/Header';
 import CategoryList from '../../components/CategoryList';
 import styles from './style';
 import AppBar from '../../components/AppBar';
+import {View} from 'react-native';
 
 const CategoryNews: React.FC<any> = props => {
   const {navigation, route, fetchCategoryNewsStart} = props;
@@ -18,6 +19,7 @@ const CategoryNews: React.FC<any> = props => {
     navigation.navigate('CategoryNews', {catId, isReload: false});
   }, [catId, isReload]);
 
+  console.log('hello from category list');
   const headerLinks = {
     menu: {
       link: 'Category',
@@ -32,10 +34,10 @@ const CategoryNews: React.FC<any> = props => {
   };
 
   return (
-    <SafeAreaProvider style={styles.view}>
+    <View style={styles.view}>
       <AppBar headerLinks={headerLinks} />
       <CategoryList />
-    </SafeAreaProvider>
+    </View>
   );
 };
 

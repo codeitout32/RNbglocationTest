@@ -1,16 +1,12 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
-import {
-  StyleSheet,
-  View,
-  ActivityIndicator,
-} from 'react-native';
+import {StyleSheet, View, ActivityIndicator} from 'react-native';
 import ListItem from '../ListItem';
-
 
 import {dimensions} from '../../res/dimensions';
 import Carousel from 'react-native-snap-carousel';
 import NoNews from '../NoNews';
 import LoadingNews from '../LoadingNews';
+import pushAdsToNewsList from './utils/pushAdsToNewsList';
 
 const {window} = dimensions;
 
@@ -23,6 +19,7 @@ const CategoryList: React.FC<any> = props => {
     setShowTopIcon,
     goToTop,
     setGoToTop,
+    advertListStore,
   } = props;
 
   const snapRef = useRef<React.LegacyRef<any>>();
@@ -56,6 +53,14 @@ const CategoryList: React.FC<any> = props => {
   const viewabilityConfigCallbackPairs = useRef([
     {viewabilityConfig, onViewableItemsChanged},
   ]);
+
+  const categoryNewsListRaw = categoryNewsList?.res?.rows || [];
+
+  console.log('categoryNewsListRaw', categoryNewsListRaw);
+
+  const finalCategoryNewsList = advertListStore?.rows
+    ? pushAdsToNewsList(categoryNewsListRaw, advertListStore?.rows)
+    : categoryNewsListRaw;
 
   const handleSnapToItem = useCallback(
     (idx: number) => {
@@ -92,9 +97,9 @@ const CategoryList: React.FC<any> = props => {
     <View style={styles.container}>
       {isLoading ? (
         <LoadingNews />
-      ) : categoryNewsList?.res?.rows.length > 0 ? (
+      ) : categoryNewsListRaw?.length > 0 ? (
         <Carousel
-          data={categoryNewsList?.res?.rows || []}
+          data={categoryNewsListRaw ?? []}
           renderItem={({item}) => {
             return <ListItem item={item} />;
           }}
@@ -116,7 +121,7 @@ const CategoryList: React.FC<any> = props => {
           getItemLayout={getItemLayout}
         />
       ) : (
-        <NoNews forCategory />
+        <NoNews />
       )}
     </View>
   );

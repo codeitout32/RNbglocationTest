@@ -154,6 +154,7 @@ export const newsSlice = createSlice({
       };
     },
     fetchCategoryNewsSuccess: (state: any, action: PayloadAction<object>) => {
+      console.log("news success", action.payload);
       return {
         ...state,
         isCategoryNewsLoading: false,

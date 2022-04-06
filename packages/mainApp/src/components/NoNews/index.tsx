@@ -19,6 +19,8 @@ const NoNews: React.FC<INoNews> = ({forCategory = false}: INoNews) => {
   const {colors} = useTheme();
   const dispatch = useDispatch();
 
+  console.log('category no news');
+
   const handleClick = () => {
     console.log('taped');
     dispatch(appBarActions.toggleAppBarAction());

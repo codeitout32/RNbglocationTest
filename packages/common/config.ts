@@ -8,6 +8,7 @@ export const routes = {
   drops: serverUrl + "/drop",
   guides: serverUrl + "/guide",
   advert: serverUrl + "/advertise",
+  adclick: serverUrl + "/adclick",
   services: serverUrl + "/our-service",
   category: serverUrl + "/category",
   user: serverUrl + "/user",

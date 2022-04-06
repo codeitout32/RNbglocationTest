@@ -42,21 +42,21 @@ export const advertsSlice = createSlice({
         error: action.payload,
       };
     },
-    fetchSingleAdvertStart: (state) => {
+    updateAdvertClickedStart: (state) => {
       return {
         ...state,
         loading: true,
       };
     },
-    fetchSingleAdvertSuccess: (state, action) => {
+    updateAdvertClickedSuccess: (state, action) => {
       return {
         ...state,
         loading: false,
-        singleAdvert: action.payload,
+        // singleAdvert: action.payload,
         success: "success",
       };
     },
-    fetchSingleAdvertError: (state, action: PayloadAction<object>) => {
+    updateAdvertClickedError: (state, action: PayloadAction<object>) => {
       return {
         ...state,
         loading: false,
@@ -70,8 +70,8 @@ export const {
   fetchAdvertStart,
   fetchAdvertSuccess,
   fetchAdvertError,
-  fetchSingleAdvertStart,
-  fetchSingleAdvertSuccess,
-  fetchSingleAdvertError,
+  updateAdvertClickedStart,
+  updateAdvertClickedSuccess,
+  updateAdvertClickedError,
 } = advertsSlice.actions;
 export default advertsSlice.reducer;

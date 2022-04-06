@@ -42,11 +42,34 @@ function* fetchAdvertiseSaga(action) {
     // handleError(error);
   }
 }
+function* updateAdvertClickedSaga(action) {
+  console.log("hello from advert saga");
+  const searchparams = new URLSearchParams(action.payload).toString();
+  const params = {
+    method: "post",
+    route: routes.adclick,
+    headerCred: {
+      autherization: "myAuthToken",
+    },
+    data: action.payload,
+  };
+
+  try {
+    const res = yield commonService(params);
+    yield put(AdvertsSlice.updateAdvertClickedSuccess(res));
+  } catch (error) {
+    yield put(AdvertsSlice.updateAdvertClickedError(error));
+    // handleError(error);
+  }
+}
 
 export function* advertsSaga() {
   yield takeLatest(AdvertsSlice.fetchAdvertStart, fetchAdvertiseSaga);
 
-  // yield takeEvery(AdvertSlice.fetchSingleAdvertStart, fetchSingleAdvertSaga);
+  yield takeEvery(
+    AdvertsSlice.updateAdvertClickedStart,
+    updateAdvertClickedSaga
+  );
   // yield takeEvery(AdvertSlice.fetchRelatedAdvertStart, fetchRelatedAdvertSaga);
   // yield takeEvery(AdvertSlice.fetchFeaturedAdvertStart, fetchFeaturedAdvertSaga);
 }

@@ -2,6 +2,7 @@ import CategoryList from './root';
 import {connect} from 'react-redux';
 
 import {
+  advertListSelector,
   categoryNewsListSelector,
   categoryNewsLoadingSelector,
   selectGoToTop,
@@ -15,6 +16,7 @@ const mapStateToProps = (state: any) => ({
   isLoading: categoryNewsLoadingSelector(state),
   categoryNewsList: categoryNewsListSelector(state),
   goToTop: selectGoToTop(state),
+  advertListStore: advertListSelector(state),
 });
 
 export default connect(mapStateToProps, {
