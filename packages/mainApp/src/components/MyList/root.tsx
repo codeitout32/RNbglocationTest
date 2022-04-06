@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useCallback, memo, useRef} from 'react';
 import {StyleSheet, ToastAndroid} from 'react-native';
+import Toast from 'react-native-root-toast';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
@@ -25,6 +26,9 @@ const MyList = props => {
     goToTop,
     setGoToTop,
     advertListStore,
+    isAppBarVisible,
+    showUpArrow,
+    newsReadCount,
   } = props;
 
   const [index, setIndex] = useState(0);
@@ -37,12 +41,12 @@ const MyList = props => {
         ToastAndroid.SHORT,
       );
     }
-    if (newsList?.res?.unreadNewsCount > 0) {
-      ToastAndroid.show(
-        `${newsList?.res?.unreadNewsCount} unread shorts below`,
-        ToastAndroid.SHORT,
-      );
-    }
+    // if (newsList?.res?.unreadNewsCount > 0) {
+    //   ToastAndroid.show(
+    //     `${newsList?.res?.unreadNewsCount} unread shorts below`,
+    //     ToastAndroid.SHORT,
+    //   );
+    // }
   }, [isLoading, isNewNewsLoading, newsList]);
 
   useEffect(() => {
@@ -51,36 +55,7 @@ const MyList = props => {
     }
   }, [goToTop]);
 
-  const handleSnapToItem = useCallback(
-    (idx: number) => {
-      setIndex(idx);
-      if (idx === 0) {
-        setGoToTop(false);
-      }
-
-      if (idx > 0) {
-        setShowTopIcon(true);
-      } else {
-        setShowTopIcon(false);
-      }
-
-      if (idx < index) {
-        setIsAppBarVisibleAction(true);
-      } else {
-        setIsAppBarVisibleAction(false);
-      }
-    },
-    [index],
-  );
-
-  const getItemLayout = useCallback((data: any, idx: number) => {
-    return {
-      length: window.height,
-      offset: window.height * idx,
-      index: idx,
-    };
-  }, []);
-  console.log('length: ', newsList?.res?.rows);
+  // console.log('length: ', newsList?.res?.rows);
 
   const newsListRaw = newsList?.res?.rows;
 
@@ -91,25 +66,66 @@ const MyList = props => {
     return 'news_' + item?.id + '_' + idx;
   }, []);
 
-  const viewabilityConfig = {
-    waitForInteraction: true,
-    viewAreaCoveragePercentThreshold: 95,
-  };
+  const handleSnapToItem = useCallback(
+    (idx: number) => {
+      setIndex(idx);
+      if (idx === 0) {
+        setGoToTop(false);
+      }
 
-  const onViewableItemsChanged = useCallback(({viewableItems, changed}) => {
-    const readNewsId: number | null = changed[0]?.item?.id ?? null;
-    if (
-      !changed[0]?.item?.isRead &&
-      viewableItems[0]?.item?.id === readNewsId &&
-      changed[0]?.isViewable
-    ) {
-      updateNewsStateToRead({readNewsId, isRead: true});
-    }
+      if (idx > 0) {
+        if (!showUpArrow) setShowTopIcon(true);
+      } else {
+        if (showUpArrow) setShowTopIcon(false);
+      }
+
+      if (idx < index) {
+        if (!isAppBarVisible) setIsAppBarVisibleAction(true);
+      } else {
+        if (isAppBarVisible) setIsAppBarVisibleAction(false);
+      }
+
+      if (
+        finalNewsList?.length > 0 &&
+        finalNewsList[0].hasOwnProperty('isRead') &&
+        !finalNewsList[0]?.isRead
+      ) {
+        const readNewsId = finalNewsList[0]?.id;
+        updateNewsStateToRead({readNewsId, isRead: true});
+      }
+
+      if (
+        idx > 0 &&
+        finalNewsList?.length > idx &&
+        finalNewsList[idx].hasOwnProperty('isRead') &&
+        !finalNewsList[idx]?.isRead
+      ) {
+        const readNewsId = finalNewsList[idx]?.id;
+        updateNewsStateToRead({readNewsId, isRead: true});
+      }
+
+      const {totalCount, leftToRead} = newsReadCount;
+
+      if (idx % 5 === 0) {
+        Toast.show(`${totalCount - leftToRead} unread shorts below`, {
+          duration: Toast.durations.LONG,
+          position: Toast.positions.BOTTOM,
+          shadow: true,
+          animation: true,
+          hideOnPress: true,
+        });
+      }
+    },
+    [index, isAppBarVisible, showUpArrow, finalNewsList, newsReadCount],
+  );
+
+  const getItemLayout = useCallback((data: any, idx: number) => {
+    return {
+      length: window.height,
+      offset: window.height * idx,
+      index: idx,
+    };
   }, []);
-
-  const viewabilityConfigCallbackPairs = useRef([
-    {viewabilityConfig, onViewableItemsChanged},
-  ]);
 
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
@@ -134,11 +150,7 @@ const MyList = props => {
           maxToRenderPerBatch={3}
           keyExtractor={keyExtractor}
           getItemLayout={getItemLayout}
-          viewabilityConfigCallbackPairs={
-            viewabilityConfigCallbackPairs.current
-          }
           alwaysBounceVertical
-          
         />
       ) : (
         <NoNews />
