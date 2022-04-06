@@ -48,19 +48,21 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
       containerStyle={styles.headerContainer}
       leftComponent={
         <>
-          <Pressable onPress={menuNavigate}>
-            <Image
-              source={require('../../assets/logo-light.png')}
-              style={{width: 30, height: 30}}
-            />
-          </Pressable>
+          {!props.noSettings && (
+            <Pressable onPress={menuNavigate}>
+              <Image
+                source={require('../../assets/logo-light.png')}
+                style={{width: 30, height: 30}}
+              />
+            </Pressable>
+          )}
         </>
       }
       rightComponent={
         <View style={styles.headerRight}>
           {props.noSettings ? (
             <Pressable onPress={() => navigation.goBack()}>
-              <Icon name="back" color="white" type="antdesign" />
+              <Icon name="cancel" color="white" type="MaterialIcons" />
             </Pressable>
           ) : (
             <>

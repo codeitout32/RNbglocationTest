@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20,
   },
-  container: {flex: 1},
+  container: {flex: 1, paddingTop: 20},
   categoriesItem: {
     marginHorizontal: 10,
     width: 120,
