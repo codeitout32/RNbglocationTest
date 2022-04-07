@@ -29,22 +29,22 @@ const SingleCategory: React.FC<ISinlgeCategory> = props => {
   };
 
   const onSelectStyle = useMemo(() => isSelected(item?.id), []);
-
+  console.log({catId, navigation});
   return (
-    <View style={[styles.categoriesItem, onSelectStyle.item]}>
+    <View>
       <Pressable
         onPress={() => {
-          navigation.navigate('CategoryNews', {catId: item?.id});
+          return navigation.navigate('CategoryNews', {
+            catId: item?.id,
+            isReload: false,
+          });
         }}
-        key={item?.id}
-       >
+        style={[styles.categoriesItem, onSelectStyle.item]}>
         <Image
           source={{uri: config.imgUrl + item?.image}}
           style={[styles.categoryImg]}
         />
-        <Text style={[styles.categoriesText]}>
-          {item?.category_name}
-        </Text>
+        <Text style={[styles.categoriesText]}>{item?.category_name}</Text>
       </Pressable>
     </View>
   );

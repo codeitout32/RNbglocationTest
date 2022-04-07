@@ -1,6 +1,6 @@
 import { routes } from "../config";
 import * as AdvertsSlice from "../slices/adverts.slice";
-import { put, takeEvery, all } from "redux-saga/effects";
+import { put, takeEvery, all, takeLatest } from "redux-saga/effects";
 
 import commonService from "../services/common.service";
 
@@ -44,7 +44,7 @@ function* fetchAdvertiseSaga(action) {
 }
 
 export function* advertsSaga() {
-  yield takeEvery(AdvertsSlice.fetchAdvertStart, fetchAdvertiseSaga);
+  yield takeLatest(AdvertsSlice.fetchAdvertStart, fetchAdvertiseSaga);
 
   // yield takeEvery(AdvertSlice.fetchSingleAdvertStart, fetchSingleAdvertSaga);
   // yield takeEvery(AdvertSlice.fetchRelatedAdvertStart, fetchRelatedAdvertSaga);

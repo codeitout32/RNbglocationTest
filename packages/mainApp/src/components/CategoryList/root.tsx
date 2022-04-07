@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
-import {StyleSheet, View, ActivityIndicator} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import ListItem from '../ListItem';
 
 import {dimensions} from '../../res/dimensions';
@@ -94,7 +94,7 @@ const CategoryList: React.FC<any> = props => {
     <View style={styles.container}>
       {isLoading ? (
         <LoadingNews />
-      ) : categoryNewsList?.res?.rows.length > 0 ? (
+      ) : categoryNewsList?.res?.rows?.length > 0 ? (
         <Carousel
           data={categoryNewsList?.res?.rows || []}
           renderItem={({item}) => {

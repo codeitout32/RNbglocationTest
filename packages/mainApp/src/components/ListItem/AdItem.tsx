@@ -17,7 +17,7 @@ const AdItem = ({item}) => {
   const {colors} = useTheme();
   const openLink = () => {
     try {
-      Linking.openURL(item.url);
+      Linking.openURL(item.url).then(() => console.log('ad clicked success'));
     } catch (err) {
       console.log('failed linking', err);
     }

@@ -17,7 +17,7 @@ const {window} = dimensions;
 
 const MyList = props => {
   const {
-    isLoading,
+    isNewsLoading,
     isNewNewsLoading,
     newsList,
     setIsAppBarVisibleAction,
@@ -29,6 +29,7 @@ const MyList = props => {
     isAppBarVisible,
     showUpArrow,
     newsReadCount,
+    fetchingStarted,
   } = props;
 
   const [index, setIndex] = useState(0);
@@ -47,7 +48,7 @@ const MyList = props => {
     //     ToastAndroid.SHORT,
     //   );
     // }
-  }, [isLoading, isNewNewsLoading, newsList]);
+  }, [isNewsLoading, isNewNewsLoading, newsList]);
 
   useEffect(() => {
     if (goToTop && snapRef.current) {
@@ -129,7 +130,7 @@ const MyList = props => {
 
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
-      {isLoading && isNewNewsLoading ? (
+      {isNewsLoading || isNewNewsLoading || !fetchingStarted ? (
         <LoadingNews />
       ) : newsListRaw?.length > 0 ? (
         <Carousel

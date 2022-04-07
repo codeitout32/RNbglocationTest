@@ -139,7 +139,6 @@ export const newsSlice = createSlice({
       console.log("state: ", state.newsReadCount)
       return {
         ...state,
-        newNewsLoading: false,
         newNewsList: action.payload,
         newsList: newNews,
         lastRefreshTime: new Date().toISOString(),
@@ -147,6 +146,7 @@ export const newsSlice = createSlice({
           totalCount: oldUnreadNews?.length + newRows?.length,
           leftToRead: newRows?.length > 0 ? 0 : state?.newsReadCount?.leftToRead,
         },
+        newNewsLoading: false,
       };
     },
     fetchNewNewsError: (state, action: PayloadAction<object>) => {

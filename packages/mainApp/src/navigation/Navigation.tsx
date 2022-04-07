@@ -19,6 +19,7 @@ import {
   gestureHandlerRootHOC,
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
+import NewScreen from '../screens/NewScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -83,7 +84,12 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
           <Stack.Screen
             name="CategoryNews"
             component={CategoryNews}
-            initialParams={{catId: 0, isReload: false}} // only to show selected tab
+            // only to show selected tab
+            options={{
+              animationEnabled: true,
+              cardOverlayEnabled: false,
+              cardOverlay: false,
+            }}
           />
           <Stack.Screen
             name="Settings"

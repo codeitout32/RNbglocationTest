@@ -1,5 +1,5 @@
 import React, {useEffect, memo} from 'react';
-import {Pressable, View, ScrollView} from 'react-native';
+import {Pressable, View, ScrollView, SafeAreaView} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Icon, Text} from 'react-native-elements';
 import styles from './style';
@@ -18,9 +18,9 @@ const Categories: React.FC<any> = props => {
 
   const {colors} = useTheme();
   return (
-    <SafeAreaProvider
+    <SafeAreaView
       style={[styles.container, {backgroundColor: colors?.transparentBg}]}>
-      <ScrollView>
+      <>
         <View style={styles.headerBar}>
           <Text h4 style={{color: colors.text}}>
             Categories
@@ -46,8 +46,8 @@ const Categories: React.FC<any> = props => {
             ))}
           </View>
         </View>
-      </ScrollView>
-    </SafeAreaProvider>
+      </>
+    </SafeAreaView>
   );
 };
 export default memo(Categories);
