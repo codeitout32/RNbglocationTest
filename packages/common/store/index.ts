@@ -5,7 +5,6 @@ import createSagaMiddleware, { SagaMiddleware } from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 
-
 import rootReducer from "../slices";
 
 import { rootSaga } from "../saga";
@@ -19,7 +18,7 @@ const persistConfig = {
   key: "root",
   storage: storage,
   timeout: null,
-  blacklist: ['appBar']
+  blacklist: ["appBar"],
 };
 // console.log("hello react native from store", View);
 

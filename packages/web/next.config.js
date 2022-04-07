@@ -14,7 +14,7 @@ module.exports = {
       use: [defaultLoaders.babel],
     });
 
-    /** Resolve aliases */
+    // /** Resolve aliases */
     aliasPathsToResolve.forEach((module) => {
       config.resolve.alias[module.name] = module.path;
     });

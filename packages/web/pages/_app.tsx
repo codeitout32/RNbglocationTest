@@ -1,3 +1,4 @@
+import React from "react";
 import "../styles/global.css";
 import { Provider } from "react-redux";
 import { IntlProvider } from "react-intl";
@@ -5,7 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { PersistGate } from "redux-persist/integration/react";
 import { ThemeProvider } from "@mui/material";
 
-import { useStore } from "@next/common/store";
+import { appStore } from "@next/common/store";
 
 import AppLocale from "localization";
 import EnLang from "localization/entries/en-US";
@@ -16,12 +17,12 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 //
 import NProgress from "nprogress";
 import "../public/css/nprogress.css";
-import React from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
+// import { useStore } from "@next/common/store";
 
 export default function App({ Component, pageProps }) {
-  const store = useStore(pageProps.initialReduxState);
+  // const store = useStore(pageProps.initialReduxState);
 
   //Preloader code
   const router = useRouter();
@@ -47,8 +48,8 @@ export default function App({ Component, pageProps }) {
   }, [router]);
 
   return (
-    <PersistGate loading={null} persistor={store.persistor}>
-      <Provider store={store}>
+    <Provider store={appStore}>
+      <PersistGate loading={null} persistor={appStore.persistor}>
         <ThemeProvider theme={restheme}>
           <IntlProvider
             locale="en"
@@ -66,7 +67,7 @@ export default function App({ Component, pageProps }) {
             <Component {...pageProps} />
           </IntlProvider>
         </ThemeProvider>
-      </Provider>
-    </PersistGate>
+      </PersistGate>
+    </Provider>
   );
 }
