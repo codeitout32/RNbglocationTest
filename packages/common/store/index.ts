@@ -8,7 +8,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import rootReducer from "../slices";
 
 import { rootSaga } from "../saga";
-import storage from "./storage";
+import storage, { isDev } from "./storage";
 
 let store: any;
 
@@ -38,7 +38,7 @@ function initStore() {
   // }
 
   let devTools = false;
-  if (process.env.NODE_ENV === "development" || __DEV__) {
+  if (process.env.NODE_ENV === "development" || isDev) {
     middleware.push(logger as any);
     devTools = true;
   }
