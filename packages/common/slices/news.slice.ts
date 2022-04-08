@@ -12,6 +12,10 @@ export interface NewsList {
   error: object | string;
   isNewsUpdated: boolean;
   isCategoryNewsLoading: boolean;
+  newsReadCount: {
+    totalCount: number,
+    leftToRead: number
+  },
 }
 
 const initialState: NewsList = {
@@ -26,6 +30,10 @@ const initialState: NewsList = {
   isNewsUpdated: false,
   singleNews: {},
   isCategoryNewsLoading: false,
+  newsReadCount: {
+    totalCount: 0,
+    leftToRead: 0
+  },
 };
 
 export const newsSlice = createSlice({
@@ -46,6 +54,10 @@ export const newsSlice = createSlice({
         loading: false,
         newsList: { ...state.newsList, ...action.payload },
         lastRefreshTime: new Date().toISOString(),
+        newsReadCount: {
+          totalCount: action.payload.res?.rows?.length,
+          leftToRead: 0
+        },
       };
     },
 
@@ -86,16 +98,22 @@ export const newsSlice = createSlice({
         }
         return item;
       });
+      
       const readNews = {
         res: {
           rows: [...res],
           count: res.length,
         },
       };
+ 
       return {
         ...state,
         loading: false,
         newsList: readNews,
+        newsReadCount: {
+          ...state.newsReadCount,
+          leftToRead: state.newsReadCount.leftToRead + 1
+        },
       };
     },
 
@@ -118,11 +136,16 @@ export const newsSlice = createSlice({
           unreadNewsCount: oldUnreadNews.length,
         },
       };
+      console.log("state: ", state.newsReadCount)
       return {
         ...state,
         newNewsList: action.payload,
         newsList: newNews,
         lastRefreshTime: new Date().toISOString(),
+        newsReadCount: {
+          totalCount: oldUnreadNews?.length + newRows?.length,
+          leftToRead: newRows?.length > 0 ? 0 : state?.newsReadCount?.leftToRead,
+        },
         newNewsLoading: false,
       };
     },

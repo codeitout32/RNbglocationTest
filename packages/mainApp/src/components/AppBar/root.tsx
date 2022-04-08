@@ -1,6 +1,6 @@
 import {MotiView} from 'moti';
 import React, {memo} from 'react';
-import Header from '../../components/Header';
+import Header from '../Header';
 
 interface IAppBar {
   isVisible: boolean;

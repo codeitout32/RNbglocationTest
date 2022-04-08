@@ -40,7 +40,7 @@ const SingleCategory: React.FC<ISinlgeCategory> = props => {
         navigation.navigate('CategoryNews', {catId: item?.id});
       }}
       style={[styles.categoriesItem, onSelectStyle.item]}
-      key={item?.id}>
+      >
       <Image
         source={{uri: config.imgUrl + item?.image}}
         style={[styles.categoryImg]}

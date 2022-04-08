@@ -4,6 +4,7 @@ import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
 import YoutubePlayer from 'react-native-youtube-iframe';
+import WebView from 'react-native-webview';
 
 import {dimensions} from '../../res/dimensions';
 
@@ -61,6 +62,7 @@ const ListItem = ({item}) => {
             ) : (
               <YoutubePlayer
                 height={245}
+                webViewStyle={{width: '100%', height: '100%', opacity: 0.99}}
                 play={true}
                 videoId={item?.video}
                 mute={true}
@@ -142,6 +144,13 @@ export default memo(ListItem);
   }
   <embed src="https://www.youtube.com/embed/lqNpCH-xcGE"></embed>
  </style>
+ <WebView
+                style={{ width: "100%", height: "100%", opacity: 0.99}}
+                // androidHardwareAccelerationDisabled={true}
+                source={{uri: 'https://www.youtube.com/embed/-ZZPOXn6_9w'}}
+              />
+
+
 //
 //
 //

@@ -19,6 +19,7 @@ import {
   gestureHandlerRootHOC,
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
+import NewScreen from '../screens/NewScreen';
 
 const Stack = createNativeStackNavigator();
 

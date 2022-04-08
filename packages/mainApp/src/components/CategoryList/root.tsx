@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
-import {StyleSheet, View, ActivityIndicator} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import ListItem from '../ListItem';
 
 import {dimensions} from '../../res/dimensions';
@@ -19,6 +19,8 @@ const CategoryList: React.FC<any> = props => {
     setShowTopIcon,
     goToTop,
     setGoToTop,
+    showUpArrow,
+    isAppBarVisible,
     advertListStore,
   } = props;
 
@@ -40,6 +42,7 @@ const CategoryList: React.FC<any> = props => {
   };
 
   const onViewableItemsChanged = ({viewableItems, changed}) => {
+    console.log({viewableItems});
     const readNewsId: number | null = changed[0]?.item?.id ?? null;
     if (
       !changed[0]?.item?.isRead &&
@@ -70,9 +73,15 @@ const CategoryList: React.FC<any> = props => {
       }
 
       if (idx > 0) {
-        setShowTopIcon(true);
+        if (!showUpArrow) setShowTopIcon(true);
       } else {
-        setShowTopIcon(false);
+        if (showUpArrow) setShowTopIcon(false);
+      }
+
+      if (idx < index) {
+        if (!isAppBarVisible) setIsAppBarVisibleAction(true);
+      } else {
+        if (isAppBarVisible) setIsAppBarVisibleAction(false);
       }
       if (idx < index) setIsAppBarVisibleAction(true);
       else setIsAppBarVisibleAction(false);

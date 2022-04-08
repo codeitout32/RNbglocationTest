@@ -10,6 +10,9 @@ import {
   newsUpdatedSelector,
   selectGoToTop,
   advertListSelector,
+  selectIsAppBarVisible,
+  selectShowUpArrow,
+  selectNewsReadCount,
 } from '@next/common/selectors/';
 
 import {
@@ -29,6 +32,9 @@ const mapStateToProps = (state: any) => ({
   isNewsUploaded: newsUpdatedSelector(state),
   goToTop: selectGoToTop(state),
   advertListStore: advertListSelector(state),
+  isAppBarVisible: selectIsAppBarVisible(state),
+  showUpArrow: selectShowUpArrow(state),
+  newsReadCount: selectNewsReadCount(state),
 });
 
 export default connect(mapStateToProps, {

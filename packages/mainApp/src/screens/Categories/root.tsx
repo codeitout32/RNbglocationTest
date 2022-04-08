@@ -20,7 +20,7 @@ const Categories: React.FC<any> = props => {
   return (
     <SafeAreaView
       style={[styles.container, {backgroundColor: colors?.transparentBg}]}>
-      <ScrollView>
+      <>
         <View style={styles.headerBar}>
           <Text h4 style={{color: colors.text}} h4Style={{fontWeight: '400'}}>
             Select Category
@@ -46,7 +46,7 @@ const Categories: React.FC<any> = props => {
             ))}
           </View>
         </View>
-      </ScrollView>
+      </>
     </SafeAreaView>
   );
 };

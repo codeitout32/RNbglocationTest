@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useCallback, memo, useRef} from 'react';
 import {StyleSheet, ToastAndroid} from 'react-native';
+import Toast from 'react-native-root-toast';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 
-import NoNews from '../../components/NoNews';
+import NoNews from '../NoNews';
 import ListItem from '../ListItem';
 
 import {dimensions} from '../../res/dimensions';
@@ -25,6 +26,9 @@ const MyList = props => {
     goToTop,
     setGoToTop,
     advertListStore,
+    isAppBarVisible,
+    showUpArrow,
+    newsReadCount,
     fetchingStarted,
   } = props;
 
@@ -38,12 +42,12 @@ const MyList = props => {
         ToastAndroid.SHORT,
       );
     }
-    if (newsList?.res?.unreadNewsCount > 0) {
-      ToastAndroid.show(
-        `${newsList?.res?.unreadNewsCount} unread shorts below`,
-        ToastAndroid.SHORT,
-      );
-    }
+    // if (newsList?.res?.unreadNewsCount > 0) {
+    //   ToastAndroid.show(
+    //     `${newsList?.res?.unreadNewsCount} unread shorts below`,
+    //     ToastAndroid.SHORT,
+    //   );
+    // }
   }, [isNewsLoading, isNewNewsLoading, newsList]);
 
   useEffect(() => {
@@ -51,6 +55,17 @@ const MyList = props => {
       snapRef.current?.snapToItem(0);
     }
   }, [goToTop]);
+
+  // console.log('length: ', newsList?.res?.rows);
+
+  const newsListRaw = newsList?.res?.rows;
+
+  const finalNewsList =
+    pushAdsToNewsList(newsListRaw, advertListStore?.rows) ?? [];
+
+  const keyExtractor = useCallback((item: any, idx: number) => {
+    return 'news_' + item?.id + '_' + idx;
+  }, []);
 
   const handleSnapToItem = useCallback(
     (idx: number) => {
@@ -60,15 +75,46 @@ const MyList = props => {
       }
 
       if (idx > 0) {
-        setShowTopIcon(true);
+        if (!showUpArrow) setShowTopIcon(true);
       } else {
-        setShowTopIcon(false);
+        if (showUpArrow) setShowTopIcon(false);
       }
 
       if (idx < index) {
-        setIsAppBarVisibleAction(true);
+        if (!isAppBarVisible) setIsAppBarVisibleAction(true);
       } else {
-        setIsAppBarVisibleAction(false);
+        if (isAppBarVisible) setIsAppBarVisibleAction(false);
+      }
+
+      if (
+        finalNewsList?.length > 0 &&
+        finalNewsList[0].hasOwnProperty('isRead') &&
+        !finalNewsList[0]?.isRead
+      ) {
+        const readNewsId = finalNewsList[0]?.id;
+        updateNewsStateToRead({readNewsId, isRead: true});
+      }
+
+      if (
+        idx > 0 &&
+        finalNewsList?.length > idx &&
+        finalNewsList[idx].hasOwnProperty('isRead') &&
+        !finalNewsList[idx]?.isRead
+      ) {
+        const readNewsId = finalNewsList[idx]?.id;
+        updateNewsStateToRead({readNewsId, isRead: true});
+      }
+
+      const {totalCount, leftToRead} = newsReadCount;
+
+      if (idx % 5 === 0) {
+        Toast.show(`${totalCount - leftToRead} unread shorts below`, {
+          duration: Toast.durations.LONG,
+          position: Toast.positions.BOTTOM,
+          shadow: true,
+          animation: true,
+          hideOnPress: true,
+        });
       }
 
       const readItem = finalNewsList[idx];
@@ -76,7 +122,7 @@ const MyList = props => {
         updateNewsStateToRead({readNewsId: readItem?.id, isRead: true});
       }
     },
-    [index],
+    [index, isAppBarVisible, showUpArrow, finalNewsList, newsReadCount],
   );
 
   const getItemLayout = useCallback((data: any, idx: number) => {
@@ -86,40 +132,6 @@ const MyList = props => {
       index: idx,
     };
   }, []);
-  console.log('length: ', newsList?.res?.rows);
-
-  const newsListRaw = newsList?.res?.rows;
-
-  const finalNewsList = advertListStore?.rows
-    ? pushAdsToNewsList(newsListRaw, advertListStore?.rows)
-    : newsListRaw;
-
-  const keyExtractor = useCallback((item: any, idx: number) => {
-    return 'news_' + item?.id + '_' + idx;
-  }, []);
-
-  const viewabilityConfig = {
-    waitForInteraction: true,
-    viewAreaCoveragePercentThreshold: 95,
-  };
-
-  // above two functions are not usable for now,
-  // they had been used with flatlist
-
-  const onViewableItemsChanged = useCallback(({viewableItems, changed}) => {
-    const readNewsId: number | null = changed[0]?.item?.id ?? null;
-    if (
-      !changed[0]?.item?.isRead &&
-      viewableItems[0]?.item?.id === readNewsId &&
-      changed[0]?.isViewable
-    ) {
-      updateNewsStateToRead({readNewsId, isRead: true});
-    }
-  }, []);
-
-  const viewabilityConfigCallbackPairs = useRef([
-    {viewabilityConfig, onViewableItemsChanged},
-  ]);
 
   return (
     <SafeAreaView style={styles.container} collapsable={false}>
@@ -127,7 +139,7 @@ const MyList = props => {
         <LoadingNews />
       ) : newsListRaw?.length > 0 ? (
         <Carousel
-          data={finalNewsList || []}
+          data={finalNewsList.reverse() || []}
           renderItem={({item}) => {
             return <ListItem item={item} />;
           }}
@@ -144,9 +156,6 @@ const MyList = props => {
           maxToRenderPerBatch={3}
           keyExtractor={keyExtractor}
           getItemLayout={getItemLayout}
-          viewabilityConfigCallbackPairs={
-            viewabilityConfigCallbackPairs.current
-          }
           alwaysBounceVertical
           on
         />

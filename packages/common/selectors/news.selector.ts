@@ -55,3 +55,8 @@ export const categoryNewsLoadingSelector = createSelector(
   newsReducer,
   (news: any) => news.isCategoryNewsLoading
 );
+
+export const selectNewsReadCount = createSelector(
+  newsReducer,
+  (news: any) => news.newsReadCount
+);
