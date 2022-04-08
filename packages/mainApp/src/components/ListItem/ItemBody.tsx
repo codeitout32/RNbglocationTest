@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.robotoLight,
   },
   h3: {
-    fontSize: 24,
+    fontSize: 22,
     textTransform: 'capitalize',
     fontWeight: '400',
   },
@@ -151,8 +151,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   descriptionText: {
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 17,
+    lineHeight: 28,
     fontFamily: Fonts.robotoLight,
   },
 });

@@ -70,6 +70,11 @@ const MyList = props => {
       } else {
         setIsAppBarVisibleAction(false);
       }
+
+      const readItem = finalNewsList[idx];
+      if (!readItem?.isRead) {
+        updateNewsStateToRead({readNewsId: readItem.id, isRead: true});
+      }
     },
     [index],
   );
@@ -97,6 +102,9 @@ const MyList = props => {
     waitForInteraction: true,
     viewAreaCoveragePercentThreshold: 95,
   };
+
+  // above two functions are not usable for now,
+  // they had been used with flatlist
 
   const onViewableItemsChanged = useCallback(({viewableItems, changed}) => {
     const readNewsId: number | null = changed[0]?.item?.id ?? null;
@@ -140,6 +148,7 @@ const MyList = props => {
             viewabilityConfigCallbackPairs.current
           }
           alwaysBounceVertical
+          on
         />
       ) : (
         <NoNews />

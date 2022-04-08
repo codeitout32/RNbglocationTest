@@ -64,6 +64,9 @@ const ListItem = ({item}) => {
                 play={true}
                 videoId={item?.video}
                 mute={true}
+                webViewStyle={{
+                  opacity: 0.99, // This is important otherwise the app will crash on categories change
+                }}
               />
             )}
 

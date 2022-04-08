@@ -65,7 +65,6 @@ const CategoryList: React.FC<any> = props => {
   const handleSnapToItem = useCallback(
     (idx: number) => {
       setIndex(idx);
-      console.log(idx);
       if (idx === 0) {
         setGoToTop(false);
       }
@@ -77,6 +76,10 @@ const CategoryList: React.FC<any> = props => {
       }
       if (idx < index) setIsAppBarVisibleAction(true);
       else setIsAppBarVisibleAction(false);
+      const readItem = finalCategoryNewsList[idx];
+      if (!readItem?.isRead) {
+        updateNewsStateToRead({readNewsId: readItem?.id, isRead: true});
+      }
     },
     [index],
   );
@@ -99,7 +102,7 @@ const CategoryList: React.FC<any> = props => {
         <LoadingNews />
       ) : categoryNewsListRaw?.length > 0 ? (
         <Carousel
-          data={categoryNewsListRaw ?? []}
+          data={finalCategoryNewsList ?? []}
           renderItem={({item}) => {
             return <ListItem item={item} />;
           }}

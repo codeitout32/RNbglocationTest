@@ -7,6 +7,7 @@ import {
   Platform,
   SafeAreaView,
   ActivityIndicator,
+  findNodeHandle,
 } from 'react-native';
 // import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {Icon, Switch, Text, Card, ListItem} from 'react-native-elements';
@@ -31,11 +32,9 @@ import {
 import {useTheme} from '@react-navigation/native';
 import {color} from 'react-native-elements/dist/helpers';
 import MyCard from './MyCard';
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
-} from 'react-native-gesture-handler';
+import {Gesture} from 'react-native-gesture-handler';
+
+import {BlurView} from '@react-native-community/blur';
 
 const icons = [
   {name: 'compass', type: 'entypo'},
@@ -49,8 +48,10 @@ const icons = [
 const Settings: React.FC<any> = props => {
   const {navigation, categoriesList, fetchCategoriesStart, route} = props;
   const [selectedLanguage, setSelectedLanguage] = useState();
+  const [rendered, setRendered] = useState(false);
 
   const pickerRef = useRef();
+  const messageRef = useRef(null);
   const {colors} = useTheme();
   const dispatch = useDispatch();
   const isDarkMode = useSelector(darkModeSelector);
@@ -79,7 +80,14 @@ const Settings: React.FC<any> = props => {
         dispatch(getUserIdStart({device_id, device_type, notification_status}));
       });
     }
+    console.log('onEffect complete');
   }, []);
+
+  const onLayout = () => {
+    setRendered(true);
+    setRendered(findNodeHandle(messageRef.current));
+    // console.log('onLayout');
+  };
 
   const open = () => pickerRef.current.focus();
   const close = () => pickerRef.current.blur();
@@ -112,7 +120,12 @@ const Settings: React.FC<any> = props => {
   });
 
   return (
-    <View style={[styles.container]} collapsable={false}>
+    <View
+      style={[styles.container]}
+      collapsable={false}
+      ref={containerRef => {
+        messageRef.current = containerRef;
+      }}>
       <Header
         title={'Settings'}
         navigation={navigation}
@@ -121,6 +134,17 @@ const Settings: React.FC<any> = props => {
       />
       <ScrollView>
         <View style={[styles.view, {backgroundColor: colors.transparentBg}]}>
+          {/* <View
+          style={[styles.view, {backgroundColor: 'transparent'}]}
+          onLayout={onLayout}> */}
+          {/* {rendered && (
+            <BlurView
+              style={styles.absolute}
+              blurType={isDarkMode ? 'dark' : 'light'}
+              blurAmount={25}
+              reducedTransparencyFallbackColor="white"
+            />
+          )} */}
           <View>
             <View style={styles.borderBottom}>
               <MyCard

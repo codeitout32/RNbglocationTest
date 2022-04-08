@@ -25,7 +25,7 @@ const AdItem = ({item}) => {
       Linking.openURL(item.url).then(() =>
         dispatch(
           updateAdvertClickedStart({
-            user_id: userIdState.device_id,
+            user_id: userIdState.id,
             advertise_id: item.id,
           }),
         ),
@@ -36,7 +36,7 @@ const AdItem = ({item}) => {
   };
   return (
     <View style={[styles.container, {backgroundColor: colors.background}]}>
-      <Text style={{color: colors.text}}>AdItem</Text>
+      {/* <Text style={{color: colors.text}}>AdItem</Text> */}
       <Pressable style={{flex: 1}} onPress={openLink}>
         <Image
           style={styles.image}
@@ -54,12 +54,12 @@ const styles = StyleSheet.create({
     flex: 1,
     // flexGrow: 0,
     // marginTop: StatusBar.currentHeight || 0,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
   },
   image: {
     flex: 1,
     // width: '100%',
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     // height: 58,
   },
   shadowContainerStyle: {
