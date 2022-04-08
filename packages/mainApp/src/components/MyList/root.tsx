@@ -73,7 +73,7 @@ const MyList = props => {
 
       const readItem = finalNewsList[idx];
       if (!readItem?.isRead) {
-        updateNewsStateToRead({readNewsId: readItem.id, isRead: true});
+        updateNewsStateToRead({readNewsId: readItem?.id, isRead: true});
       }
     },
     [index],

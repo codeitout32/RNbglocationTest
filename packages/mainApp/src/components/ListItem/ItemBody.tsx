@@ -151,8 +151,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   descriptionText: {
-    fontSize: 17,
-    lineHeight: 28,
+    fontSize: 16,
+    lineHeight: 25,
     fontFamily: Fonts.robotoLight,
   },
 });
