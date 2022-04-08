@@ -5,11 +5,10 @@ import createSagaMiddleware, { SagaMiddleware } from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 
-
 import rootReducer from "../slices";
 
 import { rootSaga } from "../saga";
-import storage from "./storage";
+import storage, { isDev } from "./storage";
 
 let store: any;
 
@@ -19,7 +18,7 @@ const persistConfig = {
   key: "root",
   storage: storage,
   timeout: null,
-  blacklist: ['appBar']
+  blacklist: ["appBar"],
 };
 // console.log("hello react native from store", View);
 
@@ -39,7 +38,7 @@ function initStore() {
   // }
 
   let devTools = false;
-  if (process.env.NODE_ENV === "development" || __DEV__) {
+  if (process.env.NODE_ENV === "development" || isDev) {
     middleware.push(logger as any);
     devTools = true;
   }

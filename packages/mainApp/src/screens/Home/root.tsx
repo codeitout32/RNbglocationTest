@@ -1,11 +1,14 @@
+import {userIdSelector} from '@next/common/selectors';
 import React, {useEffect, memo} from 'react';
 import {useState} from 'react';
-import {Button, Pressable, SafeAreaView, Text} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {Button, Platform, Pressable, SafeAreaView, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import messaging from '@react-native-firebase/messaging';
 
 import AppBar from '../../components/AppBar';
 import MyList from '../../components/MyList';
 import styles from './style';
+import getUserToken from './utils/getUserToken';
 
 const Home: React.FC<any> = props => {
   const {
@@ -43,6 +46,16 @@ const Home: React.FC<any> = props => {
 
   useEffect(() => {
     dispatch(fetchAdvertStart());
+  }, []);
+
+  // user id register
+
+  const userIdState = useSelector(userIdSelector);
+
+  React.useEffect(() => {
+    if (!userIdState?.id) {
+      getUserToken(dispatch);
+    }
   }, []);
 
   const headerLinks = {

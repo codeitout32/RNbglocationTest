@@ -79,6 +79,7 @@ function* fetchCategoryNewsSaga(action) {
   try {
     const res = yield commonService(params);
     res.rows = res.rows.map((news: Object) => ({ ...news, isRead: false }));
+
     yield put(NewsSlice.fetchCategoryNewsSuccess({ res }));
   } catch (error) {
     console.log("~ error", error);

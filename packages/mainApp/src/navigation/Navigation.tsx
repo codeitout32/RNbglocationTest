@@ -32,7 +32,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
   DefaultTheme.colors['background'] = 'rgba(250, 250, 250,1)';
   DefaultTheme.colors['text'] = 'rgba(0, 0, 0, 0.6)';
   DefaultTheme.colors['transparentBg'] = 'rgba(250, 250, 250, 0.95)';
-  DefaultTheme.colors['border'] = 'rgba(0, 0, 0, 0.95)';
+  DefaultTheme.colors['border'] = 'rgba(0, 0, 0, 0.6)';
 
   const {theme} = useTheme();
   const MyTheme = {
@@ -46,7 +46,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
       card: '#444',
       settingText: 'rgba(255, 255, 255, 0.6)',
       green: '#34CF54',
-      border: 'rgba(250, 250, 250, 0.6)',
+      border: 'rgba(250, 250, 250, 0.5)',
     },
   };
 
@@ -84,7 +84,7 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
           <Stack.Screen
             name="CategoryNews"
             component={CategoryNews}
-            // only to show selected tab
+            initialParams={{catId: 0, isReload: false}} // only to show selected tab
             options={{
               animationEnabled: true,
               cardOverlayEnabled: false,

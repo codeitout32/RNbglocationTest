@@ -13,7 +13,6 @@ import {Icon, Switch, Text, Card, ListItem} from 'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
 import SelectDropdown from 'react-native-select-dropdown';
 import messaging from '@react-native-firebase/messaging';
-import {getDeviceToken} from 'react-native-device-info';
 
 import Header from '../../components/Header';
 import styles from './style';
@@ -57,9 +56,11 @@ const Settings: React.FC<any> = props => {
   const isDarkMode = useSelector(darkModeSelector);
   const catId = route.params?.catId;
 
-  const userIdState = useSelector(userIdSelector);
   const loadingSelector = useSelector(assetsLoadingSelector);
 
+  const userIdState = useSelector(userIdSelector);
+
+  //Send token code can be removed as it is implemented in home page, but i'm keeping it for being safe.
   const sendFcmToken = async () => {
     await messaging().registerDeviceForRemoteMessages();
     const token = await messaging().getToken();

@@ -20,3 +20,6 @@ const storage =
     : createNoopStorage();
 
 export default storage;
+
+// to see if development or not.
+export const isDev = process.env.NODE_ENV === "development";

@@ -5,6 +5,9 @@
   "author": "Shivam Mishra <mishivam1999@gmail.com>",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "yarn": "1.x"
+  },
   "workspaces": {
     "packages": [
       "packages/*"

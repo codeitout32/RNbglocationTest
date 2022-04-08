@@ -12,12 +12,24 @@ import {Card} from 'react-native-elements';
 import {useTheme} from '@react-navigation/native';
 import {color} from 'react-native-reanimated';
 import config from '../../res/config';
+import {useDispatch, useSelector} from 'react-redux';
+import {updateAdvertClickedStart} from '@next/common/slices/adverts.slice';
+import {userIdSelector} from '@next/common/selectors';
 
 const AdItem = ({item}) => {
+  const userIdState = useSelector(userIdSelector);
   const {colors} = useTheme();
+  const dispatch = useDispatch();
   const openLink = () => {
     try {
-      Linking.openURL(item.url).then(() => console.log('ad clicked success'));
+      Linking.openURL(item.url).then(() =>
+        dispatch(
+          updateAdvertClickedStart({
+            user_id: userIdState.device_id,
+            advertise_id: item.id,
+          }),
+        ),
+      );
     } catch (err) {
       console.log('failed linking', err);
     }

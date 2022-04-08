@@ -1,6 +1,6 @@
 // import { serverUrl } from "./serverUrl";
 
-const serverUrl = "http://dev.solshorts.io/api";
+const serverUrl = "https://dev.solshorts.io/api";
 console.log("serverurl", serverUrl);
 //add your api routes here...
 export const routes = {
@@ -8,6 +8,7 @@ export const routes = {
   drops: serverUrl + "/drop",
   guides: serverUrl + "/guide",
   advert: serverUrl + "/advertise",
+  adclick: serverUrl + "/adclick",
   services: serverUrl + "/our-service",
   category: serverUrl + "/category",
   user: serverUrl + "/user",

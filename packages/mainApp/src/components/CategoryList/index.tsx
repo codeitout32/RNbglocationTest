@@ -2,6 +2,7 @@ import CategoryList from './root';
 import {connect} from 'react-redux';
 
 import {
+  advertListSelector,
   categoryNewsListSelector,
   categoryNewsLoadingSelector,
   selectGoToTop,
@@ -19,6 +20,7 @@ const mapStateToProps = (state: any) => ({
   goToTop: selectGoToTop(state),
   isAppBarVisible: selectIsAppBarVisible(state),
   showUpArrow: selectShowUpArrow(state),
+  advertListStore: advertListSelector(state),
 });
 
 export default connect(mapStateToProps, {
