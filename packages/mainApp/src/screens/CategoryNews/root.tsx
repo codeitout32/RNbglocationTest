@@ -6,6 +6,8 @@ import CategoryList from '../../components/CategoryList';
 import styles from './style';
 import AppBar from '../../components/AppBar';
 import {View} from 'react-native';
+import {fetchAdvertStart} from '@next/common/slices/adverts.slice';
+import {useDispatch} from 'react-redux';
 
 const CategoryNews: React.FC<any> = props => {
   const {navigation, route, fetchCategoryNewsStart} = props;
@@ -19,8 +21,13 @@ const CategoryNews: React.FC<any> = props => {
     navigation.navigate('CategoryNews', {catId, isReload: false});
   }, [catId, isReload]);
 
-  console.log('Categroy                News');
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchAdvertStart());
+  }, []);
+
+  console.log('hello from category list');
   const headerLinks = {
     menu: {
       link: 'Category',
@@ -36,7 +43,7 @@ const CategoryNews: React.FC<any> = props => {
 
   return (
     <View style={styles.view}>
-      <AppBar headerLinks={headerLinks} />
+      <AppBar headerLinks={headerLinks} title={'News By Category'} />
       <CategoryList />
     </View>
   );

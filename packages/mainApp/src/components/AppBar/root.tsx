@@ -5,9 +5,10 @@ import Header from '../Header';
 interface IAppBar {
   isVisible: boolean;
   headerLinks: any;
+  title: string;
 }
 
-export const AppBar: React.FC<IAppBar> = ({isVisible, headerLinks}) => {
+export const AppBar: React.FC<IAppBar> = ({isVisible, headerLinks, title}) => {
   return (
     <MotiView
       from={{translateY: isVisible ? -100 : 0, opacity: isVisible ? 0 : -1}}
@@ -17,7 +18,7 @@ export const AppBar: React.FC<IAppBar> = ({isVisible, headerLinks}) => {
       }}
       transition={{type: 'timing', duration: 120}}
       style={{zIndex: 100}}>
-      <Header title={''} headerLinks={headerLinks} noSettings={false} />
+      <Header title={title} headerLinks={headerLinks} noSettings={false} />
     </MotiView>
   );
 };

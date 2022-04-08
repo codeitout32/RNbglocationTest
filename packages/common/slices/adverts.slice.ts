@@ -42,7 +42,7 @@ export const advertsSlice = createSlice({
         error: action.payload,
       };
     },
-    updateAdvertClickedStart: (state) => {
+    updateAdvertClickedStart: (state, action) => {
       return {
         ...state,
         loading: true,

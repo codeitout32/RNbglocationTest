@@ -17,20 +17,23 @@ const SingleCategory: React.FC<ISinlgeCategory> = props => {
 
   const {colors} = useTheme();
   const isSelected = (itemId: any) => {
-    return {
-      item: {
-        opacity: catId === itemId ? 1 : 0.7,
-        borderColor: itemId === catId ? colors.border : colors.border,
-        // width: itemId === catId ? 120 : 120,
-        // height: itemId === catId ? 120 : 120,
-        scale: 1.1,
-        borderWidth: 2,
-      },
-    };
+    if (itemId == catId)
+      return {
+        item: {
+          opacity: 1,
+          borderColor: colors.border,
+          // width: itemId === catId ? 120 : 120,
+          // height: itemId === catId ? 120 : 120,
+          scale: 1.2,
+          borderWidth: 2,
+        },
+      };
+    return {item: {}};
   };
 
-  const onSelectStyle = useMemo(() => isSelected(item?.id), []);
-  console.log({catId, navigation});
+  console.log('single category', {catId, id: item?.id});
+  const onSelectStyle = isSelected(item?.id);
+
   return (
     <Pressable
       onPress={() => {

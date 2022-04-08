@@ -116,6 +116,11 @@ const MyList = props => {
           hideOnPress: true,
         });
       }
+
+      const readItem = finalNewsList[idx];
+      if (!readItem?.isRead) {
+        updateNewsStateToRead({readNewsId: readItem.id, isRead: true});
+      }
     },
     [index, isAppBarVisible, showUpArrow, finalNewsList, newsReadCount],
   );
@@ -152,6 +157,7 @@ const MyList = props => {
           keyExtractor={keyExtractor}
           getItemLayout={getItemLayout}
           alwaysBounceVertical
+          on
         />
       ) : (
         <NoNews />

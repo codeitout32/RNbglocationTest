@@ -22,8 +22,8 @@ const Categories: React.FC<any> = props => {
       style={[styles.container, {backgroundColor: colors?.transparentBg}]}>
       <>
         <View style={styles.headerBar}>
-          <Text h4 style={{color: colors.text}}>
-            Categories
+          <Text h4 style={{color: colors.text}} h4Style={{fontWeight: '400'}}>
+            Select Category
           </Text>
           <Pressable onPress={() => props.navigation.goBack()}>
             <Icon

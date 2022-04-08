@@ -95,6 +95,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
         style: styles.heading,
       }}
       statusBarProps={{translucent: true, backgroundColor: 'black'}}
+      elevated
     />
   );
 };
