@@ -19,7 +19,8 @@ const CategoryNews: React.FC<any> = props => {
     navigation.navigate('CategoryNews', {catId, isReload: false});
   }, [catId, isReload]);
 
-  console.log('hello from category list');
+  console.log('Categroy                News');
+
   const headerLinks = {
     menu: {
       link: 'Category',

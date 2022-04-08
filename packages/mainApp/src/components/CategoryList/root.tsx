@@ -106,7 +106,7 @@ const CategoryList: React.FC<any> = props => {
         <LoadingNews />
       ) : categoryNewsListRaw?.length > 0 ? (
         <Carousel
-          data={categoryNewsListRaw ?? []}
+          data={finalCategoryNewsList ?? []}
           renderItem={({item}) => {
             return <ListItem item={item} />;
           }}

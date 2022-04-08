@@ -6,7 +6,7 @@ import Toast from 'react-native-root-toast';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 
-import NoNews from '../../components/NoNews';
+import NoNews from '../NoNews';
 import ListItem from '../ListItem';
 
 import {dimensions} from '../../res/dimensions';
@@ -134,7 +134,7 @@ const MyList = props => {
         <LoadingNews />
       ) : newsListRaw?.length > 0 ? (
         <Carousel
-          data={finalNewsList || []}
+          data={finalNewsList.reverse() || []}
           renderItem={({item}) => {
             return <ListItem item={item} />;
           }}
