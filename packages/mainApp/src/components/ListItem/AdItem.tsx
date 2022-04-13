@@ -18,6 +18,7 @@ import {userIdSelector} from '@next/common/selectors';
 
 const AdItem = ({item}) => {
   const userIdState = useSelector(userIdSelector);
+  const [imageError, setImageError] = React.useState(false);
   const {colors} = useTheme();
   const dispatch = useDispatch();
   const openLink = () => {
@@ -34,13 +35,24 @@ const AdItem = ({item}) => {
       console.log('failed linking', err);
     }
   };
+
+  const onImageNotFound = () => {
+    setImageError(true);
+  };
   return (
     <View style={[styles.container, {backgroundColor: colors.background}]}>
       {/* <Text style={{color: colors.text}}>AdItem</Text> */}
       <Pressable style={{flex: 1}} onPress={openLink}>
         <Image
           style={styles.image}
-          source={{uri: config.imgUrl + item?.image}}
+          source={
+            imageError
+              ? {
+                  uri: 'https://dummyimage.com/600x1000/000000/ffffff&text=Ad+Image+Not+found',
+                }
+              : {uri: config.imgUrl + item?.image}
+          }
+          onError={onImageNotFound}
         />
       </Pressable>
     </View>

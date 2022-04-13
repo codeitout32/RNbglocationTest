@@ -34,18 +34,40 @@ const Categories: React.FC<any> = props => {
             />
           </Pressable>
         </View>
-
-        <View style={styles.view}>
-          <View style={styles.categoryContainer}>
-            {(categoriesList?.rows || []).map((item: any) => (
-              <SingleCategory
-                key={'category_' + item?.id}
-                item={item}
-                catId={catId}
-              />
-            ))}
+        <ScrollView>
+          <View style={styles.view}>
+            <View style={styles.categoryContainer}>
+              {(categoriesList?.rows || []).map((item: any) => (
+                <SingleCategory
+                  key={'category_' + item?.id}
+                  item={item}
+                  catId={catId}
+                />
+              ))}
+              {/* {(categoriesList?.rows || []).map((item: any) => (
+                <SingleCategory
+                  key={'category_' + item?.id}
+                  item={item}
+                  catId={catId}
+                />
+              ))}
+              {(categoriesList?.rows || []).map((item: any) => (
+                <SingleCategory
+                  key={'category_' + item?.id}
+                  item={item}
+                  catId={catId}
+                />
+              ))}
+              {(categoriesList?.rows || []).map((item: any) => (
+                <SingleCategory
+                  key={'category_' + item?.id}
+                  item={item}
+                  catId={catId}
+                />
+              ))} */}
+            </View>
           </View>
-        </View>
+        </ScrollView>
       </>
     </SafeAreaView>
   );

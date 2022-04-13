@@ -27,7 +27,8 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
     Linking.openURL(`https://reactnativeelements.com/docs/${props.view}`);
   };
   const headerLinks = props.headerLinks;
-  const menuNavigate = () => {
+  const menuNavigate = e => {
+    e.stopPropagation();
     navigation.navigate(headerLinks.menu.link, headerLinks.menu.params);
   };
   const settingsNavigate = () => {
@@ -49,7 +50,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
       leftComponent={
         <>
           {!props.noSettings && (
-            <Pressable onPress={menuNavigate}>
+            <Pressable onPress={menuNavigate} hitSlop={20}>
               <Image
                 source={require('../../assets/logo-light.png')}
                 style={{width: 30, height: 30}}

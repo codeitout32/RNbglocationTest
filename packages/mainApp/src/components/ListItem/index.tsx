@@ -61,14 +61,17 @@ const ListItem = ({item}) => {
               />
             ) : (
               <YoutubePlayer
-                height={245}
-                webViewStyle={{width: '100%', height: '100%', opacity: 0.99}}
-                play={true}
+                height={285}
+                webViewStyle={{
+                  width: '100%',
+                  height: '100%',
+                  opacity: 0.99,
+                  marginTop: 50,
+                }} // 0.99 opacity is important otherwise the app will crash on categories change
+                // webViewProps={{containerStyle: {marginTop: 50}}}
+                play={!isCapturing}
                 videoId={item?.video}
                 mute={true}
-                webViewStyle={{
-                  opacity: 0.99, // This is important otherwise the app will crash on categories change
-                }}
               />
             )}
 
@@ -83,8 +86,7 @@ const ListItem = ({item}) => {
           color="gold"
           style={[
             styles.fab,
-            {top: item?.media_type !== 'image' ? '26%' : '37%'},
-            // {top: '37%'},
+            {top: item?.media_type !== 'image' ? '34%' : '37%'},
           ]}
           onPress={captureAndShareScreenshot}
         />
@@ -104,6 +106,7 @@ const styles = StyleSheet.create({
   img: {
     flex: 1.5,
     resizeMode: 'cover',
+    width: '100%',
   },
   container: {
     flex: 1,

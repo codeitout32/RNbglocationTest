@@ -53,10 +53,12 @@ const PlaceHolderImage: React.FC<IPlaceHolderImage> = props => {
           onError={handleError}
         />
       ) : (
-        <View style={[style, styles.errorContainer]}>
-          <MaterialIcons name="error-outline" size={36} />
-          <Text style={styles.errorText}>Couldn't load the media.</Text>
-        </View>
+        <Image
+          style={!loadingState.loading ? [style] : []}
+          resizeMode="cover"
+          resizeMethod="scale"
+          source={require('../../assets/image_error.png')}
+        />
       )}
     </>
   );

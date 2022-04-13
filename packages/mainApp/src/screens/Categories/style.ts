@@ -1,5 +1,8 @@
 import {StyleSheet} from 'react-native';
+import {dimensions} from '../../res';
 import fonts from '../../res/fonts';
+
+const {height} = dimensions.window;
 
 const styles = StyleSheet.create({
   absolute: {
@@ -19,10 +22,11 @@ const styles = StyleSheet.create({
   container: {flex: 1, paddingTop: 30},
   categoriesItem: {
     marginHorizontal: '1.5%',
-    height: '27%',
+    // height: height * 0.15,
+    height: 110,
     width: '27%',
-    // marginVertical: '1.5%',
-    paddingVertical: '10%',
+    marginVertical: '3%',
+    paddingVertical: '5%',
     opacity: 0.7,
     display: 'flex',
     flexDirection: 'column',
@@ -54,7 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    alignContent: 'space-around',
+    // alignContent: 'space-around',
     // flexBasis: 2,
     flexWrap: 'wrap',
   },

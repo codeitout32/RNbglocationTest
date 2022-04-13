@@ -126,6 +126,7 @@ const CategoryList: React.FC<any> = props => {
           onSnapToItem={handleSnapToItem}
           windowSize={5}
           maxToRenderPerBatch={3}
+          useScrollView={false}
           keyExtractor={keyExtractor}
           viewabilityConfigCallbackPairs={
             viewabilityConfigCallbackPairs.current

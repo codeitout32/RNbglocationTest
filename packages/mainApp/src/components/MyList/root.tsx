@@ -86,28 +86,28 @@ const MyList = props => {
         if (isAppBarVisible) setIsAppBarVisibleAction(false);
       }
 
-      if (
-        finalNewsList?.length > 0 &&
-        finalNewsList[0].hasOwnProperty('isRead') &&
-        !finalNewsList[0]?.isRead
-      ) {
-        const readNewsId = finalNewsList[0]?.id;
-        updateNewsStateToRead({readNewsId, isRead: true});
-      }
+      // if (
+      //   finalNewsList?.length > 0 &&
+      //   finalNewsList[0].hasOwnProperty('isRead') &&
+      //   !finalNewsList[0]?.isRead
+      // ) {
+      //   const readNewsId = finalNewsList[0]?.id;
+      //   updateNewsStateToRead({readNewsId, isRead: true});
+      // }
 
-      if (
-        idx > 0 &&
-        finalNewsList?.length > idx &&
-        finalNewsList[idx].hasOwnProperty('isRead') &&
-        !finalNewsList[idx]?.isRead
-      ) {
-        const readNewsId = finalNewsList[idx]?.id;
-        updateNewsStateToRead({readNewsId, isRead: true});
-      }
+      // if (
+      //   idx > 0 &&
+      //   finalNewsList?.length > idx &&
+      //   finalNewsList[idx].hasOwnProperty('isRead') &&
+      //   !finalNewsList[idx]?.isRead
+      // ) {
+      //   const readNewsId = finalNewsList[idx]?.id;
+      //   updateNewsStateToRead({readNewsId, isRead: true});
+      // }
 
       const {totalCount, leftToRead} = newsReadCount;
 
-      if (idx % 5 === 0) {
+      if (idx % 5 === 0 && totalCount > leftToRead) {
         Toast.show(`${totalCount - leftToRead} unread shorts below`, {
           duration: Toast.durations.LONG,
           position: Toast.positions.BOTTOM,
@@ -117,8 +117,10 @@ const MyList = props => {
         });
       }
 
-      const readItem = finalNewsList[idx];
-      if (!readItem?.isRead) {
+      if (idx < 1) return;
+      const readItem = finalNewsList[idx - 1];
+      // console.log('snapitem idx', idx, readItem);
+      if (!readItem?.isRead && readItem.hasOwnProperty('isRead')) {
         updateNewsStateToRead({readNewsId: readItem?.id, isRead: true});
       }
     },
@@ -139,7 +141,7 @@ const MyList = props => {
         <LoadingNews />
       ) : newsListRaw?.length > 0 ? (
         <Carousel
-          data={finalNewsList.reverse() || []}
+          data={finalNewsList || []}
           renderItem={({item}) => {
             return <ListItem item={item} />;
           }}
@@ -154,6 +156,7 @@ const MyList = props => {
           onSnapToItem={handleSnapToItem}
           windowSize={5}
           maxToRenderPerBatch={3}
+          useScrollView={false} //for performance new change
           keyExtractor={keyExtractor}
           getItemLayout={getItemLayout}
           alwaysBounceVertical
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
   },
   carousel: {
     flex: 1,
-    transform: [{scaleY: -1}],
+    // transform: [{scaleY: -1}],
   },
 });
 

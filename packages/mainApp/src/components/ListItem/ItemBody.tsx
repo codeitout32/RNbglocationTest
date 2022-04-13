@@ -35,9 +35,11 @@ const ItemBody = ({item}) => {
 
   const openNewsInBrowser = async () => {
     try {
-      const isSupported = await Linking.canOpenURL(item?.author);
+      console.log('url', item?.external_url);
+      const isSupported = await Linking.canOpenURL(item?.external_url);
+      console.log('issupported', isSupported);
+      await Linking.openURL(item?.external_url);
       if (isSupported) {
-        await Linking.openURL(item?.author);
       }
     } catch (e) {
       const msg = 'Link is not supported!';
@@ -75,7 +77,7 @@ const ItemBody = ({item}) => {
             {newsUploadTime[0].toUpperCase() + newsUploadTime.slice(1)}
           </Text>
         </Pressable>
-        <Pressable style={[styles.middleBarButton]}>
+        <Pressable style={[styles.middleBarButton]} onPress={openNewsInBrowser}>
           <Icon
             name="open-outline"
             color="darkgrey"

@@ -49,6 +49,7 @@ const Settings: React.FC<any> = props => {
   const {navigation, categoriesList, fetchCategoriesStart, route} = props;
   const [selectedLanguage, setSelectedLanguage] = useState();
   const [rendered, setRendered] = useState(false);
+  const [notification, setNotification] = useState(true);
 
   const pickerRef = useRef();
   const messageRef = useRef(null);
@@ -80,7 +81,8 @@ const Settings: React.FC<any> = props => {
         dispatch(getUserIdStart({device_id, device_type, notification_status}));
       });
     }
-    console.log('onEffect complete');
+
+    setNotification(userIdState?.notification_status);
   }, []);
 
   const onLayout = () => {
@@ -104,6 +106,7 @@ const Settings: React.FC<any> = props => {
         user_id: userIdState?.id,
       }),
     );
+    setNotification(state => !state);
   };
 
   const headerLinks = {
@@ -215,10 +218,7 @@ const Settings: React.FC<any> = props => {
                   // <Text style={{color: colors.text}}>Wait...</Text>
                   <ActivityIndicator size="small" color="#0000ff" />
                 )}
-                <Switch
-                  value={userIdState?.notification_status}
-                  onChange={toggleNotification}
-                />
+                <Switch value={notification} onChange={toggleNotification} />
               </MyCard>
             </View>
             <View style={[styles.borderBottom]}>
