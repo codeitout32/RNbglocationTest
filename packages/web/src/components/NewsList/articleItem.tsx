@@ -36,6 +36,11 @@ const ArticleItem = ({ news }) => {
     `${process.env.NEXT_PUBLIC_IMAGE_URL}${news?.image}`
   );
 
+  React.useEffect(() => {
+    // Rerender image in one single news
+    setSrc(process.env.NEXT_PUBLIC_IMAGE_URL + news?.image);
+  }, [news?.image]);
+
   return (
     <Paper elevation={3} sx={{ my: 1.5 }}>
       <Grid
