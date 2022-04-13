@@ -21,7 +21,12 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ["3.139.241.130", "picsum.photos", "solshorts.herokuapp.com"],
+    domains: [
+      "3.139.241.130",
+      "picsum.photos",
+      "solshorts.herokuapp.com",
+      "shmgr.solshorts.io",
+    ],
   },
   typescript: {
     ignoreBuildErrors: true,

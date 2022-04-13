@@ -31,6 +31,11 @@ const ArticleItem = ({ news }) => {
     });
   };
 
+  //Handle image error
+  const [src, setSrc] = React.useState(
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}${news?.image}`
+  );
+
   return (
     <Paper elevation={3} sx={{ my: 1.5 }}>
       <Grid
@@ -61,7 +66,7 @@ const ArticleItem = ({ news }) => {
           >
             <div style={{ position: "relative" }} className="img-div">
               <Image
-                src={"" || "https://picsum.photos/200"}
+                src={news?.image ? src : "https://picsum.photos/200"}
                 alt="Picture of the author"
                 layout="fill"
                 // height={200}
@@ -69,7 +74,7 @@ const ArticleItem = ({ news }) => {
                 objectFit="cover"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII="
                 placeholder="blur"
-                onError={handleImageError}
+                onError={() => setSrc("https://picsum.photos/200")}
               />
             </div>
             {/* <img src={news.image} onError={handleImageError} /> */}
