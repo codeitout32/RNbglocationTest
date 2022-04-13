@@ -19,6 +19,7 @@ console.log(
 );
 module.exports = {
   transformer: {
+    babelTransformerPath: require.resolve('react-native-svg-transformer'),
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,

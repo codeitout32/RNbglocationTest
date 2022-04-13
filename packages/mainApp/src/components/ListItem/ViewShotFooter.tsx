@@ -1,6 +1,7 @@
 import {Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Text} from 'react-native-elements';
+import LogoText from './logo_text.svg';
 
 import {useTheme} from '@react-navigation/native';
 import gplayimg from '../../assets/playstore.png';
@@ -22,13 +23,14 @@ const ViewShotFooter = () => {
         />
       </View>
       <View style={styles.snapFooterItem}>
-        <Image
+        {/* <Image
           source={require('../../assets/logo.png')}
           style={{width: 40, height: 30, resizeMode: 'contain'}}
         />
         <Text h4 style={{color: colors.text}}>
           SolShorts
-        </Text>
+        </Text> */}
+        <LogoText />
       </View>
     </View>
   );

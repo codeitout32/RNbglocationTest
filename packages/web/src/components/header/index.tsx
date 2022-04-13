@@ -90,21 +90,24 @@ const Header = ({ pages = [], collapseMenuAfter = 5 }) => {
               sx={{
                 flexGrow: 1,
                 display: { xs: "flex", md: "flex" },
+                alignItems: "center",
                 color: "text.primary",
               }}
             >
-              <IconButton
-                size="medium"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                // onClick={handleOpenNavMenu}
-                onClick={() => setDrawer(true)}
-                color="default"
-              >
-                <MenuIcon fontSize="large" />
-              </IconButton>
-              Menu
+              <a onClick={() => setDrawer(true)}>
+                <IconButton
+                  size="medium"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  // onClick={handleOpenNavMenu}
+                  onClick={() => setDrawer(true)}
+                  color="default"
+                >
+                  <MenuIcon fontSize="large" />
+                </IconButton>
+                Menu
+              </a>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -137,7 +140,7 @@ const Header = ({ pages = [], collapseMenuAfter = 5 }) => {
               sx={{ mr: 0, flexGrow: 1, display: { xs: "flex", md: "flex" } }}
             >
               {/* <Logo /> */}
-              <img src="/images/Logo.svg" alt="" width={170} />
+              <img src="/svg/logo_text.svg" alt="" width={170} />
             </Box>
 
             <Typography

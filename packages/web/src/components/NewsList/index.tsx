@@ -22,6 +22,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNewsStart } from "@next/common/slices/news.slice";
 import { duplicateRemover } from "./utils";
+import Collapse from "@mui/material/Collapse";
 // taken from latest news
 import appstoreImage from "../../../public/images/appstore.png";
 import AppLinksCard from "../AppLinksCard";
@@ -90,11 +91,14 @@ const NewsList = ({ lang, category }) => {
           Recent Articles
         </Typography> */}
         <AppLinksCard />
-        {resultList?.map((news, index) => (
-          <ArticleItem key={index} news={news} />
-        ))}
 
-        {!resultList?.length && (
+        <Collapse in={!newsLoading}>
+          {resultList?.map((news, index) => (
+            <ArticleItem key={index} news={news} />
+          ))}
+        </Collapse>
+
+        {!resultList?.length && !newsLoading && (
           <Typography
             variant="h5"
             textAlign="center"

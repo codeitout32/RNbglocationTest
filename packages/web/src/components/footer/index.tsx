@@ -45,15 +45,10 @@ const Footer = () => {
                 pr: 2,
               }}
             >
-              <Grid container justifyContent="flex-end">
+              <Grid container justifyContent="flex-end" spacing={1}>
                 <Grid item xs={2}>
                   {/* <Logo sx={{ fontSize: "3.8rem" }} /> */}
-                  <img
-                    src="/images/Logo1.svg"
-                    alt=""
-                    width={40}
-                    height="auto"
-                  />
+                  <img src="/svg/logo.svg" alt="" width={50} height="auto" />
                 </Grid>
                 <Grid item xs={0}>
                   <Typography
