@@ -35,7 +35,7 @@ export default function MenuDrawer({ toggle, handleDrawer }) {
   const dispatch = useDispatch();
   const categoriesList = useSelector(categoriesSelector)?.rows ?? dumCategories;
   const pagination = useSelector(newsListSelector)?.pagination;
-  const catid = pagination.category_id;
+  const catid = pagination?.category_id;
 
   React.useEffect(() => {
     console.log("drawer state", state);
