@@ -32,7 +32,10 @@ const DrawerContent = (props) => {
         sx={{
           p: 2,
           marginBottom: 1,
-          ".selected": { bgcolor: "#808290", color: "#303036" },
+          ".selected,.selected:hover": {
+            bgcolor: "#808290",
+            color: "#303036",
+          },
         }}
       >
         <ButtonGroup variant="outlined">
