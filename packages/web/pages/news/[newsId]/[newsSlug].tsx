@@ -1,4 +1,12 @@
-import { Box, Container, Grid, Link, Skeleton } from "@mui/material";
+import {
+  Backdrop,
+  Box,
+  CircularProgress,
+  Container,
+  Grid,
+  Link,
+  Skeleton,
+} from "@mui/material";
 import {
   fetchNewsStart,
   fetchSingleNewsStart,
@@ -21,6 +29,7 @@ import {
 import {
   advertSelector,
   categoriesSelector,
+  newsLoadingSelector,
   singleNewsSelector,
 } from "@next/common/selectors/";
 import { handleImageError } from "@next/common/utils/handleImageError";
@@ -50,6 +59,7 @@ export default function News() {
   const categories = getCategories(categoriesState);
 
   const singleNews = useSelector(singleNewsSelector);
+  const loading = useSelector(newsLoadingSelector);
 
   const pages = categories?.length ? [...categories] : dummyPages;
 
@@ -73,6 +83,18 @@ export default function News() {
         <ArticleItem news={singleNews?.current} />
       </Container>
       <Box sx={{ height: "10vh" }} />
+      {loading && (
+        <Backdrop
+          sx={{
+            color: "rgba(255,255,255,0.7)",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+          }}
+          open={true}
+        >
+          <CircularProgress color="inherit" />
+          &nbsp; Loading...
+        </Backdrop>
+      )}
       <Footer />
     </Fragment>
   );
