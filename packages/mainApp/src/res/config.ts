@@ -1,4 +1,6 @@
+import {SERVER_URL, IMAGE_URL} from '@env';
+
 export default {
-  serverUrl: 'http://dev.solshorts.io/api',
-  imgUrl: 'http://dev.solshorts.io/',
+  serverUrl: SERVER_URL,
+  imgUrl: IMAGE_URL,
 };

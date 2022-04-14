@@ -140,7 +140,11 @@ const Header = ({ pages = [], collapseMenuAfter = 5 }) => {
               sx={{ mr: 0, flexGrow: 1, display: { xs: "flex", md: "flex" } }}
             >
               {/* <Logo /> */}
-              <img src="/svg/logo_text.svg" alt="" width={170} />
+              <Link href="/" passHref>
+                <a>
+                  <img src="/svg/logo_text.svg" alt="" width={170} />
+                </a>
+              </Link>
             </Box>
 
             <Typography

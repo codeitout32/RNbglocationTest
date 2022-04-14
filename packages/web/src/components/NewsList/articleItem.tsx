@@ -92,6 +92,11 @@ const ArticleItem = ({ news }) => {
                 <a> {news?.title || dummy.title} </a>
               </Link>
             </Typography>
+            <Typography variant="caption" sx={{ fontWeight: 700 }}>
+              <Link href={`/news/${news?.id}/${getSlug(news?.title)}`} passHref>
+                <a> short </a>
+              </Link>
+            </Typography>
 
             <Typography variant="caption" color="grey.700">
               {news?.author ? "By " + news?.author : "By Langston Thomas"}

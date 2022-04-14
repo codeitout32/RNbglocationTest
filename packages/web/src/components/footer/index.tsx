@@ -60,7 +60,7 @@ const Footer = () => {
                       fontFamily: "DM Sans",
                     }}
                   >
-                    Solshorts
+                    SOLSHORTS
                   </Typography>
                 </Grid>
               </Grid>
