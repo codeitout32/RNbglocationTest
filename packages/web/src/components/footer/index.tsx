@@ -45,19 +45,25 @@ const Footer = () => {
                 pr: 2,
               }}
             >
-              <Grid container justifyContent="flex-end" spacing={1}>
+              <Grid
+                container
+                justifyContent="flex-end"
+                alignItems="center"
+                spacing={1}
+              >
                 <Grid item xs={2}>
                   {/* <Logo sx={{ fontSize: "3.8rem" }} /> */}
                   <img src="/svg/logo.svg" alt="" width={50} height="auto" />
                 </Grid>
                 <Grid item xs={0}>
                   <Typography
-                    variant="h4"
+                    variant="h6"
                     component="div"
                     width="50%"
                     sx={{
                       display: { xs: "none", md: "flex" },
                       fontFamily: "DM Sans",
+                      fontWeight: 700,
                     }}
                   >
                     SOLSHORTS

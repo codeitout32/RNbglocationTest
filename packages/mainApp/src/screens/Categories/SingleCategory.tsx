@@ -39,13 +39,14 @@ const SingleCategory: React.FC<ISinlgeCategory> = props => {
       onPress={() => {
         navigation.navigate('CategoryNews', {catId: item?.id});
       }}
-      style={[styles.categoriesItem, onSelectStyle.item]}
-      >
+      style={[styles.categoriesItem, onSelectStyle.item]}>
       <Image
         source={{uri: config.imgUrl + item?.image}}
         style={[styles.categoryImg]}
       />
-      <Text style={[styles.categoriesText]}>{item?.category_name}</Text>
+      <Text style={[styles.categoriesText, {color: colors.text}]}>
+        {item?.category_name}
+      </Text>
     </Pressable>
   );
 };

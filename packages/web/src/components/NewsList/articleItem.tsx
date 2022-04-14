@@ -1,5 +1,5 @@
 import { Grid, Icon, Paper, Stack, Typography, Box } from "@mui/material";
-import mLink from "@mui/material/Link";
+import Linkm from "@mui/material/Link";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import React, { Fragment } from "react";
 import ButtonTransparent from "src/theme/buttonTransparent";
@@ -69,20 +69,24 @@ const ArticleItem = ({ news }) => {
               },
             }}
           >
-            <div style={{ position: "relative" }} className="img-div">
-              <Image
-                src={news?.image ? src : "https://picsum.photos/200"}
-                alt="Picture of the author"
-                layout="fill"
-                // height={200}
-                // width={300}
-                objectFit="cover"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII="
-                placeholder="blur"
-                onError={() => setSrc("https://picsum.photos/200")}
-              />
-            </div>
-            {/* <img src={news.image} onError={handleImageError} /> */}
+            <Link href={`/news/${news?.id}/${getSlug(news?.title)}`} passHref>
+              <a href="">
+                <div style={{ position: "relative" }} className="img-div">
+                  <Image
+                    src={news?.image ? src : "https://picsum.photos/200"}
+                    alt="Picture of the author"
+                    layout="fill"
+                    // height={200}
+                    // width={300}
+                    objectFit="cover"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII="
+                    placeholder="blur"
+                    onError={() => setSrc("https://picsum.photos/200")}
+                  />
+                </div>
+              </a>
+              {/* <img src={news.image} onError={handleImageError} /> */}
+            </Link>
           </Paper>
         </Grid>
         <Grid item md={7} xs={12}>
@@ -92,11 +96,16 @@ const ArticleItem = ({ news }) => {
                 <a> {news?.title || dummy.title} </a>
               </Link>
             </Typography>
-            <Typography variant="caption" sx={{ fontWeight: 700 }}>
-              <Link href={`/news/${news?.id}/${getSlug(news?.title)}`} passHref>
-                <a> short </a>
-              </Link>
-            </Typography>
+            <Linkm
+              href={news?.external_url}
+              color="text.primary"
+              underline="none"
+              target="_blank"
+            >
+              <Typography variant="caption" sx={{ fontWeight: 700 }}>
+                short&nbsp;
+              </Typography>
+            </Linkm>
 
             <Typography variant="caption" color="grey.700">
               {news?.author ? "By " + news?.author : "By Langston Thomas"}
