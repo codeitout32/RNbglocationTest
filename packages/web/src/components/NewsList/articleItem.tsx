@@ -101,6 +101,9 @@ const ArticleItem = ({ news }) => {
               color="text.primary"
               underline="none"
               target="_blank"
+              onClick={
+                news?.external_url ? null : () => alert("Link not found")
+              }
             >
               <Typography variant="caption" sx={{ fontWeight: 700 }}>
                 short&nbsp;
