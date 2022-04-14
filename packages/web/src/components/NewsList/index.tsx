@@ -92,7 +92,7 @@ const NewsList = ({ lang, category }) => {
         </Typography> */}
         <AppLinksCard />
 
-        <Collapse in={!newsLoading}>
+        <Collapse in={!newsLoading || resultList.length}>
           {resultList?.map((news, index) => (
             <ArticleItem key={index} news={news} />
           ))}

@@ -30,7 +30,7 @@ const ViewShotFooter = () => {
         <Text h4 style={{color: colors.text}}>
           SolShorts
         </Text> */}
-        <LogoText />
+        <LogoText height={30} width={120} color="white" />
       </View>
     </View>
   );

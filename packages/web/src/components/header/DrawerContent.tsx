@@ -28,7 +28,7 @@ const DrawerContent = (props) => {
       onClick={handleClose}
       onKeyDown={handleClose}
     >
-      <Box
+      {/* <Box  //english hindi selector
         sx={{
           p: 2,
           marginBottom: 1,
@@ -42,7 +42,7 @@ const DrawerContent = (props) => {
           <Button className={"selected"}>English</Button>
           <Button>Hindi</Button>
         </ButtonGroup>
-      </Box>
+      </Box> */}
       <List
         subheader={
           <ListSubheader
