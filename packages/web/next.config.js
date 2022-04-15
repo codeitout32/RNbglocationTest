@@ -32,4 +32,7 @@ module.exports = {
     ignoreBuildErrors: true,
     strictNullChecks: false,
   },
+  compiler: {
+    removeConsole: true,
+  },
 };
