@@ -12,6 +12,7 @@ import parse from "html-react-parser";
 import { handleImageError } from "@next/common/utils/handleImageError";
 import Image from "next/image";
 import { getSlug } from "src/helper/generateSlug";
+import ImgLgtbox from "./imgLgtbox";
 
 const ArticleItem = ({ news }) => {
   const dummy = {
@@ -35,6 +36,9 @@ const ArticleItem = ({ news }) => {
   const [src, setSrc] = React.useState(
     `${process.env.NEXT_PUBLIC_IMAGE_URL}${news?.image}`
   );
+
+  //Open lightbox
+  const [isLbOpen, setIsLbOpen] = React.useState(false);
 
   React.useEffect(() => {
     // Rerender image in one single news
@@ -69,24 +73,23 @@ const ArticleItem = ({ news }) => {
               },
             }}
           >
-            <Link href={`/news/${news?.id}/${getSlug(news?.title)}`} passHref>
-              <a href="">
-                <div style={{ position: "relative" }} className="img-div">
-                  <Image
-                    src={news?.image ? src : "https://picsum.photos/200"}
-                    alt="Picture of the author"
-                    layout="fill"
-                    // height={200}
-                    // width={300}
-                    objectFit="cover"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII="
-                    placeholder="blur"
-                    onError={() => setSrc("https://picsum.photos/200")}
-                  />
-                </div>
-              </a>
-              {/* <img src={news.image} onError={handleImageError} /> */}
-            </Link>
+            {/* <Link href={`/news/${news?.id}/${getSlug(news?.title)}`} passHref> */}
+            <a onClick={() => setIsLbOpen(true)}>
+              <div style={{ position: "relative" }} className="img-div">
+                <Image
+                  src={news?.image ? src : "https://picsum.photos/200"}
+                  alt="Picture of the author"
+                  layout="fill"
+                  // height={200}
+                  // width={300}
+                  objectFit="cover"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcXg8AAdMBKJ79nBQAAAAASUVORK5CYII="
+                  placeholder="blur"
+                  onError={() => setSrc("https://picsum.photos/200")}
+                />
+              </div>
+            </a>
+            {/* <img src={news.image} onError={handleImageError} /> */}
           </Paper>
         </Grid>
         <Grid item md={7} xs={12}>
@@ -165,6 +168,9 @@ const ArticleItem = ({ news }) => {
             </Stack>
           </Grid> */}
       </Grid>
+      {isLbOpen && (
+        <ImgLgtbox imgUrl={src ?? ""} setOpen={setIsLbOpen} news={news} />
+      )}
     </Paper>
   );
 };

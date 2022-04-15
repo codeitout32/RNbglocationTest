@@ -14,6 +14,8 @@ import restheme from "src/theme/theme";
 import CircularLoader from "src/components/loader";
 import GlobalStyles from "@mui/material/GlobalStyles";
 
+import "react-image-lightbox/style.css";
+
 //
 import NProgress from "nprogress";
 import "../public/css/nprogress.css";

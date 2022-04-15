@@ -113,7 +113,7 @@ const NewsList = ({ lang, category }) => {
         {/* <ArticleItem />
           <ArticleItem /> */}
 
-        {newsList?.length ? (
+        {newsList?.length || newsLoading ? (
           <ButtonWhite
             sx={{
               textTransform: "capitalize",
