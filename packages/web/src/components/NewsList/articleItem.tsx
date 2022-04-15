@@ -64,11 +64,12 @@ const ArticleItem = ({ news }) => {
               // borderRadius: "10px",
               overflow: "hidden",
               bgcolor: "inherit",
-              width: { md: "320px" },
+              width: { md: "320px", sm: "60%" },
+              mx: { sm: "auto", md: 0 },
               ".img-div": {
                 // objectFit: "cover",
-                height: { md: "270px" },
-                width: { xs: "95%", md: "100%" },
+                height: { md: "270px", xs: "300px" },
+                width: { xs: "100%", md: "100%" },
                 mx: "auto",
               },
             }}
