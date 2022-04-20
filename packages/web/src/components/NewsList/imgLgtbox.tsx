@@ -5,6 +5,8 @@ import Lightbox from "react-image-lightbox";
 const ImgLgtbox = ({ imgUrl, setOpen, news }) => {
   //   const [isOpen, setIsOpen] = React.useState(false);
 
+  console.log("lightbox", imgUrl);
+
   const titleNode = (
     <>
       {`By ${news.author}`}{" "}

@@ -33,6 +33,6 @@ module.exports = {
     strictNullChecks: false,
   },
   compiler: {
-    removeConsole: true,
+    removeConsole: false,
   },
 };

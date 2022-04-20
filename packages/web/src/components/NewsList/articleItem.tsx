@@ -40,6 +40,8 @@ const ArticleItem = ({ news }) => {
   //Open lightbox
   const [isLbOpen, setIsLbOpen] = React.useState(false);
 
+  console.log("newsimage", news?.image);
+
   React.useEffect(() => {
     // Rerender image in one single news
     setSrc(process.env.NEXT_PUBLIC_IMAGE_URL + news?.image);

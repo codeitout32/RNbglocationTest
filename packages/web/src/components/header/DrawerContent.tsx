@@ -56,14 +56,17 @@ const DrawerContent = (props) => {
       >
         {/* All news button */}
 
-        {/* <Link href={`/${lang}/read`} passHref>
+        <Link href={`/${lang}/read`} passHref>
           <ListItemButton href="#" component="a" selected={catid == ""}>
-             <ListItemIcon>
+            {/* <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon> 
-            <ListItemText primary="All News" sx={{ color: "white", pl: 2 }} />
+            </ListItemIcon> */}
+            <ListItemText
+              primary="Latest News"
+              sx={{ color: "white", pl: 2 }}
+            />
           </ListItemButton>
-        </Link> */}
+        </Link>
         {categoriesList?.map((item, index) => (
           <Link
             href={`/${lang}/read/${item?.category_name}`}

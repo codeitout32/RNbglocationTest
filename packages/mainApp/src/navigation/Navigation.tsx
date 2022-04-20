@@ -79,7 +79,11 @@ const Navigation = (props: {updateTheme: any; replaceTheme: any}) => {
             name="Category"
             component={Categories}
             initialParams={{catId: 0}} // only to show selected tab
-            options={{presentation: 'transparentModal'}}
+            options={{
+              presentation: 'transparentModal',
+              cardOverlayEnabled: false,
+              cardOverlay: false,
+            }}
           />
           <Stack.Screen
             name="CategoryNews"

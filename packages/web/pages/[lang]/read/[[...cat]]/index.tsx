@@ -48,6 +48,7 @@ export default function News() {
       fetchNewsStart({
         row_per_page: 10,
         page_num: 1,
+        sort_type: "DESC",
         category_id: categoryId ? categoryId : "",
       })
     );

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     width: '27%',
     marginVertical: '3%',
     paddingVertical: '5%',
-    opacity: 0.7,
+    opacity: 0.8,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   categoriesText: {
     color: 'darkgrey',
     textAlign: 'center',
-    textTransform: 'capitalize',
+    // textTransform: 'capitalize',
     fontFamily: fonts.robotoBold,
     fontSize: 16,
     marginTop: '5%',

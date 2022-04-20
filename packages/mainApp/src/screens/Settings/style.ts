@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // flexWrap: 'wrap',
     paddingTop: 100,
-    alignContent: 'center',
+    // alignContent: 'center',
   },
   sectionTitle: {
     fontSize: 24,

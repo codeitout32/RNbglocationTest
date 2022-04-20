@@ -18,8 +18,7 @@ const Categories: React.FC<any> = props => {
 
   const {colors} = useTheme();
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: colors?.transparentBg}]}>
+    <SafeAreaView style={[styles.container, {backgroundColor: 'black'}]}>
       <>
         <View style={styles.headerBar}>
           <Text h4 style={{color: colors.text}} h4Style={{fontWeight: '400'}}>

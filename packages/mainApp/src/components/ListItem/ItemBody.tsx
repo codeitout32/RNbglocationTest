@@ -61,8 +61,8 @@ const ItemBody = ({item}) => {
         h4
         h4Style={styles.h3}
         style={[styles.newsTitle, {color: colors?.title}]}>
-        {item?.title ||
-          'Joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
+        {item?.title ??
+          'joe Biden to speak with leaders of France, Germany, Britain on Ukraine crisis'}
       </Text>
       <View style={styles.middleBar}>
         <Pressable style={[styles.middleBarButton, {paddingRight: '5%'}]}>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   h3: {
     fontSize: 22,
-    textTransform: 'capitalize',
+    // textTransform: 'capitalize',
     fontWeight: '400',
   },
   img: {

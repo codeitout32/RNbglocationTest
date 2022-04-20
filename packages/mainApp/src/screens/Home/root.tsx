@@ -80,7 +80,7 @@ const Home: React.FC<any> = props => {
 
   return (
     <SafeAreaView style={styles.view} collapsable={false}>
-      <AppBar headerLinks={headerLinks} />
+      <AppBar headerLinks={headerLinks} title={'Latest News'} />
       <MyList headerLinks={headerLinks} fetchingStarted={fetchStart} />
     </SafeAreaView>
   );
