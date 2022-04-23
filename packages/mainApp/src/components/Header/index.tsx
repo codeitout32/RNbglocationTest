@@ -36,14 +36,16 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
   };
 
   const handleRefresh = () => {
-    navigation.navigate(headerLinks.relaod.link, {isReload: true});
+    navigation.navigate(headerLinks.relaod.link, {
+      isReload: true,
+      catId: headerLinks.menu.params.catId,
+    });
   };
 
   const onTopClick = () => {
     console.log('onTopClick');
     dispatch(setGoToTop(true));
   };
-
   return (
     <HeaderRNE
       containerStyle={styles.headerContainer}
@@ -51,10 +53,12 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
         <>
           {!props.noSettings && (
             <Pressable onPress={menuNavigate} hitSlop={20}>
-              <Image
+              {/* <Image
                 source={require('../../assets/logo-light.png')}
                 style={{width: 30, height: 30}}
-              />
+              /> */}
+
+              <Icon name="menu" color="white" type="ionicon" size={30} />
             </Pressable>
           )}
         </>
@@ -74,6 +78,7 @@ const Header: React.FunctionComponent<HeaderComponentProps> = props => {
                   <Icon
                     name={headerLinks.menu.reloadIcon.name}
                     type={headerLinks.menu.reloadIcon.type}
+                    size={24}
                     color="white"
                   />
                 ) : (
@@ -107,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#34CF54',
     width: '100%',
-    // paddingVertical: 10,
+    paddingVertical: 10,
     position: 'absolute',
     // top: 40,
     zIndex: 100000,
@@ -120,6 +125,7 @@ const styles = StyleSheet.create({
   headerRight: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
     // marginTop: 5,
   },
   subheaderText: {

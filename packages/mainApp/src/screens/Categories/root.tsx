@@ -21,13 +21,16 @@ const Categories: React.FC<any> = props => {
     <SafeAreaView style={[styles.container, {backgroundColor: 'black'}]}>
       <>
         <View style={styles.headerBar}>
-          <Text h4 style={{color: colors.text}} h4Style={{fontWeight: '400'}}>
+          <Text
+            h4
+            style={{color: 'rgba(255,255, 255, 0.6)'}}
+            h4Style={{fontWeight: '400'}}>
             Select Category
           </Text>
           <Pressable onPress={() => props.navigation.goBack()}>
             <Icon
               name="closecircleo"
-              color={colors.text}
+              color={'rgba(255,255, 255, 0.6)'}
               type="antdesign"
               size={30}
             />

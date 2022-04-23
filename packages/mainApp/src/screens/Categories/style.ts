@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   categoriesText: {
-    color: 'darkgrey',
+    color: 'rgba(255, 255, 255, 0.8)',
     textAlign: 'center',
     // textTransform: 'capitalize',
     fontFamily: fonts.robotoBold,

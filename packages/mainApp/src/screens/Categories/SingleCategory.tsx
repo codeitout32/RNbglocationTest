@@ -21,7 +21,7 @@ const SingleCategory: React.FC<ISinlgeCategory> = props => {
       return {
         item: {
           opacity: 1,
-          borderColor: colors.border,
+          borderColor: 'rgba(255, 255, 255, 0.6)',
           // width: itemId === catId ? 120 : 120,
           // height: itemId === catId ? 120 : 120,
           scale: 1.2,
@@ -44,7 +44,11 @@ const SingleCategory: React.FC<ISinlgeCategory> = props => {
         source={{uri: config.imgUrl + item?.image}}
         style={[styles.categoryImg]}
       />
-      <Text style={[styles.categoriesText, {color: colors.text}]}>
+      <Text
+        style={[
+          styles.categoriesText,
+          //  {color: colors.text}
+        ]}>
         {item?.category_name}
       </Text>
     </Pressable>

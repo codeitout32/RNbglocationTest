@@ -30,7 +30,6 @@ const CategoryNews: React.FC<any> = props => {
     dispatch(fetchAdvertStart());
   }, []);
 
-  console.log('hello from category list');
   const headerLinks = {
     menu: {
       link: 'Category',
@@ -46,7 +45,6 @@ const CategoryNews: React.FC<any> = props => {
 
   const categoriesState = useSelector(categoriesSelector);
   const categorySelected = filter(categoriesState?.rows, {id: catId});
-
   return (
     <View style={styles.view}>
       <AppBar
