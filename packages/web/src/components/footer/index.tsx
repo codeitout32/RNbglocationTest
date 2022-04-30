@@ -11,6 +11,8 @@ import Logo from "src/theme/logo";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   const company = [
@@ -81,7 +83,8 @@ const Footer = () => {
                   // fontSize: "1rem",
                 }}
               >
-                <b>Solshorts</b> Pvt Ltd. Copyright &copy; 2022
+                <b>SolShorts</b> <br />
+                Copyright &copy; 2022
               </Typography>
             </Grid>
             <Grid item xs={6} md={3} pl={2}>
@@ -111,7 +114,7 @@ const Footer = () => {
                 align="right"
                 width="50%"
                 target="_blank"
-                href="#"
+                href="/terms"
                 sx={{
                   my: 2,
                   // fontSize: "1rem",
@@ -160,14 +163,14 @@ const Footer = () => {
                 ".MuiSvgIcon-root": { color: "white" },
               }}
             >
-              <IconButton>
-                <LinkedInIcon fontSize="large" />
+              <IconButton href="https://discord.gg/NYswZUneps" target="_blank">
+                <FontAwesomeIcon icon={faDiscord} size="lg" color="white" />
               </IconButton>
-              <IconButton>
+              <IconButton
+                href="https://twitter.com/SolShorts_io"
+                target="_blank"
+              >
                 <TwitterIcon fontSize="large" />
-              </IconButton>
-              <IconButton>
-                <FacebookIcon fontSize="large" />
               </IconButton>
             </Grid>
           </Grid>

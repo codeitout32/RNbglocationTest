@@ -32,16 +32,17 @@ const TermsAndCondition = () => {
   // const current = singleGuide;
 
   return (
-    <>
-      <StyledPaper>
-        <Container maxWidth="md">
-          <Box maxWidth={"720px"} mx="auto">
+    <StyledPaper>
+      <Container maxWidth="md">
+        <Paper elevation={3} sx={{ my: 1.5 }}>
+          <Box maxWidth={"720px"} mx="auto" py={3}>
             <Typography variant="h3" component="div">
-              Terms and condition
+              Terms and condition, <br />
+              Privacy Policy
             </Typography>
             <Typography
               variant="body2"
-              fontSize={"1.25rem"}
+              fontSize={"1.1rem"}
               // textAlign="center"
               component="div"
               sx={{
@@ -79,9 +80,9 @@ const TermsAndCondition = () => {
               />
             </Stack> */}
           </Box>
-        </Container>
-      </StyledPaper>
-    </>
+        </Paper>
+      </Container>
+    </StyledPaper>
   );
 };
 

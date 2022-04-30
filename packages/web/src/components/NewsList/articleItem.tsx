@@ -127,49 +127,11 @@ const ArticleItem = ({ news }) => {
                 .format("hh:mm a on DD MMMM YYYY, dddd") || dummy.date}
             </Typography>
 
-            {/* item details in grid
-              <Grid container spacing={1}>
-                <Grid item md={4}>
-                  <Typography variant="caption" color="grey.700">
-                    {news?.author ? "By " + news?.author : "By Langston Thomas"}
-                  </Typography>
-                </Grid>
-                <Grid item md={8}>
-                  <Typography variant="caption" color="grey.700">
-                    {news?.created_at
-                      ? moment(news?.created_at).utc().format("MMMM DD, YYYY")
-                      : dummy.date}
-                  </Typography>
-                </Grid>
-              </Grid> */}
-
             <Typography variant="body1" sx={{ mt: 1 }} component="div">
               {parse(news?.description ?? "")}
             </Typography>
           </Box>
-          {/* <ButtonTransparent
-              sx={{
-                textTransform: "capitalize",
-                mt: 3,
-                fontSize: ".7rem",
-                px: 4,
-                py: 2,
-              }}
-            >
-              read more
-            </ButtonTransparent> */}
         </Grid>
-        {/* <Grid item md={1}>  arrow button in right
-            <Stack direction="column" alignItems="center" spacing={2} ml={2}>
-              <Link href={`news/${news.id}`}>
-                <Icon sx={{ overflow: "visible" }} component={mLink}>
-                  <ArrowCircleRightIcon
-                    sx={{ fontSize: 40, color: "text.primary" }}
-                  />
-                </Icon>
-              </Link>
-            </Stack>
-          </Grid> */}
       </Grid>
       {isLbOpen && (
         <ImgLgtbox imgUrl={src ?? ""} setOpen={setIsLbOpen} news={news} />
