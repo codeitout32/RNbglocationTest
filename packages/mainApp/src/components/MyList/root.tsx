@@ -33,7 +33,13 @@ const MyList = props => {
   } = props;
 
   const [index, setIndex] = useState(0);
+  const [isScroll, setIsScroll] = useState(true);
   const snapRef = useRef<React.LegacyRef<any>>();
+
+  const setScroll = state => {
+    console.log('setscrolled fired');
+    setIsScroll(state);
+  };
 
   useEffect(() => {
     if (newsList?.res?.newNewsCount > 0) {
@@ -143,7 +149,7 @@ const MyList = props => {
         <Carousel
           data={finalNewsList || []}
           renderItem={({item}) => {
-            return <ListItem item={item} />;
+            return <ListItem item={item} setScroll={setScroll} />;
           }}
           ref={snapRef}
           sliderHeight={300}
@@ -161,6 +167,7 @@ const MyList = props => {
           getItemLayout={getItemLayout}
           alwaysBounceVertical
           on
+          scrollEnabled={isScroll}
         />
       ) : (
         <NoNews />

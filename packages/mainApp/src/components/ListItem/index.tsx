@@ -1,5 +1,5 @@
 import React, {useEffect, useState, memo} from 'react';
-import {StatusBar, StyleSheet, View} from 'react-native';
+import {ScrollView, StatusBar, StyleSheet, View} from 'react-native';
 import {FAB} from 'react-native-elements';
 import ViewShot from 'react-native-view-shot';
 import {useTheme} from '@react-navigation/native';
@@ -14,15 +14,24 @@ import ViewShotFooter from './ViewShotFooter';
 import AdItem from './AdItem';
 import PlaceHolderImage from '../PlaceHolderMedia';
 import {delay} from 'lodash';
+import MyWebView from './MyWebView';
+import PagerView from 'react-native-pager-view';
 // import WebView from 'react-native-webview';
 
-const {height} = dimensions.window;
+const {height, width} = dimensions.window;
 
-const ListItem = ({item}) => {
+const ListItem = ({item, setScroll}) => {
   const [isCapturing, setIsCapturing] = useState(false);
   const {colors} = useTheme();
 
   const viewShot = React.useRef();
+
+  const onPageSelected = e => {
+    const postion = e.nativeEvent.position;
+    console.log('postion', postion);
+    if (postion == 0) setScroll(true);
+    if (postion == 1) setScroll(false);
+  };
 
   const captureAndShareScreenshot = () => {
     setIsCapturing(true);
@@ -43,15 +52,23 @@ const ListItem = ({item}) => {
 
   console.log('Med', item?.media_type, item?.media_type === 'image');
 
-  if (item?.title !== undefined) {
+  if (item?.author !== undefined) {
     return (
-      <>
+      // <PagerView
+      //   style={styles.pagerView}
+      //   initialPage={0}
+      //   onPageSelected={onPageSelected}>
+      <View collapsable={false} style={styles.container}>
         <ViewShot ref={viewShot} options={{format: 'jpg', quality: 1}}>
           <View
             // onPress={onPress}
             style={[
               styles.item,
-              {height: height, backgroundColor: colors.background},
+              {
+                height: height,
+                backgroundColor: colors.background,
+                width: width,
+              },
             ]}>
             {item?.media_type === 'image' ? (
               <PlaceHolderImage
@@ -90,7 +107,11 @@ const ListItem = ({item}) => {
           ]}
           onPress={captureAndShareScreenshot}
         />
-      </>
+      </View>
+      //   <ScrollView collapsable={false}>
+      //     <MyWebView url={item?.external_url} />
+      //   </ScrollView>
+      // </PagerView>
     );
   } else {
     return <AdItem item={item} />;
@@ -98,6 +119,9 @@ const ListItem = ({item}) => {
 };
 
 const styles = StyleSheet.create({
+  pagerView: {
+    flex: 1,
+  },
   fab: {
     position: 'absolute',
     right: 20,

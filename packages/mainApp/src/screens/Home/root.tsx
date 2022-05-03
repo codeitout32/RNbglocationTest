@@ -25,7 +25,7 @@ const Home: React.FC<any> = props => {
 
   const dispatch = useDispatch();
 
-  const {catId, isReload} = route.params;
+  const {catId, isReload} = route?.params || {};
 
   useEffect(() => {
     allNews.length > 0
