@@ -58,7 +58,10 @@ const ListItem = ({item, setScroll}) => {
       //   style={styles.pagerView}
       //   initialPage={0}
       //   onPageSelected={onPageSelected}>
-      <View collapsable={false} style={styles.container}>
+      <View
+        collapsable={false}
+        // style={styles.container}
+      >
         <ViewShot ref={viewShot} options={{format: 'jpg', quality: 1}}>
           <View
             // onPress={onPress}
