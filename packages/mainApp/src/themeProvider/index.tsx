@@ -8,6 +8,7 @@ import Navigation from '../navigation/Navigation';
 import {SafeAreaView, View} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import MyTest from '../components/MyTest';
 
 const ThemeProviderMain = () => {
   const darkMode = useSelector(darkModeSelector);
@@ -15,7 +16,8 @@ const ThemeProviderMain = () => {
   return (
     <ThemeProvider theme={theme} useDark={darkMode}>
       <View style={{flex: 1}}>
-        <Navigation />
+        {/* <Navigation /> */}
+        <MyTest />
       </View>
     </ThemeProvider>
   );

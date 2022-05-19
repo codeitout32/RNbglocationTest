@@ -7,7 +7,7 @@ buildscript {
         compileSdkVersion = 30
         targetSdkVersion = 30
         ndkVersion = "21.4.7075529"
-        googlePlayServicesVersion = "16.1.0" // default: "+"
+        googlePlayServicesVersion = "17.0.0" // default: "+"
         firebaseVersion = "17.3.4" // default: "+"
         firebaseIidVersion = "19.0.1"
     }
@@ -44,5 +44,10 @@ allprojects {
         google()
 
         maven { url 'https://www.jitpack.io' }
+
+          maven {
+          // react-native-background-fetch
+           url("${project(':react-native-background-fetch').projectDir}/libs")
+     }
     }
 }
